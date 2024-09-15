@@ -1,0 +1,58 @@
+@media (width<=950px) {
+    .navMenu .navLinks {
+        display: none;
+    }
+
+    .navMenu .menuBtn {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .routerDropDown .dropSearch,
+    .routerDropDown .dropCart,
+    .routerDropDown .dropUser {
+        display: none;
+    }
+
+    .aboutContainer {
+        flex-flow: column;
+        gap:100px;
+        padding: 100px 50px;
+    }
+
+    .aboutContainer .aboutText,
+    .aboutContainer .aboutImg {
+        width: 100%;
+    }
+}
+
+@media (width<=650px) {
+
+    .navMenu .searchBar,
+    .navMenu .cartCont,
+    .navMenu .userCont {
+        display: none;
+    }
+
+    .routerDropDown .dropSearch,
+    .routerDropDown .dropCart,
+    .routerDropDown .dropUser {
+        display: block;
+    }
+
+    .navMainCont .routerDropDown.drop {
+        height: 310px;
+    }
+
+    .heroContainer h1 {
+        font-size: 2.5rem;
+        /* text-align: justify; */
+    }
+
+    .heroContainer {
+        padding: 100px 50px;
+    }
+}

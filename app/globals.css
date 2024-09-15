@@ -1,0 +1,390 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 2200px;
+  min-width: 375px;
+  margin: auto;
+  padding-top: 70px;
+}
+
+/* -------------NavBar------------ */
+.navMainCont {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 10px 40px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.navContainer {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ------Nav Company Logo------ */
+.navLogo {
+  font-weight: bold;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* -------Routes-------- */
+.navMenu {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.navMenu .navLinks {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.navMenu .navLinks a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.1rem;
+  position: relative;
+}
+
+.navMenu .navLinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 3px;
+  width: 0%;
+  background-color: green;
+  transition: all 0.5s;
+}
+
+.navMenu .navLinks a:hover::after {
+  width: 100%;
+}
+
+.navMenu .navLinks a:hover {
+  color: green;
+}
+
+
+/* -----Small Navbar Menu Button-------- */
+
+.navMenu .menuBtn {
+  display: none;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 45px;
+  width: 45px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.navMenu .menuBtn:hover span {
+  background-color: black;
+}
+
+.navMenu .menuBtn span {
+  width: 35px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: black;
+  transition: all 0.5s;
+}
+
+.navMenu .menuBtn.open span:first-child {
+  transform: rotate(45deg) translate(10px, 3px);
+}
+
+.navMenu .menuBtn.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navMenu .menuBtn.open span:last-child {
+  transform: rotate(-45deg) translate(10px, -4px);
+}
+
+
+
+/* --------Small Navbar Routes Style------------ */
+
+.navMainCont .routerDropDown {
+  height: 0;
+  z-index: 100;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+.navMainCont .routerDropDown.drop {
+  height: 200px;
+}
+
+.navMainCont .routerDropDown a {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: left;
+  cursor: pointer;
+  border-bottom: 3px solid black;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.routerDropDown .dropSearch {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 2px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.routerDropDown .dropSearch input {
+  width: 100%;
+  border-right: 2px solid black;
+  padding: 5px;
+  outline: none;
+}
+
+.dropCart {
+  font-size: 2.5rem;
+  position: relative;
+  cursor: pointer;
+  /* padding-top: 10px; */
+}
+
+.dropCart .count {
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  font-size: small;
+  background-color: cadetblue;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.routerDropDown .dropUser img {
+  border-radius: 50%;
+}
+
+/* --------NavBar Cart, Search & User Styles-------- */
+
+.navMenu .searchBar {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+}
+
+.navMenu .searchBar input {
+  outline: none;
+  border: none;
+  padding: 0px 5px;
+  width: 0;
+  opacity: 0;
+  transition: all 1s;
+}
+
+.navMenu .searchBar input.show {
+  width: 120px;
+  border-bottom: 2px solid green;
+  opacity: 1;
+}
+
+.navMenu .cartCont {
+  position: relative;
+  cursor: pointer;
+}
+
+.navContainer .cartCont .count {
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  background-color: cadetblue;
+  width: 20px;
+  height: 20px;
+  font-size: small;
+  border-radius: 50%;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navMenu .userCont img {
+  border-radius: 50%;
+}
+
+
+/* ------------- Navbar End ------------ */
+
+/* -------------- Hero Section -------------- */
+.heroContainer {
+  width: 100%;
+  background-color: #eeeee6;
+  display: flex;
+  padding: 100px;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.heroContainer h1 {
+  font-size: 4rem;
+  text-align: center;
+  line-height: 1;
+  color: #dfb434;
+  background: -webkit-linear-gradient(#dfb434, #c97d26);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.5s;
+  line-break: strict;
+}
+
+.heroContainer button {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 5px;
+  display: block;
+  height: 60px;
+  width: 200px;
+  background: linear-gradient(187deg, rgba(1, 79, 6, 1) 19%, rgba(5, 145, 7, 1) 100%);
+  transition: all 0.5s;
+}
+
+.heroContainer button:hover {
+  background: linear-gradient(56deg, rgba(1, 79, 6, 1) 19%, rgba(5, 145, 7, 1) 100%)
+}
+
+/* ------- Hero Section End-------- */
+
+/* -------- About Section----------- */
+.aboutContainer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 100px 0;
+  transition: all 0.5s;
+}
+
+.aboutContainer .aboutImg,
+.aboutContainer .aboutText {
+  width: 40%;
+  transition: all 0.5s;
+}
+
+.aboutText h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  /* color: rgba(1, 79, 6, 1);
+  background: -webkit-linear-gradient(rgba(1, 79, 6, 1), rgba(5, 145, 7, 1)); */
+  color: #dfb434;
+  background: -webkit-linear-gradient(#dfb434, #c97d26);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.5s;
+}
+
+.aboutText p {
+  text-align: justify;
+  font-size: 1.4rem;
+  color: rgba(1, 79, 6, 1);
+  transition: all 0.5s;
+}
+
+.aboutImg img {
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+/* ---------- About Section End ------------- */
+
+/* --------- Offers Section--------------- */
+.offerContainer {
+  width: 100%;
+  background-color: #eeeee6;
+  padding: 100px 50px;
+}
+
+.offerContainer h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  /* color: rgba(1, 79, 6, 1);
+  background: -webkit-linear-gradient(rgba(1, 79, 6, 1), rgba(5, 145, 7, 1)); */
+  color: #dfb434;
+  background: -webkit-linear-gradient(#dfb434, #c97d26);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.5s;
+}
+
+.offerContainer .imgCont {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 100px;
+  gap: 20px;
+  transition: all 0.5s;
+}
+
+.imgCont .cardCont {
+  width: 400px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  transition: all 0.5s;
+}
+
+.imgCont .cardCont img {
+  border-radius: 5px;
+}
+
+.imgCont .cardCont h2 {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: green;
+}
+
+/* -------------Offers Section--------------- */
