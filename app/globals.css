@@ -15,7 +15,7 @@ body {
   max-width: 2200px;
   min-width: 375px;
   margin: auto;
-  padding-top: 70px;
+  padding-top: 60px;
 }
 
 /* -------------NavBar------------ */
@@ -251,7 +251,7 @@ body {
   width: 100%;
   background-color: #eeeee6;
   display: flex;
-  padding: 100px;
+  padding: 200px 100px;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
@@ -296,7 +296,7 @@ body {
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-evenly;
-  padding: 100px 0;
+  padding: 150px 0;
   transition: all 0.5s;
 }
 
@@ -337,7 +337,7 @@ body {
 .offerContainer {
   width: 100%;
   background-color: #eeeee6;
-  padding: 100px 50px;
+  padding: 150px 50px 200px 50px;
 }
 
 .offerContainer h1 {
