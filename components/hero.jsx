@@ -14,7 +14,7 @@ export default function Hero() {
                     <p>This is why the team behind Pure Essence recognised the need for international supplies of the highest quality of natural products.</p>
                     <br />
                     <br />
-                    <p>The team come from a background of herbal practitioners and good ol' spice lovers, so rest assured Pure Essence provides the best quality and type of product for a better you.</p>
+                    <p>The team come from a background of herbal practitioners and good ol&apos; spice lovers, so rest assured Pure Essence provides the best quality and type of product for a better you.</p>
                 </div>
                 <div className="aboutImg">
                     <img src="/spices.webp" alt="Spices" />
@@ -26,7 +26,7 @@ export default function Hero() {
                     <div className="cardCont">
                         <img src="/spices.webp" alt="Spices" />
                         <h2>Rich Spices</h2>
-                        <p>Who said you can't eat till you are fit. Food is a pillar of health, you either keep it or ruin it.</p>
+                        <p>Who said you can&apos;t eat till you are fit. Food is a pillar of health, you either keep it or ruin it.</p>
                     </div>
                     <div className="cardCont">
                         <img src="/spices.webp" alt="Spices" />
@@ -36,7 +36,7 @@ export default function Hero() {
                     <div className="cardCont">
                         <img src="/spices.webp" alt="Spices" />
                         <h2>Quality Health Foods</h2>
-                        <p>Who said you can't eat till you are fit. Food is a pillar of health, you either keep it or ruin it.</p>
+                        <p>Who said you can&apos;t eat till you are fit. Food is a pillar of health, you either keep it or ruin it.</p>
                     </div>
                     <div className="cardCont">
                         <img src="/spices.webp" alt="Spices" />
