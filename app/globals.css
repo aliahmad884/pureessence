@@ -25,6 +25,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
+  max-width: 2200px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -55,6 +56,7 @@ body {
   display: flex;
   flex-flow: column nowrap;
   padding: 10px 40px;
+  max-width: 2200px;
   position: fixed;
   top: 35px;
   width: 100%;
@@ -543,6 +545,7 @@ body {
   justify-content: space-evenly;
   text-align: left;
   gap: 50px;
+  padding-left: 50px;
 }
 
 .cont1 .logoCont,
@@ -561,7 +564,6 @@ body {
   color: black;
   font-weight: bold;
   font-size: 1.3rem;
-  margin: auto;
 }
 
 .cont1 .logoCont {
@@ -575,13 +577,8 @@ body {
 }
 
 .cont1 .explor a {
-  margin: auto;
   font-size: 1.1rem;
-}
-
-.cont1 .bestSeller ul,
-.cont1 .legal ul {
-  margin: auto;
+  width: fit-content;
 }
 
 .cont1 .bestSeller li,
@@ -595,6 +592,7 @@ body {
   align-items: start;
   justify-content: space-evenly;
   gap: 50px;
+  padding-left: 50px;
 }
 
 .cont2 .company,
@@ -602,7 +600,7 @@ body {
 .cont2 .social {
   display: flex;
   flex-flow: column nowrap;
-  width: 450px;
+  width: 350px;
 }
 
 .cont2 h3 {
@@ -614,10 +612,4 @@ body {
 .cont2 p {
   font-size: 1.1rem;
 }
-
-/* .cont2 address {
-  width: 50%;
-  margin: auto;
-} */
-
 /* ------------ Footer End --------------- */

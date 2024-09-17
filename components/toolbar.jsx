@@ -2,9 +2,15 @@
 import { useDataContext } from "@/context";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect } from "react";
 
 export default function ToolBar() {
-    const { innerWidth } = useDataContext()
+    const { innerWidth, setInnerWidth } = useDataContext()
+    useEffect(() => {
+        if (window.innerWidth <= 600) {
+            setInnerWidth(window.innerWidth)
+        }
+    }, [])
     return (
         <>
             <div className="toolBarCont">
