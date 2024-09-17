@@ -5,13 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useDataContext } from "@/context";
 
 export default function Navbar() {
     const pathName = usePathname();
+    const { innerWidth, setInnerWidth } = useDataContext()
     const [barBtn, setBarBtn] = useState('');
     const [inputEle, setInputEle] = useState(null);
     const [searchValue, setSearchValue] = useState('');
-    const [windowWidth, setWindowWidth] = useState('');
     const [dropRouteLinks, setDropRouteLinks] = useState('');
     const navLinks = [
         { link: 'Home', path: '/' },
@@ -49,10 +50,10 @@ export default function Navbar() {
             };
         };
         const handleWindow = () => {
-            setWindowWidth(window.innerWidth);
+            setInnerWidth(window.innerWidth);
         };
         window.addEventListener('resize', handleWindow);
-        if (windowWidth >= 1000 && menuBtn && menuBtn.classList.contains('open')) {
+        if (innerWidth >= 1000 && menuBtn && menuBtn.classList.contains('open')) {
             menuBtn.classList.remove('open');
             droplinks.classList.remove('drop');
         };
@@ -63,7 +64,7 @@ export default function Navbar() {
             window.removeEventListener("resize", handleWindow);
         };
 
-    }, [searchValue, windowWidth])
+    }, [searchValue, innerWidth])
 
     // --------- Active Tab Handler-------------//
     useEffect(() => {

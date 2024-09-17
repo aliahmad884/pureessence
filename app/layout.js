@@ -1,6 +1,11 @@
 import Navbar from "@/components/navbar";
 import "./globals.css";
 import "./media-queries.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ToolBar from "@/components/toolbar";
+import ContextProvider from "@/context";
+import Footer from "@/components/footer";
 
 
 export const metadata = {
@@ -15,8 +20,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <ContextProvider>
+          <ToolBar />
+          <Navbar />
+          {children}
+          <Footer />
+        </ContextProvider>
       </body>
     </html>
   );

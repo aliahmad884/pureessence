@@ -13,10 +13,42 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   max-width: 2200px;
+  /* width: 100%; */
   min-width: 375px;
+  overflow-x: hidden;
   margin: auto;
-  padding-top: 60px;
+  padding-top: 95px;
 }
+
+/* -------------Tool Bar------------ */
+.toolBarCont {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 40px;
+  background-color: #171717;
+  color: white;
+  transition: all 0.5s;
+}
+
+.toolBarCont .contact {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  transition: all 0.5s;
+}
+
+.toolBarCont .promo {
+  color: #dfb434;
+}
+
+/* ------------Tool Bar End--------- */
 
 /* -------------NavBar------------ */
 .navMainCont {
@@ -24,7 +56,7 @@ body {
   flex-flow: column nowrap;
   padding: 10px 40px;
   position: fixed;
-  top: 0;
+  top: 35px;
   width: 100%;
   background-color: #ffffff;
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
@@ -256,20 +288,26 @@ body {
   align-items: center;
   justify-content: center;
   gap: 50px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/spices.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .heroContainer h1 {
   font-size: 4rem;
+  font-weight: bolder;
   text-align: center;
   line-height: 1;
-  color: #dfb434;
-  background: -webkit-linear-gradient(#dfb434, #c97d26);
+  color: white;
+  /* background: -webkit-linear-gradient(#dfb434, #c97d26);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   transition: all 0.5s;
   line-break: strict;
 }
 
+.contactCont .contactUs button,
 .heroContainer button {
   padding: 10px 20px;
   border: none;
@@ -280,12 +318,15 @@ body {
   display: block;
   height: 60px;
   width: 200px;
-  background: linear-gradient(187deg, rgba(1, 79, 6, 1) 19%, rgba(5, 145, 7, 1) 100%);
+  background: rgb(149, 126, 6);
+  background: linear-gradient(34deg, rgba(149, 126, 6, 1) 29%, rgba(221, 177, 3, 1) 100%);
   transition: all 0.5s;
 }
 
+.contactCont .contactUs button:hover,
 .heroContainer button:hover {
-  background: linear-gradient(56deg, rgba(1, 79, 6, 1) 19%, rgba(5, 145, 7, 1) 100%)
+  background: rgb(149, 126, 6);
+  background: linear-gradient(180deg, rgba(149, 126, 6, 1) 29%, rgba(221, 177, 3, 1) 100%);
 }
 
 /* ------- Hero Section End-------- */
@@ -296,7 +337,7 @@ body {
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-evenly;
-  padding: 150px 0;
+  padding: 200px 0;
   transition: all 0.5s;
 }
 
@@ -307,22 +348,29 @@ body {
 }
 
 .aboutText h1 {
+  margin-bottom: 50px;
+}
+
+.aboutText h1,
+.reviewCont h1,
+.offerContainer h1,
+.contactCont .contactUs h1 {
   text-align: center;
   font-size: 3rem;
   font-weight: bold;
   /* color: rgba(1, 79, 6, 1);
   background: -webkit-linear-gradient(rgba(1, 79, 6, 1), rgba(5, 145, 7, 1)); */
-  color: #dfb434;
-  background: -webkit-linear-gradient(#dfb434, #c97d26);
+  color: black;
+  /* background: -webkit-linear-gradient(#dfb434, #c97d26);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   transition: all 0.5s;
 }
 
 .aboutText p {
   text-align: justify;
   font-size: 1.4rem;
-  color: rgba(1, 79, 6, 1);
+  color: black;
   transition: all 0.5s;
 }
 
@@ -336,21 +384,8 @@ body {
 /* --------- Offers Section--------------- */
 .offerContainer {
   width: 100%;
-  background-color: #eeeee6;
-  padding: 150px 50px 200px 50px;
-}
-
-.offerContainer h1 {
-  text-align: center;
-  font-size: 3rem;
-  font-weight: bold;
-  /* color: rgba(1, 79, 6, 1);
-  background: -webkit-linear-gradient(rgba(1, 79, 6, 1), rgba(5, 145, 7, 1)); */
-  color: #dfb434;
-  background: -webkit-linear-gradient(#dfb434, #c97d26);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: all 0.5s;
+  background-color: #e5efe0;
+  padding: 200px 50px 150px 50px;
 }
 
 .offerContainer .imgCont {
@@ -369,6 +404,7 @@ body {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+  text-align: center;
   gap: 20px;
   padding: 40px 20px;
   background-color: white;
@@ -381,10 +417,207 @@ body {
   border-radius: 5px;
 }
 
-.imgCont .cardCont h2 {
-  font-size: 1.2rem;
+.imgCont .cardCont h2,
+.reviewCard h2 {
+  font-size: 1.3rem;
   font-weight: bolder;
-  color: green;
+  color: black;
 }
 
 /* -------------Offers Section--------------- */
+
+/* ----------- Reviews Section--------------- */
+.reviewCont {
+  width: 100%;
+  background-color: white;
+  padding: 200px 50px;
+}
+
+.reviewCardCont {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 100px;
+  gap: 20px;
+  transition: all 0.5s;
+}
+
+.reviewCard {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  text-align: center;
+  padding-bottom: 50px;
+  gap: 20px;
+}
+
+.reviewCard img {
+  width: 140px;
+}
+
+.reviewCard .stars {
+  font-size: 1.5rem;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 5px;
+}
+
+
+/* ------------ Reviews End----------------- */
+
+/* ----------- Contact Section ------------- */
+.contactCont {
+  width: 100%;
+  background-color: #e5efe0;
+  padding: 200px 50px 150px 50px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 80px;
+}
+
+.contactCont .contactUs {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+}
+
+.contactCont .address {
+  width: 300px;
+}
+
+.contactCont .address h3 {
+  font-size: 1.4rem;
+  margin: 20px 0 5px 0;
+  font-weight: bold;
+}
+
+.contactCont .address p {
+  font-size: 1.1rem;
+}
+
+.contactCont .img {
+  height: 400px;
+  width: 300px;
+  background-color: #eeeee6;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+/* ----------- Contact End----------------- */
+
+/* ------------ Footer ------------------- */
+.footer {
+  padding: 100px 0 0 0;
+  background-color: #89a57b;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.footerMainCont {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+}
+
+.footerMainCont .copyRight {
+  border-top: 1px solid black;
+  width: 100%;
+  text-align: center;
+  padding: 3px 50px;
+  font-weight: bold;
+}
+
+.footerMainCont .cont1 {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: start;
+  justify-content: space-evenly;
+  text-align: left;
+  gap: 50px;
+}
+
+.cont1 .logoCont,
+.cont1 .explor,
+.cont1 .bestSeller,
+.cont1 .legal {
+  width: 350px;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.cont1 .logoCont h3,
+.cont1 .explor h3,
+.cont1 .bestSeller h3,
+.cont1 .legal h3 {
+  color: black;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin: auto;
+}
+
+.cont1 .logoCont {
+  text-align: center;
+}
+
+.cont1 .logoCont img {
+  width: 150px;
+  margin: auto;
+  margin-bottom: 5px;
+}
+
+.cont1 .explor a {
+  margin: auto;
+  font-size: 1.1rem;
+}
+
+.cont1 .bestSeller ul,
+.cont1 .legal ul {
+  margin: auto;
+}
+
+.cont1 .bestSeller li,
+.cont1 .legal li {
+  font-size: 1.1rem;
+}
+
+.footerMainCont .cont2 {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: start;
+  justify-content: space-evenly;
+  gap: 50px;
+}
+
+.cont2 .company,
+.cont2 .mailAddress,
+.cont2 .social {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 450px;
+}
+
+.cont2 h3 {
+  margin-top: 10px;
+  font-size: 1.4rem;
+  font-weight: bolder;
+}
+
+.cont2 p {
+  font-size: 1.1rem;
+}
+
+/* .cont2 address {
+  width: 50%;
+  margin: auto;
+} */
+
+/* ------------ Footer End --------------- */

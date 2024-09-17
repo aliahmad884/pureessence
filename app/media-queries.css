@@ -1,4 +1,6 @@
+
 @media (width<=950px) {
+
     .navMenu .navLinks {
         display: none;
     }
@@ -19,7 +21,7 @@
 
     .aboutContainer {
         flex-flow: column;
-        gap:100px;
+        gap: 100px;
         padding: 100px 50px;
     }
 
@@ -27,7 +29,17 @@
     .aboutContainer .aboutImg {
         width: 100%;
     }
+
+    .toolBarCont .promo {
+        display: none;
+    }
+
+    .toolBarCont .contact {
+        width: 100%;
+        gap: 0;
+    }
 }
+
 
 @media (width<=650px) {
 
