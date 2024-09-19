@@ -25,11 +25,17 @@ export default function Navbar() {
     const handleSearch = () => {
         if (inputEle) {
             inputEle.classList.add('show')
+            inputEle.nextSibling.style.color = '#dfb434'
         }
     }
-    const handleMenu = () => {
+    const handleMenu = (event) => {
+        event.stopPropagation();
         barBtn.classList.toggle('open')
         dropRouteLinks.classList.toggle('drop')
+    }
+    const onTapClose = () => {
+        barBtn.classList.remove('open')
+        dropRouteLinks.classList.remove('drop')
     }
 
 
@@ -43,10 +49,9 @@ export default function Navbar() {
         setBarBtn(menuBtn);
 
         const handleClose = (event) => {
-            if (input && searchValue === '' && !event.target.closest('.searchBar') && !event.target.closest('.dropSearch')) {
+            if (input && searchValue === '' && !event.target.closest('#search')) {
                 input.classList.remove('show');
-                menuBtn.classList.remove('open');
-                droplinks.classList.remove('drop');
+                input.nextSibling.style.color = ''
             };
         };
         const handleWindow = () => {
@@ -71,11 +76,11 @@ export default function Navbar() {
         let navLinks = document.querySelectorAll('.navLinks')
         console.log(pathName)
         navLinks.forEach(link => {
-            link.style.color = 'black'
+            link.style.color = ''
             link.style.fontWeight = 'normal'
             link.style.borderBottom = 'none'
             if (link.dataset.value === pathName) {
-                link.style.color = 'green'
+                link.style.color = '#dfb434'
                 link.style.fontWeight = 'bolder'
                 link.style.borderBottom = '3px solid'
             }
@@ -111,7 +116,7 @@ export default function Navbar() {
                         {/* ---------Search Bar--------- */}
                         <div className="searchBar">
                             <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" />
-                            <FontAwesomeIcon style={{ cursor: 'pointer', fontSize: '1.6rem' }} onClick={handleSearch} icon={faMagnifyingGlass} />
+                            <FontAwesomeIcon className="searchIcon" onClick={handleSearch} icon={faMagnifyingGlass} />
                         </div>
                         {/* -------Cart--------- */}
                         <div className="cartCont">
@@ -132,6 +137,7 @@ export default function Navbar() {
                             key={navlink.link}
                             href={navlink.path}
                             className="navLinks"
+                            onClick={onTapClose}
                         >{navlink.link}</Link>)
                     }
                     {/* --------DropDown Search Bar-------- */}
