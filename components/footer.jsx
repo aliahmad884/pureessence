@@ -22,7 +22,7 @@ export default function Footer() {
                     <img src="/CircleLogo.webp" alt="Logo" width={50} />
                     <div>
                         <h1><strong style={{ color: '#dfb434' }}>Pure</strong> Essence</h1>
-                        <p>Lorem Ipsum</p>
+                        <p>The Purest Products, For a Better You.</p>
                     </div>
                 </div>
                 <div className="mainCont">

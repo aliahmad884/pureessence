@@ -10,9 +10,7 @@ export default function Hero() {
                     <h1>About the Brand</h1>
                     <p>There is nothing like fresh spice or the purest of ingredients for your daily diet or supplimentary intake</p>
                     <br />
-                    <br />
                     <p>This is why the team behind Pure Essence recognised the need for international supplies of the highest quality of natural products.</p>
-                    <br />
                     <br />
                     <p>The team come from a background of herbal practitioners and good ol&apos; spice lovers, so rest assured Pure Essence provides the best quality and type of product for a better you.</p>
                 </div>

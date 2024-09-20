@@ -143,4 +143,12 @@
         align-items: center;
         justify-content: center;
     }
+
+    .productCard button {
+        padding: 10px 50px;
+    }
+
+    .productCard h2 {
+        font-size: large;
+    }
 }

@@ -9,7 +9,7 @@ import { useDataContext } from "@/context";
 
 export default function Navbar() {
     const pathName = usePathname();
-    const { innerWidth, setInnerWidth } = useDataContext()
+    const { innerWidth, setInnerWidth, cartData } = useDataContext()
     const [barBtn, setBarBtn] = useState('');
     const [inputEle, setInputEle] = useState(null);
     const [searchValue, setSearchValue] = useState('');
@@ -85,8 +85,6 @@ export default function Navbar() {
                 link.style.borderBottom = '3px solid'
             }
         })
-
-
     }, [pathName])
     return (
         <>
@@ -120,7 +118,7 @@ export default function Navbar() {
                         </div>
                         {/* -------Cart--------- */}
                         <div className="cartCont">
-                            <div className="count">7</div>
+                            <div className="count">{cartData.length}</div>
                             <FontAwesomeIcon style={{ fontSize: '1.5rem', paddingTop: '7px' }} icon={faCartShopping} />
                         </div>
                         {/* -------Active User------- */}
@@ -148,7 +146,7 @@ export default function Navbar() {
                     <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'space-between' }}>
                         {/* --------DropDown Search Cart-------- */}
                         <div className="dropCart">
-                            <div className="count">7</div>
+                            <div className="count">{cartData.length}</div>
                             <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faCartShopping} />
                         </div>
                         {/* --------DropDown Search User-------- */}

@@ -1,3 +1,4 @@
+import { useDataContext } from "@/context";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,5 +16,21 @@ export default function ReviewCard() {
                 <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
             </div>
         </div>
+    )
+}
+export function ProductCard({ imgUrl, title, price, obj }) {
+    const { cartData, setCartData } = useDataContext()
+    const handleCart = (data) => {
+        setCartData(pre => [...pre, data])
+    }
+    return (
+        <>
+            <div className="productCard">
+                <img src={imgUrl} alt={title} />
+                <h2>{title}</h2>
+                <p>{price}</p>
+                <button onClick={() => handleCart(obj)} type="button">Add to Cart</button>
+            </div>
+        </>
     )
 }
