@@ -4,11 +4,12 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useDataContext } from "@/context";
 
 export default function Navbar() {
     const pathName = usePathname();
+    const router = useRouter()
     const { innerWidth, setInnerWidth, cartData } = useDataContext()
     const [barBtn, setBarBtn] = useState('');
     const [inputEle, setInputEle] = useState(null);
@@ -86,6 +87,9 @@ export default function Navbar() {
             }
         })
     }, [pathName])
+    const handleCartRoute = () => {
+        router.push('/cart')
+    }
     return (
         <>
             <div className="navMainCont">
@@ -117,7 +121,7 @@ export default function Navbar() {
                             <FontAwesomeIcon className="searchIcon" onClick={handleSearch} icon={faMagnifyingGlass} />
                         </div>
                         {/* -------Cart--------- */}
-                        <div className="cartCont">
+                        <div onClick={handleCartRoute} className="cartCont">
                             <div className="count">{cartData.length}</div>
                             <FontAwesomeIcon style={{ fontSize: '1.5rem', paddingTop: '7px' }} icon={faCartShopping} />
                         </div>
@@ -145,7 +149,10 @@ export default function Navbar() {
                     </div>
                     <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'space-between' }}>
                         {/* --------DropDown Search Cart-------- */}
-                        <div className="dropCart">
+                        <div onClick={() => {
+                            onTapClose()
+                            handleCartRoute()
+                        }} className="dropCart">
                             <div className="count">{cartData.length}</div>
                             <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faCartShopping} />
                         </div>

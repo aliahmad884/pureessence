@@ -21,7 +21,8 @@ export default function ReviewCard() {
 export function ProductCard({ imgUrl, title, price, obj }) {
     const { cartData, setCartData } = useDataContext()
     const handleCart = (data) => {
-        setCartData(pre => [...pre, data])
+        let find = cartData.find(item => item.id === data.id)
+        setCartData(pre => !find ? [...pre, data] : [...pre])
     }
     return (
         <>

@@ -47,7 +47,7 @@
     .aboutContainer {
         flex-flow: column;
         gap: 100px;
-        padding: 100px 50px;
+        padding: 100px 20px;
     }
 
     .aboutContainer .aboutText,
@@ -69,10 +69,66 @@
     } */
 }
 
+@media screen and (max-width: 700px) {
+    .cartPage{
+        padding-top: 50px;
+    }
+    .cartPage table {
+        border: 0;
+    }
+
+    .cartPage table caption {
+        font-size: 1.3em;
+    }
+
+    .cartPage table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .cartPage table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    .cartPage table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    .cartPage table td::before {
+        /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .cartPage table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+
 
 @media (width<=650px) {
     .blogsCont .card {
         width: 100%;
+    }
+    .offerContainer {
+        padding: 100px 20px;
     }
 
     .navMenu .searchBar,
@@ -97,7 +153,7 @@
     }
 
     .heroContainer {
-        padding: 100px 50px;
+        padding: 100px 20px;
     }
 
     .toolBarCont {

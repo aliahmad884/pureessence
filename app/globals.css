@@ -219,6 +219,11 @@ body {
   /* padding-top: 10px; */
 }
 
+.dropCart a {
+  text-decoration: none;
+  border-bottom: none;
+}
+
 .dropCart .count {
   position: absolute;
   top: 8px;
@@ -743,6 +748,114 @@ body {
   width: 200px;
 }
 
-
-
 /* ------------ Footer End --------------- */
+/* ------------- Cart Page --------------- */
+.cartPage {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 150px 15px;
+  /* overflow-x: auto; */
+}
+
+.cartPage h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.cartPage a {
+  text-decoration: underline;
+  margin-bottom: 30px;
+}
+.cartPage table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 1600px;
+  table-layout: fixed;
+  transition: all 0.5s;
+}
+
+.cartPage table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+.cartPage table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+.cartPage table th,
+.cartPage table td {
+  padding: .625em;
+  text-align: center;
+}
+
+.cartPage table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+
+.cartPage .tableProduct {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.cartPage .tableProduct p {
+  font-size: large;
+}
+
+.cartPage .innerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid black;
+  width: 100%;
+  min-width: 100px;
+  margin: auto;
+  font-size: 1.3rem;
+  padding: 5px 15px;
+  border-radius: 30px;
+}
+
+.cartPage .innerBtn button {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.cartPage .checkoutCont {
+  /* text-align: right; */
+  max-width: 1600px;
+  width: 100%;
+  /* background-color: #f3f3f3; */
+  text-align: right;
+}
+
+.cartPage .checkoutCont button {
+  background-color: #dfb434;
+  font-size: large;
+  outline: none;
+  border: 1px solid;
+  padding: 10px 50px;
+  border-radius: 30px;
+}
+
+.cartPage .checkoutCont .subTotal {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+.cartPage .checkoutCont .subTotal p {
+  font-size: small;
+}
+
+/* ----------- Cart Page End ------------- */

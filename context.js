@@ -11,14 +11,12 @@ export default function ContextProvider({ children }) {
         const storedCart = localStorage.getItem('cart')
         if (storedCart) {
             setCartData(JSON.parse(storedCart))
-            console.log(storedCart)
         }
     }, [])
     useEffect(() => {
         try {
             if (cartData.length > 0) {
                 localStorage.setItem('cart', JSON.stringify(cartData))
-                console.log(cartData)
             }
         } catch (e) {
             if (e.code === 22 || e.name === 'QuotaExceededError') {
@@ -26,8 +24,18 @@ export default function ContextProvider({ children }) {
             }
         }
     }, [cartData])
+    const removeItem = (itemName) => {
+        if (cartData.length < 2) {
+            localStorage.removeItem('cart')
+            setCartData([])
+        } else {
+            const updateData = cartData.filter(item => item.id !== itemName)
+            setCartData(updateData)
+            localStorage.setItem('cart',JSON.stringify(updateData))
+        }
+    }
     return (
-        <DataContext.Provider value={{ innerWidth, setInnerWidth, cartData, setCartData }}>
+        <DataContext.Provider value={{ innerWidth, setInnerWidth, cartData, setCartData, removeItem }}>
             {children}
         </DataContext.Provider>
     )

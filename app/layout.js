@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ToolBar from "@/components/toolbar";
 import ContextProvider from "@/context";
 import Footer from "@/components/footer";
+import { Suspense } from "react";
 
 
 export const metadata = {
@@ -20,13 +21,26 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+
         <ContextProvider>
           <ToolBar />
           <Navbar />
-          {children}
+          <Suspense fallback={<Loading />}>
+            {children}
+          </Suspense>
           <Footer />
         </ContextProvider>
+
       </body>
-    </html>
+    </html >
   );
+}
+export function Loading() {
+  return (
+    <>
+      <div style={{ backgroundColor: 'blue', color: 'white', height: '100vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '5rem' }}>
+        <h1>Loading......</h1>
+      </div>
+    </>
+  )
 }
