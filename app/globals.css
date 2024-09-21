@@ -20,6 +20,10 @@ body {
   padding-top: 95px;
 }
 
+main {
+  min-height: 60vh;
+}
+
 /* -------------Tool Bar------------ */
 .toolBarCont {
   position: fixed;
@@ -768,6 +772,7 @@ body {
   text-decoration: underline;
   margin-bottom: 30px;
 }
+
 .cartPage table {
   border: 1px solid #ccc;
   border-collapse: collapse;
@@ -857,5 +862,137 @@ body {
 .cartPage .checkoutCont .subTotal p {
   font-size: small;
 }
+
+.checkoutPage {
+  padding: 100px 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: start;
+  justify-content: space-between;
+  position: relative;
+}
+
+.reviewDetail,
+.paymentForm,
+.checkoutForm {
+  max-width: 600px;
+  padding: 20px;
+  width: 50%;
+  border-radius: 3px;
+  transition: all 0.5s;
+  margin: auto;
+  /* margin: auto; */
+}
+
+.reviewDetail {
+  width: 100%;
+  transition: all 0.5s;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.reviewDetail input {
+  width: 100%;
+  padding: 10px 0;
+  /* border: none; */
+  outline: none;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+.checkoutForm input,
+select {
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.reviewDetail label,
+.checkoutForm label {
+  font-size: 0.95rem;
+  color: #757373;
+}
+
+.reviewDetail .header,
+.paymentForm .header,
+.checkoutForm .header {
+  width: 100%;
+  background-color: #85aeff;
+  padding: 20px 10px;
+  border: 1px solid #becdec;
+  border-radius: 3px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.checkoutForm .nameCont {
+  display: flex;
+  gap: 10px;
+}
+
+.paymentForm .btnBack,
+.checkoutForm .btnBack {
+  background-color: #85aeff;
+  padding: 10px 50px;
+  border-radius: 3px;
+  width: 45%;
+  min-width: 200px;
+  border: 1px solid #eeeee6;
+}
+
+.paymentForm .btnNext,
+.checkoutForm .btnNext {
+  background-color: #dfb434;
+  padding: 10px 50px;
+  border-radius: 3px;
+  width: 45%;
+  min-width: 200px;
+  border: 1px solid #eeeee6;
+}
+
+.checkoutForm.hide {
+  display: none;
+}
+
+.paymentForm {
+  transition: all 0.5s;
+}
+
+.paymentForm.hide {
+  display: none;
+}
+
+.checkoutPage .orderSummary {
+  width: 50%;
+  height: 100%;
+  padding-top: 30px;
+}
+
+.checkoutPage .orderSummary .summaryCont {
+  background-color: #e6e6e6;
+  width: fit-content;
+  margin: auto;
+  padding: 20px;
+  border-radius: 3px;
+}
+
+.checkoutPage .orderSummary h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.checkoutPage .orderSummary table {
+  width: auto;
+  margin: auto;
+  max-width: 450px;
+  max-height: 100px;
+}
+
+.checkoutPage .orderSummary table ::-webkit-scrollbar {
+  height: 1px;
+}
+
 
 /* ----------- Cart Page End ------------- */

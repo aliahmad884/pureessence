@@ -59,6 +59,18 @@
         width: 70%;
     }
 
+    .checkoutPage {
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .checkoutPage .orderSummary,
+    .paymentForm,
+    .checkoutForm {
+        width: 100%;
+    }
+
     /* .toolBarCont .promo {
         display: none;
     } */
@@ -70,9 +82,10 @@
 }
 
 @media screen and (max-width: 700px) {
-    .cartPage{
+    .cartPage {
         padding-top: 50px;
     }
+
     .cartPage table {
         border: 0;
     }
@@ -127,6 +140,7 @@
     .blogsCont .card {
         width: 100%;
     }
+
     .offerContainer {
         padding: 100px 20px;
     }

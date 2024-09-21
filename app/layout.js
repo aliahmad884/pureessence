@@ -23,12 +23,12 @@ export default function RootLayout({ children }) {
       <body>
 
         <ContextProvider>
-          <ToolBar />
-          <Navbar />
-          <Suspense fallback={<Loading />}>
+          {/* <Suspense fallback={<Loading />}> */}
+            <ToolBar />
+            <Navbar />
             {children}
-          </Suspense>
           <Footer />
+          {/* </Suspense> */}
         </ContextProvider>
 
       </body>

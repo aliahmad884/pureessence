@@ -53,7 +53,9 @@ export default function Footer() {
                         <a href="#">Sitemap</a>
                     </div>
                     <div className="address">
-                        <h2><strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faHouse} /></strong> Mailing Address</h2>
+                        <h2>
+                            {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faHouse} /></strong>  */}
+                            Mailing Address</h2>
                         <address>Pure Essence Office, Purest Road, Blackburn, Lancashire, BB1 PYR, UK</address>
                     </div>
                 </div>

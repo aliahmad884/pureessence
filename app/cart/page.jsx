@@ -3,11 +3,18 @@ import { useDataContext } from "@/context";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState, useLayoutEffect } from "react";
 
 export default function CartPage() {
+    const router = useRouter()
     const { cartData, removeItem, setCartData } = useDataContext()
     const [subTotal, setSubTotal] = useState(0)
+    const [loading, setLoading] = useState(true)
+
+    const handleCheckout = () => {
+        router.push(`/checkout?subtotal=${subTotal}`)
+    }
     useEffect(() => {
         const totalP = document.querySelectorAll('#total')
         let arr = []
@@ -85,7 +92,7 @@ export default function CartPage() {
                         <h3>SubTotal: ${subTotal}</h3>
                         <p>Taxes and shipping calculated at checkout</p>
                     </div>
-                    <button type="button">Procceed To Checkout</button>
+                    <button onClick={handleCheckout} type="button">Procceed To Checkout</button>
                 </div>
             </div>
         </>

@@ -17,11 +17,15 @@ export default function ToolBar() {
                 <div className="contact">
                     <a href="tel:+441254411076">
                         {(innerWidth <= 780) ? (<><strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faPhone} /></strong></>) : (
-                            <><strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faPhone} /></strong> +44 (0) 1254 411076</>
+                            <>
+                            {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faPhone} /></strong>  */}
+                            +44 (0) 1254 411076</>
                         )}</a>
                     <a href="mailto:enquires@pureessenceltd.co.uk">
                         {(innerWidth <= 780) ? (<><strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faEnvelope} /></strong></>) : (
-                            <><strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faEnvelope} /></strong> enquires@pureessenceltd.co.uk</>
+                            <>
+                            {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faEnvelope} /></strong>  */}
+                            enquires@pureessenceltd.co.uk</>
                         )}</a>
                 </div>
                 {/* <div className="promo"> */}
