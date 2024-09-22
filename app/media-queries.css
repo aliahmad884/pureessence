@@ -114,7 +114,7 @@
     .cartPage table td {
         border-bottom: 1px solid #ddd;
         display: block;
-        font-size: .8em;
+        /* font-size: em; */
         text-align: right;
     }
 
@@ -126,11 +126,16 @@
         content: attr(data-label);
         float: left;
         font-weight: bold;
-        text-transform: uppercase;
+        text-transform: capitalize;
     }
 
     .cartPage table td:last-child {
         border-bottom: 0;
+    }
+    .cartPage .tableProduct{
+        max-width: none;
+        text-align: left;
+        gap: 10px;
     }
 }
 
@@ -200,6 +205,10 @@
         border-radius: 30px;
         min-width: fit-content;
 
+    }
+
+    .cartPage h1{
+        font-size: 1.5rem;
     }
 }
 

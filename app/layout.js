@@ -3,6 +3,7 @@ import "./globals.css";
 import "./media-queries.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'react-toastify/dist/ReactToastify.css';
 import ToolBar from "@/components/toolbar";
 import ContextProvider from "@/context";
 import Footer from "@/components/footer";
@@ -24,9 +25,9 @@ export default function RootLayout({ children }) {
 
         <ContextProvider>
           {/* <Suspense fallback={<Loading />}> */}
-            <ToolBar />
-            <Navbar />
-            {children}
+          <ToolBar />
+          <Navbar />
+          {children}
           <Footer />
           {/* </Suspense> */}
         </ContextProvider>

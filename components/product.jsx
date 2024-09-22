@@ -2,6 +2,8 @@
 import React from "react";
 import Slider from "react-slick";
 import { ProductCard } from "./cards";
+import { Toaster } from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
 
 export default function PopularProducts() {
     const data = [
@@ -82,6 +84,8 @@ export default function PopularProducts() {
     };
     return (
         <>
+            {/* <Toaster /> */}
+            <ToastContainer />
             <div className="productCont">
                 <h1>Popular Products</h1>
                 <div className="slider">

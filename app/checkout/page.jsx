@@ -17,6 +17,7 @@ export default function Checkout() {
     useEffect(() => {
         const clientSecret = new URLSearchParams(window.location.search).get("payment_intent_client_secret");
         if (clientSecret) {
+            console.log(clientSecret)
             setConfirmed(clientSecret);
         }
     }, []);
@@ -29,7 +30,7 @@ export default function Checkout() {
                 body: JSON.stringify(JSON.parse(storedCart))
             }
             fetch('/api/payment_intent', options).then(res => res.json()).then(data => {
-                console.log(data.clientSecret)
+                console.log(data.dpmCheckerLink)
                 setClientSecret(data.clientSecret)
                 setDpmLink(data.dpmCheckerLink)
             })

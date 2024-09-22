@@ -56,14 +56,14 @@ export default function CartPage() {
                         {
                             cartData.map((data, index) => (
                                 <tr key={data.id}>
-                                    <td colSpan={2}>
+                                    <td data-label='Product' colSpan={2}>
                                         <div className="tableProduct">
                                             <img src={data.imgUrl} alt="fsfsk" width={100} />
                                             <p>{data.title}</p>
                                         </div>
                                     </td>
-                                    <td>${data.price}</td>
-                                    <td>
+                                    <td data-label='Price'>${data.price}</td>
+                                    <td data-label='Quantity'>
                                         <div className="innerBtn">
                                             <button onClick={() => {
                                                 if (data.qty > 1) {
@@ -80,8 +80,8 @@ export default function CartPage() {
                                             }} type="button">+</button>
                                         </div>
                                     </td>
-                                    <td><FontAwesomeIcon onClick={() => removeItem(data.id)} style={{ fontSize: '1.5rem', cursor: 'pointer' }} icon={faTrash} /></td>
-                                    <td id="total" style={{ textAlign: 'right' }}>${data.price * data.qty}</td>
+                                    <td data-label='Action'><FontAwesomeIcon id="trash" onClick={() => removeItem(data.id)} style={{ fontSize: '1.5rem', cursor: 'pointer' }} icon={faTrash} /></td>
+                                    <td data-label='Total' id="total" style={{ textAlign: 'right' }}>${data.price * data.qty}</td>
                                 </tr>
                             ))
                         }

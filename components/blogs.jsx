@@ -11,7 +11,7 @@ export default function Blogs() {
                         <div className="imgCont">
                             <img src="/spices.webp" alt="Spices" />
                             <div className="overLay">
-                                <FontAwesomeIcon icon={faCalendar} /> <time datetime="20-Sep=24">20-Sep-2024</time>
+                                <FontAwesomeIcon icon={faCalendar} /> <time dateTime="2024-09-23T15:00">20-Sep-2024</time>
                             </div>
                         </div>
                         <h2>Lorem Ipsum Lorem ipsum dolor.</h2>
@@ -22,7 +22,7 @@ export default function Blogs() {
                         <div className="imgCont">
                             <img src="/spices.webp" alt="Spices" />
                             <div className="overLay">
-                                <FontAwesomeIcon icon={faCalendar} /> <time datetime="20-Sep=24">20-Sep-2024</time>
+                                <FontAwesomeIcon icon={faCalendar} /> <time dateTime="2024-09-23T15:00">20-Sep-2024</time>
                             </div>
                         </div>
                         <h2>Lorem Ipsum Lorem ipsum dolor.</h2>
@@ -33,7 +33,7 @@ export default function Blogs() {
                         <div className="imgCont">
                             <img src="/spices.webp" alt="Spices" />
                             <div className="overLay">
-                                <FontAwesomeIcon icon={faCalendar} /> <p>20-Sep-2024</p>
+                                <FontAwesomeIcon icon={faCalendar} /> <time dateTime="2024-09-23T15:00">20-Sep-2024</time>
                             </div>
                         </div>
                         <h2>Lorem Ipsum Lorem ipsum dolor.</h2>

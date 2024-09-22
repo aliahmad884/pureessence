@@ -6,10 +6,11 @@ import countreis from "@/countryWithCode"
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDataContext } from "@/context";
-import toast, { Toaster } from "react-hot-toast";
+import { Slide, toast, ToastContainer } from "react-toastify";
+import toastOptions from "@/options";
 
 export default function CheckoutForm({ dpmCheckerLink }) {
-    const { cartData } = useDataContext()
+    const { setCartData } = useDataContext()
     const router = useRouter()
     const searhParam = useSearchParams()
     const stripe = useStripe()
@@ -26,7 +27,6 @@ export default function CheckoutForm({ dpmCheckerLink }) {
 
     const handlePaySub = async (e) => {
         e.preventDefault();
-
         if (!stripe || !elements) {
             // Stripe.js hasn't yet loaded.
             // Make sure to disable form submission until Stripe.js has loaded.
@@ -34,7 +34,7 @@ export default function CheckoutForm({ dpmCheckerLink }) {
         }
         setIsLoading(true)
         try {
-            await stripe.confirmPayment({
+            const { error, paymentIntent } = await stripe.confirmPayment({
                 elements,
                 redirect: "if_required",
                 confirmParams: {
@@ -42,16 +42,28 @@ export default function CheckoutForm({ dpmCheckerLink }) {
                     return_url: "http://localhost:3000/completed",
                 },
             });
-            toast.success("Transaction Successfull, Redirecting to Home....!")
-            setIsLoading(false)
-            let interval = setInterval(() => {
-                router.push('/')
-                clearInterval(interval)
-            }, 1500)
+            if (error) {
+                toast.error(error.message || 'Something went wrong, Try again!', toastOptions.error)
+                setIsLoading(false)
+            }
+            if (paymentIntent) {
+                console.log('Id: ', paymentIntent.id)
+                // console.log('Recipte: ', paymentIntent.receipt_email)
+                setIsLoading(false)
+                toast.success('Transaction Successful, Redirecting to Home...', toastOptions.success)
+                localStorage.removeItem('cart')
+                setCartData([])
+                setTimeout(() => {
+                    router.push('/')
+                }, 1500)
+            }
 
         } catch (err) {
-            toast.error("Something went wrong, Try again!")
+            toast.error("Something went wrong, Try again!", toastOptions.error)
             console.log(err)
+            setIsLoading(false)
+        } finally {
+            setIsLoading(false)
         }
     };
     const paymentElementOptions = {
@@ -94,7 +106,7 @@ export default function CheckoutForm({ dpmCheckerLink }) {
     return (
         <>
             <div className="checkoutPage">
-                <Toaster />
+                <ToastContainer />
                 <div className="checkoutForm">
                     <form id="billingForm">
                         <div className="header">Shipping Details</div>
@@ -139,18 +151,18 @@ export default function CheckoutForm({ dpmCheckerLink }) {
                         <input type="text" value={address} readOnly />
                     </div>
                     <form id="payment-form" onSubmit={handlePaySub}>
-                        <div className="header">Payment Details</div>
+                        {/* <div className="header">Payment Details</div> */}
                         <PaymentElement id="payment-element" options={paymentElementOptions} />
                         <div style={{ display: 'flex', flexFlow: 'row wrap', width: '100%', marginTop: '5px', justifyContent: 'space-between' }}>
                             <button onClick={handleUnHide} className="btnBack" type="button">Back</button>
-                            <button className="btnNext" type="submit">{isLoading ? 'Proccessing...' : 'Pay Now'}</button>
+                            <button disabled={isLoading || !stripe || !elements} className="btnNext" type="submit">{isLoading ? 'Proccessing...' : 'Pay Now'}</button>
                         </div>
                     </form>
                 </div>
                 <div className="orderSummary">
                     <div className="summaryCont">
                         <h1>Order Summary</h1>
-                        <table>
+                        {/* <table>
                             <tbody>
                                 {
                                     cartData.map(data => (<>
@@ -205,7 +217,7 @@ export default function CheckoutForm({ dpmCheckerLink }) {
                                     <td style={{ textAlign: 'right', display: 'flex', flexFlow: 'row nowrap', alignItems: 'end', justifyContent: 'center', gap: '3px' }}><small> USD </small><strong style={{ fontSize: '1.3rem' }}>${Number(subTotal) + 400}</strong></td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> */}
                     </div>
                 </div>
             </div >

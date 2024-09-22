@@ -1,6 +1,8 @@
 import { useDataContext } from "@/context";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import toast, { Toaster } from "react-hot-toast";
+import { Flip, Slide, toast } from "react-toastify";
 
 export default function ReviewCard() {
     return (
@@ -19,10 +21,29 @@ export default function ReviewCard() {
     )
 }
 export function ProductCard({ imgUrl, title, price, obj }) {
+
     const { cartData, setCartData } = useDataContext()
     const handleCart = (data) => {
+        const options = {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Slide
+        }
         let find = cartData.find(item => item.id === data.id)
-        setCartData(pre => !find ? [...pre, data] : [...pre])
+        if (!find) {
+            setCartData(pre => [...pre, data])
+            toast.success('Item Added to the Cart.', options)
+        }
+        else {
+            toast.info('Item already on Cart.', options)
+        }
+
     }
     return (
         <>

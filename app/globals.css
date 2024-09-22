@@ -759,7 +759,7 @@ main {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  padding: 150px 15px;
+  padding: 50px 15px;
   /* overflow-x: auto; */
 }
 
@@ -802,10 +802,20 @@ main {
 }
 
 .cartPage table th {
-  font-size: .85em;
+  font-size: 1rem;
   letter-spacing: .1em;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
+
+.cartPage table #trash {
+  transition: all 0.5s;
+}
+
+.cartPage table #trash:hover {
+  transform: scale(1.2);
+  color: #dfb434;
+}
+
 
 
 .cartPage .tableProduct {
@@ -838,10 +848,8 @@ main {
 }
 
 .cartPage .checkoutCont {
-  /* text-align: right; */
   max-width: 1600px;
   width: 100%;
-  /* background-color: #f3f3f3; */
   text-align: right;
 }
 
