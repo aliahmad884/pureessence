@@ -127,7 +127,7 @@ export default function Navbar() {
                         </div>
                         {/* -------Active User------- */}
                         <div className="userCont">
-                            <img src="/avatar2.webp" alt="Temp" width={40} />
+                            <Link href={'/admin'}><img src="/avatar2.webp" alt="Temp" width={40} /></Link>
                         </div>
                     </div>
                 </div>
