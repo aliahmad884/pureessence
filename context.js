@@ -1,6 +1,8 @@
 "use client";
 
-const { useContext, createContext, useState, useEffect } = require("react");
+import { createContext, useContext, useEffect, useState } from "react";
+
+// const { useContext, createContext, useState, useEffect } = require("react");
 const DataContext = createContext();
 
 export default function ContextProvider({ children }) {

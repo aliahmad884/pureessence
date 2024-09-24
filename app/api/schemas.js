@@ -1,42 +1,7 @@
-import { Model, DataTypes } from "sequelize";
-import sequelize from "./dbConnection.js";
-class Product extends Model {
-    constructor(
-        id = null,
-        titleName = null,
-        shortDesc = null,
-        breif = null,
-        titleImg = null,
-        productImages = null,
-        stock = null,
-        ingredients = null,
-        suggestUse = null,
-        nutFact = null,
-        advis = null,
-        info = null,
-        reviews = null,
-        category = null,
-        price = null) {
-        super();
-        this.Id = id;
-        this.TitleName = titleName;
-        this.ShortDesc = shortDesc;
-        this.Breif = breif;
-        this.TitleImg = titleImg;
-        this.ProductImages = productImages;
-        this.Stock = stock;
-        this.Ingredients = ingredients;
-        this.SuggestUse = suggestUse;
-        this.NutFact = nutFact;
-        this.Advise = advis;
-        this.Information = info;
-        this.Reviews = reviews;
-        this.Category = category;
-        this.Price = price;
-    }
+import { Model, DataTypes } from 'sequelize';
+const sequelize = require('./dbConnection.js')
 
-}
-
+class Product extends Model { }
 Product.init({
     Id: {
         type: DataTypes.INTEGER,
@@ -49,11 +14,11 @@ Product.init({
     ShortDesc: {
         type: DataTypes.STRING
     },
-    Breif: {
+    Brief: {
         type: DataTypes.TEXT
     },
     TitleImg: {
-        type: DataTypes.TEXT
+        type: DataTypes.STRING
     },
     ProductImages: {
         type: DataTypes.JSON
@@ -92,18 +57,10 @@ Product.init({
     timestamps: false
 });
 
-export default Product;
 
-class Category extends Model {
-    constructor(id = null, categoryName = null, products = null) {
-        super();
-        this.Id = id;
-        this.CategoryName = categoryName;
-        this.Products = products;
-    }
-}
+class Pages extends Model { }
 
-Category.init({
+Pages.init({
     Id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -112,28 +69,18 @@ Category.init({
     CategoryName: {
         type: DataTypes.STRING
     },
-    Products: {
-        type: DataTypes.JSON
+    BannerImg: {
+        type: DataTypes.TEXT
     }
 }, {
     sequelize,
-    modelName: 'Category',
-    tableName: 'category',
+    modelName: 'Pages',
+    tableName: 'pages',
     timestamps: false
 })
 
 
-class Blogs extends Model {
-    constructor(id = null, title = null, titleImg = null, comments = null, blogContent = null, date = null) {
-        super();
-        this.Id = id;
-        this.Title = title;
-        this.TitleImg = titleImg;
-        this.Comments = comments;
-        this.BlogContent = blogContent;
-        this.Date = date;
-    }
-}
+class Blogs extends Model { }
 Blogs.init({
     Id: {
         type: DataTypes.INTEGER,
@@ -162,6 +109,35 @@ Blogs.init({
     timestamps: false
 });
 
+class RegisterUser extends Model { }
+RegisterUser.init({
+    Id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    FirstName: {
+        type: DataTypes.STRING
+    },
+    LastName: {
+        type: DataTypes.STRING
+    },
+    Email: {
+        type: DataTypes.STRING
+    },
+    Password: {
+        type: DataTypes.STRING
+    }
+}, {
+    sequelize,
+    modelName: 'RegisterUser',
+    tableName: 'registerUser',
+    timestamps: false
+});
+
+
+
+
 // (async () => {
 //     try {
 //         await sequelize.sync({ force: false }); // Set to false to avoid dropping and re-creating tables
@@ -171,4 +147,4 @@ Blogs.init({
 //     }
 // })();
 
-export { Category, Blogs }
+module.exports = { Pages, Blogs, Product, RegisterUser }
