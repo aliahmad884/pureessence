@@ -8,7 +8,7 @@ import { useEffect, useState, useLayoutEffect } from "react";
 
 export default function CartPage() {
     const router = useRouter()
-    const { cartData, removeItem, setCartData } = useDataContext()
+    const { cartData, removeItem, setCartData, isResDelay } = useDataContext()
     const [subTotal, setSubTotal] = useState(0)
     const [loading, setLoading] = useState(true)
 
@@ -80,7 +80,15 @@ export default function CartPage() {
                                             }} type="button">+</button>
                                         </div>
                                     </td>
-                                    <td data-label='Action'><FontAwesomeIcon id="trash" onClick={() => removeItem(data.id)} style={{ fontSize: '1.5rem', cursor: 'pointer' }} icon={faTrash} /></td>
+                                    <td data-label='Action'>{isResDelay ? '....' : (
+                                        <FontAwesomeIcon
+                                            id="trash"
+                                            onClick={() => removeItem(data.id)}
+                                            style={{ fontSize: '1.5rem', cursor: 'pointer' }}
+                                            icon={faTrash}
+                                        />
+                                    )}
+                                    </td>
                                     <td data-label='Total' id="total" style={{ textAlign: 'right' }}>${data.price * data.qty}</td>
                                 </tr>
                             ))

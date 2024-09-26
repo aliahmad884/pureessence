@@ -2,6 +2,8 @@
 
 import Navbar from "@/components/navbar";
 import "./globals.css";
+import "./google.css";
+import "./loaders.css";
 import "./media-queries.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,6 +13,7 @@ import ContextProvider from "@/context";
 import Footer from "@/components/footer";
 import { Suspense } from "react";
 import { usePathname } from "next/navigation";
+import FallBackLoader from "@/components/loader";
 
 
 
@@ -25,16 +28,16 @@ export default function RootLayout({ children }) {
       <body>
 
         <ContextProvider>
-          {/* <Suspense fallback={<Loading />}> */}
-          {(pathName.startsWith('/admin')) ? null : (
-            <>
-              <ToolBar />
-              <Navbar />
-            </>
-          )}
-          {children}
-          {(pathName.startsWith('/admin')) ? null : <Footer />}
-          {/* </Suspense> */}
+          <Suspense fallback={<FallBackLoader />}>
+            {(pathName.startsWith('/admin') || (pathName.startsWith('/login')) || (pathName.startsWith('/signup'))) ? null : (
+              <>
+                <ToolBar />
+                <Navbar />
+              </>
+            )}
+            {children}
+            {(pathName.startsWith('/admin') || (pathName.startsWith('/login')) || (pathName.startsWith('/signup'))) ? null : <Footer />}
+          </Suspense>
         </ContextProvider>
 
       </body>

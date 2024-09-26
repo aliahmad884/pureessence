@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js"
 import { useEffect, useState } from "react"
 import { useDataContext } from "@/context"
 import CheckoutForm from "@/components/checkoutForm"
+import FallBackLoader from "@/components/loader"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -11,7 +12,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 export default function Checkout() {
     const [clientSecret, setClientSecret] = useState(null)
     const [dpmLink, setDpmLink] = useState('')
-    const { cartData } = useDataContext()
+    const { cartData, DOMLoaded, SetDOMLoaded } = useDataContext()
 
     const [confirmed, setConfirmed] = useState(false);
     useEffect(() => {
@@ -23,6 +24,7 @@ export default function Checkout() {
     }, []);
     useEffect(() => {
         const storedCart = localStorage.getItem('cart')
+        SetDOMLoaded(true)
         if (storedCart) {
             const options = {
                 method: 'post',
@@ -33,6 +35,7 @@ export default function Checkout() {
                 console.log(data.dpmCheckerLink)
                 setClientSecret(data.clientSecret)
                 setDpmLink(data.dpmCheckerLink)
+                SetDOMLoaded(false)
             })
         }
     }, [])
@@ -43,6 +46,7 @@ export default function Checkout() {
         clientSecret: clientSecret,
         appearance,
     };
+    if (DOMLoaded) return <FallBackLoader />
     return (
         <>
             <main>

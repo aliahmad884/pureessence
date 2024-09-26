@@ -135,16 +135,45 @@ RegisterUser.init({
     timestamps: false
 });
 
+class Cart extends Model { }
+Cart.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    userId: {
+        type: DataTypes.STRING
+    },
+    imgUrl: {
+        type: DataTypes.STRING
+    },
+    title: {
+        type: DataTypes.STRING
+    },
+    price: {
+        type: DataTypes.DECIMAL(10, 2)
+    },
+    qty: {
+        type: DataTypes.INTEGER
+    }
+}, {
+    sequelize,
+    modelName: 'Cart',
+    tableName: 'cart',
+    timestamps: false
+});
+
 
 
 
 // (async () => {
 //     try {
-//         await sequelize.sync({ force: false }); // Set to false to avoid dropping and re-creating tables
+//         await Cart.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
 //         console.log('Table synced successfully!');
 //     } catch (error) {
 //         console.error('Error syncing table:', error);
 //     }
 // })();
 
-module.exports = { Pages, Blogs, Product, RegisterUser }
+module.exports = { Pages, Blogs, Product, RegisterUser, Cart }

@@ -71,6 +71,19 @@
         width: 100%;
     }
 
+    .signupMainCont,
+    .loginMainCont {
+        flex-flow: column-reverse nowrap;
+        padding-top: 90px;
+    }
+
+    .signupMainCont .formCont,
+    .signupMainCont .signupImgCont,
+    .loginMainCont .loginImgCont,
+    .loginMainCont .formCont {
+        width: 100%;
+    }
+
     /* .toolBarCont .promo {
         display: none;
     } */
@@ -132,7 +145,8 @@
     .cartPage table td:last-child {
         border-bottom: 0;
     }
-    .cartPage .tableProduct{
+
+    .cartPage .tableProduct {
         max-width: none;
         text-align: left;
         gap: 10px;
@@ -207,7 +221,7 @@
 
     }
 
-    .cartPage h1{
+    .cartPage h1 {
         font-size: 1.5rem;
     }
 }

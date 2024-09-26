@@ -2,18 +2,15 @@
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faCartShopping, faUser, faCircleQuestion, faCircleArrowLeft, faRightToBracket, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faCartShopping, faUser, faCircleQuestion, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useDataContext } from "@/context";
-import { toast, ToastContainer } from "react-toastify";
-import toastOptions from "@/options";
-import FallBackLoader from "./loader";
 
 export default function Navbar() {
     const pathName = usePathname();
     const router = useRouter()
-    const { innerWidth, setInnerWidth, cartData, loggedUser, DOMLoaded, SetDOMLoaded } = useDataContext()
+    const { innerWidth, setInnerWidth, cartData, loggedUser } = useDataContext()
     const [inputEle, setInputEle] = useState(null);
     const [searchValue, setSearchValue] = useState('');
     const [domLoaded, setDomLoaded] = useState(false)
@@ -41,35 +38,21 @@ export default function Navbar() {
         isDropped = true
     }
 
-    const handleExtend = (event) => {
-        event.stopPropagation();
-        let droplinks = document.querySelector('.routerDropDown');
-        droplinks.classList.toggle('extend')
-    }
-
-    const handleLogout = () => {
-        SetDOMLoaded(true)
-        fetch('/api/user?action=logout', {
-            method: 'POST',
-            credentials: "include",
-            body: JSON.stringify({ req: "Logout Request" })
-        }).then(res => {
-            if (res.ok) {
-                localStorage.removeItem('user')
-                localStorage.removeItem('cart')
-                // SetDOMLoaded(false)
-                setTimeout(() => {
-                    // SetDOMLoaded(false)
-                    window.location.reload()
-                }, 1500)
-
-            }
-            return res.json()
-        }).then(result => {
-            console.log(result)
-            toast.success("Logout successfully!", toastOptions.success)
-        }).catch(err => console.log(err));
-    }
+    // const handleLogout = () => {
+    //     fetch('/api/user?action=logout', {
+    //         method: 'POST',
+    //         credentials: "include"
+    //     })
+    //         .then(res => {
+    //             // if (res.ok && res.headers.get('content-type')?.includes('application/json')) {
+    //             //     return res.json();
+    //             // }
+    //             // return { message: 'Logout successful' }; // Fallback if no content
+    //             // return res.json()
+    //         })
+    //         .then(result => console.log(result))
+    //         .catch(err => console.log(err));
+    // }
     let isCalled = false;
     const handleUserDrop = (event) => {
         event.stopPropagation()
@@ -85,17 +68,13 @@ export default function Navbar() {
             let droplinks = document.querySelector('.routerDropDown');
             let menuBtn = document.getElementById('barBtn');
             let serchBar = document.querySelector('.dropSearch')
-            let userDrop = document.querySelector('.dropUser')
-            if (isCalled && userMenu && btn && !userMenu.contains(event.target) && !btn.contains(event.target)) {
+            if (isCalled && !userMenu.contains(event.target) && !btn.contains(event.target)) {
                 userMenu.classList.remove('active')
                 isCalled = false
             }
-            if (isDropped && userMenu && menuBtn && serchBar && userDrop &&
-                !userMenu.contains(event.target) && !menuBtn.contains(event.target) &&
-                !serchBar.contains(event.target) && !userDrop.contains(event.target)) {
+            if (isDropped && !userMenu.contains(event.target) && !menuBtn.contains(event.target) && !serchBar.contains(event.target)) {
                 droplinks.classList.remove('drop')
-                menuBtn.classList.remove('open')
-                droplinks.classList.remove('extend')
+                console.log(droplinks)
                 isDropped = false
             }
         })
@@ -103,8 +82,6 @@ export default function Navbar() {
 
     useEffect(() => {
         setDomLoaded(true)
-        SetDOMLoaded(false)
-        let droplinks = document.querySelector('.routerDropDown');
         let menuBtn = document.getElementById('barBtn');
         let input = document.getElementById('search');
         let docBody = document.documentElement;
@@ -120,13 +97,10 @@ export default function Navbar() {
             setInnerWidth(window.innerWidth);
         };
         window.addEventListener('resize', handleWindow);
-        if (innerWidth >= 950 && menuBtn && menuBtn.classList.contains('open')) {
+        if (innerWidth >= 1000 && menuBtn && menuBtn.classList.contains('open')) {
             menuBtn.classList.remove('open');
             droplinks.classList.remove('drop');
-            droplinks.classList.remove('extend');
-        } else if (innerWidth >= 650 && menuBtn && menuBtn.classList.contains('open')) {
-            droplinks.classList.remove('extend');
-        }
+        };
 
         docBody.addEventListener('click', handleClose);
         return () => {
@@ -134,7 +108,7 @@ export default function Navbar() {
             window.removeEventListener("resize", handleWindow);
         };
 
-    }, [searchValue, innerWidth, loggedUser])
+    }, [searchValue, innerWidth])
 
     // --------- Active Tab Handler-------------//
     useEffect(() => {
@@ -150,12 +124,8 @@ export default function Navbar() {
             }
         })
     }, [pathName])
-    if (DOMLoaded) {
-        return <FallBackLoader />
-    }
     return (
         <>
-            <ToastContainer />
             <div className="navMainCont">
                 {/* --------Nav Container-------- */}
                 <div className="navContainer">
@@ -200,18 +170,18 @@ export default function Navbar() {
                                             <FontAwesomeIcon icon={faUser} /><a href="#">My profile</a>
                                         </li>
                                         <li><FontAwesomeIcon icon={faCircleQuestion} /><a href="#">Help</a></li>
-                                        <li onClick={handleLogout}>
-                                            <FontAwesomeIcon style={{ transform: 'rotate(180deg)' }} icon={faRightToBracket} /><p>Logout</p>
+                                        <li>
+                                            <FontAwesomeIcon icon={faCircleArrowLeft} /><a href="#">Logout</a>
                                         </li>
                                     </ul>
                                 </>) : (<>
                                     <h3>Guest</h3>
                                     <ul>
                                         <li>
-                                            <FontAwesomeIcon icon={faRightToBracket} /><Link href={`/login?retTo=${pathName}`}>Login</Link>
+                                            <FontAwesomeIcon icon={faUser} /><Link href="#">Login</Link>
                                         </li>
                                         <li>
-                                            <FontAwesomeIcon icon={faUserPlus} /><Link href={"/signup"}>Signup</Link>
+                                            <FontAwesomeIcon icon={faUser} /><a href="#">Signup</a>
                                         </li>
                                     </ul>
                                 </>)}
@@ -241,31 +211,10 @@ export default function Navbar() {
                             <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faCartShopping} />
                         </div>
                         {/* --------DropDown Search User-------- */}
-                        <div onClick={handleExtend} className="dropUser" style={{ display: 'flex', alignItems: 'center' }}>
+                        <div className="dropUser" style={{ display: 'flex', alignItems: 'center' }}>
                             <img src="/avatar2.webp" alt="Temp" width={40} />
-                            <h4>{loggedUser ? loggedUser.Name : 'Guest'}</h4>
+                            <h4>{loggedUser ? loggedUser.Name : 'Haji Robert'}</h4>
                         </div>
-                    </div>
-                    <div className="userDropMenu">
-                        {loggedUser ? (<>
-                            <ul>
-                                <li>
-                                    <FontAwesomeIcon icon={faUser} /><a href="#">My profile</a>
-                                </li>
-                                <li onClick={handleLogout}>
-                                    <FontAwesomeIcon style={{ transform: 'rotate(180deg)' }} icon={faRightToBracket} /><p>Logout</p>
-                                </li>
-                            </ul>
-                        </>) : (<>
-                            <ul>
-                                <li>
-                                    <FontAwesomeIcon icon={faRightToBracket} /><Link href={`/login?retTo=${pathName}`}>Login</Link>
-                                </li>
-                                <li>
-                                    <FontAwesomeIcon icon={faUserPlus} /><Link href={'/signup'}>Signup</Link>
-                                </li>
-                            </ul>
-                        </>)}
                     </div>
                 </div>
             </div>

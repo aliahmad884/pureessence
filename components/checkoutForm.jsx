@@ -10,7 +10,7 @@ import { Slide, toast, ToastContainer } from "react-toastify";
 import toastOptions from "@/options";
 
 export default function CheckoutForm({ dpmCheckerLink }) {
-    const { setCartData } = useDataContext()
+    const { setCartData, loggedUser, setLoggedUser } = useDataContext()
     const router = useRouter()
     const searhParam = useSearchParams()
     const stripe = useStripe()
@@ -48,14 +48,30 @@ export default function CheckoutForm({ dpmCheckerLink }) {
             }
             if (paymentIntent) {
                 console.log('Id: ', paymentIntent.id)
-                // console.log('Recipte: ', paymentIntent.receipt_email)
                 setIsLoading(false)
-                toast.success('Transaction Successful, Redirecting to Home...', toastOptions.success)
-                localStorage.removeItem('cart')
-                setCartData([])
-                setTimeout(() => {
-                    router.push('/')
-                }, 1500)
+                toast.success('Transaction Successful! Redirecting....', toastOptions.success)
+                if (loggedUser) {
+                    fetch('/api/userCart?action=delAll', {
+                        method: 'delete',
+                        headers: { "Content-Type": 'application/json' },
+                        body: JSON.stringify({ email: loggedUser.Email })
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            console.log(result)
+                            localStorage.removeItem('cart')
+                            setCartData([])
+                            setTimeout(() => {
+                                router.push('/cart')
+                            }, 2000)
+                        })
+                } else {
+                    localStorage.removeItem('cart')
+                    setCartData([])
+                    setTimeout(() => {
+                        router.push('/cart')
+                    }, 2000)
+                }
             }
 
         } catch (err) {

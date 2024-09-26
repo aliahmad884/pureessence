@@ -189,6 +189,10 @@ main {
   height: 200px;
 }
 
+.navMainCont .routerDropDown.drop.extend {
+  height: 380px;
+}
+
 .navMainCont .routerDropDown a {
   display: flex;
   flex-flow: column nowrap;
@@ -246,6 +250,21 @@ main {
   border-radius: 50%;
 }
 
+.routerDropDown .userDropMenu ul li {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  border-bottom: 1px solid black;
+  margin-bottom: 5px;
+  gap: 10px;
+}
+
+.routerDropDown .userDropMenu ul li p,
+.routerDropDown .userDropMenu ul li a {
+  border: none;
+  margin-bottom: 0;
+}
+
 /* --------NavBar Cart, Search & User Styles-------- */
 
 .navMenu .searchBar {
@@ -300,8 +319,74 @@ main {
   justify-content: center;
 }
 
+.userMenu .userCont {
+  position: relative;
+}
+
 .navMenu .userCont img {
   border-radius: 50%;
+  cursor: pointer;
+}
+
+.navMenu .userCont .userMenu {
+  position: absolute;
+  top: 10px;
+  right: 23px;
+  padding: 10px 20px;
+  background: #ddd;
+  width: 200px;
+  box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 2;
+}
+
+.navMenu .userCont .userMenu::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  right: 28px;
+  width: 20px;
+  height: 20px;
+  background: #ddd;
+  transform: rotate(45deg);
+}
+
+.navMenu .userCont .userMenu.active {
+  top: 60px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.navMenu .userCont .userMenu h3 {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  padding: 20px 0;
+  font-weight: 500;
+  color: #555;
+  line-height: 1.5em;
+}
+
+.navMenu .userCont .userMenu ul li {
+  list-style: none;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.navMenu .userCont .userMenu ul li p,
+.navMenu .userCont .userMenu ul li a {
+  display: inline-block;
+  text-decoration: none;
+  padding-left: 5px;
+  color: #555;
+  font-weight: 500;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 
@@ -1004,3 +1089,167 @@ select {
 
 
 /* ----------- Cart Page End ------------- */
+
+/* ----------- Login Page --------------- */
+.signupMainCont,
+.loginMainCont {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: -95px;
+  padding-top: 40px;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.signupMainCont {
+  flex-flow: row-reverse nowrap;
+}
+
+.signupMainCont .header,
+.loginMainCont .header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+  /* width: fit-content; */
+  padding: 20px 20px 0 20px;
+}
+
+.signupMainCont .header .logo,
+.loginMainCont .header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
+  width: fit-content;
+  line-height: 1;
+}
+
+.signupMainCont .signupImgCont,
+.loginMainCont .loginImgCont {
+  width: 50%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.signupMainCont .signupImgCont img,
+.loginMainCont .loginImgCont img {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.signupMainCont .formCont,
+.loginMainCont .formCont {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding-top: 50px; */
+}
+
+.signupMainCont .formCont .signupForm,
+.loginMainCont .formCont .loginForm {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+.signupMainCont .formCont .signupForm .fullName {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 5px;
+  justify-content: space-between;
+}
+.signupMainCont .formCont .signupForm .fullName input{
+  width: 100%;
+}
+
+.signupMainCont .formCont .signupForm h1,
+.loginMainCont .formCont .loginForm h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+
+.signupMainCont .formCont .signupForm h3,
+.loginMainCont .formCont .loginForm h3 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.signupMainCont .formCont .signupForm h4,
+.loginMainCont .formCont .loginForm h4 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.signupMainCont .formCont .signupForm h4>a,
+.loginMainCont .formCont .loginForm h4>a {
+  color: #dfb434;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.signupMainCont .formCont .signupForm .googleBtn,
+.loginMainCont .formCont .loginForm .googleBtn {
+  margin-top: 25px;
+}
+
+.signupMainCont .formCont .signupForm form,
+.loginMainCont .formCont .loginForm form {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+}
+
+.signupMainCont .formCont .signupForm form button,
+.loginMainCont .formCont .loginForm form button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #dfb434;
+  border-radius: 30px;
+  border: 1px solid black;
+  font-weight: bold;
+}
+
+.signupMainCont .formCont .signupForm input,
+.loginMainCont .formCont .loginForm input {
+  padding: 15px;
+  background-color: #f3f3f3;
+  color: #171717;
+  border-radius: 30px;
+  outline: none;
+  margin: 15px 0;
+}
+
+.signupMainCont .formCont .signupForm p,
+.loginMainCont .formCont .loginForm p {
+  color: red;
+  font-size: small;
+  margin-top: -10px;
+}
+
+.loginMainCont .formCont .loginForm form .remember {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.loginMainCont .formCont .loginForm form .remember a {
+  text-decoration: underline;
+  color: #555;
+}
+
+/* ----------- Login End --------------- */
