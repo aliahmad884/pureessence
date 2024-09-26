@@ -99,7 +99,7 @@ export default function Login() {
                         <hr />
                         <GoogleBtn textContent={'Sign in with Google'} />
                         {/* <button className="googleBtn" type="button">Google</button> */}
-                        <h4>Dont't have an account? <Link href="/signup">Sign Up Now</Link></h4>
+                        <h4>Dont&apos;t have an account? <Link href="/signup">Sign Up Now</Link></h4>
                     </div>
                 </div>
             </div>
