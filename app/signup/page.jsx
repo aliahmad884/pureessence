@@ -5,7 +5,9 @@ import FallBackLoader from "@/components/loader"
 import { useDataContext } from "@/context"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function Signup() {
     const searchParams = useSearchParams()
@@ -18,6 +20,7 @@ export default function Signup() {
     const [lastName, setLastName] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [errMsg, setErrMsg] = useState(null)
+    const [passState, setPassState] = useState(false)
     const handleLogin = (event) => {
         event.preventDefault();
         if (email === '' && pass === '' && firstName === '' && lastName === '') {
@@ -48,7 +51,12 @@ export default function Signup() {
                 email: email,
                 password: pass
             })
-        }).then(res => res.json()).then(data => {
+        }).then(res => {
+            if(res.status===201){
+                alert('User Registered Successfully!')
+                router.push('/login')
+            }
+        }).then(data => {
             // if (data.Name) {
             // localStorage.setItem('user', JSON.stringify(data))
             // setIsLogged(true)
@@ -61,11 +69,14 @@ export default function Signup() {
             //     router.push(path)
             // }, 1000)
             // } else {
-            // setErrMsg(data.res)
+            setErrMsg(data.res)
             // setIsLoading(false)
             // }
             console.log(data)
         }).catch(err => console.log(err))
+    }
+    const handlePassState = () => {
+        setPassState(!passState)
     }
     useEffect(() => {
 
@@ -100,7 +111,10 @@ export default function Signup() {
                             </div>
                             <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" id="email" autoComplete="email" placeholder="Email" />
                             {/* <p>dsfds</p> */}
-                            <input onChange={(e) => setPas(e.target.value)} value={pass} type="password" name="password" autoComplete="current-password" id="password" placeholder="Password" />
+                            <div className="eyeCont">
+                                <input onChange={(e) => setPas(e.target.value)} value={pass} type={passState ? 'text' : 'password'} name="password" autoComplete="current-password" id="password" placeholder="Password" />
+                                <FontAwesomeIcon onClick={handlePassState} className="eye" icon={passState ? faEye : faEyeSlash} />
+                            </div>
                             <p>{errMsg}</p>
                             {/* <div className="remember">
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', gap: '10px', borderRadius: '50%' }}>

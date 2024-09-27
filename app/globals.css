@@ -1169,7 +1169,8 @@ select {
   gap: 5px;
   justify-content: space-between;
 }
-.signupMainCont .formCont .signupForm .fullName input{
+
+.signupMainCont .formCont .signupForm .fullName input {
   width: 100%;
 }
 
@@ -1210,6 +1211,37 @@ select {
   display: flex;
   flex-flow: column;
   width: 100%;
+}
+
+.signupMainCont .formCont .signupForm form .eyeCont,
+.loginMainCont .formCont .loginForm form .eyeCont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #f3f3f3;
+  color: #171717;
+  border-radius: 30px;
+  padding-right: 15px;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+.signupMainCont .formCont .signupForm form .eyeCont input,
+.loginMainCont .formCont .loginForm form .eyeCont input {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.signupMainCont .formCont .signupForm form .eye,
+.loginMainCont .formCont .loginForm form .eye {
+  cursor: pointer;
+  color: #9c9c9c;
+  transition: all 0.5s;
+}
+
+.signupMainCont .formCont .signupForm form .eye:hover,
+.loginMainCont .formCont .loginForm form .eye:hover {
+  color: #dfb434;
 }
 
 .signupMainCont .formCont .signupForm form button,
@@ -1253,3 +1285,271 @@ select {
 }
 
 /* ----------- Login End --------------- */
+
+/* ---------- Profile Page ------------- */
+.proMainCont {
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+  transition: all 0.5s;
+}
+
+.proMainCont .sidePanel.toggle {
+  left: 0;
+}
+
+.proMainCont .sidePanel {
+  width: 310px;
+  /* height: fit-content; */
+  padding: 30px 10px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  user-select: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transition: all 0.5s;
+}
+
+.proMainCont .sidePanel .toggleIcon {
+  display: none;
+}
+
+.proMainCont .sidePanel .proImgCont {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #a09f9f;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.proMainCont .sidePanel .proImgCont img {
+  width: 130px;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+
+.proMainCont .sidePanel .optionsCont {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.proMainCont .sidePanel .optionsCont h2 {
+  font-size: 1.1rem;
+  font-weight: bolder;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.proMainCont .sidePanel .optionsCont ul li {
+  padding-left: 20px;
+  margin-bottom: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.proMainCont .sidePanel .optionsCont ul li:hover {
+  color: #dfb434;
+  padding-left: 22px;
+}
+
+.proMainCont .rightPanel .tab {
+  display: none;
+}
+
+.proMainCont .rightPanel {
+  width: 100%;
+  max-width: 1300px;
+  background-color: #ffffff;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 10px;
+  border-left: 1px solid #a09f9f;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.rightPanel h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.rightPanel .editCont {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.rightPanel .editCont .editSubCont {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin-top: 20px;
+  transition: all 0.5s;
+}
+
+.rightPanel .editCont .editSubCont label {
+  font-size: small;
+  padding-left: 5px;
+}
+
+.rightPanel .editCont .editSubCont input {
+  padding: 15px 5px;
+  margin-bottom: 10px;
+  outline: none;
+  border: 1px solid #c2bebe;
+  border-radius: 5px;
+  width: 100%;
+  transition: all 0.5s;
+}
+
+.editCont .editSubCont .emailCont,
+.editCont .editSubCont .nameCont {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+
+.editCont .btnCont {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 50px;
+  gap: 15px;
+}
+
+.editCont .btnCont button {
+  padding: 15px;
+  font-size: large;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #c2bebe;
+  border-radius: 30px;
+}
+
+.proMainCont .rightPanel .addressBook {
+  /* text-align: center; */
+  /* display: flex; */
+  flex-flow: column nowrap;
+  /* overflow-x: auto; */
+}
+
+.proMainCont .rightPanel .addressBook h1 {
+  margin: auto;
+}
+
+.addressBook table {
+  margin-top: 20px;
+  width: 100%;
+  table-layout: fixed;
+  overflow-x: auto;
+}
+
+.addressBook thead {
+  background-color: #f1eeee;
+  text-align: left;
+}
+
+.addressBook tr {
+  border-bottom: 1px solid #c2c1c1;
+  ;
+}
+
+.addressBook th,
+.addressBook td {
+  padding: 20px 10px;
+}
+
+.addressBook button {
+  margin: auto;
+  margin-top: 100px;
+  padding: 15px;
+  width: 100%;
+  max-width: 400px;
+  background-color: #dfb434;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 30px;
+}
+
+/* ----------Profile End--------------- */
+/* --------- Address Modal ------------ */
+.modalMainCont {
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  z-index: 1000;
+  display: flex;
+  flex-flow: column nowrap;
+  border-radius: 5px;
+}
+
+.modalMainCont h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.blurBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1px);
+  z-index: 5;
+}
+
+.modalMainCont .modalSubCont {
+  display: flex;
+  flex-flow: row nowrap;
+  /* align-items: center; */
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.modalMainCont .leftForm{
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.modalMainCont .rightForm {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+}
+
+.modalMainCont .leftForm input,
+.modalMainCont .rightForm input {
+  padding: 15px;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.modalMainCont button {
+  padding: 15px 60px;
+  margin-top: 10px;
+  border-radius: 30px;
+  border: 1px solid black;
+}
+/* ----------- Address Modal End ----------- */

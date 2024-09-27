@@ -3,6 +3,8 @@
 import GoogleBtn from "@/components/googleBtn"
 import FallBackLoader from "@/components/loader"
 import { useDataContext } from "@/context"
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -16,6 +18,7 @@ export default function Login() {
     const [pass, setPas] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [errMsg, setErrMsg] = useState(null)
+    const [passState, setPassState] = useState(false)
     const handleLogin = (event) => {
         event.preventDefault();
         if (email === '' && pass === '') {
@@ -47,13 +50,16 @@ export default function Login() {
                 setIsLoading(false)
                 SetDOMLoaded(true)
                 setTimeout(() => {
-                    router.push(path)
+                    router.push(path?path:'/')
                 }, 1000)
             } else {
                 setErrMsg(data.res)
                 setIsLoading(false)
             }
         }).catch(err => console.log(err))
+    }
+    const handlePassState = () => {
+        setPassState(!passState)
     }
     useEffect(() => {
 
@@ -83,8 +89,10 @@ export default function Login() {
                         <h1>Sign in to <strong style={{ color: '#dfb434' }}>PURE</strong> ESSENCE</h1>
                         <form onSubmit={handleLogin}>
                             <input onChange={(e) => setEmail(e.target.value)} value={email} type="email" name="email" id="email" autoComplete="email" placeholder="Email" />
-                            {/* <p>dsfds</p> */}
-                            <input onChange={(e) => setPas(e.target.value)} value={pass} type="password" name="password" autoComplete="current-password" id="password" placeholder="Password" />
+                            <div className="eyeCont">
+                                <input onChange={(e) => setPas(e.target.value)} value={pass} type={passState ? 'text' : 'password'} name="password" autoComplete="current-password" id="password" placeholder="Password" />
+                                <FontAwesomeIcon onClick={handlePassState} className="eye" icon={passState ? faEye : faEyeSlash} />
+                            </div>
                             <p>{errMsg}</p>
                             <div className="remember">
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', gap: '10px', borderRadius: '50%' }}>

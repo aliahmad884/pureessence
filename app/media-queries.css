@@ -94,11 +94,49 @@
     } */
 }
 
+@media (width<=850px) {
+    .proMainCont .sidePanel {
+        width: 250px;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: -250px;
+        z-index: 2;
+        background-color: white;
+        transition: all 0.5s;
+    }
+
+    .proMainCont .sidePanel .toggleIcon {
+        position: absolute;
+        color: black;
+        text-align: right;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: bolder;
+        background-color: white;
+        height: 30px;
+        width: 35px;
+        top: 110px;
+        right: -21px;
+        padding-right: 5px;
+        padding-top: 2px;
+        display: unset;
+        border-radius: 2px;
+    }
+
+    .proMainCont .rightPanel {
+        border: none;
+    }
+}
+
 @media screen and (max-width: 700px) {
     .cartPage {
         padding-top: 50px;
     }
 
+    .addressBook table,
     .cartPage table {
         border: 0;
     }
@@ -107,6 +145,7 @@
         font-size: 1.3em;
     }
 
+    .addressBook table thead,
     .cartPage table thead {
         border: none;
         clip: rect(0 0 0 0);
@@ -118,12 +157,14 @@
         width: 1px;
     }
 
+    .addressBook table tr,
     .cartPage table tr {
         border-bottom: 3px solid #ddd;
         display: block;
         margin-bottom: .625em;
     }
 
+    .addressBook table td,
     .cartPage table td {
         border-bottom: 1px solid #ddd;
         display: block;
@@ -131,6 +172,7 @@
         text-align: right;
     }
 
+    .addressBook table td::before,
     .cartPage table td::before {
         /*
       * aria-label has no advantage, it won't be read inside a table
@@ -142,6 +184,7 @@
         text-transform: capitalize;
     }
 
+    .addressBook table td:last-child,
     .cartPage table td:last-child {
         border-bottom: 0;
     }
@@ -223,6 +266,13 @@
 
     .cartPage h1 {
         font-size: 1.5rem;
+    }
+}
+
+@media (width<=500px) {
+    .rightPanel .editCont .editSubCont {
+        flex-flow: column nowrap;
+        gap: 0;
     }
 }
 

@@ -197,7 +197,7 @@ export default function Navbar() {
                                     <h3>{loggedUser.Name}</h3>
                                     <ul>
                                         <li>
-                                            <FontAwesomeIcon icon={faUser} /><a href="#">My profile</a>
+                                            <FontAwesomeIcon icon={faUser} /><Link href={'/profile'}>My profile</Link>
                                         </li>
                                         <li><FontAwesomeIcon icon={faCircleQuestion} /><a href="#">Help</a></li>
                                         <li onClick={handleLogout}>
@@ -250,7 +250,7 @@ export default function Navbar() {
                         {loggedUser ? (<>
                             <ul>
                                 <li>
-                                    <FontAwesomeIcon icon={faUser} /><a href="#">My profile</a>
+                                    <FontAwesomeIcon icon={faUser} /><Link href={'/profile'}>My profile</Link>
                                 </li>
                                 <li onClick={handleLogout}>
                                     <FontAwesomeIcon style={{ transform: 'rotate(180deg)' }} icon={faRightToBracket} /><p>Logout</p>
