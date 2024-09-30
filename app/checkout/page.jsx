@@ -23,13 +23,13 @@ export default function Checkout() {
         }
     }, []);
     useEffect(() => {
-        const storedCart = localStorage.getItem('cart')
+        const storedInfo = localStorage.getItem('billingInfo')
         SetDOMLoaded(true)
-        if (storedCart) {
+        if (storedInfo) {
             const options = {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(JSON.parse(storedCart))
+                body: JSON.stringify(JSON.parse(storedInfo))
             }
             fetch('/api/payment_intent', options).then(res => res.json()).then(data => {
                 console.log(data.dpmCheckerLink)
@@ -37,6 +37,10 @@ export default function Checkout() {
                 setDpmLink(data.dpmCheckerLink)
                 SetDOMLoaded(false)
             })
+        }
+        else {
+            console.log('Shipping Info Not Found, please fill out form again!')
+            alert('Shipping Info Not Found, please fill out form again!')
         }
     }, [])
     const appearance = {

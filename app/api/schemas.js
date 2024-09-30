@@ -164,16 +164,54 @@ Cart.init({
     timestamps: false
 });
 
+class Order extends Model { }
+Order.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    userId: {
+        type: DataTypes.STRING
+    },
+    product: {
+        type: DataTypes.JSON
+    },
+    totalAmount: {
+        type: DataTypes.DECIMAL(10, 2)
+    },
+    orderDate: {
+        type: DataTypes.DATE
+    },
+    paymentMethod: {
+        type: DataTypes.STRING
+    },
+    shippingDetails: {
+        type: DataTypes.JSON
+    },
+    orderType: {
+        type: DataTypes.STRING
+    },
+    orderStatus: {
+        type: DataTypes.JSON
+    }
+}, {
+    sequelize,
+    modelName: 'Order',
+    tableName: 'order',
+    timestamps: false
+});
+
 
 
 
 // (async () => {
 //     try {
-//         await Cart.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+//         await Order.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
 //         console.log('Table synced successfully!');
 //     } catch (error) {
 //         console.error('Error syncing table:', error);
 //     }
 // })();
 
-module.exports = { Pages, Blogs, Product, RegisterUser, Cart }
+module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order };

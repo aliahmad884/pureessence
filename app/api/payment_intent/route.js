@@ -1,25 +1,25 @@
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
-const calculateAmout = (item) => {
-    let arr = []
-    item.forEach(ele => {
-        arr.push(Number(ele.price) * ele.qty)
-    });
-    let amount = 0;
-    for (let i = 0; i < arr.length; i++) {
-        amount = amount + arr[i]
-    }
-    return amount*100;
-}
+
 
 export async function POST(req) {
-    const items = await req.json()
+    const body = await req.json()
     const paymentIntent = await stripe.paymentIntents.create({
-        amount: calculateAmout(items),
+        amount: body.total,
         currency: 'usd',
         automatic_payment_methods: {
             enabled: true
+        },
+        receipt_email: body.email,
+        shipping: {
+            name: `${body.firstName} ${body.lastName}`,
+            address: {
+                line1: body.address,
+                city: body.city,
+                country: body.country,
+            },
+            phone: body.phone,
         }
     })
 

@@ -1,8 +1,7 @@
 import { useDataContext } from "@/context";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faInfoCircle, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import toast, { Toaster } from "react-hot-toast";
-import { Flip, Slide, toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 export default function ReviewCard() {
     return (
@@ -24,54 +23,33 @@ export function ProductCard({ id, imgUrl, title, price, qty, data }) {
 
     const { cartData, setCartData } = useDataContext()
     const handleCart = () => {
-        const options = {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Slide
-        }
 
         let user = localStorage.getItem('user')
+        let find = cartData.find(item => item.id === id)
+        if (!find) {
+            setCartData(pre => [...pre, data])
+            toast.success('Item Added to the Cart.')
+        }
+        else {
+            toast.success('Item already on Cart.', {
+                icon: <FontAwesomeIcon style={{ color: 'cadetblue', fontSize: '1.5rem' }} icon={faInfoCircle} />
+            })
+            return null;
+        }
         if (user) {
             const loggedUser = JSON.parse(user)
             fetch('/api/userCart', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    id: id,
                     userId: loggedUser.email,
                     imgUrl: imgUrl,
                     title: title,
                     price: price,
                     qty: qty
                 })
-            }).then(res => {
-                if (res.status === 400) {
-                    toast.info('Item already on Cart.', options)
-                    return null;
-                }
-                return res.json()
-            }).then(result => {
-                if (result) {
-                    const { userId, ...item } = result.res;
-                    setCartData(pre => [...pre, item])
-                    toast.success('Item Added to the Cart.', options);
-                }
             }).catch(err => console.log(err))
-        }
-        else {
-            let find = cartData.find(item => item.id === id)
-            if (!find) {
-                setCartData(pre => [...pre, data])
-                toast.success('Item Added to the Cart.', options)
-            }
-            else {
-                toast.info('Item already on Cart.', options)
-            }
         }
 
 

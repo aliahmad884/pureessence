@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental:{
-        serverComponentsExternalPackages:['sequelize','sequelize-typescript' ]
+    reactStrictMode: false,
+    experimental: {
+        serverComponentsExternalPackages: ['sequelize', 'sequelize-typescript']
     }
 };
 

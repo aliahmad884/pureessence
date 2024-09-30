@@ -32,7 +32,10 @@
   position: fixed;
   height: 100%;
   width: 100%;
+  /* max-width: 200px; */
+  margin: auto;
   display: flex;
+  overflow: hidden;
   z-index: 0;
   background: white;
   background: rgba(255, 255, 255, 0.8);
@@ -48,7 +51,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.8);
+  /* background: rgba(255, 255, 255, 0.8); */
+  background-color: whitesmoke;
   /* Semi-transparent background */
   filter: blur(2px);
   /* Apply blur to the background */

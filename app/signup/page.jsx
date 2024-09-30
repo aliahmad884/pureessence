@@ -52,26 +52,21 @@ export default function Signup() {
                 password: pass
             })
         }).then(res => {
-            if(res.status===201){
-                alert('User Registered Successfully!')
-                router.push('/login')
-            }
+            return res.json()
         }).then(data => {
-            // if (data.Name) {
-            // localStorage.setItem('user', JSON.stringify(data))
-            // setIsLogged(true)
-            // setErrMsg('')
-            // setLoggedUser(data)
-            // setCartData([])
-            setIsLoading(false)
-            // SetDOMLoaded(true)
-            // setTimeout(() => {
-            //     router.push(path)
-            // }, 1000)
-            // } else {
-            setErrMsg(data.res)
-            // setIsLoading(false)
-            // }
+            if (data.Name) {
+                localStorage.setItem('user', JSON.stringify(data))
+                setIsLogged(true)
+                setErrMsg('')
+                setLoggedUser(data)
+                setCartData([])
+                setIsLoading(false)
+                SetDOMLoaded(true)
+                router.push('/')
+            } else {
+                setErrMsg(data.res)
+                setIsLoading(false)
+            }
             console.log(data)
         }).catch(err => console.log(err))
     }
@@ -129,7 +124,7 @@ export default function Signup() {
                         <hr />
                         <GoogleBtn textContent={'Sign up with Google'} />
                         {/* <button className="googleBtn" type="button">Google</button> */}
-                        <h4>Already have an account? <Link href="/login?retTo=/">Login Now</Link></h4>
+                        <h4>Already have an account? <Link href="/login">Login Now</Link></h4>
                     </div>
                 </div>
             </div>

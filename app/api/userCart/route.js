@@ -3,6 +3,7 @@ import { where } from 'sequelize';
 const { res } = require('../syntaxShorter.js')
 const { Cart } = require("../schemas.js")
 const jwt = require('jsonwebtoken')
+const sequelize = require('../dbConnection.js')
 
 export async function GET(req) {
     const accessToken = req.cookies.get('token')?.value;
@@ -34,21 +35,14 @@ export async function POST(req) {
     const body = await req.json()
     try {
         const decode = jwt.verify(accessToken, 'secretKey')
-        const found = await Cart.findOne({
-            where: {
-                title: body.title,
-                userId: decode.email
-            }
-        })
-        if (found) return res({ res: 'item already exists!' }, 400)
         const addNew = await Cart.create({
+            id: body.id,
             userId: decode.email,
             imgUrl: body.imgUrl,
             title: body.title,
             price: body.price,
             qty: body.qty
         })
-        // console.log(addNew)
         return res({ res: addNew }, 201)
     }
     catch (err) {
@@ -66,23 +60,23 @@ export async function DELETE(req) {
     const action = searchParams.get('action')
     const body = await req.json();
     try {
+        const decode = jwt.verify(accessToken, 'secretKey')
+
         if (action === 'delAll') {
             await Cart.destroy({ where: { userId: body.email } })
-            let update = await Cart.findAll({ where: { userId: body.email } })
+            let update = await Cart.findAll({ where: { userId: decode.email } })
             let updateData = update.map(data => data.dataValues)
-            return res({ res: 'Reques Recieved', data: updateData }, 200)
+            return res({ res: 'Request Recieved', data: updateData }, 200)
         }
-        const found = await Cart.findOne({
+        const found = await Cart.destroy({
             where: {
                 id: body.id,
-                userId: body.user
+                userId: decode.email
             }
         })
-        if (found) {
-            await found.destroy()
-            const updateData = await Cart.findAll({ where: { userId: body.user } })
-            const data = updateData.map(data => data.dataValues)
-            return res({ res: 'Item Deleted successfully', data: data }, 201)
+
+        if (found > 0) {
+            return res({ res: 'Item Deleted successfully' }, 201)
         }
         return res({ res: "Not Found" }, 404)
     }

@@ -30,6 +30,7 @@ export default function ContextProvider({ children }) {
             }).catch(err => console.log(err))
         } else {
             console.log('without login')
+            localStorage.removeItem('user')
             const storedCart = localStorage.getItem('cart')
             if (storedCart) {
                 setCartData(JSON.parse(storedCart))
@@ -48,26 +49,27 @@ export default function ContextProvider({ children }) {
         }
     }, [cartData])
     const removeItem = (itemName) => {
+        if (cartData.length < 2) {
+            localStorage.removeItem('cart')
+            setCartData([])
+        } else {
+            const updateData = cartData.filter(item => item.id !== itemName)
+            setCartData(updateData)
+            localStorage.setItem('cart', JSON.stringify(updateData))
+        }
         if (loggedUser) {
             setResDelay(true)
             fetch('/api/userCart', {
                 method: 'delete',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id: itemName, user: loggedUser.Email })
-            }).then(res => res.json()).then(result => {
-                setCartData(result.data)
+            }).then(res => {
                 setResDelay(false)
-            }).catch(err => console.log(err))
-        }
-        else {
-            if (cartData.length < 2) {
-                localStorage.removeItem('cart')
-                setCartData([])
-            } else {
-                const updateData = cartData.filter(item => item.id !== itemName)
-                setCartData(updateData)
-                localStorage.setItem('cart', JSON.stringify(updateData))
-            }
+                return res.json();
+            }).then(result => console.log(result)).catch(err => {
+                setResDelay(false)
+                console.log(err)
+            })
         }
     }
     return (

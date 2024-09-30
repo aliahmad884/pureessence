@@ -1,4 +1,5 @@
 "use client"
+import FallBackLoader from "@/components/loader";
 import { useDataContext } from "@/context";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,23 +11,23 @@ export default function CartPage() {
     const router = useRouter()
     const { cartData, removeItem, setCartData, isResDelay } = useDataContext()
     const [subTotal, setSubTotal] = useState(0)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const handleCheckout = () => {
-        router.push(`/checkout?subtotal=${subTotal}`)
+        router.push(`/shipping?subtotal=${subTotal}`)
     }
     useEffect(() => {
-        const totalP = document.querySelectorAll('#total')
+        setLoading(true)
         let arr = []
-        totalP.forEach(ele => {
-            arr.push(Number(ele.textContent.substring(1)))
+        cartData.forEach(ele => {
+            arr.push(Number(ele.price) * ele.qty)
         })
-        let total = 0
-        for (let i = 0; i < arr.length; i++) {
-            total = total + arr[i]
-        }
+        let total = arr.reduce((prev, curr) => prev + curr, 0)
         setSubTotal(total)
     }, [cartData])
+
+    if (!loading) return <FallBackLoader />
+
     if (cartData.length <= 0) {
         return (
             <>
@@ -80,14 +81,15 @@ export default function CartPage() {
                                             }} type="button">+</button>
                                         </div>
                                     </td>
-                                    <td data-label='Action'>{isResDelay ? '....' : (
-                                        <FontAwesomeIcon
-                                            id="trash"
-                                            onClick={() => removeItem(data.id)}
-                                            style={{ fontSize: '1.5rem', cursor: 'pointer' }}
-                                            icon={faTrash}
-                                        />
-                                    )}
+                                    <td data-label='Action'>
+                                        {isResDelay ? '....' : (
+                                            <FontAwesomeIcon
+                                                id="trash"
+                                                onClick={() => removeItem(data.id)}
+                                                style={{ fontSize: '1.5rem', cursor: 'pointer' }}
+                                                icon={faTrash}
+                                            />
+                                        )}
                                     </td>
                                     <td data-label='Total' id="total" style={{ textAlign: 'right' }}>${data.price * data.qty}</td>
                                 </tr>

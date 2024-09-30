@@ -2,12 +2,12 @@
 
 import { useElements, useStripe, PaymentElement } from "@stripe/react-stripe-js"
 import { useEffect, useState } from "react"
-import countreis from "@/countryWithCode"
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDataContext } from "@/context";
-import { Slide, toast, ToastContainer } from "react-toastify";
-import toastOptions from "@/options";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function CheckoutForm({ dpmCheckerLink }) {
     const { setCartData, loggedUser, setLoggedUser } = useDataContext()
@@ -16,12 +16,9 @@ export default function CheckoutForm({ dpmCheckerLink }) {
     const stripe = useStripe()
     const elements = useElements()
     const [subTotal, setSubtotal] = useState('')
-    const [payForm, setPayForm] = useState('')
-    const [billForm, setBillForm] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [email, setEmail] = useState('')
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
+    const [name, setName] = useState('')
     const [address, setAddress] = useState('')
 
 
@@ -36,46 +33,41 @@ export default function CheckoutForm({ dpmCheckerLink }) {
         try {
             const { error, paymentIntent } = await stripe.confirmPayment({
                 elements,
-                redirect: "if_required",
+                redirect: 'if_required',
                 confirmParams: {
-                    // Make sure to change this to your payment completion page
                     return_url: "http://localhost:3000/completed",
                 },
             });
             if (error) {
-                toast.error(error.message || 'Something went wrong, Try again!', toastOptions.error)
+                // toast.error(error.message || 'Something went wrong, Try again!', toastOptions.error)
+                toast.error(error.message || 'Something went wrong, Try again!')
                 setIsLoading(false)
             }
-            if (paymentIntent) {
-                console.log('Id: ', paymentIntent.id)
+            if (paymentIntent && paymentIntent.status === 'succeeded') {
+                const billingInfo = localStorage.getItem('billingInfo')
+                const cartProducts = localStorage.getItem('cart')
                 setIsLoading(false)
-                toast.success('Transaction Successful! Redirecting....', toastOptions.success)
+                await fetch(`/api/order?paymentIntentId=${paymentIntent.id}`, {
+                    method: 'post',
+                    headers: { "Content-Type": 'application/json' },
+                    body: JSON.stringify({ info: JSON.parse(billingInfo), products: JSON.parse(cartProducts) })
+                })
                 if (loggedUser) {
-                    fetch('/api/userCart?action=delAll', {
+                    await fetch('/api/userCart?action=delAll', {
                         method: 'delete',
                         headers: { "Content-Type": 'application/json' },
                         body: JSON.stringify({ email: loggedUser.Email })
                     })
-                        .then(res => res.json())
-                        .then(result => {
-                            console.log(result)
-                            localStorage.removeItem('cart')
-                            setCartData([])
-                            setTimeout(() => {
-                                router.push('/cart')
-                            }, 2000)
-                        })
-                } else {
-                    localStorage.removeItem('cart')
-                    setCartData([])
-                    setTimeout(() => {
-                        router.push('/cart')
-                    }, 2000)
                 }
+                localStorage.removeItem('cart')
+                localStorage.removeItem('billingInfo')
+                setCartData([])
+                router.push('/')
             }
 
         } catch (err) {
-            toast.error("Something went wrong, Try again!", toastOptions.error)
+            // toast.error("Something went wrong, Try again!", toastOptions.error)
+            toast.error("Something went wrong, Try again!")
             console.log(err)
             setIsLoading(false)
         } finally {
@@ -85,92 +77,33 @@ export default function CheckoutForm({ dpmCheckerLink }) {
     const paymentElementOptions = {
         layout: "tabs",
     };
-    const handleHide = () => {
-        if (billForm && payForm) {
-            billForm.classList.add('hide');
-            payForm.classList.remove('hide');
-        }
-    }
-
-    const handleUnHide = () => {
-        if (billForm && payForm) {
-            payForm.classList.add('hide');
-            billForm.classList.remove('hide');
-        }
-    }
-
-    const handleBillSub = (e) => {
-        let form = document.getElementById('billingForm');
-        if (!form.checkValidity()) {
-            e.preventDefault();
-            form.reportValidity()
-            return;
-        }
-        e.preventDefault();
-        handleHide()
-    }
 
     useEffect(() => {
-        let paymentForm = document.querySelector('.paymentForm')
-        let checkoutForm = document.querySelector('.checkoutForm')
-        if (paymentForm && checkoutForm) {
-            setPayForm(paymentForm);
-            setBillForm(checkoutForm)
-        }
         setSubtotal(searhParam.get('subtotal'))
+        let billing = localStorage.getItem('billingInfo')
+        let body = JSON.parse(billing)
+        setName(`${body.firstName} ${body.lastName}`)
+        setEmail(body.email)
+        setAddress(body.address)
     }, [searhParam])
     return (
         <>
+            <Toaster />
             <div className="checkoutPage">
-                <ToastContainer />
-                <div className="checkoutForm">
-                    <form id="billingForm">
-                        <div className="header">Shipping Details</div>
-                        <label htmlFor="country">Country</label>
-                        <select name="country" id="country" required autoComplete="country" defaultValue={'United Kingdom'}>
-                            {
-                                countreis.map((country, index) => <option key={country.name} value={country.name}>{country.name}</option>)
-                            }
-                        </select>
-                        <div className="nameCont">
-                            <div style={{ display: 'flex', flexFlow: 'column', width: '100%' }}>
-                                <label htmlFor="firstName">First Name</label>
-                                <input type="text" onChange={(e) => setFirstName(e.target.value)} name="firstName" id="firstName" placeholder="John" required autoComplete="given-name" />
-                            </div>
-                            <div style={{ display: 'flex', flexFlow: 'column', width: '100%' }}>
-                                <label htmlFor="lastName">Last Name</label>
-                                <input type="text" onChange={(e) => setLastName(e.target.value)} name="lastName" id="lastName" placeholder="Doe" required autoComplete="family-name" />
-                            </div>
-                        </div>
-                        <label htmlFor="address">Address</label>
-                        <input type="text" onChange={(e) => setAddress(e.target.value)} name="address" id="address" placeholder="Address,New York, USA" required autoComplete="address-line1" />
-                        <label htmlFor="city">City</label>
-                        <input type="text" name="city" id="city" required placeholder="New York" autoComplete="address-level2" />
-                        <label htmlFor="phone">Phone</label>
-                        <input type="tel" name="phone" id="phone" required placeholder="Phone Number" autoCapitalize="tel" />
-                        <label htmlFor="email">Email</label>
-                        <input type="email" onChange={(e) => setEmail(e.target.value)} name="email" id="email" required autoComplete="email" placeholder="expample@gmail.com" />
-                        <div style={{ display: 'flex', flexFlow: 'row wrap', width: '100%', justifyContent: 'space-between' }}>
-                            <button onClick={() => router.push('/cart')} className="btnBack" type="button">Back to Cart</button>
-                            <button onClick={handleBillSub} className="btnNext" type="submit">Next</button>
-                        </div>
-                    </form>
-                </div>
-                <div className="paymentForm hide">
+                <div className="paymentForm">
                     <div className="reviewDetail">
                         <div className="header">Review And Pay</div>
                         <label>Full Name</label>
-                        <input type="text" value={firstName + " " + lastName} readOnly />
+                        <input type="text" value={name} readOnly />
                         <label>Email</label>
                         <input type="text" value={email} readOnly />
                         <label>Ship To</label>
                         <input type="text" value={address} readOnly />
                     </div>
                     <form id="payment-form" onSubmit={handlePaySub}>
-                        {/* <div className="header">Payment Details</div> */}
                         <PaymentElement id="payment-element" options={paymentElementOptions} />
                         <div style={{ display: 'flex', flexFlow: 'row wrap', width: '100%', marginTop: '5px', justifyContent: 'space-between' }}>
-                            <button onClick={handleUnHide} className="btnBack" type="button">Back</button>
+                            <button onClick={() => router.push('/shipping')} className="btnBack" type="button">Back</button>
                             <button disabled={isLoading || !stripe || !elements} className="btnNext" type="submit">{isLoading ? 'Proccessing...' : 'Pay Now'}</button>
                         </div>
                     </form>
@@ -237,6 +170,34 @@ export default function CheckoutForm({ dpmCheckerLink }) {
                     </div>
                 </div>
             </div >
+        </>
+    )
+}
+
+export function CustomeToast({ onClick }) {
+    return (
+        <>
+            <div onClick={onClick} style={{
+                // height: '20px',
+                maxWidth: '300px',
+                width: '100%',
+                backgroundColor: "white",
+                borderRadius: '10px',
+                display: 'flex',
+                flexFlow: 'row nowrap',
+                alignItems: 'center',
+                justifyContent: 'space-evenly',
+                position: 'fixed',
+                top: '5px',
+                left: '50%',
+                transform: 'translate(-50%)',
+                padding: '25px 15px',
+                zIndex: '100',
+                border: '1px solid black'
+            }}>
+                <FontAwesomeIcon style={{ color: 'green', fontSize: '1.8rem' }} icon={faCircleCheck} />
+                <p>Transaction Successfull!</p>
+            </div>
         </>
     )
 }

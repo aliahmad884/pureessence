@@ -6,8 +6,6 @@ import { faMagnifyingGlass, faCartShopping, faUser, faCircleQuestion, faCircleAr
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useDataContext } from "@/context";
-import { toast, ToastContainer } from "react-toastify";
-import toastOptions from "@/options";
 import FallBackLoader from "./loader";
 
 export default function Navbar() {
@@ -67,7 +65,7 @@ export default function Navbar() {
             return res.json()
         }).then(result => {
             console.log(result)
-            toast.success("Logout successfully!", toastOptions.success)
+            // toast.success("Logout successfully!", toastOptions.success)
         }).catch(err => console.log(err));
     }
     let isCalled = false;
@@ -102,6 +100,7 @@ export default function Navbar() {
     }
 
     useEffect(() => {
+        console.log('Navbar hook rendered')
         setDomLoaded(true)
         SetDOMLoaded(false)
         let droplinks = document.querySelector('.routerDropDown');
@@ -134,7 +133,7 @@ export default function Navbar() {
             window.removeEventListener("resize", handleWindow);
         };
 
-    }, [searchValue, innerWidth, loggedUser])
+    }, [searchValue, innerWidth, loggedUser, pathName, cartData])
 
     // --------- Active Tab Handler-------------//
     useEffect(() => {
@@ -149,13 +148,12 @@ export default function Navbar() {
                 link.style.borderBottom = '3px solid'
             }
         })
-    }, [pathName])
+    }, [pathName, loggedUser, cartData])
     if (DOMLoaded) {
         return <FallBackLoader />
     }
     return (
         <>
-            <ToastContainer />
             <div className="navMainCont">
                 {/* --------Nav Container-------- */}
                 <div className="navContainer">

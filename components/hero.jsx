@@ -1,9 +1,30 @@
+"use client"
+
+import { useState } from "react"
+import { createPortal } from "react-dom"
+import { CustomeToast } from "./checkoutForm"
+import toast, { Toaster } from "react-hot-toast"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
+
 export default function Hero() {
+    const [show, setShow] = useState(false)
+    // const showToast = () => {
+    //     toast.success('Test Toast',{
+    //         icon:<FontAwesomeIcon style={{color:'cadetblue',fontSize:'1.5rem'}} icon={faInfoCircle}/>
+    //     })
+    //     // toast.loading('wait....')
+
+    //     toast.promise()
+    //     // setShow(!show)
+    // }
     return (
         <>
+            <Toaster />
             <div className="heroContainer">
                 <h1>The Purest<br /> Products, For a<br /> Better You.</h1>
                 <button type="button">Shop Now</button>
+                {show && createPortal(<CustomeToast onClick={() => setShow(!show)} />, document.body)}
             </div>
             <div className="aboutContainer">
                 <div className="aboutText">

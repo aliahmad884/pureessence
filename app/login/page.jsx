@@ -49,9 +49,9 @@ export default function Login() {
                 setCartData([])
                 setIsLoading(false)
                 SetDOMLoaded(true)
-                setTimeout(() => {
+                // setTimeout(() => {
                     router.push(path?path:'/')
-                }, 1000)
+                // }, 1000)
             } else {
                 setErrMsg(data.res)
                 setIsLoading(false)

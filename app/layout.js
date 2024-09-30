@@ -7,11 +7,10 @@ import "./loaders.css";
 import "./media-queries.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import 'react-toastify/dist/ReactToastify.css';
 import ToolBar from "@/components/toolbar";
 import ContextProvider from "@/context";
 import Footer from "@/components/footer";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import FallBackLoader from "@/components/loader";
 
@@ -19,6 +18,10 @@ import FallBackLoader from "@/components/loader";
 
 export default function RootLayout({ children }) {
   const pathName = usePathname()
+  // const [isLoading, setIsLoading] = useState(false)
+  // useEffect(() => {
+  //   setIsLoading(true)
+  // }, [])
   return (
     <html lang="en">
       <head>
@@ -26,31 +29,22 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Pure Essence Home Page..!" />
       </head>
       <body>
-
+        {/* {!isLoading ? <FallBackLoader /> : ( */}
         <ContextProvider>
           <Suspense fallback={<FallBackLoader />}>
-            {(pathName.startsWith('/admin') || (pathName.startsWith('/login')) || (pathName.startsWith('/signup'))) ? null : (
+            {(pathName.startsWith('/admin') || (pathName.startsWith('/login')) || (pathName.startsWith('/signup')) || (pathName.startsWith('/completed'))) ? null : (
               <>
                 <ToolBar />
                 <Navbar />
               </>
             )}
             {children}
-            {(pathName.startsWith('/admin') || (pathName.startsWith('/login')) || (pathName.startsWith('/signup'))) ? null : <Footer />}
+            {(pathName.startsWith('/admin') || (pathName.startsWith('/login')) || (pathName.startsWith('/signup')) || (pathName.startsWith('/completed'))) ? null : <Footer />}
           </Suspense>
         </ContextProvider>
+        {/* )} */}
 
       </body>
     </html >
   );
-}
-
-export function Loading() {
-  return (
-    <>
-      <div style={{ backgroundColor: 'blue', color: 'white', height: '100vh', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '5rem' }}>
-        <h1>Loading......</h1>
-      </div>
-    </>
-  )
 }
