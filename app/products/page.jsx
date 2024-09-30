@@ -11,6 +11,7 @@ export default function ProductPage() {
             <div className="productPageBanner">
                 <h1>Products</h1>
             </div>
+            
             {/* <h1>Product Page</h1>
             <Link href={'/products/categories/hello'}>Hello</Link>
             <Link href={'/products/categories/world'}>World</Link> */}

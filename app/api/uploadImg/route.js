@@ -16,11 +16,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
+
 
 export async function POST(req) {
     return new Promise((resolve, reject) => {
