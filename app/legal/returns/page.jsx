@@ -30,7 +30,7 @@ export default function Returns() {
 
                 <h2>Damaged or Missing Items</h2>
                 <p>
-                    If your order arrives damaged or incomplete, please notify us within 7 days of delivery. Send an email to our customer service team at <a href="mailto:support@pureessenceltd.com">support@pureessenceltd.com</a> with your order number, photos of the damage, and a description of the issue. We'll work with you to resolve the problem as quickly as possible.
+                    If your order arrives damaged or incomplete, please notify us within 7 days of delivery. Send an email to our customer service team at <a href="mailto:support@pureessenceltd.com">support@pureessenceltd.com</a> with your order number, photos of the damage, and a description of the issue. We&apos;ll work with you to resolve the problem as quickly as possible.
                 </p>
 
                 <h2>Return Policy</h2>
