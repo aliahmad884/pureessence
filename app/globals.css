@@ -90,6 +90,26 @@ main {
   font-weight: bold;
   font-size: 1.3rem;
   cursor: pointer;
+  /* width: fit-content; */
+  display: flex;
+  line-height: 1;
+  align-items: center;
+  gap: 10px;
+  /* text-transform: uppercase; */
+}
+
+.navLogo h1 {
+  text-transform: uppercase;
+  /* color: #e5efe0; */
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.navLogo p {
+  /* font-size: 0.5rem; */
+  /* color: #e5efe0; */
+  font-size: 0.7rem;
+  letter-spacing: -1px;
 }
 
 /* -------Routes-------- */
@@ -427,24 +447,26 @@ main {
   border: none;
   outline: none;
   font-size: 1.2rem;
-  color: white;
-  border-radius: 5px;
+  /* color: white; */
+  border-radius: 30px;
   display: block;
   height: 60px;
   width: 200px;
   /* background: rgb(149, 126, 6);
   background: linear-gradient(34deg, rgba(149, 126, 6, 1) 29%, rgba(221, 177, 3, 1) 100%); */
-  background: rgb(199, 169, 15);
-  background: linear-gradient(180deg, rgba(199, 169, 15, 1) 29%, rgba(236, 190, 8, 1) 100%);
+  /* background: rgb(199, 169, 15); */
+  background-color: #dfb434;
+  /* background: linear-gradient(180deg, rgba(199, 169, 15, 1) 29%, rgba(236, 190, 8, 1) 100%); */
   transition: all 0.5s;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.heroContainer button:hover,
+/* .heroContainer button:hover,
 .blogsCont button:hover {
   background: rgb(149, 126, 6);
   background: linear-gradient(180deg, rgba(149, 126, 6, 1) 29%, rgba(221, 177, 3, 1) 100%);
   transition: all 0.5s;
-}
+} */
 
 /* ------- Hero Section End-------- */
 
@@ -573,34 +595,70 @@ main {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  max-width: 300px;
+  padding: 20px;
+  gap: 5px;
+  /* margin: 0 10px; */
   overflow-x: hidden;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 10px;
   transition: all 0.5s;
 }
 
+.productCard .btnCont {
+  display: flex;
+  width: 100%;
+  gap: 4px;
+}
+
+.productCard .btnCont .btnPreview {
+  padding: 10px;
+  background-color: #c2bebe;
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.productCard .btnCont .addToCart {
+  padding: 10px;
+  background-color: #dfb434;
+  width: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .productCard img {
-  width: 200px;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 5px;
 }
 
 .productCard h2 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  text-align: center;
+  text-align: left;
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+.productCard h3 {
+  color: #555;
+  text-align: left;
+
 }
 
 .productCard p {
   font-size: 1.1rem;
+  text-align: left;
+  font-weight: bold;
 }
 
-.productCard button {
-  background-color: #dfb434;
-  padding: 10px 70px;
-  font-size: large;
-  border-radius: 50px;
-  transition: all 0.5s;
-}
+
 
 /* ----------Popular Priducts End----------- */
 
@@ -801,13 +859,18 @@ main {
   /* gap: 200px; */
 }
 
-.footer .logo {
+.logo {
   display: flex;
   flex-flow: row nowrap;
   gap: 10px;
   width: 30%;
   align-items: center;
   line-height: 1;
+}
+
+.logo img {
+  width: 300px;
+  transition: all 0.5s;
 }
 
 .logo h1 {
@@ -1798,4 +1861,123 @@ select {
   color: white;
 }
 
+.productPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px;
+}
+
+.productPage .productsCont {
+  display: flex;
+  flex-flow: row wrap;
+  /* align-items: center; */
+  gap: 50px 20px;
+  justify-content: center;
+  width: 100%;
+  transition: all 0.5s;
+  max-width: 1400px;
+}
+
 /* -------- Product Page End---------------- */
+/* -------- Product Slug------------------- */
+.productSlugCont {
+  padding: 50px 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.productSlug {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  max-width: 1200px;
+  gap: 50px;
+}
+
+.productSlug .imgCont {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  /* max-width: 500px; */
+  gap: 10px;
+}
+
+.productSlug .imgCont .mainImg {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.productSlug .imgCont .thumbnails {
+  display: flex;
+  flex-flow: column;
+  width: 100px;
+  overflow: auto;
+}
+
+.productSlug .imgCont .thumbnails img {
+  width: 100%;
+}
+
+
+.productSlug .detailsCont {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+}
+
+.productSlug .detailsCont h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.productSlug .detailsCont h3 {
+  font-weight: bold;
+}
+
+.productSlug .detailsCont p {
+  color: #555;
+  font-weight: bold;
+}
+
+.productSlug .detailsCont a {
+  color: #555;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.productSlug .detailsCont button {
+  background-color: #dfb434;
+  padding: 15px 60px;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.productSlugCont .overViewCont {
+  border-top: 2px solid rgb(224, 224, 224);
+  width: 100%;
+  margin-top: 80px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+}
+
+/* .productSlugCont .overViewCont .tabs button{
+  padding: 15px 80px;
+  background-color: #85aeff;
+  border-radius: 10px;
+} */
+.productSlugCont .overViewCont .output h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* --------Product Slug End---------------- */

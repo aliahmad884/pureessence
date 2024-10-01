@@ -158,7 +158,15 @@ export default function Navbar() {
                 {/* --------Nav Container-------- */}
                 <div className="navContainer">
                     {/*------Company Logo------*/}
-                    <div className="navLogo"><Link href={'/'}>Pure Essence</Link></div>
+                    <div className="navLogo" onClick={() => router.push('/')}>
+                        <img src="/logos/PE-Main-Logo.png" alt="Logo"  width={200}/>
+                        {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  />  */}
+                        {/* <img src="/logos/PE-Main-Logo-Large.png" alt="Logo"  /> */}
+                        {/* <div>
+                            <h1><strong style={{ color: '#dfb434' }}>Pur</strong> Essence</h1>
+                            <p>The Purest Products, For a Better You.</p>
+                        </div> */}
+                    </div>
                     <div className="navMenu">
                         {/*-----Routes Link------*/}
                         <div className="navLinks">
@@ -178,7 +186,7 @@ export default function Navbar() {
                             <span></span>
                         </div>
                         {/* ---------Search Bar--------- */}
-                        <div className="searchBar">
+                        <div style={{ display: 'none' }} className="searchBar">
                             <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" />
                             <FontAwesomeIcon className="searchIcon" onClick={handleSearch} icon={faMagnifyingGlass} />
                         </div>
@@ -188,7 +196,7 @@ export default function Navbar() {
                             <FontAwesomeIcon style={{ fontSize: '1.5rem', paddingTop: '7px' }} icon={faCartShopping} />
                         </div>
                         {/* -------Active User------- */}
-                        <div onClick={handleUserDrop} className="userCont">
+                        <div style={{ display: 'none' }} onClick={handleUserDrop} className="userCont">
                             <img src="/avatar2.webp" alt="Temp" width={40} />
                             <div className="userMenu">
                                 {loggedUser ? (<>
@@ -228,7 +236,7 @@ export default function Navbar() {
                         >{navlink.link}</Link>)
                     }
                     {/* --------DropDown Search Bar-------- */}
-                    <div className="dropSearch" style={{ display: 'flex', flexFlow: 'row nowrap' }}>
+                    <div className="dropSearch" style={{ display: 'none', flexFlow: 'row nowrap' }}>
                         <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" />
                         <FontAwesomeIcon style={{ cursor: 'pointer', margin: '0 15px' }} onClick={handleSearch} icon={faMagnifyingGlass} />
                     </div>
@@ -239,12 +247,12 @@ export default function Navbar() {
                             <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faCartShopping} />
                         </div>
                         {/* --------DropDown Search User-------- */}
-                        <div onClick={handleExtend} className="dropUser" style={{ display: 'flex', alignItems: 'center' }}>
+                        <div onClick={handleExtend} className="dropUser" style={{ display: 'none', alignItems: 'center' }}>
                             <img src="/avatar2.webp" alt="Temp" width={40} />
                             <h4>{loggedUser ? loggedUser.Name : 'Guest'}</h4>
                         </div>
                     </div>
-                    <div className="userDropMenu">
+                    <div style={{ display: 'none' }} className="userDropMenu">
                         {loggedUser ? (<>
                             <ul>
                                 <li>

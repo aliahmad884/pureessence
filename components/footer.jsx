@@ -19,11 +19,13 @@ export default function Footer() {
         <>
             <div className="footer">
                 <div className="logo">
-                    <img src="/CircleLogo.webp" alt="Logo" width={50} />
-                    <div>
-                        <h1><strong style={{ color: '#dfb434' }}>Pure</strong> Essence</h1>
+                    {/* <img src="/transLogo.png" alt="Logo" width={50} /> */}
+                    <img src="/logos/PE-Main-Logo.png" alt="Logo"/>
+                    {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  /> */}
+                    {/* <div>
+                        <h1><strong style={{ color: '#dfb434' }}>Pur</strong> Essence</h1>
                         <p>The Purest Products, For a Better You.</p>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="mainCont">
                     <div className="explore">

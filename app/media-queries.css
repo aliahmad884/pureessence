@@ -129,6 +129,10 @@
     .proMainCont .rightPanel {
         border: none;
     }
+
+    .productSlug {
+        flex-flow: column nowrap;
+    }
 }
 
 @media screen and (max-width: 700px) {
@@ -224,7 +228,7 @@
     }
 
     .navMainCont .routerDropDown.drop {
-        height: 310px;
+        height: 255px;
     }
 
     .heroContainer h1 {
@@ -280,8 +284,9 @@
         text-align: left;
         margin-bottom: 25px;
     }
+
     .subCont .orderSummary .ordersummaryCont,
-    .subCont .orderPlaceDesc .orderStatus{
+    .subCont .orderPlaceDesc .orderStatus {
         flex-flow: column nowrap;
     }
 
@@ -300,6 +305,19 @@
         border-top: 1px solid rgb(224, 224, 224);
         padding: 3px;
     }
+
+    .navMainCont {
+        padding: 10px 20px;
+    }
+
+    .productCard {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .productCard h2 {
+        text-align: center;
+    }
 }
 
 @media (width<=500px) {
@@ -310,6 +328,21 @@
 
     .editCont .fileCont {
         flex-flow: column nowrap;
+    }
+
+    .logo img {
+        width: 250px;
+    }
+
+    .productSlug .imgCont{
+        flex-flow: column nowrap;
+    }
+    .productSlug .imgCont .thumbnails{
+        flex-flow: row;
+        width: 100%;
+    }
+    .productSlug .imgCont .thumbnails img{
+        width: 100px;
     }
 }
 
