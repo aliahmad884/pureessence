@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="footer">
                 <div className="logo">
                     {/* <img src="/transLogo.png" alt="Logo" width={50} /> */}
-                    <img src="/logos/PE-Main-Logo.png" alt="Logo"/>
+                    <img src="/logos/PE-Main-Logo.png" alt="Logo" />
                     {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  /> */}
                     {/* <div>
                         <h1><strong style={{ color: '#dfb434' }}>Pur</strong> Essence</h1>
@@ -48,11 +48,10 @@ export default function Footer() {
                     </div>
                     <div className="legal">
                         <h2>Legal &amp; Info</h2>
-                        <a href="#">Terms &amp; Conditions</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Refunds Policy</a>
-                        <a href="#">Delivery</a>
-                        <a href="#">Sitemap</a>
+                        <Link href={'/legal/privacy-policy'}>Privacy Policy</Link>
+                        <Link href={'/legal/disclaimer'}>Disclaimer</Link>
+                        <Link href={'/legal/returns'}>Returns</Link>
+                        <Link href={'/legal/terms'}>Terms</Link>
                     </div>
                     <div className="address">
                         <h2>

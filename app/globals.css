@@ -1981,3 +1981,39 @@ select {
 }
 
 /* --------Product Slug End---------------- */
+/* --------- Legal Pages ----------------- */
+.legalCont {
+  padding: 50px 20px;
+  width: 100%;
+  max-width: 1600px;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  margin: auto;
+  /* text-align: justify; */
+}
+
+.legalCont h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.legalCont h2{
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.legalCont p{
+  padding: 10px 0;
+  text-align: justify;
+}
+.legalCont a{
+  text-decoration: underline;
+  color: #85aeff;
+}
+.legalCont ol{
+  list-style: decimal;
+  list-style-position: inside;
+}
+
+/* ------- Legal Pages End --------------- */
