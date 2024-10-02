@@ -422,7 +422,7 @@ main {
   align-items: center;
   justify-content: center;
   gap: 50px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/spices.webp');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/PE-Honey-B1.webp');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -481,6 +481,13 @@ main {
   transition: all 0.5s;
 }
 
+/* .aboutContainer .aboutImg{
+  background-image: url('/PE-Olive-Oil-4.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+} */
 .aboutContainer .aboutImg,
 .aboutContainer .aboutText {
   max-width: 500px;
@@ -518,7 +525,7 @@ main {
 }
 
 .aboutImg img {
-  height: 400px;
+  /* height: 400px; */
   border-radius: 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
@@ -536,7 +543,7 @@ main {
 .offerContainer .imgCont {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-evenly;
   padding-top: 100px;
   gap: 20px;
@@ -558,8 +565,14 @@ main {
   transition: all 0.5s;
 }
 
-.imgCont .cardCont img {
+.imgCont .cardCont .img {
   border-radius: 5px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  transition: all 0.5s;
 }
 
 .imgCont .cardCont h2,
@@ -1029,15 +1042,61 @@ main {
 }
 
 .reviewDetail,
-.paymentForm,
-.checkoutForm {
+.paymentForm
+
+/* .checkoutForm */
+  {
   max-width: 600px;
   padding: 20px;
   width: 50%;
   border-radius: 3px;
   transition: all 0.5s;
+}
+
+.checkoutForm {
+  width: 100%;
+  max-width: 1000px;
+  padding: 100px 20px;
   margin: auto;
-  /* margin: auto; */
+}
+
+.checkoutForm form {
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.checkoutForm form h1 {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.checkoutForm form .btnCont {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 15px;
+}
+
+.checkoutForm form .btnCont a {
+  text-decoration: underline;
+  color: #a09f9f;
+}
+
+.checkoutForm form .btnCont button {
+  padding: 10px 70px;
+  background-color: #dfb434;
+  border-radius: 30px;
+}
+
+
+.checkoutForm input,
+select {
+  border: 1px solid #e6e6e6;
+  border-radius: 30px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .reviewDetail {
@@ -1055,15 +1114,6 @@ main {
   border-bottom: 2px solid #e6e6e6;
 }
 
-.checkoutForm input,
-select {
-  border: 1px solid #e6e6e6;
-  border-radius: 3px;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
 .reviewDetail label,
 .checkoutForm label {
   font-size: 0.95rem;
@@ -1071,8 +1121,7 @@ select {
 }
 
 .reviewDetail .header,
-.paymentForm .header,
-.checkoutForm .header {
+.paymentForm .header {
   width: 100%;
   background-color: #85aeff;
   padding: 20px 10px;
@@ -1087,8 +1136,7 @@ select {
   gap: 10px;
 }
 
-.paymentForm .btnBack,
-.checkoutForm .btnBack {
+.paymentForm .btnBack {
   background-color: #85aeff;
   padding: 10px 50px;
   border-radius: 3px;
@@ -1097,8 +1145,7 @@ select {
   border: 1px solid #eeeee6;
 }
 
-.paymentForm .btnNext,
-.checkoutForm .btnNext {
+.paymentForm .btnNext {
   background-color: #dfb434;
   padding: 10px 50px;
   border-radius: 3px;
@@ -1107,9 +1154,6 @@ select {
   border: 1px solid #eeeee6;
 }
 
-.checkoutForm.hide {
-  display: none;
-}
 
 .paymentForm {
   transition: all 0.5s;
@@ -1841,18 +1885,66 @@ select {
   padding: 10px;
 }
 
+.subCont .btnAction {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 20px 10px 20px;
+  gap: 10px;
+  transition: all 0.5s;
+}
+
+.subCont .btnAction .cancelBtn {
+  padding: 10px 0;
+  text-align: center;
+  background-color: #9c9c9c;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 150px;
+  transition: all 0.5s;
+}
+
+.subCont .btnAction .btnConfirm {
+  padding: 10px 0;
+  background-color: #dfb434;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 30px;
+  width: 100%;
+  transition: all 0.5s;
+}
+
+.subCont .btnAction .confirmCont {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+  transition: all 0.5s;
+}
+
+.subCont .btnAction .btnInvoice {
+  padding: 10px 0;
+  /* background-color: #6A9AB0; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 30px;
+  width: 100%;
+  transition: all 0.5s;
+}
+
 /* ----------Manage Order Page End---------- */
 /* ---------- Product Page------------------ */
 .productPageBanner {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/productBanner.webp');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/PE-Bath-Oils.webp');
   width: 100%;
-  height: 500px;
+  height: 600px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 80px;
   display: flex;
   align-items: center;
+  transition: all 0.5s;
 }
 
 .productPageBanner h1 {
@@ -1999,21 +2091,178 @@ select {
   text-align: center;
   margin-bottom: 20px;
 }
-.legalCont h2{
+
+.legalCont h2 {
   font-size: 1.2rem;
   font-weight: bold;
 }
-.legalCont p{
+
+.legalCont p {
   padding: 10px 0;
   text-align: justify;
 }
-.legalCont a{
+
+.legalCont a {
   text-decoration: underline;
   color: #85aeff;
 }
-.legalCont ol{
+
+.legalCont ol {
   list-style: decimal;
   list-style-position: inside;
 }
 
 /* ------- Legal Pages End --------------- */
+/* -------- Contact Page ---------------- */
+.contactMainCont {
+  padding: 50px 20px;
+  /* margin: auto; */
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactMainCont h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.contactMainCont .contactSubCont {
+  width: 100%;
+  max-width: 1400px;
+  padding: 70px 20px;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.contactMainCont .contactUs {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+.contactMainCont .contactUs form {
+  /* border: 1px solid black; */
+  /* padding: 10px; */
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+}
+
+.contactMainCont .contactUs form .subInputCont {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+}
+
+.contactMainCont .contactUs input {
+  /* border: 2px solid rgb(224, 224, 224); */
+  border-radius: 20px;
+  width: 100%;
+  padding: 10px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.contactMainCont .contactUs textarea {
+  /* border: 2px solid rgb(224, 224, 224); */
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.contactMainCont .contactUs form button {
+  background-color: #dfb434;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.contactLocation .contSubCo .officesCont .contactDetails,
+.departmentCont .departSubCont .contactDetails,
+.contactMainCont .contactUs .contactDetails {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.contactUs .contactDetails h2 {
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.contactUs .contactDetails .socialIcon {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 15px;
+  justify-content: center;
+  border-top: 2px solid rgb(224, 224, 224);
+  margin-top: 60px;
+  padding-top: 20px;
+}
+
+.contactUs .contactDetails .socialIcon img {
+  width: 30px;
+}
+
+.contactSubCont .contactLocation,
+.contactSubCont .departmentCont {
+  margin-top: 60px;
+  border-top: 2px solid rgb(224, 224, 224);
+  padding-top: 40px;
+}
+
+.contactLocation h2,
+.departmentCont h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.departmentCont .departSubCont {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 40px;
+}
+
+.contactLocation .contSubCo {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 40px;
+}
+.contactLocation .contSubCo .officesCont{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 50px;
+  width: 100%;
+}
+
+.contSubCo .gLocation {
+  width: 100%;
+  max-width: 1050px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+/* ------ Conatct Page End -------------- */

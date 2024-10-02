@@ -36,30 +36,30 @@ export default function Hero() {
                     <p>The team come from a background of herbal practitioners and good ol&apos; spice lovers, so rest assured Pure Essence provides the best quality and type of product for a better you.</p>
                 </div>
                 <div className="aboutImg">
-                    <img src="/spices.webp" alt="Spices" />
+                    <img src="/PE-Olive-Oil-4.webp" alt="Spices" />
                 </div>
             </div>
             <div className="offerContainer">
                 <h1>What We Offer</h1>
                 <div className="imgCont">
                     <div className="cardCont">
-                        <img src="/spices.webp" alt="Spices" />
-                        <h2>Rich Spices</h2>
+                        <div style={{ backgroundImage: "url(/PE-Olive-Oil-5.webp)" }} className="img"></div>
+                        <h2>Olive Oil Asli te Khalis, Allah di qasme</h2>
                         <p>Who said you can&apos;t eat till you are fit. Food is a pillar of health, you either keep it or ruin it.</p>
                     </div>
                     <div className="cardCont">
-                        <img src="/spices.webp" alt="Spices" />
-                        <h2>Fresh Suppliments</h2>
+                        <div style={{ backgroundImage: "url(/PE-Honey-P5.webp)" }} className="img"></div>
+                        <h2>Purest Honey</h2>
                         <p>Improve your health or recover from ailment, we source only the most natural products.</p>
                     </div>
                     <div className="cardCont">
-                        <img src="/spices.webp" alt="Spices" />
-                        <h2>Quality Health Foods</h2>
+                        <div style={{ backgroundImage: "url(/PE-Almond-Oil.webp)" }} className="img"></div>
+                        <h2>Almond Oil</h2>
                         <p>Who said you can&apos;t eat till you are fit. Food is a pillar of health, you either keep it or ruin it.</p>
                     </div>
                     <div className="cardCont">
-                        <img src="/spices.webp" alt="Spices" />
-                        <h2>Fresh Suppliments</h2>
+                        <div style={{ backgroundImage: "url(/PE-Coconut-Oil.webp)" }} className="img"></div>
+                        <h2>Coconut Oil</h2>
                         <p>Improve your health or recover from ailment, we source only the most natural products.</p>
                     </div>
                 </div>

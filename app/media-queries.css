@@ -135,6 +135,15 @@
     }
 }
 
+@media (width<=780px){
+    .contactLocation .contSubCo .officesCont,
+    .departmentCont .departSubCont,
+    .contactMainCont .contactUs {
+        flex-flow: column;
+        align-items: center;
+    }
+}
+
 @media screen and (max-width: 700px) {
     .cartPage {
         padding-top: 50px;
@@ -318,6 +327,12 @@
     .productCard h2 {
         text-align: center;
     }
+    .subCont .btnAction{
+        flex-flow: column-reverse;
+    }
+    .imgCont .cardCont .img{
+        height: 250px;
+    }
 }
 
 @media (width<=500px) {
@@ -343,6 +358,18 @@
     }
     .productSlug .imgCont .thumbnails img{
         width: 100px;
+    }
+    .subCont .btnAction{
+        width: 100%;
+    }
+    .subCont .btnAction .confirmCont{
+        flex-flow: column-reverse;
+    }
+    .subCont .btnAction .cancelBtn {
+        max-width: 300px;
+    }
+    .contactMainCont .contactUs form .subInputCont{
+        flex-flow: column;
     }
 }
 

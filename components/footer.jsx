@@ -12,7 +12,7 @@ export default function Footer() {
         { link: 'Products', path: '/products' },
         { link: 'About', path: '/about' },
         { link: 'Guides', path: '/guides' },
-        { link: 'FAQs', path: '/FAQs' },
+        { link: 'Contact', path: '/contact' },
         { link: 'Blogs', path: '/blogs' }
     ];
     return (

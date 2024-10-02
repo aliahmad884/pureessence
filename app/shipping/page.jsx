@@ -1,6 +1,7 @@
 "use client"
 import { useDataContext } from "@/context";
 import countreis from "@/countryWithCode";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -29,13 +30,8 @@ export default function Shipping() {
         return amount * 100;
     }
 
-    const handleSaveInfo = () => {
-        console.log("Saving Address Info")
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault()
-        const storedBillInfo = localStorage.getItem('userBillInfo')
         const storedCart = localStorage.getItem('cart')
         let amount = calculateAmout(JSON.parse(storedCart))
         const body = {
@@ -49,36 +45,29 @@ export default function Shipping() {
             total: amount
         }
         localStorage.setItem('billingInfo', JSON.stringify(body))
-        if (loggedUser) {
-            if (!storedBillInfo) {
-                let ask = confirm('Are you want to store this info as default billing address?')
-                if (ask) {
-                    localStorage.setItem('userBillInfo', JSON.stringify(body))
-                }
-            }
-        }
+
 
         router.push('/checkout')
     }
-    useEffect(() => {
-        const storedBillInfo = localStorage.getItem('userBillInfo')
-        if (loggedUser) {
-            if (storedBillInfo) {
-                let ask = confirm('We found an default billing address, you want to use this or add a new one?You can preview your address on checkout and change, if needed');
-                if (ask) {
-                    console.log(JSON.parse(storedBillInfo))
-                    localStorage.setItem('billingInfo', JSON.stringify(JSON.parse(storedBillInfo)))
-                    router.push('/checkout')
-                }
-            }
-        }
-    }, [loggedUser]);
+    // useEffect(() => {
+    //     const storedBillInfo = localStorage.getItem('userBillInfo')
+    //     if (loggedUser) {
+    //         if (storedBillInfo) {
+    //             let ask = confirm('We found an default billing address, you want to use this or add a new one?You can preview your address on checkout and change, if needed');
+    //             if (ask) {
+    //                 console.log(JSON.parse(storedBillInfo))
+    //                 localStorage.setItem('billingInfo', JSON.stringify(JSON.parse(storedBillInfo)))
+    //                 router.push('/checkout')
+    //             }
+    //         }
+    //     }
+    // }, [loggedUser]);
 
     return (
         <>
             <div className="checkoutForm" onSubmit={handleSubmit}>
                 <form id="billingForm">
-                    <div className="header">Shipping Details</div>
+                    <h1>Shipping Details</h1>
                     <label htmlFor="country">Country</label>
                     <select name="country" id="country" onChange={(e) => setCountry(e.target.value)} required autoComplete="country" defaultValue={'United Kingdom'}>
                         {
@@ -103,8 +92,8 @@ export default function Shipping() {
                     <input type="tel" onChange={(e) => setPhone(e.target.value)} name="phone" id="phone" required placeholder="Phone Number" autoCapitalize="tel" />
                     <label htmlFor="email">Email</label>
                     <input type="email" onChange={(e) => setEmail(e.target.value)} value={loggedUser ? loggedUser.Email : email} name="email" id="email" required autoComplete="email" placeholder="expample@gmail.com" />
-                    <div style={{ display: 'flex', flexFlow: 'row wrap', width: '100%', justifyContent: 'space-between' }}>
-                        <button onClick={() => router.push('/cart')} className="btnBack" type="button">Back to Cart</button>
+                    <div className="btnCont">
+                        <Link href={'/cart'}>Back to cart</Link>
                         <button className="btnNext" type="submit">Next</button>
                     </div>
                 </form>
