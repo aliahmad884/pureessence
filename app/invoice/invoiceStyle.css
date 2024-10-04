@@ -4,7 +4,7 @@ body {
 
 .invoice {
     width: 21cm;
-    height: 29.60cm;
+    /* height: 29.60cm; */
     padding: 1cm;
     margin: 1cm auto;
     /* margin-left: 1cm auto; */
@@ -38,16 +38,21 @@ body {
     justify-content: space-between;
     margin: 60px 0;
 }
-.billing-details h3{
+
+.billing-details h3 {
     font-size: 1.1rem;
     font-weight: bold;
 }
-.billing-details p{
+
+.billing-details p {
     font-size: small;
 }
+
 .invoice-header h1 {
     font-size: 2rem;
     /* font-weight: bold; */
+    text-align: right;
+    margin-top: 20px;
     text-transform: uppercase;
 }
 
@@ -62,11 +67,12 @@ body {
     border-collapse: collapse;
 }
 
-.invoice-body thead tr{
+.invoice-body thead tr {
     background-color: #4A4947;
     color: white;
     border-radius: 10px;
 }
+
 .invoice-body table th,
 .invoice-body table td {
     padding: 8px;
@@ -74,26 +80,33 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
-.amount-container{
+.amount-container {
     display: flex;
     width: 100%;
     justify-content: right;
 }
-.amount-container .subCont{
+
+.amount-container .subCont {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     width: 100%;
 }
 
-.invoice-footer{
+.invoice-footer {
     margin-top: 80px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: end;
 }
+
 .invoice-footer p {
     font-size: small;
     color: rgb(128, 128, 128);
 }
-.invoice-footer h4{
+
+.invoice-footer h4 {
     margin-top: 20px;
 }
 
@@ -104,6 +117,10 @@ body {
 }
 
 @media print {
+
+    .invoice .btnPrint{
+        display: none;
+    }
     body {
         visibility: hidden;
     }
@@ -118,22 +135,17 @@ body {
         position: absolute;
         left: 0;
         top: 0;
+        width: 21cm;
+        height: 29.60cm;
     }
 }
 
-.print {
-    margin: auto;
-}
 
-.print button {
-    position: fixed;
-    top: 0;
+.invoice .btnPrint {
+    background-color: white;
     padding: 20px;
-    font-size: large;
-    color: whitesmoke;
-    background-color: royalblue;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /* position: fixed;
+    left: 0; */
 }

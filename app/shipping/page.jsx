@@ -1,6 +1,8 @@
 "use client"
+import FallBackLoader from "@/components/loader";
 import { useDataContext } from "@/context";
 import countreis from "@/countryWithCode";
+import { strGen } from "@/options";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,6 +19,7 @@ export default function Shipping() {
     const [country, setCountry] = useState('United Kingdom')
     const [city, setCity] = useState('')
     const [phone, setPhone] = useState('')
+    const [isLoading, setIsLoading] = useState(true)
 
     const calculateAmout = (item) => {
         let arr = []
@@ -32,6 +35,9 @@ export default function Shipping() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        localStorage.removeItem('billingInfo')
+        const uniqueId = strGen(25)
+        console.log(uniqueId)
         const storedCart = localStorage.getItem('cart')
         let amount = calculateAmout(JSON.parse(storedCart))
         const body = {
@@ -45,10 +51,14 @@ export default function Shipping() {
             total: amount
         }
         localStorage.setItem('billingInfo', JSON.stringify(body))
+        localStorage.setItem('uniqueId', uniqueId)
 
 
-        router.push('/checkout')
+        router.push(`/checkout?huihbc=hdhdiusbdhwyd&uniqueId=${uniqueId}`)
     }
+    useEffect(() => {
+        setIsLoading(false)
+    }, [])
     // useEffect(() => {
     //     const storedBillInfo = localStorage.getItem('userBillInfo')
     //     if (loggedUser) {
@@ -62,7 +72,7 @@ export default function Shipping() {
     //         }
     //     }
     // }, [loggedUser]);
-
+    if (isLoading) return <FallBackLoader />
     return (
         <>
             <div className="checkoutForm" onSubmit={handleSubmit}>

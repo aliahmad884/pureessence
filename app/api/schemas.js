@@ -202,16 +202,39 @@ Order.init({
     timestamps: false
 });
 
+class Invoice extends Model { }
+Invoice.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    billing: {
+        type: DataTypes.JSON
+    },
+    items: {
+        type: DataTypes.JSON
+    },
+    date: {
+        type: DataTypes.DATE
+    },
+}, {
+    sequelize,
+    tableName: 'invoice',
+    modelName: 'Invoice',
+    timestamps: false
+});
 
 
 
-// (async () => {
-//     try {
-//         await Order.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
-//         console.log('Table synced successfully!');
-//     } catch (error) {
-//         console.error('Error syncing table:', error);
-//     }
-// })();
 
-module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order };
+(async () => {
+    try {
+        await sequelize.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+        console.log('Table synced successfully!');
+    } catch (error) {
+        console.error('Error syncing table:', error);
+    }
+})();
+
+module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order, Invoice };

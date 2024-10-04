@@ -1,12 +1,13 @@
 'use client'
 
+import FallBackLoader from "@/components/loader"
 import { useDataContext } from "@/context"
 import ProductData from "@/data"
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Head from "next/head"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import toast, { Toaster } from "react-hot-toast"
 
 // export async function generateMetadata({ params }) {
@@ -25,6 +26,7 @@ export default function Products({ params }) {
     const product = ProductData.find(data => data.slug === decodedSlug)
     const [imgPath, setImgPath] = useState(product.imgUrl)
     const { cartData, setCartData } = useDataContext()
+    const [isLoading, setIsLoading] = useState(true)
     const handleCart = () => {
         let find = cartData.find(item => item.id === product.id)
         if (!find) {
@@ -38,6 +40,10 @@ export default function Products({ params }) {
             return null;
         }
     }
+    useEffect(() => {
+        setIsLoading(false)
+    }, [])
+    if (isLoading) return <FallBackLoader />
     return (
         <>
             <Toaster />
