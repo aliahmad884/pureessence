@@ -965,7 +965,7 @@ main {
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
-  padding: 50px 15px;
+  padding: 100px 15px;
   /* overflow-x: auto; */
 }
 
@@ -1809,6 +1809,7 @@ select {
   align-items: center;
   gap: 5px;
   justify-content: space-between;
+  padding: 5px 0;
   text-align: center;
   border-bottom: 2px solid rgb(224, 224, 224);
 }

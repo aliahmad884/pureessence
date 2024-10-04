@@ -27,7 +27,7 @@ export default function Shipping() {
         for (let i = 0; i < arr.length; i++) {
             amount = amount + arr[i]
         }
-        return amount * 100;
+        return amount;
     }
 
     const handleSubmit = (event) => {
