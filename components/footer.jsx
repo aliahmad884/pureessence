@@ -20,11 +20,13 @@ export default function Footer() {
             <div className="footer">
                 <div className="logo">
                     {/* <img src="/transLogo.png" alt="Logo" width={50} /> */}
-                    <img src="/logos/PE-Main-Logo.png" alt="Logo" />
+                    <ol>
+                    <img src="/logos/PE-Main-Logo.png" alt="Logo" /><br />
+                    <p align="center" ><b>&quot;The Purest Products, For a Better You&quot;</b></p>
+                    </ol>
                     {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  /> */}
                     {/* <div>
                         <h1><strong style={{ color: '#dfb434' }}>Pur</strong> Essence</h1>
-                        <p>The Purest Products, For a Better You.</p>
                     </div> */}
                 </div>
                 <div className="mainCont">
@@ -60,6 +62,11 @@ export default function Footer() {
                             {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faHouse} /></strong>  */}
                             Address</h2>
                         <address>Kings Court 33 King Street, Blackburn, UK, BB2 2DH</address>
+                        <h2>
+                            {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faHouse} /></strong>  */}
+                            Company Details</h2>
+                        <p>PURESSENCE LTD</p>
+                        <p>Company Number: 15766653</p>
                     </div>
                 </div>
             </div>
