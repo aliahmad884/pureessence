@@ -8,7 +8,7 @@ export default function Terms() {
                     <h2>Introduction</h2>
 
                     <p>
-                        Welcome to Pure Essence LTD. These terms and conditions outline the rules and regulations for using our website, <a href="https://pureessenceltd.com">pureessenceltd.com</a>.
+                        Welcome to Pure Essence LTD. These terms and conditions outline the rules and regulations for using our website, <a href="/">puressenceltd.co.uk</a>.
                         By accessing this website and/or making a purchase, you accept these terms in full. If you disagree with any part of these terms,
                         you should not use our website.
                     </p>
@@ -28,7 +28,7 @@ export default function Terms() {
                 <div>
                     <h2>Eligibility to Purchase</h2>
                     <p>
-                        You must be at least 18 years old to make a purchase on this website.
+                        You must be at least 18 years old to make a purchase on this website. Or at least 13 year old with parental supervision.
                         By placing an order, you confirm that all the information provided is accurate and that you are legally capable of entering into binding contracts.
                     </p>
                 </div>
@@ -63,17 +63,16 @@ export default function Terms() {
                 <div>
                     <h2>Shipping and Delivery</h2>
                     <p>
-                        We ship to the United Kingdom, the EU and internationally. Shipping costs and estimated delivery times are outlined on our <a href="https://pureessenceltd.com/shipping-returns-policy">Shipping and Returns Policy Page</a>.
+                        We ship to the United Kingdom, the EU and internationally. Shipping costs and estimated delivery times are outlined on our <a href="/legal/shipping-returns-policy">Shipping and Returns Policy Page</a>.
                         Pure Essence LTD is not responsible for delays caused by third-party couriers or customs clearance. <br />
-                        If an order is undelivered or delayed, please refer to our <a href="https://pureessenceltd.com/shipping-returns-policy">Shipping and Returns Policy</a> for more details.
+                        If an order is undelivered or delayed, please refer to our <a href="/legal/shipping-returns-policy">Shipping and Returns Policy</a> for more details.
                     </p>
                 </div>
 
                 <div>
                     <h2>Returns and Refunds</h2>
                     <p>
-                        We offer a 7-day return policy for unused and unopened products. More details on our return policy can be found on our
-                        <a href="https://pureessenceltd.com/shipping-returns-policy">Returns Policy Page</a>. Refunds will be processed within 3 of receiving the returned goods.
+                        We offer a 7-day return policy for unused and unopened products. More details on our return policy can be found on our <a href="/legal/shipping-returns-policy"> Returns Policy Page</a>. Refunds will be processed within 3 of receiving the returned goods.
                     </p>
                 </div>
 
@@ -88,7 +87,7 @@ export default function Terms() {
                 <div>
                     <h2>Prohibited Activities</h2>
                     <p>
-                        <strong>As a user of this website, you agree to comply with the following prohibitions. You are prohibited from:</strong>
+                        <strong>As a user of this website, you agree to comply with the following prohibitions. You are prohibited to:</strong>
                     </p>
                     <ol>
                         <li>
@@ -182,7 +181,7 @@ export default function Terms() {
                 <div>
                     <h2>Privacy Policy</h2>
                     <p>
-                        We are committed to protecting your personal information. Please refer to our <a href="https://pureessenceltd.com/privacy-policy">Privacy Policy</a> for detailed
+                        We are committed to protecting your personal information. Please refer to our <a href="/legal/privacy-policy">Privacy Policy</a> for detailed
                         information on how we collect, use, and store your data.
                     </p>
                 </div>
@@ -190,8 +189,7 @@ export default function Terms() {
                 <div>
                     <h2>Disclaimer</h2>
                     <p>
-                        All information provided on this website is for general information purposes only. For more details, please visit our
-                        <a href="https://pureessenceltd.com/disclaimer">Disclaimer Page</a>.
+                        All information provided on this website is for general information purposes only. For more details, please visit our <a href="/legal/disclaimer">Disclaimer Page</a>.
                     </p>
                 </div>
 
@@ -203,7 +201,7 @@ export default function Terms() {
                     </p>
                 </div>
 
-                <div>https://pureessenceltd.com/
+                <div>
                     <h2>Changes to Terms</h2>
                     <p>
                         Pure Essence LTD reserves the right to update or modify these terms at any time without prior notice. Any changes will be posted on this page
@@ -214,9 +212,16 @@ export default function Terms() {
                 <div>
                     <h2>Contact Us</h2>
                     <p>
-                        If you have any questions or concerns about these terms, please <a href="https://pureessenceltd.com/contact">contact us</a>.
+                        If you have any questions or concerns about these terms, please <a href="/contact">contact us</a>.
                     </p>
                 </div>
+                <div>
+                    <h2>Other Legal Pages</h2>
+                    <p>
+                        View all of our <a href="/legal">Legal Pages</a>.
+                    </p>
+                </div>
+
             </div>
         </>
     )

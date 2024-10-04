@@ -78,7 +78,7 @@ export default function PrivacyPolicy() {
                 <div>
                     <h2>Contact Information</h2>
                     <p>
-                        If you have any questions or concerns about this policy, or if you would like to exercise your data rights, please <a href="https://puressenceltd.com/contact">contact us</a>.
+                        If you have any questions or concerns about this policy, or if you would like to exercise your data rights, please <a href="/contact">contact us</a>.
                     </p>
                 </div>
 
@@ -86,6 +86,12 @@ export default function PrivacyPolicy() {
                     <h2>Additional Disclosures</h2>
                     <p>
                         For users in the UK, we comply with the UK Data Protection Act and GDPR. International users are advised that their data may be transferred outside their home country, and appropriate safeguards are in place. For California residents, you have additional rights under the CCPA, which can be exercised by contacting us.
+                    </p>
+                </div>
+                <div>
+                    <h2>Other Legal Pages</h2>
+                    <p>
+                        View all of our <a href="/legal">Legal Pages</a>.
                     </p>
                 </div>
             </div>

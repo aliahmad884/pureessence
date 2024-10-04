@@ -47,11 +47,11 @@ export default function Footer() {
                         <a href="#">Syrup</a>
                     </div>
                     <div className="legal">
-                        <h2>Legal &amp; Info</h2>
-                        <Link href={'/legal/terms'}>Terms</Link>
+                    <h2><Link href={'/legal'}>Legal</Link> &amp; Info</h2>
+                        <Link href={'/legal/terms-conditions'}>Terms &amp; Conditions</Link>
                         <Link href={'/legal/privacy-policy'}>Privacy Policy</Link>
                         <Link href={'/legal/disclaimer'}>Disclaimer</Link>
-                        <Link href={'/legal/returns'}>Returns</Link>
+                        <Link href={'/legal/shipping-returns-policy'}>Shipping &amp; Returns</Link>
                         <Link href={'/sitemap.xml'}>Sitemap</Link>
 
                     </div>

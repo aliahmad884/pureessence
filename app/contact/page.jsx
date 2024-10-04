@@ -69,7 +69,7 @@ export default function ContactPage() {
                                             <li>Turn left onto Jubilee St for 390ft</li>
                                             <li>Continue onto Mill Ln for 233ft</li>
                                             <li>Continue onto Mincing Ln for  374ft</li>
-                                            <li>Turn left onto CLayton Street for 423 ft</li>
+                                            <li>Turn left onto Clayton Street for 423 ft</li>
                                             <li>Turn right onto Old Bank St, the destination will be on the left</li>                                </div>
                                 <div className="contactDetails">
                                     <h2>Nearest Landmarks to UK Head Office</h2>

@@ -41,9 +41,16 @@ export default function Disclaimer() {
 
                     <h2>Contact Information</h2>
                     <p>
-                        If you have any questions regarding this disclaimer, feel free to reach out to us at <a href="mailto:support@pureessenceltd.com">support@pureessenceltd.com</a>. For more information, please review our <a href="https://pureessenceltd.com/terms-conditions">Terms and Conditions</a> and <a href="https://pureessenceltd.com/privacy-policy">Privacy Policy</a>.
-                        For further information please visit our <a href="https://pureessenceltd.com/contact">contact page</a>.
+                        If you have any questions regarding this disclaimer, feel free to reach out to us at <a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a>. For more information, please review our <a href="/legal/terms-conditions">Terms and Conditions</a>, <a href="/legal/privacy-policy">Privacy Policy</a> and <a href="/legal/shipping-returns-policy">Shipping & Returns</a> page.
+                        For further information please visit our <a href="/contact">contact page</a>.
                     </p>
+                <div>
+                    <h2>Other Legal Pages</h2>
+                    <p>
+                        View all of our <a href="/legal">Legal Pages</a>.
+                    </p>
+                </div>
+
             </div>
         </>
     )
