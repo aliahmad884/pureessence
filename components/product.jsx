@@ -43,7 +43,7 @@ export default function PopularProducts() {
         <>
             <Toaster />
             <div className="productCont">
-                <h1>Popular Products</h1>
+                <h1>Latest Products</h1>
                 <div className="slider">
                     <Slider {...settings} style={{ padding: '0 -15px' }}>
                         {

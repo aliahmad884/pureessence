@@ -5,40 +5,40 @@ export default function Blogs() {
     return (
         <>
             <div className="blogsCont">
-                <h1>Our Recent Blogs</h1>
+                <h1>Health Guides</h1>
                 <div className="cardCont">
                     <div className="card">
                         <div className="imgCont">
-                            <img src="/spices.webp" alt="Spices" />
+                            <img src="/Pure-Essence-Support.jpg" alt="Spices" />
                             <div className="overLay">
                                 <FontAwesomeIcon icon={faCalendar} /> <time dateTime="2024-09-23T15:00">20-Sep-2024</time>
                             </div>
                         </div>
-                        <h2>Lorem Ipsum Lorem ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis iusto placeat blanditiis amet saepe quisquam nulla facilis magnam.</p>
-                        <h3>By Haji Robert</h3>
+                        <h2>Coming Soon</h2>
+                        <p>Coming Soon</p>
+                        <h3>By Pure Essence</h3>
                     </div>
                     <div className="card">
                         <div className="imgCont">
-                            <img src="/spices.webp" alt="Spices" />
+                            <img src="/CircleLogo.webp" alt="Spices" />
                             <div className="overLay">
                                 <FontAwesomeIcon icon={faCalendar} /> <time dateTime="2024-09-23T15:00">20-Sep-2024</time>
                             </div>
                         </div>
-                        <h2>Lorem Ipsum Lorem ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis iusto placeat blanditiis amet saepe quisquam nulla facilis magnam.</p>
-                        <h3>By Haji Robert</h3>
+                        <h2>Coming Soon</h2>
+                        <p>Coming Soon</p>
+                        <h3>By Pure Essence</h3>
                     </div>
                     <div className="card">
                         <div className="imgCont">
-                            <img src="/spices.webp" alt="Spices" />
+                            <img src="/PE-Coconut-Oil.webp" alt="Spices" />
                             <div className="overLay">
                                 <FontAwesomeIcon icon={faCalendar} /> <time dateTime="2024-09-23T15:00">20-Sep-2024</time>
                             </div>
                         </div>
-                        <h2>Lorem Ipsum Lorem ipsum dolor.</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis iusto placeat blanditiis amet saepe quisquam nulla facilis magnam.</p>
-                        <h3>By Haji Robert</h3>
+                        <h2>Coming Soon</h2>
+                        <p>Coming Soon</p>
+                        <h3>By Pure Essence</h3>
                     </div>
                 </div>
                 <div className="moreBtn">

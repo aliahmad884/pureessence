@@ -22,18 +22,21 @@ export default function Hero() {
         <>
             <Toaster />
             <div className="heroContainer">
-                <h1>The Purest<br /> Products, For a<br /> Better You.</h1>
+                <h1>&quot;The Purest<br /> Products, For a<br /> Better You&quot;</h1>
+               {/* PLEASE ADD FOLLOWING WITH BOLD AND WHITE TEXT: <p>We offer quality-sourced health products and foods, with international delivery.</p> */}
                 <button type="button">Shop Now</button>
                 {show && createPortal(<CustomeToast onClick={() => setShow(!show)} />, document.body)}
             </div>
             <div className="aboutContainer">
                 <div className="aboutText">
                     <h1>About the Brand</h1>
-                    <p>There is nothing like fresh spice or the purest of ingredients for your daily diet or supplimentary intake</p>
+                    <p>Feeling tired? Or just wanting that raw power you know is in your potential. Or maybe you want to preserve that precious health that you have?</p>
                     <br />
-                    <p>This is why the team behind Pure Essence recognised the need for international supplies of the highest quality of natural products.</p>
+                    <p>All of these things is why PUREssence launched an online store to serve health products and foods.</p>
                     <br />
-                    <p>The team come from a background of herbal practitioners and good ol&apos; spice lovers, so rest assured Pure Essence provides the best quality and type of product for a better you.</p>
+                    <p>The PUREssence team come from a background of herbal practitioners and philanthropists by way of knowledge, guidance and solutions.</p>
+                    <br />
+                    <p>You can read more about us on our About page.</p>
                 </div>
                 <div className="aboutImg">
                     <img src="/PE-Olive-Oil-4.webp" alt="Spices" />
@@ -44,23 +47,23 @@ export default function Hero() {
                 <div className="imgCont">
                     <div className="cardCont">
                         <div style={{ backgroundImage: "url(/PE-Olive-Oil-5.webp)" }} className="img"></div>
-                        <h2>Olive Oil Asli te Khalis, Allah di qasme</h2>
+                        <h2>Health Foods, Also Known as Superfoods</h2>
                         <p>Who said you can&apos;t eat till you are fit. Food is a pillar of health, you either keep it or ruin it.</p>
                     </div>
                     <div className="cardCont">
                         <div style={{ backgroundImage: "url(/PE-Honey-P5.webp)" }} className="img"></div>
-                        <h2>Purest Honey</h2>
+                        <h2>Purest Suppliments</h2>
                         <p>Improve your health or recover from ailment, we source only the most natural products.</p>
                     </div>
                     <div className="cardCont">
                         <div style={{ backgroundImage: "url(/PE-Almond-Oil.webp)" }} className="img"></div>
-                        <h2>Almond Oil</h2>
-                        <p>Who said you can&apos;t eat till you are fit. Food is a pillar of health, you either keep it or ruin it.</p>
+                        <h2>Health Guides</h2>
+                        <p>Health guides backed by science AND traditional (non-pharma) medicine.</p>
                     </div>
                     <div className="cardCont">
-                        <div style={{ backgroundImage: "url(/PE-Coconut-Oil.webp)" }} className="img"></div>
-                        <h2>Coconut Oil</h2>
-                        <p>Improve your health or recover from ailment, we source only the most natural products.</p>
+                        <div style={{ backgroundImage: "url(/Pure-Essence-Support.jpg)" }} className="img"></div>
+                        <h2>Personal Support</h2>
+                        <p>We lend you two ears when you need, for advice based on our guides or the products we offer.</p>
                     </div>
                 </div>
             </div>

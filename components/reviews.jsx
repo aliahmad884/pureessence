@@ -13,8 +13,8 @@ export default function Reviews() {
                 <div className="reviewCardCont">
                     <div className="reviewCard">
                         <img src="/CircleLogo.webp" alt="Logo" />
-                        <h2>Bob Honeyson</h2>
-                        <p>Testimonials are short quotes from people who love your brand. It&apos;s a great way to convince customers to try your products.</p>
+                        <h2>Genuine Reviews</h2>
+                        <p>We promise to only show genuine verified reviews.</p>
                         <div className="stars">
                             <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
                             <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
@@ -25,32 +25,8 @@ export default function Reviews() {
                     </div>
                     <div className="reviewCard">
                         <img src="/CircleLogo.webp" alt="Logo" />
-                        <h2>Carl Needspyce</h2>
-                        <p>Testimonials are short quotes from people who love your brand. It&apos;s a great way to convince customers to try your products.</p>
-                        <div className="stars">
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                        </div>
-                    </div>
-                    <div className="reviewCard">
-                        <img src="/CircleLogo.webp" alt="Logo" />
-                        <h2>Rosie Flavieur</h2>
-                        <p>Testimonials are short quotes from people who love your brand. It&apos;s a great way to convince customers to try your products.</p>
-                        <div className="stars">
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                            <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
-                        </div>
-                    </div>
-                    <div className="reviewCard">
-                        <img src="/CircleLogo.webp" alt="Logo" />
-                        <h2>Rosie Flavieur</h2>
-                        <p>Testimonials are short quotes from people who love your brand. It&apos;s a great way to convince customers to try your products.</p>
+                        <h2>You (Hopefully)</h2>
+                        <p>We hope you will try out our products, and leave a review here!</p>
                         <div className="stars">
                             <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />
                             <FontAwesomeIcon style={{ color: '#dfb434' }} icon={faStar} />

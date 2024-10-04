@@ -40,29 +40,32 @@ export default function Footer() {
                         }
                     </div>
                     <div className="bestSeller">
-                        <h2>Best Sellers</h2>
-                        <a href="#">Spice</a>
-                        <a href="#">Hurb</a>
+                        <h2>Popular</h2>
                         <a href="#">Honey</a>
-                        <a href="#">Lorem</a>
+                        <a href="#">Vinegar</a>
+                        <a href="#">Concentrate</a>
+                        <a href="#">Syrup</a>
                     </div>
                     <div className="legal">
                         <h2>Legal &amp; Info</h2>
+                        <Link href={'/legal/terms'}>Terms</Link>
                         <Link href={'/legal/privacy-policy'}>Privacy Policy</Link>
                         <Link href={'/legal/disclaimer'}>Disclaimer</Link>
                         <Link href={'/legal/returns'}>Returns</Link>
-                        <Link href={'/legal/terms'}>Terms</Link>
+                        <Link href={'/sitemap.xml'}>Sitemap</Link>
+
                     </div>
                     <div className="address">
                         <h2>
                             {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faHouse} /></strong>  */}
-                            Mailing Address</h2>
-                        <address>Pure Essence Office, Purest Road, Blackburn, Lancashire, BB1 PYR, UK</address>
+                            Address</h2>
+                        <address>Kings Court 33 King Street, Blackburn, UK, BB2 2DH</address>
                     </div>
                 </div>
             </div>
             <div className="copy">
-                <p>Copyright &copy; 2024 Pure Essence LTD - All Rights Reserved</p>
+                <p>Copyright &copy; {Date().slice(11, 15)} <Link href={'/'}>Pure Essence LTD </Link>- All Rights Reserved | Designed and Developed by <Link href={'https://aldortech.com'}>AldorTech</Link>
+                </p>
             </div>
         </>
     )
