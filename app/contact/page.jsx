@@ -79,7 +79,7 @@ export default function ContactPage() {
                                             <li>Country Region: North West, England, United Kingdom</li>
                                         <h3><b>Notable Landmarks</b></h3>
                                             <li>Blackburn Cathedral: A historic cathedral located 2 minutes away by car and 5 minutes away on foot </li>
-                                            <li>The Mall Blackburn: The town's main shopping centre located 7 minutes away by car and also 7 minutes away on foot</li>
+                                            <li>The Mall Blackburn: The town&apos;s main shopping centre located 7 minutes away by car and also 7 minutes away on foot</li>
                                             <li>Nearest Airport: Manchester Airport is the nearest airport located in Manchester about 40 miles away</li>
                                 </div>
                             </div>
