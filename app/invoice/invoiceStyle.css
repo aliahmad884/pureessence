@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.invoice {
+    width: 21cm;
+    height: 29.60cm;
+    padding: 1cm;
+    margin: 1cm auto;
+    /* margin-left: 1cm auto; */
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: -80px;
+}
+
+.invoice-header {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    justify-content: space-between;
+    line-height: 25px;
+}
+
+.invoice-header .brandInfo {
+    font-size: small;
+    line-height: 20px;
+}
+
+.invoice-header,
+.invoice-body,
+.invoice-footer {
+    margin-bottom: 20px;
+}
+
+.billing-details {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    justify-content: space-between;
+    margin: 60px 0;
+}
+.billing-details h3{
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.billing-details p{
+    font-size: small;
+}
+.invoice-header h1 {
+    font-size: 2rem;
+    /* font-weight: bold; */
+    text-transform: uppercase;
+}
+
+.invoice-header h2 {
+    font-size: 1rem;
+    /* font-weight: bold; */
+    text-align: right;
+}
+
+.invoice-body table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.invoice-body thead tr{
+    background-color: #4A4947;
+    color: white;
+    border-radius: 10px;
+}
+.invoice-body table th,
+.invoice-body table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.amount-container{
+    display: flex;
+    width: 100%;
+    justify-content: right;
+}
+.amount-container .subCont{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.invoice-footer{
+    margin-top: 80px;
+}
+.invoice-footer p {
+    font-size: small;
+    color: rgb(128, 128, 128);
+}
+.invoice-footer h4{
+    margin-top: 20px;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+    /* margin-top: -1cm; */
+}
+
+@media print {
+    body {
+        visibility: hidden;
+    }
+
+    .invoice,
+    .invoice * {
+        visibility: visible;
+    }
+
+    .invoice {
+        margin: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+.print {
+    margin: auto;
+}
+
+.print button {
+    position: fixed;
+    top: 0;
+    padding: 20px;
+    font-size: large;
+    color: whitesmoke;
+    background-color: royalblue;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -32,14 +32,26 @@ export default function RootLayout({ children }) {
         {/* {!isLoading ? <FallBackLoader /> : ( */}
         <ContextProvider>
           <Suspense fallback={<FallBackLoader />}>
-            {(pathName.startsWith('/admin') || (pathName.startsWith('/login')) || (pathName.startsWith('/signup')) || (pathName.startsWith('/completed'))) ? null : (
+            {(
+              pathName.startsWith('/admin') ||
+              (pathName.startsWith('/login')) ||
+              (pathName.startsWith('/signup')) ||
+              (pathName.startsWith('/completed')) ||
+              (pathName.startsWith('/invoice'))
+            ) ? null : (
               <>
                 <ToolBar />
                 <Navbar />
               </>
             )}
             {children}
-            {(pathName.startsWith('/admin') || (pathName.startsWith('/login')) || (pathName.startsWith('/signup')) || (pathName.startsWith('/completed'))) ? null : <Footer />}
+            {(
+              pathName.startsWith('/admin') ||
+              (pathName.startsWith('/login')) ||
+              (pathName.startsWith('/signup')) ||
+              (pathName.startsWith('/completed')) ||
+              (pathName.startsWith('/invoice'))
+            ) ? null : <Footer />}
           </Suspense>
         </ContextProvider>
         {/* )} */}
