@@ -59,11 +59,11 @@ export default function CartPage() {
                                 <tr key={data.id}>
                                     <td data-label='Product' colSpan={2}>
                                         <div className="tableProduct">
-                                            <img src={data.imgUrl} alt="fsfsk" width={100} />
+                                            <img src={data.imgUrl} alt="fsfsk" width={100} />&nbsp;
                                             <p>{data.title}</p>
                                         </div>
                                     </td>
-                                    <td data-label='Price'>${data.price}</td>
+                                    <td data-label='Price'>&pound;{data.price}</td>
                                     <td data-label='Quantity'>
                                         <div className="innerBtn">
                                             <button onClick={() => {
@@ -91,7 +91,7 @@ export default function CartPage() {
                                             />
                                         )}
                                     </td>
-                                    <td data-label='Total' id="total" style={{ textAlign: 'right' }}>${data.price * data.qty}</td>
+                                    <td data-label='Total' id="total" style={{ textAlign: 'right' }}>&pound;{data.price * data.qty}</td>
                                 </tr>
                             ))
                         }
@@ -99,7 +99,7 @@ export default function CartPage() {
                 </table>
                 <div className="checkoutCont">
                     <div className="subTotal">
-                        <h3>SubTotal: ${subTotal}</h3>
+                        <h3>SubTotal: &pound;{subTotal}</h3>
                         <p>Taxes and shipping calculated at checkout</p>
                     </div>
                     <button onClick={handleCheckout} type="button">Procceed To Checkout</button>

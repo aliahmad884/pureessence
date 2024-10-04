@@ -5,6 +5,7 @@ import ProductData from "@/data"
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Head from "next/head"
+import Link from "next/link"
 import { useState } from "react"
 import toast, { Toaster } from "react-hot-toast"
 
@@ -59,7 +60,10 @@ export default function Products({ params }) {
                         <h3>&pound;{product.price} GBP</h3>
                         <button onClick={handleCart} style={(product.stock === 'out of stock') ? { backgroundColor: 'grey' } : null} disabled={(product.stock === 'out of stock') ? true : false} type="button">{(product.stock === 'out of stock') ? product.stock : 'Add to Cart'}</button>
                         <h4><strong>Availability :</strong> {product.stock}</h4>
-                        <a href="#">Ask Us Question</a>
+                        <div>
+                            <a href="#">Ask Us Question</a> &nbsp;
+                            <Link href={'/products'}>Back To Products</Link>
+                        </div>
                     </div>
                 </div>
                 <hr />

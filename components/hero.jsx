@@ -6,6 +6,7 @@ import { CustomeToast } from "./checkoutForm"
 import toast, { Toaster } from "react-hot-toast"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
+import Link from "next/link"
 
 export default function Hero() {
     const [show, setShow] = useState(false)
@@ -23,8 +24,10 @@ export default function Hero() {
             <Toaster />
             <div className="heroContainer">
                 <h1>&quot;The Purest<br /> Products, For a<br /> Better You&quot;</h1>
-               {/* PLEASE ADD FOLLOWING WITH BOLD AND WHITE TEXT: <p>We offer quality-sourced health products and foods, with international delivery.</p> */}
-                <button type="button">Shop Now</button>
+                {/* PLEASE ADD FOLLOWING WITH BOLD AND WHITE TEXT: <p>We offer quality-sourced health products and foods, with international delivery.</p> */}
+                <p>We offer quality-sourced health products and foods,<br/> with international delivery.</p>
+                {/* <button type="button">Shop Now</button> */}
+                <Link href={'/products'}>Shop Now</Link>
                 {show && createPortal(<CustomeToast onClick={() => setShow(!show)} />, document.body)}
             </div>
             <div className="aboutContainer">

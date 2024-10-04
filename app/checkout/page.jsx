@@ -1,3 +1,4 @@
+"use client"
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -25,25 +26,6 @@ export default function Checkout() {
                             <div className="total"><strong>Total: </strong><p>$</p></div>
                         </div>
                     </div>
-                    {/* <div className="orderPlaceDesc">
-                            <h2>Order Status</h2>
-                            <div className="orderStatus">
-                                <div className="date">
-                                    <p><strong>OrderID: </strong></p>
-                                    <p><strong>Placed on: </strong></p>
-                                    <p><strong>Paid on: </strong> </p>
-                                    <p><strong>Delivered on: </strong> 67</p>
-                                    <p><strong>Completed on: </strong> 87897</p>
-                                    <p><strong>Paid by: </strong> amazon_pay</p>
-                                </div>
-                                <div className="actionCont">
-                                    <button disabled style={{ backgroundColor: '#dfb434' }} type="button">Cancel</button>
-                                    <FontAwesomeIcon className="infoIcon" icon={faCircleInfo} />
-                                    <div className="infomsg">lorem ipsum</div>
-                                    <button type="button">Write An Review</button>
-                                </div>
-                            </div>
-                        </div> */}
                     <div className="orderSummary">
                         <h2>Summary</h2>
                         <div className="ordersummaryCont">

@@ -1,5 +1,5 @@
 import { useDataContext } from "@/context";
-import { faInfoCircle, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faInfoCircle, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -59,13 +59,15 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
     return (
         <>
             <div className="productCard">
-                <img src={imgUrl} alt={title} />
+                <div style={{ backgroundImage: `url('${imgUrl}')` }} className="img"></div>
+                {/* <img src={imgUrl} alt={title} /> */}
                 <h2>{title}</h2>
                 <h3>{shortDes}</h3>
                 <p>{price}&pound;</p>
                 <div className="btnCont">
                     <button onClick={() => router.push(`/products/${slug}`)} className="btnPreview" type="button">Preview</button>
-                    <button className="addToCart" onClick={() => handleCart()} type="button">Add to Cart</button>
+                    {/* <button className="addToCart" onClick={() => handleCart()} type="button">Add to Cart</button> */}
+                    <FontAwesomeIcon onClick={() => handleCart()} className="addToCart" icon={faCartShopping} />
                 </div>
             </div>
         </>

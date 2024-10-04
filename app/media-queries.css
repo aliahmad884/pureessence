@@ -135,7 +135,8 @@
     }
 }
 
-@media (width<=780px){
+@media (width<=780px) {
+
     .contactLocation .contSubCo .officesCont,
     .departmentCont .departSubCont,
     .contactMainCont .contactUs {
@@ -260,25 +261,27 @@
         gap: 10px;
         padding: 8px;
         width: 100%;
+        box-shadow: none;
     }
 
     .letterCont .inputCont input {
-        border: 1px solid black;
+        /* border: 1px solid black; */
         outline: none;
         padding: 15px 15px;
         border-radius: 40px;
         width: 100%;
         margin-left: 0;
         font-size: 1.1rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 
     .letterCont .inputCont button {
         padding: 15px;
-        border: 1px solid black;
+        /* border: 1px solid black; */
         margin-left: 0;
         border-radius: 30px;
         min-width: fit-content;
-
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 
     .cartPage h1 {
@@ -327,11 +330,17 @@
     .productCard h2 {
         text-align: center;
     }
-    .subCont .btnAction{
+
+    .subCont .btnAction {
         flex-flow: column-reverse;
     }
-    .imgCont .cardCont .img{
+
+    .imgCont .cardCont .img {
         height: 250px;
+    }
+
+    .productCard .img {
+        height: 400px;
     }
 }
 
@@ -349,27 +358,43 @@
         width: 250px;
     }
 
-    .productSlug .imgCont{
+    .productSlug .imgCont {
         flex-flow: column nowrap;
     }
-    .productSlug .imgCont .thumbnails{
+
+    .productSlug .imgCont .thumbnails {
         flex-flow: row;
         width: 100%;
     }
-    .productSlug .imgCont .thumbnails img{
+
+    .productSlug .imgCont .thumbnails img {
         width: 100px;
     }
-    .subCont .btnAction{
+
+    .subCont .btnAction {
         width: 100%;
     }
-    .subCont .btnAction .confirmCont{
+
+    .subCont .btnAction .confirmCont {
         flex-flow: column-reverse;
     }
+
     .subCont .btnAction .cancelBtn {
         max-width: 300px;
     }
-    .contactMainCont .contactUs form .subInputCont{
+
+    .contactMainCont .contactUs form .subInputCont {
         flex-flow: column;
+    }
+
+    .productCard .img {
+        height: 350px;
+    }
+}
+
+@media (width<=400px) {
+    .productCard .img {
+        height: 250px;
     }
 }
 

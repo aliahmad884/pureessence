@@ -68,7 +68,7 @@ export default function Shipping() {
             <div className="checkoutForm" onSubmit={handleSubmit}>
                 <form id="billingForm">
                     <h1>Shipping Details</h1>
-                    <label htmlFor="country">Country</label>
+                    {/* <label htmlFor="country">Country</label> */}
                     <select name="country" id="country" onChange={(e) => setCountry(e.target.value)} required autoComplete="country" defaultValue={'United Kingdom'}>
                         {
                             countreis.map((country, index) => <option key={index} value={country.name}>{country.name}</option>)
@@ -76,22 +76,22 @@ export default function Shipping() {
                     </select>
                     <div className="nameCont">
                         <div style={{ display: 'flex', flexFlow: 'column', width: '100%' }}>
-                            <label htmlFor="firstName">First Name</label>
-                            <input type="text" onChange={(e) => setFirstName(e.target.value)} name="firstName" id="firstName" placeholder="John" required autoComplete="given-name" />
+                            {/* <label htmlFor="firstName">First Name</label> */}
+                            <input type="text" onChange={(e) => setFirstName(e.target.value)} name="firstName" id="firstName" placeholder="First Name" required autoComplete="given-name" />
                         </div>
                         <div style={{ display: 'flex', flexFlow: 'column', width: '100%' }}>
-                            <label htmlFor="lastName">Last Name</label>
-                            <input type="text" onChange={(e) => setLastName(e.target.value)} name="lastName" id="lastName" placeholder="Doe" required autoComplete="family-name" />
+                            {/* <label htmlFor="lastName">Last Name</label> */}
+                            <input type="text" onChange={(e) => setLastName(e.target.value)} name="lastName" id="lastName" placeholder="LastName" required autoComplete="family-name" />
                         </div>
                     </div>
-                    <label htmlFor="address">Address</label>
-                    <input type="text" onChange={(e) => setAddress(e.target.value)} name="address" id="address" placeholder="Address,New York, USA" required autoComplete="address-line1" />
-                    <label htmlFor="city">City</label>
-                    <input type="text" onChange={(e) => setCity(e.target.value)} name="city" id="city" required placeholder="New York" autoComplete="address-level2" />
-                    <label htmlFor="phone">Phone</label>
+                    {/* <label htmlFor="address">Address</label> */}
+                    <input type="text" onChange={(e) => setAddress(e.target.value)} name="address" id="address" placeholder="Address" required autoComplete="address-line1" />
+                    {/* <label htmlFor="city">City</label> */}
+                    <input type="text" onChange={(e) => setCity(e.target.value)} name="city" id="city" required placeholder="City" autoComplete="address-level2" />
+                    {/* <label htmlFor="phone">Phone</label> */}
                     <input type="tel" onChange={(e) => setPhone(e.target.value)} name="phone" id="phone" required placeholder="Phone Number" autoCapitalize="tel" />
-                    <label htmlFor="email">Email</label>
-                    <input type="email" onChange={(e) => setEmail(e.target.value)} value={loggedUser ? loggedUser.Email : email} name="email" id="email" required autoComplete="email" placeholder="expample@gmail.com" />
+                    {/* <label htmlFor="email">Email</label> */}
+                    <input type="email" onChange={(e) => setEmail(e.target.value)} value={loggedUser ? loggedUser.Email : email} name="email" id="email" required autoComplete="email" placeholder="Email" />
                     <div className="btnCont">
                         <Link href={'/cart'}>Back to cart</Link>
                         <button className="btnNext" type="submit">Next</button>
