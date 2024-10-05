@@ -1,15 +1,18 @@
 "use client"
 import { ProductCard } from "@/components/cards"
+import FallBackLoader from "@/components/loader"
 import ProductData from "@/data"
 import Link from "next/link"
-import { useEffect } from "react"
+import { useEffect ,useState} from "react"
 import { Toaster } from "react-hot-toast"
 
 export default function ProductPage() {
+    const [isLoading, setIsLoading] = useState(true)
     const data = ProductData
-    // useEffect(() => {
-    //     console.log(params)
-    // }, [])
+    useEffect(() => {
+        setIsLoading(false)
+    }, [])
+    if(isLoading)return <FallBackLoader/>
     return (
         <>
             <Toaster />

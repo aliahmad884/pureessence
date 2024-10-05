@@ -1,6 +1,13 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+"use client"
+import FallBackLoader from "@/components/loader";
+import { useEffect, useState } from "react"
 
 export default function ContactPage() {
+    const [isLoading, setIsLoading] = useState(true)
+    useEffect(() => {
+        setIsLoading(false)
+    }, [])
+    if (isLoading) return <FallBackLoader />
     return (
         <>
             <div className="contactMainCont">
@@ -13,7 +20,7 @@ export default function ContactPage() {
                                 <input type="email" autoComplete="email" placeholder="Email" />
                                 <input type="tel" autoComplete="phone" placeholder="Phone" />
                             </div>
-                            <textarea rows="5" placeholder="Message" />
+                            <textarea rows="7" placeholder="Message" />
                             <button type="submit">Submit</button>
                         </form>
                         <div className="contactDetails">
@@ -55,6 +62,7 @@ export default function ContactPage() {
                             <div className="officesCont">
                                 <div className="contactDetails">
                                     <h2>Directions to UK Head Office</h2>
+
                                     <h3><b>By Car</b></h3>                                        
                                             <li>From A666 (Bolton Road) from the South: Head northeast on Bolton Rd/A666 toward Chadwick St for 0.3 miles</li>
                                             <li>Continue onto Great Bolton St/A6078 for 0.1 miles</li>
@@ -73,14 +81,14 @@ export default function ContactPage() {
                                             <li>Turn right onto Old Bank St, the destination will be on the left</li>                                </div>
                                 <div className="contactDetails">
                                     <h2>Nearest Landmarks to UK Head Office</h2>
-                                        <h3><b>Regional Area</b></h3>
-                                            <li>Borough: Blackburn with Darwen</li>
-                                            <li>County: Lancashire</li>
-                                            <li>Country Region: North West, England, United Kingdom</li>
-                                        <h3><b>Notable Landmarks</b></h3>
-                                            <li>Blackburn Cathedral: A historic cathedral located 2 minutes away by car and 5 minutes away on foot </li>
-                                            <li>The Mall Blackburn: The town&apos;s main shopping centre located 7 minutes away by car and also 7 minutes away on foot</li>
-                                            <li>Nearest Airport: Manchester Airport is the nearest airport located in Manchester about 40 miles away</li>
+                                    <h3><b>Regional Area</b></h3>
+                                    <li>Borough: Blackburn with Darwen</li>
+                                    <li>County: Lancashire</li>
+                                    <li>Country Region: North West, England, United Kingdom</li>
+                                    <h3><b>Notable Landmarks</b></h3>
+                                    <li>Blackburn Cathedral: A historic cathedral located 2 minutes away by car and 5 minutes away on foot </li>
+                                    <li>The Mall Blackburn: The town&apos;s main shopping centre located 7 minutes away by car and also 7 minutes away on foot</li>
+                                    <li>Nearest Airport: Manchester Airport is the nearest airport located in Manchester about 40 miles away</li>
                                 </div>
                             </div>
                         </div>

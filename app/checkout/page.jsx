@@ -1,14 +1,20 @@
 "use client"
+import FallBackLoader from "@/components/loader";
 import { useDataContext } from "@/context";
-import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from 'react'
 
 export default function Checkout() {
-    const [cartData, setCartData] = useState([])
+    const { setCartData } = useDataContext()
+    const searchParams = useSearchParams()
+    const uniqueId = searchParams.get('uniqueId')
+    const [cartData, setCart] = useState([])
     const [billingInfo, setBillingInfo] = useState('')
+    const [isLoading, setIsLoading] = useState(true)
+    const [invId, setInvId] = useState('')
+    const [isOrderConfirmed, setOrderConfirmed] = useState(false)
     const router = useRouter()
     const handleCancel = () => {
         let ask = confirm('Are you sure, you want to cancel checkout session?')
@@ -16,12 +22,43 @@ export default function Checkout() {
         localStorage.removeItem('billingInfo')
         router.push('/cart')
     }
+    const handleConfirm = () => {
+        setIsLoading(true)
+        let body = { ...billingInfo, cartData }
+        fetch('/api/order?reqTyp=invoice', {
+            method: 'post',
+            headers: { 'Content-Type': "application/json" },
+            body: JSON.stringify(body)
+        }).then(res => res.json()).then(result => {
+            setIsLoading(false)
+            setOrderConfirmed(true)
+            localStorage.removeItem('uniqueId')
+            localStorage.removeItem('billingInfo')
+            localStorage.removeItem('cart')
+            setCartData([])
+            setInvId(result.invoiceId)
+        }).catch(err => {
+            console.log(err)
+            setIsLoading(false)
+        })
+    }
     useEffect(() => {
         let cart = localStorage.getItem('cart')
         let billInfo = localStorage.getItem('billingInfo')
-        setCartData(JSON.parse(cart))
+        let uniqId = localStorage.getItem('uniqueId')
+        if (!billInfo) {
+            return router.push('/products')
+        }
+        if (uniqId !== uniqueId) {
+            setOrderConfirmed(true)
+        }
+        setCart(JSON.parse(cart))
         setBillingInfo(JSON.parse(billInfo))
+        setIsLoading(false)
     }, [])
+    if (isLoading) {
+        return <FallBackLoader />
+    }
     return (
         <>
             <div className="manageMainCont">
@@ -29,7 +66,6 @@ export default function Checkout() {
                 <div className="subCont">
                     <div className="header">
                         <h2>OrderID: #412</h2>
-                        {/* <div className="badge">Status</div> */}
                     </div>
                     <div className="orderDetail">
                         <h2>Order Details</h2>
@@ -53,24 +89,25 @@ export default function Checkout() {
                         <div className="ordersummaryCont">
                             <div className="shipCont">
                                 <p><strong>Name: </strong>{billingInfo.firstName} {billingInfo.lastName}</p>
-                                <p><strong>Ship to: </strong>{billingInfo.address}</p>
-                                <p><strong>Phone: </strong>{billingInfo.phone}</p>
                                 <p><strong>Email: </strong>{billingInfo.email}</p>
+                                <p><strong>Phone: </strong>{billingInfo.phone}</p>
+                                <p><strong>Ship to: </strong>{billingInfo.address}</p>
                             </div>
                             <div className="orderTotal">
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>SubTotal: </strong><p>&pound;{billingInfo.total}</p></div>
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Shipping Fee: </strong><p>&pound;12.63</p></div>
-                                <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Dsicount: </strong><p>&pound;0</p></div>
+                                <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Discount: </strong><p>&pound;0</p></div>
                                 <div style={{ borderTop: "2px solid rgb(224, 224, 224)", display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Total: </strong><p><strong>&pound;{eval(billingInfo.total + 12.63 + 0)} GBP</strong></p></div>
-                                {/* <div style={{ color: '#607274', fontSize: 'small' }}><p>Paid by amazon_pay</p></div> */}
                             </div>
                         </div>
                     </div>
                     <div className="btnAction">
-                        <button onClick={handleCancel} className="cancelBtn" type="button">Cancel</button>
+                        {
+                            isOrderConfirmed ? (<button onClick={() => router.push('/products')} className="cancelBtn" type="button">Back to shopping</button>) : <button onClick={handleCancel} className="cancelBtn" type="button">Cancel</button>
+                        }
                         <div className="confirmCont">
-                            <button className="btnInvoice" type="button">Generate Invoice</button>
-                            <button className="btnConfirm" type="button">Confirm Order</button>
+                            <button style={isOrderConfirmed ? { display: 'block' } : { display: 'none' }} onClick={() => router.push(`/invoice?invId=${invId}`)} className="btnInvoice" type="button">View Invoice</button>
+                            <button disabled={isOrderConfirmed ? true : false} onClick={handleConfirm} className="btnConfirm" type="button">{isOrderConfirmed ? (<><FontAwesomeIcon icon={faCheckCircle} style={{ color: 'green' }} /> Confirmed</>) : 'Confirm Order'}</button>
                         </div>
                     </div>
                 </div>

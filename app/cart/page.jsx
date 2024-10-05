@@ -11,13 +11,13 @@ export default function CartPage() {
     const router = useRouter()
     const { cartData, removeItem, setCartData, isResDelay } = useDataContext()
     const [subTotal, setSubTotal] = useState(0)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const handleCheckout = () => {
         router.push(`/shipping?subtotal=${subTotal}`)
     }
     useEffect(() => {
-        setLoading(true)
+        setLoading(false)
         let arr = []
         cartData.forEach(ele => {
             arr.push(Number(ele.price) * ele.qty)
@@ -26,7 +26,7 @@ export default function CartPage() {
         setSubTotal(total)
     }, [cartData])
 
-    if (!loading) return <FallBackLoader />
+    if (loading) return <FallBackLoader />
 
     if (cartData.length <= 0) {
         return (

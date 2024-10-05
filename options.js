@@ -1,26 +1,8 @@
-import { Slide} from "react-toastify"
-
-const toastOptions = {
-    error: {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Slide
-    },
-    success: {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Slide
+let chracters = 'gklmABCDEFGHIJOPQRopqrSTUVWXYZabcdefghinstuKLMNvwxyz'
+export const strGen = (length) => {
+    let str = ''
+    for (let i = 0; i < length; i++) {
+        str += chracters.charAt(Math.floor(Math.random() * chracters.length))
     }
+    return str
 }
-export default toastOptions
