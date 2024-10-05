@@ -11,7 +11,7 @@ export default function Footer() {
         { link: 'Home', path: '/' },
         { link: 'Products', path: '/products' },
         { link: 'About', path: '/about' },
-        { link: 'Guides', path: '/guides' },
+        { link: 'Guides', path: '/blogs/health-guides' },
         { link: 'Contact', path: '/contact' },
         { link: 'Blogs', path: '/blogs' }
     ];
@@ -21,8 +21,8 @@ export default function Footer() {
                 <div className="logo">
                     {/* <img src="/transLogo.png" alt="Logo" width={50} /> */}
                     <ol>
-                    <img src="/logos/PE-Main-Logo.png" alt="Logo" /><br />
-                    <p align="center" ><b>&quot;The Purest Products, For a Better You&quot;</b></p>
+                        <img src="/logos/PE-Main-Logo.png" alt="Logo" /><br />
+                        <p style={{textAlign:'center'}} ><b>&quot;The Purest Products, For a Better You&quot;</b></p>
                     </ol>
                     {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  /> */}
                     {/* <div>
@@ -49,7 +49,7 @@ export default function Footer() {
                         <a href="#">Syrup</a>
                     </div>
                     <div className="legal">
-                    <h2><Link href={'/legal'}>Legal</Link> &amp; Info</h2>
+                        <h2><Link href={'/legal'}>Legal &amp; Info</Link></h2>
                         <Link href={'/legal/terms-conditions'}>Terms &amp; Conditions</Link>
                         <Link href={'/legal/privacy-policy'}>Privacy Policy</Link>
                         <Link href={'/legal/disclaimer'}>Disclaimer</Link>
@@ -71,7 +71,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="copy">
-                <p>Copyright &copy; {Date().slice(11, 15)} <Link href={'/'}>Pure Essence LTD </Link>- All Rights Reserved | Designed and Developed by <Link href={'https://aldortech.com'}>AldorTech</Link>
+                <p>Copyright &copy; {new Date().getFullYear()} <Link href={'/'}>Pure Essence LTD </Link>- All Rights Reserved | Designed and Developed by <Link style={{textDecoration:'underline'}} href={'https://aldortech.com'}>AldorTech</Link>
                 </p>
             </div>
         </>

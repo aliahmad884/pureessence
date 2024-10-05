@@ -87,7 +87,7 @@ const ProductData = [
         id: 8,
         imgUrl: '/products/HoneyComb with Honey.webp',
         title: 'HoneyComb with Honey.webp',
-        slug: 'honeycomb-honey.webp',
+        slug: 'honeycomb-honey',
         shortDes: 'Authentic Egyptian Honey',
         description: 'Authentic Egyptian Honey',
         price: '78',

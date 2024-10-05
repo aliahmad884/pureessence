@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Terms() {
     return (
         <>
@@ -8,12 +10,11 @@ export default function Terms() {
                     <h2>Introduction</h2>
 
                     <p>
-                        Welcome to Pure Essence LTD. These terms and conditions outline the rules and regulations for using our website, <a href="/">puressenceltd.co.uk</a>.
+                        Welcome to Pure Essence LTD. These terms and conditions outline the rules and regulations for using our website, <Link href="/">puressenceltd.co.uk</Link>.
                         By accessing this website and/or making a purchase, you accept these terms in full. If you disagree with any part of these terms,
                         you should not use our website.
                     </p>
                 </div>
-
                 <div>
                     <h2>Company Information</h2>
                     <p>
@@ -63,16 +64,16 @@ export default function Terms() {
                 <div>
                     <h2>Shipping and Delivery</h2>
                     <p>
-                        We ship to the United Kingdom, the EU and internationally. Shipping costs and estimated delivery times are outlined on our <a href="/legal/shipping-returns-policy">Shipping and Returns Policy Page</a>.
+                        We ship to the United Kingdom, the EU and internationally. Shipping costs and estimated delivery times are outlined on our <Link href="/legal/shipping-returns-policy">Shipping and Returns Policy Page</Link>.
                         Pure Essence LTD is not responsible for delays caused by third-party couriers or customs clearance. <br />
-                        If an order is undelivered or delayed, please refer to our <a href="/legal/shipping-returns-policy">Shipping and Returns Policy</a> for more details.
+                        If an order is undelivered or delayed, please refer to our <Link href="/legal/shipping-returns-policy">Shipping and Returns Policy</Link> for more details.
                     </p>
                 </div>
 
                 <div>
                     <h2>Returns and Refunds</h2>
                     <p>
-                        We offer a 7-day return policy for unused and unopened products. More details on our return policy can be found on our <a href="/legal/shipping-returns-policy"> Returns Policy Page</a>. Refunds will be processed within 3 of receiving the returned goods.
+                        We offer a 7-day return policy for unused and unopened products. More details on our return policy can be found on our <Link href="/legal/shipping-returns-policy"> Returns Policy Page</Link>. Refunds will be processed within 3 of receiving the returned goods.
                     </p>
                 </div>
 
@@ -181,7 +182,7 @@ export default function Terms() {
                 <div>
                     <h2>Privacy Policy</h2>
                     <p>
-                        We are committed to protecting your personal information. Please refer to our <a href="/legal/privacy-policy">Privacy Policy</a> for detailed
+                        We are committed to protecting your personal information. Please refer to our <Link href="/legal/privacy-policy">Privacy Policy</Link> for detailed
                         information on how we collect, use, and store your data.
                     </p>
                 </div>
@@ -189,7 +190,7 @@ export default function Terms() {
                 <div>
                     <h2>Disclaimer</h2>
                     <p>
-                        All information provided on this website is for general information purposes only. For more details, please visit our <a href="/legal/disclaimer">Disclaimer Page</a>.
+                        All information provided on this website is for general information purposes only. For more details, please visit our <Link href="/legal/disclaimer">Disclaimer Page</Link>.
                     </p>
                 </div>
 
@@ -212,13 +213,13 @@ export default function Terms() {
                 <div>
                     <h2>Contact Us</h2>
                     <p>
-                        If you have any questions or concerns about these terms, please <a href="/contact">contact us</a>.
+                        If you have any questions or concerns about these terms, please <Link href="/contact">contact us</Link>.
                     </p>
                 </div>
                 <div>
                     <h2>Other Legal Pages</h2>
                     <p>
-                        View all of our <a href="/legal">Legal Pages</a>.
+                        View all of our <Link href="/legal">Legal Pages</Link>.
                     </p>
                 </div>
 

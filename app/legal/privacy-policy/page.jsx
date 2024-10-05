@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PrivacyPolicy() {
     return (
         <>
@@ -39,7 +41,6 @@ export default function PrivacyPolicy() {
                         You have the right to access, correct, and delete your personal information. You may also opt-out of receiving marketing communications and limit the use of cookies. You can request that your data be transferred to another provider, or object to certain types of data processing. If you would like to exercise any of these rights, please contact us directly.
                     </p>
                 </div>
-
                 <div>
                     <h2>How We Protect Your Information</h2>
                     <p>
@@ -48,7 +49,7 @@ export default function PrivacyPolicy() {
                 </div>
 
                 <div>
-                    <h2>Children’s Privacy</h2>
+                    <h2>Children&apos;s Privacy</h2>
                     <p>
                         We do not knowingly collect data from users under the age of 13. If we discover such data has been collected, we will delete it immediately. Users under 18 are required to have parental supervision to use our services.
                     </p>
@@ -78,7 +79,7 @@ export default function PrivacyPolicy() {
                 <div>
                     <h2>Contact Information</h2>
                     <p>
-                        If you have any questions or concerns about this policy, or if you would like to exercise your data rights, please <a href="/contact">contact us</a>.
+                        If you have any questions or concerns about this policy, or if you would like to exercise your data rights, please <Link href="/contact">contact us</Link>.
                     </p>
                 </div>
 
@@ -91,7 +92,7 @@ export default function PrivacyPolicy() {
                 <div>
                     <h2>Other Legal Pages</h2>
                     <p>
-                        View all of our <a href="/legal">Legal Pages</a>.
+                        View all of our <Link href="/legal">Legal Pages</Link>.
                     </p>
                 </div>
             </div>

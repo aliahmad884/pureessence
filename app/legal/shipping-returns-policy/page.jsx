@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Returns() {
     return (
         <>
@@ -25,7 +27,7 @@ export default function Returns() {
 
                 <h2>Order Tracking</h2>
                 <p>
-                    Once your order has been dispatched, you will receive an email with tracking information. You can also track your order by visiting your account dashboard or the <a href="/cart">Order Tracking</a> page. Tracking information may take up to 24 hours to update after dispatch.
+                    Once your order has been dispatched, you will receive an email with tracking information. You can also track your order by visiting your account dashboard or the <Link href="/cart">Order Tracking</Link> page. Tracking information may take up to 24 hours to update after dispatch.
                 </p>
 
                 <h2>Damaged or Missing Items</h2>
@@ -50,12 +52,12 @@ export default function Returns() {
 
                 <h2>Contact Us</h2>
                 <p>
-                    If you have any questions regarding our Shipping and Returns Policy, feel free to contact us at <a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a>. Alternatively, you can <a href="/contact">contact us.</a>
+                    If you have any questions regarding our Shipping and Returns Policy, feel free to contact us at <a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a>. Alternatively, you can <Link href="/contact">contact us.</Link>
                 </p>
                 <div>
                     <h2>Other Legal Pages</h2>
                     <p>
-                        View all of our <a href="/legal">Legal Pages</a>.
+                        View all of our <Link href="/legal">Legal Pages</Link>.
                     </p>
                 </div>
 

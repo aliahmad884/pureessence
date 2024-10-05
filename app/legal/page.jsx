@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Terms() {
     return (
         <>
@@ -10,10 +12,10 @@ export default function Terms() {
                 </div>
                 <br />
                 <div>
-                        <h2><a href="/legal/terms-conditions">Terms</a></h2><br />
-                        <h2><a href="/legal/privacy-policy">Privacy Policy</a></h2><br />
-                        <h2><a href="/legal/shipping-returns-policy">Shipping and Returns</a></h2><br />
-                        <h2><a href="/legal/disclaimer">Disclaimer</a></h2><br /><br />
+                        <h2><Link href="/legal/terms-conditions">Terms</Link></h2><br />
+                        <h2><Link href="/legal/privacy-policy">Privacy Policy</Link></h2><br />
+                        <h2><Link href="/legal/shipping-returns-policy">Shipping and Returns</Link></h2><br />
+                        <h2><Link href="/legal/disclaimer">Disclaimer</Link></h2><br /><br />
                 </div>
             </div>
         </>
