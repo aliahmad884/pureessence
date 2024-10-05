@@ -20,17 +20,17 @@ export default function Returns() {
                     <li>International Shipping: 7-14 business days, depending on the destination</li>
                 </ul>
                 <p>
-                    Shipping costs are calculated at checkout, and we discounted shipping on orders over £50. We currently ship to the UK, Europe, and select international destinations. For international orders, please note that customs duties or taxes may apply, which are the responsibility of the customer.
+                    Shipping costs are calculated at checkout, and we may have discounted shipping based on our promotions and available discounts. We currently ship to the UK, Europe, and select international destinations. For international orders, please note that customs duties or taxes may apply, which are the responsibility of the customer.
                 </p>
 
                 <h2>Order Tracking</h2>
                 <p>
-                    Once your order has been dispatched, you will receive an email with tracking information. You can also track your order by visiting your account dashboard or the <a href="https://pureessenceltd.com/order-tracking">Order Tracking</a> page. Tracking information may take up to 24 hours to update after dispatch.
+                    Once your order has been dispatched, you will receive an email with tracking information. You can also track your order by visiting your account dashboard or the <a href="/cart">Order Tracking</a> page. Tracking information may take up to 24 hours to update after dispatch.
                 </p>
 
                 <h2>Damaged or Missing Items</h2>
                 <p>
-                    If your order arrives damaged or incomplete, please notify us within 7 days of delivery. Send an email to our customer service team at <a href="mailto:support@pureessenceltd.com">support@pureessenceltd.com</a> with your order number, photos of the damage, and a description of the issue. We&apos;ll work with you to resolve the problem as quickly as possible.
+                    If your order arrives damaged or incomplete, please notify us within 7 days of delivery. Send an email to our customer service team at <a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a> with your order number, photos of the damage, and a description of the issue. We&apos;ll work with you to resolve the problem as quickly as possible.
                 </p>
 
                 <h2>Return Policy</h2>
@@ -40,7 +40,7 @@ export default function Returns() {
 
                 <h2>Return Process</h2>
                 <p>
-                    To initiate a return, please contact us at <a href="mailto:support@pureessenceltd.com">support@pureessenceltd.com</a> with your order number and reason for return. We will provide you with a prepaid return shipping label if your return is eligible. Please securely package the items and drop them off at your nearest postal service.
+                    To initiate a return, please contact us at <a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a> with your order number and reason for return. We will provide you with a prepaid return shipping label if your return is eligible. Please securely package the items and drop them off at your nearest postal service.
                 </p>
 
                 <h2>Refund Policy</h2>
@@ -50,9 +50,17 @@ export default function Returns() {
 
                 <h2>Contact Us</h2>
                 <p>
-                    If you have any questions regarding our Shipping and Returns Policy, feel free to contact us at <a href="mailto:support@pureessenceltd.com">support@pureessenceltd.com</a>. You can also review our <a href="https://pureessenceltd.com/terms-conditions">Terms and Conditions</a> and <a href="https://pureessenceltd.com/privacy-policy">Privacy Policy</a> for further details.
+                    If you have any questions regarding our Shipping and Returns Policy, feel free to contact us at <a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a>. Alternatively, you can <a href="/contact">contact us.</a>
                 </p>
+                <div>
+                    <h2>Other Legal Pages</h2>
+                    <p>
+                        View all of our <a href="/legal">Legal Pages</a>.
+                    </p>
+                </div>
+
             </div>
+            
         </>
     )
 }

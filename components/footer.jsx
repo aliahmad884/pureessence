@@ -20,11 +20,13 @@ export default function Footer() {
             <div className="footer">
                 <div className="logo">
                     {/* <img src="/transLogo.png" alt="Logo" width={50} /> */}
-                    <img src="/logos/PE-Main-Logo.png" alt="Logo" />
+                    <ol>
+                    <img src="/logos/PE-Main-Logo.png" alt="Logo" /><br />
+                    <p align="center" ><b>&quot;The Purest Products, For a Better You&quot;</b></p>
+                    </ol>
                     {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  /> */}
                     {/* <div>
                         <h1><strong style={{ color: '#dfb434' }}>Pur</strong> Essence</h1>
-                        <p>The Purest Products, For a Better You.</p>
                     </div> */}
                 </div>
                 <div className="mainCont">
@@ -47,11 +49,11 @@ export default function Footer() {
                         <a href="#">Syrup</a>
                     </div>
                     <div className="legal">
-                        <h2>Legal &amp; Info</h2>
-                        <Link href={'/legal/terms'}>Terms</Link>
+                    <h2><Link href={'/legal'}>Legal</Link> &amp; Info</h2>
+                        <Link href={'/legal/terms-conditions'}>Terms &amp; Conditions</Link>
                         <Link href={'/legal/privacy-policy'}>Privacy Policy</Link>
                         <Link href={'/legal/disclaimer'}>Disclaimer</Link>
-                        <Link href={'/legal/returns'}>Returns</Link>
+                        <Link href={'/legal/shipping-returns-policy'}>Shipping &amp; Returns</Link>
                         <Link href={'/sitemap.xml'}>Sitemap</Link>
 
                     </div>
@@ -60,6 +62,11 @@ export default function Footer() {
                             {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faHouse} /></strong>  */}
                             Address</h2>
                         <address>Kings Court 33 King Street, Blackburn, UK, BB2 2DH</address>
+                        <h2>
+                            {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faHouse} /></strong>  */}
+                            Company Details</h2>
+                        <p>PURESSENCE LTD</p>
+                        <p>Company Number: 15766653</p>
                     </div>
                 </div>
             </div>

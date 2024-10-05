@@ -62,22 +62,23 @@ export default function ContactPage() {
                             <div className="officesCont">
                                 <div className="contactDetails">
                                     <h2>Directions to UK Head Office</h2>
-                                    <h3><b>By Car</b></h3>
-                                    <li>From A666 (Bolton Road) from the South: Head northeast on Bolton Rd/A666 toward Chadwick St for 0.3 miles</li>
-                                    <li>Continue onto Great Bolton St/A6078 for 0.1 miles</li>
-                                    <li>Continue straight onto Great Bolton St for 174 ft</li>
-                                    <li>Keep left to continue on Darwen St for 0.1 miles</li>
-                                    <li>Continue onto Mincing Ln for 0.1 miles</li>
-                                    <li>Turn left onto Clayton St for 423 ft</li>
-                                    <li>Turn right onto Old Bank St, the destination will be on the left</li>
-                                    <h3><b>By Train</b></h3>
-                                    <li>From the train station, head southwest on Railway Rd toward Bridge St for 236ft</li>
-                                    <li>Turn right toward Jubilee St for 56ft</li>
-                                    <li>Turn left onto Jubilee St for 390ft</li>
-                                    <li>Continue onto Mill Ln for 233ft</li>
-                                    <li>Continue onto Mincing Ln for  374ft</li>
-                                    <li>Turn left onto CLayton Street for 423 ft</li>
-                                    <li>Turn right onto Old Bank St, the destination will be on the left</li>                                </div>
+
+                                    <h3><b>By Car</b></h3>                                        
+                                            <li>From A666 (Bolton Road) from the South: Head northeast on Bolton Rd/A666 toward Chadwick St for 0.3 miles</li>
+                                            <li>Continue onto Great Bolton St/A6078 for 0.1 miles</li>
+                                            <li>Continue straight onto Great Bolton St for 174 ft</li>
+                                            <li>Keep left to continue on Darwen St for 0.1 miles</li>
+                                            <li>Continue onto Mincing Ln for 0.1 miles</li>
+                                            <li>Turn left onto Clayton St for 423 ft</li>
+                                            <li>Turn right onto Old Bank St, the destination will be on the left</li>
+                                        <h3><b>By Train</b></h3>
+                                            <li>From the train station, head southwest on Railway Rd toward Bridge St for 236ft</li>
+                                            <li>Turn right toward Jubilee St for 56ft</li>
+                                            <li>Turn left onto Jubilee St for 390ft</li>
+                                            <li>Continue onto Mill Ln for 233ft</li>
+                                            <li>Continue onto Mincing Ln for  374ft</li>
+                                            <li>Turn left onto Clayton Street for 423 ft</li>
+                                            <li>Turn right onto Old Bank St, the destination will be on the left</li>                                </div>
                                 <div className="contactDetails">
                                     <h2>Nearest Landmarks to UK Head Office</h2>
                                     <h3><b>Regional Area</b></h3>
