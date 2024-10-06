@@ -927,27 +927,27 @@ main {
   display: flex;
   flex-flow: row nowrap;
   gap: 10px;
-  width: 30%;
+  width: 10%;
+  max-width: 100px;
   align-items: center;
   line-height: 1;
 }
 
 .logo img {
-  width: 300px;
+  width: 200px;
+  max-width: 200px;
   transition: all 0.5s;
 }
 
-.logo h1 {
+.logo p {
   text-transform: uppercase;
   color: #e5efe0;
   font-weight: bolder;
-  font-size: 1.5rem;
-}
-
-.logo p {
-  color: #e5efe0;
   font-size: small;
   letter-spacing: -0.5px;
+  text-align: center;
+  width: 200px;
+  max-width: 200px;
 }
 
 .footer .explore,
@@ -2355,7 +2355,7 @@ select {
 
 .accordCont {
   width: 100%;
-  max-width: 1300px;
+  max-width: 1000px;
   margin: auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 50px 10px;
