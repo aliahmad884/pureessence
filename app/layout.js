@@ -11,8 +11,10 @@ import ToolBar from "@/components/toolbar";
 import ContextProvider from "@/context";
 import Footer from "@/components/footer";
 import { Suspense, useEffect, useState } from "react";
+import { CustomProvider } from 'rsuite';
 import { usePathname } from "next/navigation";
 import FallBackLoader from "@/components/loader";
+import 'rsuite/dist/rsuite-no-reset.min.css';
 
 
 
@@ -32,26 +34,28 @@ export default function RootLayout({ children }) {
         {/* {!isLoading ? <FallBackLoader /> : ( */}
         <ContextProvider>
           <Suspense fallback={<FallBackLoader />}>
-            {(
-              pathName.startsWith('/admin') ||
-              (pathName.startsWith('/login')) ||
-              (pathName.startsWith('/signup')) ||
-              (pathName.startsWith('/completed')) ||
-              (pathName.startsWith('/invoice'))
-            ) ? null : (
-              <>
-                <ToolBar />
-                <Navbar />
-              </>
-            )}
-            {children}
-            {(
-              pathName.startsWith('/admin') ||
-              (pathName.startsWith('/login')) ||
-              (pathName.startsWith('/signup')) ||
-              (pathName.startsWith('/completed')) ||
-              (pathName.startsWith('/invoice'))
-            ) ? null : <Footer />}
+            <CustomProvider>
+              {(
+                pathName.startsWith('/admin') ||
+                (pathName.startsWith('/login')) ||
+                (pathName.startsWith('/signup')) ||
+                (pathName.startsWith('/completed')) ||
+                (pathName.startsWith('/invoice'))
+              ) ? null : (
+                <>
+                  <ToolBar />
+                  <Navbar />
+                </>
+              )}
+              {children}
+              {(
+                pathName.startsWith('/admin') ||
+                (pathName.startsWith('/login')) ||
+                (pathName.startsWith('/signup')) ||
+                (pathName.startsWith('/completed')) ||
+                (pathName.startsWith('/invoice'))
+              ) ? null : <Footer />}
+            </CustomProvider>
           </Suspense>
         </ContextProvider>
         {/* )} */}

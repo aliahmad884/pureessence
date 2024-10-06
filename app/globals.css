@@ -670,9 +670,10 @@ main {
   transition: all 0.2s;
 }
 
-.productCard .btnCont .btnPreview:hover{
+.productCard .btnCont .btnPreview:hover {
   color: #000000;
 }
+
 .productCard .btnCont .addToCart:hover {
   color: #dfb434;
 }
@@ -1987,18 +1988,18 @@ select {
 .productPageBanner {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/PE-Bath-Oils.webp');
   width: 100%;
-  height: 600px;
+  height: 700px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 80px;
+  padding: 70px;
   display: flex;
   align-items: center;
   transition: all 0.5s;
 }
 
 .productPageBanner h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bolder;
   color: white;
 }
@@ -2051,6 +2052,7 @@ select {
 .productSlug .imgCont .mainImg {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
 }
 
 .productSlug .imgCont .thumbnails {
@@ -2062,8 +2064,26 @@ select {
 
 .productSlug .imgCont .thumbnails img {
   width: 100%;
+  cursor: pointer;
 }
 
+.imgPortalCont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.imgPortalCont img {
+  max-width: 90%;
+  max-height: 90%;
+}
 
 .productSlug .detailsCont {
   width: 100%;
@@ -2111,11 +2131,6 @@ select {
   max-width: 1200px;
 }
 
-/* .productSlugCont .overViewCont .tabs button{
-  padding: 15px 80px;
-  background-color: #85aeff;
-  border-radius: 10px;
-} */
 .productSlugCont .overViewCont .output h1 {
   font-size: 1.8rem;
   font-weight: bold;
@@ -2128,11 +2143,7 @@ select {
   padding: 50px 20px;
   width: 100%;
   max-width: 1600px;
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   margin: auto;
-  /* text-align: justify; */
 }
 
 .legalCont h1 {
@@ -2163,10 +2174,10 @@ select {
 }
 
 /* ------- Legal Pages End --------------- */
+
 /* -------- Contact Page ---------------- */
 .contactMainCont {
   padding: 50px 20px;
-  /* margin: auto; */
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -2197,8 +2208,6 @@ select {
 }
 
 .contactMainCont .contactUs form {
-  /* border: 1px solid black; */
-  /* padding: 10px; */
   width: 100%;
   max-width: 500px;
   display: flex;
@@ -2213,16 +2222,13 @@ select {
 }
 
 .contactMainCont .contactUs input {
-  /* border: 2px solid rgb(224, 224, 224); */
   border-radius: 20px;
   width: 100%;
   padding: 10px;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .contactMainCont .contactUs textarea {
-  /* border: 2px solid rgb(224, 224, 224); */
   width: 100%;
   padding: 10px;
   border-radius: 20px;
@@ -2318,22 +2324,171 @@ select {
 
 /* ------ Conatct Page End -------------- */
 
-.imgPortalCont {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8); 
+
+/* --------------- FAQs Page ----------- */
+.faqsCont {
+  padding: 50px 0px;
+}
+
+.faqsCont h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.faqsCont .infoCont {
+  margin: 40px 10px 0 10px;
+}
+
+.faqsCont .infoCont h4 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: left;
+  border-top: 1px solid rgb(224, 224, 224);
+  padding: 20px 0 0 0;
+}
+
+.faqsCont .infoCont p {
+  text-align: justify;
+}
+
+.accordCont {
+  width: 100%;
+  max-width: 1300px;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 50px 10px;
+  border-radius: 10px;
+}
+
+.accordPanel {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+/* ----------- FAQs Page End -------------- */
+
+/* ------------- About Page --------------- */
+.aboutPage {
+  padding: 50px;
+}
+
+.aboutBanner {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/PE-Olive-Oil-5.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 700px;
+  padding: 70px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 100;
+  transition: all 0.5s;
 }
 
-.imgPortalCont img {
-  max-width: 90%;
-  max-height: 90%;
-  /* width: 90%; */
-
+.aboutBanner h1 {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: white;
 }
+
+.aboutPage .firstCont {
+  width: 100%;
+  background: var(--theme-gradient);
+  /* padding: 50px; */
+  box-shadow: var(--theme-box-shadow);
+}
+
+.aboutPage .firstCont h1 {
+  text-align: left;
+  font-size: 2rem;
+  color: var(--blue-1);
+  font-weight: bolder;
+  padding-bottom: 20px;
+}
+
+.aboutPage .postCont {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 20px; */
+  width: 100%;
+}
+
+.reverse {
+  flex-flow: row-reverse;
+}
+
+.aboutPage .postCont .text {
+  width: 50%;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+  text-align: left;
+  padding: 20px 0;
+  /* border:2px solid black; */
+}
+
+.aboutPage .postCont .text h2 {
+  font-size: 1.5rem;
+  color: grey;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.aboutPage .firstCont .subCont p,
+.aboutPage .postCont .text p {
+  text-align: justify;
+}
+
+.aboutPage .postCont .img {
+  width: 47%;
+  background-color: var(--blue-1);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.aboutPage .postCont .img img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.aboutPage .firstCont .subCont {
+  padding: 20px 0;
+}
+
+.aboutPage .firstCont .subCont h3 {
+  font-size: 1.3rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: var(--blue-1);
+}
+
+
+.aboutPage .secondCont h3 {
+  font-size: 2rem;
+  color: var(--blue-1);
+  font-weight: bolder;
+}
+
+.aboutPage .secondCont ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  font-size: 1.2rem;
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  padding: 20px 0 0 0px;
+  margin-bottom: 50px;
+  transition: all 0.5s;
+}
+
+.aboutPage .secondCont li {
+  padding: 6px 0;
+  width: 47%;
+}
+
+/* ---------- About Page End -------------- */
