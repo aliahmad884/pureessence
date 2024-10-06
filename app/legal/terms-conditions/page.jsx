@@ -5,7 +5,7 @@ export default function Terms() {
         <>
             <div className="legalCont">
                 <h1>Terms and Conditions</h1>
-                <p><strong>Last Updated: 24th September 2024</strong></p>
+                <p><strong>Last Updated: 06th October 2024</strong></p>
                 <div>
                     <h2>Introduction</h2>
 
@@ -18,9 +18,9 @@ export default function Terms() {
                 <div>
                     <h2>Company Information</h2>
                     <p>
-                        Company Name: Pure Essence LTD <br />
+                        Company Name: PURESSENCE LTD <br />
                         Registered in: United Kingdom <br />
-                        Company Registration Number: # <br />
+                        Company Registration Number: 15766653<br />
                         Registered Address: Kings Court 33 King Street, BB2 2DH, Lancashire, United Kingdom
                     </p>
                 </div>
