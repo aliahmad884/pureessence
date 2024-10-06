@@ -32,7 +32,7 @@ export default function ContactPage() {
                             <div className="socialIcon">
                                 <a href="#"><img src="twitter.webp" alt="Twitter" /></a>
                                 <a href="#"><img src="facebook.webp" alt="Facebook" /></a>
-                                <a href="#"><img src="whatsappB.webp" alt="WhatsApp" /></a>
+                                <a href="#"><img src="whatsapp.webp" alt="WhatsApp" /></a>
                             </div>
                         </div>
                     </div>
