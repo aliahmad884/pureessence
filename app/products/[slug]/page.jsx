@@ -9,8 +9,10 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import toast, { Toaster } from "react-hot-toast"
 import { createPortal } from "react-dom"
+import { useRouter } from "next/navigation"
 
 export default function Products({ params }) {
+    const router = useRouter()
     const { slug } = params
     const decodedSlug = decodeURIComponent(slug)
     const product = ProductData.find(data => data.slug === decodedSlug)
@@ -35,9 +37,14 @@ export default function Products({ params }) {
         setIsLoading(false)
         let mainImg = document.querySelector('.mainImg')
         let img = document.getElementById('img')
+        if (showImgFull) {
+            document.body.style.maxHeight = '100vh'
+            document.body.style.overflow = 'hidden'
+        }
         const handlePortal = (event) => {
             if (showImgFull && !mainImg.contains(event.target) && !img.contains(event.target)) {
                 setShowImgFull(false)
+                document.body.removeAttribute('style')
             }
         }
         document.addEventListener('click', handlePortal)
@@ -62,7 +69,7 @@ export default function Products({ params }) {
                             <img onClick={() => setShowImgFull(true)} src={imgPath} alt={product.title} />
                             {showImgFull && createPortal(<>
                                 <div className="imgPortalCont">
-                                    <img id='img' src={imgPath} alt={product.title} />
+                                    <img id='img' onClick={() => window.open(imgPath, '_blank')} src={imgPath} alt={product.title} />
                                 </div>
                             </>, document.body)}
                         </div>
