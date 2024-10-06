@@ -13,7 +13,8 @@ export default function Footer() {
         { link: 'About', path: '/about' },
         { link: 'Guides', path: '/blogs/health-guides' },
         { link: 'Contact', path: '/contact' },
-        { link: 'Blogs', path: '/blogs' }
+        { link: 'Blogs', path: '/blogs' },
+        { link: 'FAQs', path: '/frequently-asked-questions' }
     ];
     return (
         <>
@@ -22,7 +23,7 @@ export default function Footer() {
                     {/* <img src="/transLogo.png" alt="Logo" width={50} /> */}
                     <ol>
                         <img src="/logos/PE-Main-Logo.png" alt="Logo" /><br />
-                        <p style={{textAlign:'center'}} ><b>&quot;The Purest Products, For a Better You&quot;</b></p>
+                        <p style={{ textAlign: 'center' }} ><b>&quot;The Purest Products, For a Better You&quot;</b></p>
                     </ol>
                     {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  /> */}
                     {/* <div>
@@ -71,7 +72,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="copy">
-                <p>Copyright &copy; {new Date().getFullYear()} <Link href={'/'}>Pure Essence LTD </Link>- All Rights Reserved | Designed and Developed by <Link style={{textDecoration:'underline'}} href={'https://aldortech.com'}>AldorTech</Link>
+                <p>Copyright &copy; {new Date().getFullYear()} <Link href={'/'}>Pure Essence LTD </Link>- All Rights Reserved | Designed and Developed by <Link style={{ textDecoration: 'underline' }} href={'https://aldortech.com'}>AldorTech</Link>
                 </p>
             </div>
         </>

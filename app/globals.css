@@ -206,7 +206,7 @@ main {
 }
 
 .navMainCont .routerDropDown.drop {
-  height: 200px;
+  height: 240px;
 }
 
 .navMainCont .routerDropDown.drop.extend {
@@ -244,6 +244,7 @@ main {
   font-size: 2.5rem;
   position: relative;
   cursor: pointer;
+  width: 100%;
   /* padding-top: 10px; */
 }
 
@@ -648,8 +649,10 @@ main {
 
 .productCard .btnCont .btnPreview {
   padding: 10px;
-  background-color: white;
+  /* background-color: white; */
+  background-color: #dfb434;
   width: 100%;
+  color: white;
   /* border-top-left-radius: 20px;
   border-bottom-left-radius: 20px; */
   border-radius: 20px;
@@ -667,7 +670,9 @@ main {
   transition: all 0.2s;
 }
 
-.productCard .btnCont .btnPreview:hover,
+.productCard .btnCont .btnPreview:hover{
+  color: #000000;
+}
 .productCard .btnCont .addToCart:hover {
   color: #dfb434;
 }
@@ -894,7 +899,7 @@ main {
   /* background-color: #171717; */
   background-color: #000000;
   padding: 10px 0;
-  border-top: 2px solid white;
+  border-top: 1px solid white;
   color: white;
   text-align: center;
 }
@@ -2312,3 +2317,21 @@ select {
 }
 
 /* ------ Conatct Page End -------------- */
+
+.imgPortalCont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.imgPortalCont img {
+  max-width: 90%;
+  max-height: 90%;
+}

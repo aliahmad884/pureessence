@@ -21,7 +21,8 @@ export default function Navbar() {
         { link: 'About', path: '/about' },
         { link: 'Guides', path: '/blogs/health-guides' },
         { link: 'Contact', path: '/contact' },
-        { link: 'Blogs', path: '/blogs' }
+        { link: 'Blogs', path: '/blogs' },
+        { link: 'FAQs', path: '/frequently-asked-questions' }
     ];
     const handleSearch = () => {
         if (inputEle) {
@@ -159,7 +160,7 @@ export default function Navbar() {
                 <div className="navContainer">
                     {/*------Company Logo------*/}
                     <div className="navLogo" onClick={() => router.push('/')}>
-                        <img src="/logos/PE-Main-Logo.png" alt="Logo"  width={200}/>
+                        <img src="/logos/PE-Main-Logo.png" alt="Logo" width={200} />
                         {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  />  */}
                         {/* <img src="/logos/PE-Main-Logo-Large.png" alt="Logo"  /> */}
                         {/* <div>

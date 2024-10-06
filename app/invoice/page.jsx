@@ -32,7 +32,7 @@ export default function Invoice() {
                     <div>
                         <h1>Invoice</h1>
                         <h3 style={{ textAlign: 'right' }}>PE-INV-000{invData.id}</h3>
-                        <p><strong>Date:</strong> {new Date(invData.date).toDateString()}</p>
+                        <p><strong>Date:</strong> {new Date(invData.date).toDateString()} {new Date(invData.date).toLocaleTimeString()}</p>
                     </div>
                     {/* Your company information */}
                     <div className="brandInfo">

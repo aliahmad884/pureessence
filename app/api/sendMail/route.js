@@ -2,30 +2,65 @@ const { res } = require('../syntaxShorter.js')
 import nodemailer from "nodemailer"
 
 export async function POST(req) {
-    const body =await req.json()
+    const body = await req.json()
     console.log(body)
+    let count = 0;
+    const recipients = [
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'alilatakhun2003@gmail.com',
+        'abuoin@gmail.com',
+        'theprudent3627516@gmail.com',
+        'aliahmadofficial884@gmail.com',
+        'abuoin@gmail.com',
+        'abuoin@gmail.com',
+        'abuoin@gmail.com',
+        'abuoin@gmail.com',
+        'abuoin@gmail.com',
+        'abuoin@gmail.com',
+        'abuoin@gmail.com',
+        'abuoin@gmail.com',
+        'abuoin@gmail.com',
+        'abuoin@gmail.com'
+    ]
     // const { subject, text, html } = body;
     let transporter = nodemailer.createTransport({
-        host: 'test.puressenceltd.co.uk',  // e.g., 'mail.yourdomain.com'
-        port: 587,  // Use 465 for SSL, or 587 for TLS
-        secure: false, // true for port 465, false for 587
+        host: 'smtp.ionos.co.uk',
+        port: 465,
+        secure: true,
         auth: {
-            user: 'info@test.puressenceltd.co.uk', // Your cPanel email account
-            pass: '3Ft4g@3b4', // Your cPanel email password
+            user: 'data@puressenceltd.co.uk',
+            pass: 'Lqv39KGQ6NUQ!_#',
         },
     })
 
-    const emailOptions = {
-        from: 'info@test.puressenceltd.co.uk',
-        to: 'alilatakhun2003@gmail.com',
-        subject: 'Test Mail',
-        text: 'Some plain text',
-        html: '<p>Html Content</p>'
-    }
     try {
-        let info = await transporter.sendMail(emailOptions)
-        console.log(info)
-        return res({ res: 'request recieved' }, 200)
+        for (let i = 0; i < recipients.length; i++) {
+            count = count + 1
+            const emailOptions = {
+                from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
+                to: recipients[i],
+                subject: 'Spam Checking',
+                text: 'Second test with SSl',
+                html: `<p>Hello pa g ma spam nahi hon ${count}</p>`
+            }
+            let info = await transporter.sendMail(emailOptions)
+            console.log(info.messageId)
+        }
+        return res({ res: 'Email Sent', index: count }, 200)
     }
     catch (err) {
         console.log(err)

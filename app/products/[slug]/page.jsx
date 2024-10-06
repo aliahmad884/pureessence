@@ -5,20 +5,10 @@ import { useDataContext } from "@/context"
 import ProductData from "@/data"
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Head from "next/head"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import toast, { Toaster } from "react-hot-toast"
-
-// export async function generateMetadata({ params }) {
-//     const { slug } = params;
-//     const decodedSlug = decodeURIComponent(slug);
-//     const product = ProductData.find(data => data.slug === decodedSlug);
-
-//     return {
-//         title: product ? product.title : "Product Not Found",
-//     };
-// }
+import { createPortal } from "react-dom"
 
 export default function Products({ params }) {
     const { slug } = params
@@ -27,6 +17,7 @@ export default function Products({ params }) {
     const [imgPath, setImgPath] = useState(product.imgUrl)
     const { cartData, setCartData } = useDataContext()
     const [isLoading, setIsLoading] = useState(true)
+    const [showImgFull, setShowImgFull] = useState(false)
     const handleCart = () => {
         let find = cartData.find(item => item.id === product.id)
         if (!find) {
@@ -42,7 +33,18 @@ export default function Products({ params }) {
     }
     useEffect(() => {
         setIsLoading(false)
-    }, [])
+        let mainImg = document.querySelector('.mainImg')
+        let img = document.getElementById('img')
+        const handlePortal = (event) => {
+            if (showImgFull && !mainImg.contains(event.target) && !img.contains(event.target)) {
+                setShowImgFull(false)
+            }
+        }
+        document.addEventListener('click', handlePortal)
+        return () => {
+            document.removeEventListener('click', handlePortal)
+        }
+    }, [showImgFull])
     if (isLoading) return <FallBackLoader />
     return (
         <>
@@ -57,7 +59,12 @@ export default function Products({ params }) {
                             }
                         </div>
                         <div className="mainImg">
-                            <img src={imgPath} alt={product.title} />
+                            <img onClick={() => setShowImgFull(true)} src={imgPath} alt={product.title} />
+                            {showImgFull && createPortal(<>
+                                <div className="imgPortalCont">
+                                    <img id='img' src={imgPath} alt={product.title} />
+                                </div>
+                            </>, document.body)}
                         </div>
                     </div>
                     <div className="detailsCont">
