@@ -5,7 +5,7 @@ export default function Disclaimer() {
         <>
             <div className="legalCont">
                     <h1>Disclaimer</h1>
-                    <p><strong>Last Updated: 24th September 2024</strong></p>
+                    <p><strong>Last Updated: 05th October 2024</strong></p>
 
                     <p>
                         Welcome to Pure Essence. By using this website, you agree to the terms and conditions outlined in this disclaimer. Please read the following information carefully as it governs your use of our site and products.
