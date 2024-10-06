@@ -69,6 +69,6 @@ export async function POST(req) {
     }
     catch (err) {
         console.log(err);
-        return res({ err: 'Internel Server Error!' }, 500);
+        return res({ res: 'Internel Server Error!', err: err }, 500);
     };
 };
