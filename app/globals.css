@@ -2337,6 +2337,14 @@ select {
   margin: 10px 0;
 }
 
+.faqsCont h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+  text-indent: 50px;
+  margin: 10px 0;
+}
+
 .faqsCont .infoCont {
   margin: 40px 10px 0 10px;
 }
