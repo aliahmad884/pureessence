@@ -66,7 +66,7 @@ export default function PopularProducts() {
                         <button onClick={next} type="button"><FontAwesomeIcon icon={faArrowRight} /></button>
                     </div>
                     <div style={{textAlign:'center',width:'100%',marginTop:'30px',textDecoration:'underline'}}>
-                        <Link href={'/products'}>View all products</Link>
+                        <Link style={{fontWeight:'bolder'}} href={'/products'}>View All Products</Link>
                     </div>
                 </div>
             </div>

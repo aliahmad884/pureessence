@@ -16,7 +16,7 @@ export default function Blogs() {
                         </div>
                         <h2>Coming Soon</h2>
                         <p>Coming Soon</p>
-                        <h3>By Pure Essence</h3>
+                        <h3>By PurEssence</h3>
                     </div>
                     <div className="card">
                         <div className="imgCont">
@@ -27,7 +27,7 @@ export default function Blogs() {
                         </div>
                         <h2>Coming Soon</h2>
                         <p>Coming Soon</p>
-                        <h3>By Pure Essence</h3>
+                        <h3>By PurEssence</h3>
                     </div>
                     <div className="card">
                         <div className="imgCont">
@@ -38,7 +38,7 @@ export default function Blogs() {
                         </div>
                         <h2>Coming Soon</h2>
                         <p>Coming Soon</p>
-                        <h3>By Pure Essence</h3>
+                        <h3>By PurEssence</h3>
                     </div>
                 </div>
                 {/* <div className="moreBtn">
