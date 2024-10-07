@@ -159,7 +159,7 @@ const ProductData = [
         id: 14,
         imgUrl: '/products/Pomegranate Vinegar.webp',
         title: 'Pomegranate Vinegar',
-        slug: 'pomegranate-vinegar.webp',
+        slug: 'pomegranate-vinegar',
         shortDes: 'Pomegranate Vinegar',
         description: 'A tangy and flavourful pomegranate vinegar that adds a refreshing twist to salads and dressings while offering a host of health benefits.',
         price: 'Please Enquire For Price',
