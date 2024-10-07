@@ -49,7 +49,7 @@ export default function FAQs() {
                             <p style={{ textAlign: 'justify', paddingTop: '20px' }}>You will be provided with a tracking code, which you can check with the delivery service.</p>
                         </Accordion.Panel>
                         <Accordion.Panel className="accordPanel" classPrefix="temp" header='What if my package was damaged during delivery?' eventKey={5}>
-                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>In the case of mishap or damage during delviery, don't hesitate to take photos and a video.And please get into contact with us. Our products are well packaged, though we should always plan for errors.</p>
+                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>In the case of mishap or damage during delviery, don&apos;t hesitate to take photos and a video.And please get into contact with us. Our products are well packaged, though we should always plan for errors.</p>
                         </Accordion.Panel>
                     </Accordion>
                     <div className='infoCont'>
