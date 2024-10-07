@@ -72,7 +72,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="copy">
-                <p>Copyright &copy; {new Date().getFullYear()} <Link href={'/'}>Pure Essence LTD </Link>- All Rights Reserved | Designed and Developed by <Link style={{ textDecoration: 'underline' }} href={'https://aldortech.com'}>AldorTech</Link>
+                <p>Copyright &copy; {new Date().getFullYear()} <Link href={'/'}>PurEssence LTD </Link>- All Rights Reserved | Designed and Developed by <Link style={{ textDecoration: 'underline' }} href={'https://aldortech.com'}>AldorTech</Link>
                 </p>
             </div>
         </>
