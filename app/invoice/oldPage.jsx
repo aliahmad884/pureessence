@@ -8,9 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPrint } from "@fortawesome/free-solid-svg-icons"
 
 export default function Invoice() {
-    const [invData, setInvData] = useState([])
-    const [invItems, setInvItems] = useState([])
-    const [billingData, setBillingData] = useState([])
+    const [invData, setInvData] = useState(null)
     const [isLoading, setIsloading] = useState(true)
     const params = useSearchParams()
     const invId = params.get('invId')
@@ -19,12 +17,8 @@ export default function Invoice() {
     }
     useEffect(() => {
         fetch(`/api/order?invId=${invId}`).then(res => res.json()).then(result => {
-            console.log(result.data)
-            setInvItems(JSON.parse(result.data.items))
-            // setInvItems(result.data.items)
+            console.log(result)
             setInvData(result.data)
-            // setBillingData(result.data.billing)
-            setBillingData(JSON.parse(result.data.billing))
             setIsloading(false)
         }).catch(err => {
             console.log(err)
@@ -44,24 +38,24 @@ export default function Invoice() {
                     {/* Your company information */}
                     <div className="brandInfo">
                         <Link href={'/'}><img src="/logos/PE-Main-Logo.png" alt="Pur Essence" width={300} /></Link>
-                        <p><strong>Address: </strong>Kings Court 33 King Street, Blackburn, UK, BB2 2DH</p>
+                        <p><strong>Address: </strong>Kings court 33 king street BB2 2DH</p>
                         <p><strong>Email:</strong> info@puressenceltd.co.uk</p>
-                        <p><strong>Phone:</strong> (+44) 01254 411076</p>
+                        <p><strong>Phone:</strong> +1234567890</p>
                     </div>
                 </div>
                 <div className="billing-details">
                     <div className="client">
                         <h3>Client Details</h3>
-                        <p><strong>Name: </strong>{billingData.firstName} {billingData.lastName}</p>
-                        <p><strong>Email: </strong>{billingData.email}</p>
-                        <p><strong>Phone: </strong>{billingData.phone}</p>
-                        <p><strong>Address: </strong>{billingData.address}</p>
+                        <p><strong>Name: </strong>{invData.billing.firstName} {invData.billing.lastName}</p>
+                        <p><strong>Email: </strong>{invData.billing.email}</p>
+                        <p><strong>Phone: </strong>{invData.billing.phone}</p>
+                        <p><strong>Address: </strong>{invData.billing.address}</p>
                     </div>
-                    {/* <div className="bank">
+                    <div className="bank">
                         <h3>Bank Account Details</h3>
                         <p><strong>Bank Name: </strong>Meezan Bank LTD.</p>
                         <p><strong>Account Number: </strong>42479416798875456456</p>
-                    </div> */}
+                    </div>
                 </div>
 
                 <div className="invoice-body">
@@ -71,12 +65,12 @@ export default function Invoice() {
                                 <th>Index</th>
                                 <th>Description</th>
                                 <th>Quantity</th>
-                                {/* <th>Unit Price</th> */}
-                                {/* <th>Total</th> */}
+                                <th>Unit Price</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {invItems ? invItems.map((item, i) => (
+                            {invData.items ? invData.items.map((item, i) => (
                                 <tr key={item.id}>
                                     <td>{i + 1}</td>
                                     <td>
@@ -86,8 +80,8 @@ export default function Invoice() {
                                         </div>
                                     </td>
                                     <td>{item.qty}</td>
-                                    {/* <td>&pound;{item.price}</td> */}
-                                    {/* <td>&pound;{item.price * item.qty}</td> */}
+                                    <td>&pound;{item.price}</td>
+                                    <td>&pound;{item.price * item.qty}</td>
                                 </tr>
                             )) : console.log('invData.itmes Not found')
                             }
@@ -96,19 +90,19 @@ export default function Invoice() {
                 </div>
                 <div className="amount-container">
                     <div style={{ width: '100%', maxWidth: '400px' }}>
-                        {/* <div className="subCont"><strong>Subtotal:</strong><p>&pound;{billingData.total}</p></div>
+                        <div className="subCont"><strong>Subtotal:</strong><p>&pound;{invData.billing.total}</p></div>
                         <div className="subCont"><strong>Shipping:</strong><p>&pound;12.63</p></div>
                         <div className="subCont"><strong>Tax(if Applicable):</strong><p>&pound;0.00</p></div>
-                        <div className="subCont"><strong>Discount:</strong><p>&pound;0.00</p></div> */}
-                        <div style={{ borderTop: '2px solid rgb(224, 224, 224)', marginTop: '10px', paddingTop: '8px', fontSize: '1.2rem' }} className="subCont"><strong>Total:</strong> <h3 style={{ cursor: 'pointer', textDecoration: 'underline', width: 'fit-content' }} onClick={() => window.open('https://wa.me/+4401254411076')}>Please Enquire For Price</h3></div>
+                        <div className="subCont"><strong>Discount:</strong><p>&pound;0.00</p></div>
+                        <div style={{ borderTop: '2px solid rgb(224, 224, 224)', marginTop: '10px', paddingTop: '8px', fontSize: '1.2rem' }} className="subCont"><strong>Total:</strong><p>&pound;{eval(invData.billing.total + 12.63 + 0)}</p></div>
                     </div>
                 </div>
                 <div className="invoice-footer">
                     <div>
                         <h4><strong>Notes:</strong></h4>
                         <p>Thanks for being an awesome customer!</p>
-                        {/* <h4><strong>Terms:</strong></h4>
-                        <p>Payment due in 30 days.</p> */}
+                        <h4><strong>Terms:</strong></h4>
+                        <p>Payment due in 30 days.</p>
                     </div>
                     <div>
                         <button onClick={printInvoice} className="btnPrint" type="button"><FontAwesomeIcon icon={faPrint} /> Print Invoice</button>

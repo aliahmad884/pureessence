@@ -1,11 +1,21 @@
 "use client"
-import React from "react";
+import React, { useRef } from "react";
 import Slider from "react-slick";
 import { ProductCard } from "./cards";
 import { Toaster } from "react-hot-toast";
 import ProductData from "@/data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft, faArrowRight, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 export default function PopularProducts() {
+    let sliderRef = useRef(null);
+    const next = () => {
+        sliderRef.slickNext();
+    };
+    const previous = () => {
+        sliderRef.slickPrev();
+    };
     const data = ProductData
     const settings = {
         dots: false,
@@ -45,11 +55,19 @@ export default function PopularProducts() {
             <div className="productCont">
                 <h1>Latest Products</h1>
                 <div className="slider">
-                    <Slider {...settings} style={{ padding: '0 -15px' }}>
+                    <Slider ref={slider => { sliderRef = slider }} {...settings} style={{ padding: '0 -15px' }}>
                         {
-                            data.map(data => <ProductCard key={data.id} id={data.id} imgUrl={data.imgUrl} title={data.title}  qty={data.qty} data={data} slug={data.slug} />)
+                            data.map(data => <ProductCard key={data.id} id={data.id} imgUrl={data.imgUrl} title={data.title} qty={data.qty} data={data} slug={data.slug} />)
                         }
                     </Slider>
+
+                    <div className="controlls">
+                        <button onClick={previous} type="button"><FontAwesomeIcon icon={faArrowLeft} /></button>
+                        <button onClick={next} type="button"><FontAwesomeIcon icon={faArrowRight} /></button>
+                    </div>
+                    <div style={{textAlign:'center',width:'100%',marginTop:'30px',textDecoration:'underline'}}>
+                        <Link href={'/products'}>View all products</Link>
+                    </div>
                 </div>
             </div>
         </>

@@ -24,23 +24,50 @@ main {
   min-height: 60vh;
 }
 
-/* -------------Blog Headings------------ */
-
-.blogHeading h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  margin: 10px 0;
+.quikIconCont {
+  position: fixed;
+  z-index: 50;
+  bottom: 0;
+  right: 0;
+  margin: 8px;
 }
 
-.blogHeading h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  margin: 10px 0;
+.quikIconCont .whatsCont {
+  cursor: pointer;
+  transition: all 0.5s;
 }
 
-/* -------------Blog Headings End------------ */
+.quikIconCont .whatsCont .whatsapp {
+  font-size: 35px;
+  background-color: green;
+  border-radius: 50%;
+  padding: 8px;
+  color: white;
+}
+
+.quikIconCont .whatsCont:hover {
+  transform: scale(1.1);
+}
+
+.quikIconCont .upCont {
+  cursor: pointer;
+  transition: all 0.5s;
+  display: none;
+}
+
+.quikIconCont .upCont .arrowUp {
+  font-size: 35px;
+  border-radius: 50%;
+  padding: 8px;
+  background-color: #dfb434;
+  color: white;
+  transition: all 0.5s;
+}
+
+.quikIconCont .upCont:hover .arrowUp {
+  transform: scale(1.1);
+}
+
 
 /* -------------Tool Bar------------ */
 .toolBarCont {
@@ -638,6 +665,27 @@ main {
   height: inherit;
 }
 
+.productCont .slider .controlls {
+  display: flex;
+  margin-top: 30px;
+  width: 100%;
+  justify-content: center;
+  gap: 30px;
+}
+
+.productCont .slider .controlls button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  color: black;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  transition: all 0.5s;
+  font-size: large;
+}
+.productCont .slider .controlls button:hover{
+  background-color: #dfb434;
+}
+
 .productCard {
   height: inherit;
   display: flex;
@@ -806,6 +854,9 @@ main {
   min-width: 250px;
   width: 30%;
   transition: all 0.5s;
+  padding: 10px 0;
+  text-align: center;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
 .blogsCont .card .imgCont {
@@ -826,6 +877,7 @@ main {
 
 .blogsCont .card img {
   border-radius: 10px;
+  margin: auto;
 }
 
 .blogsCont .card h2 {
@@ -961,7 +1013,7 @@ main {
   text-transform: uppercase;
   color: #e5efe0;
   font-weight: bolder;
-  font-size:x-small;
+  font-size: x-small;
   letter-spacing: -0.5px;
   text-align: center;
   width: 150px;
@@ -2482,6 +2534,7 @@ select {
   padding: 10px;
   border-radius: 10px;
 }
+
 /*
 
 .aboutPage .postCont .img img {
