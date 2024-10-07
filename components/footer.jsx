@@ -22,10 +22,10 @@ export default function Footer() {
                 <div className="logo">
                     {/* <img src="/transLogo.png" alt="Logo" width={50} /> */}
                     <ol>
-                        <img src="/logos/PE-Main-Logo.png" alt="Logo" /><br />
-                        <p style={{ textAlign: 'center' }} ><b>&quot;The Purest Products, For a Better You&quot;</b></p>
+                        <img src="/logos/PE-Small-Text-Logo-Large.png" alt="Logo" /><br />
+                        <p><b>&quot;The Purest Products, For a Better You&quot;</b></p>
                     </ol>
-                    {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  /> */}
+                    {/* <img src="/logos/PE-Main-Logo.png" alt="Logo"  /> */}
                     {/* <div>
                         <h1><strong style={{ color: '#dfb434' }}>Pur</strong> Essence</h1>
                     </div> */}

@@ -927,27 +927,27 @@ main {
   display: flex;
   flex-flow: row nowrap;
   gap: 10px;
-  width: 30%;
+  width: 10%;
+  max-width: 100px;
   align-items: center;
   line-height: 1;
 }
 
 .logo img {
-  width: 300px;
+  width: 200px;
+  max-width: 200px;
   transition: all 0.5s;
 }
 
-.logo h1 {
+.logo p {
   text-transform: uppercase;
   color: #e5efe0;
   font-weight: bolder;
-  font-size: 1.5rem;
-}
-
-.logo p {
-  color: #e5efe0;
   font-size: small;
   letter-spacing: -0.5px;
+  text-align: center;
+  width: 200px;
+  max-width: 200px;
 }
 
 .footer .explore,
@@ -2337,6 +2337,14 @@ select {
   margin: 10px 0;
 }
 
+.faqsCont h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: left;
+  text-indent: 50px;
+  margin: 10px 0;
+}
+
 .faqsCont .infoCont {
   margin: 40px 10px 0 10px;
 }
@@ -2355,7 +2363,7 @@ select {
 
 .accordCont {
   width: 100%;
-  max-width: 1300px;
+  max-width: 1000px;
   margin: auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 50px 10px;
@@ -2376,7 +2384,7 @@ select {
 }
 
 .aboutBanner {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/PE-Olive-Oil-5.webp');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/PE-Honey-B2.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2409,6 +2417,14 @@ select {
   padding-bottom: 20px;
 }
 
+.aboutPage .firstCont h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--blue-1);
+  font-weight: bolder;
+  padding-bottom: 20px;
+}
+
 .aboutPage .postCont {
   display: flex;
   flex-flow: row nowrap;
@@ -2427,16 +2443,15 @@ select {
   display: flex;
   flex-flow: column nowrap;
   gap: 20px;
-  text-align: left;
+  text-align: center;
   padding: 20px 0;
   /* border:2px solid black; */
 }
 
 .aboutPage .postCont .text h2 {
-  font-size: 1.5rem;
-  color: grey;
-  font-weight: bolder;
-  text-transform: uppercase;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .aboutPage .firstCont .subCont p,
@@ -2450,6 +2465,7 @@ select {
   padding: 10px;
   border-radius: 10px;
 }
+/*
 
 .aboutPage .postCont .img img {
   width: 100%;
@@ -2473,11 +2489,19 @@ select {
   color: var(--blue-1);
   font-weight: bolder;
 }
+*/
+
+/* About Quote */
+.aboutPage .aboutQuote {
+  font-weight: bolder;
+  text-transform: uppercase;
+  color: #34542c;
+  font-size: x-large;
+}
 
 .aboutPage .secondCont ul {
   list-style-type: disc;
   list-style-position: inside;
-  font-size: 1.2rem;
   display: flex;
   flex-flow: row wrap;
   width: 100%;

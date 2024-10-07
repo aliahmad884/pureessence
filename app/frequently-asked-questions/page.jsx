@@ -27,27 +27,36 @@ export default function FAQs() {
             <div className="faqsCont">
                 <div className="accordCont">
                     <h1>FAQs</h1>
+                    <h2>Accounts and Security</h2>
                     <Accordion defaultActiveKey={1} style={{ padding: '0 10px' }}>
-                        <Accordion.Panel className="accordPanel" classPrefix="temp" eventKey={1} header='Panel 1'>
-                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>orem ipsum dolor, sit amet consectetur adipisicing elit. Tempore sed, expedita earum et dolorem modi suscipit laboriosam neque quidem enim praesentium velit fugit impedit laborum amet dolorum aspernatur quia? Cum.
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo dolorum recusandae impedit corporis obcaecati exercitationem ad esse nisi provident laborum ipsam autem, magni beatae tempore. Nisi corporis itaque doloribus perferendis.
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus velit assumenda, aliquid vel odit iusto voluptates at! Assumenda neque vitae, earum aspernatur tenetur rerum molestiae animi, maiores voluptatem quibusdam itaque?</p>
+                        <Accordion.Panel className="accordPanel" classPrefix="temp" eventKey={1} header='Can I make a purchase without logging in?'>
+                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>Yes, you can make orders without logging in by calling us or by live chat on WhatsApp.</p>
                         </Accordion.Panel>
-                        <Accordion.Panel className="accordPanel" classPrefix="temp" header='Panel 1' eventKey={2}>
-                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>orem ipsum dolor, sit amet consectetur adipisicing elit. Tempore sed, expedita earum et dolorem modi suscipit laboriosam neque quidem enim praesentium velit fugit impedit laborum amet dolorum aspernatur quia? Cum.
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo dolorum recusandae impedit corporis obcaecati exercitationem ad esse nisi provident laborum ipsam autem, magni beatae tempore. Nisi corporis itaque doloribus perferendis.
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus velit assumenda, aliquid vel odit iusto voluptates at! Assumenda neque vitae, earum aspernatur tenetur rerum molestiae animi, maiores voluptatem quibusdam itaque?</p>
-                        </Accordion.Panel>
-                        <Accordion.Panel className="accordPanel" classPrefix="temp" header='Panel 1' eventKey={3}>
-                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>orem ipsum dolor, sit amet consectetur adipisicing elit. Tempore sed, expedita earum et dolorem modi suscipit laboriosam neque quidem enim praesentium velit fugit impedit laborum amet dolorum aspernatur quia? Cum.
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo dolorum recusandae impedit corporis obcaecati exercitationem ad esse nisi provident laborum ipsam autem, magni beatae tempore. Nisi corporis itaque doloribus perferendis.
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus velit assumenda, aliquid vel odit iusto voluptates at! Assumenda neque vitae, earum aspernatur tenetur rerum molestiae animi, maiores voluptatem quibusdam itaque?</p>
+                        <Accordion.Panel className="accordPanel" classPrefix="temp" header='Do you save my card details?' eventKey={2}>
+                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>Currently, we do not store card details. All data is only stored on your local device, such as your computer or mobile device.</p>
                         </Accordion.Panel>
                     </Accordion>
                     <div className='infoCont'>
-                        <h4>For more info lorem</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat dignissimos ea distinctio, dolores maiores rerum eum praesentium, facere aliquam cum eaque at et sapiente. Quam alias recusandae quis sequi rerum.lor Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae minus neque fugiat pariatur aperiam consequatur cum distinctio nostrum animi, corporis, labore ullam earum modi nam corrupti obcaecati quo quibusdam nihil.</p>
+                       <h4></h4>
+                        <p></p>
                     </div>
+                    <h2>Delivery</h2>
+                    <Accordion defaultActiveKey={1} style={{ padding: '0 10px' }}>
+                        <Accordion.Panel className="accordPanel" classPrefix="temp" eventKey={4} header='What are the delivery costs?'>
+                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>Delivery costs, ranging from free to domestic and international are quoted based on location and order amount. Please contact us for more information.</p>
+                        </Accordion.Panel>
+                        <Accordion.Panel className="accordPanel" classPrefix="temp" header='How do I track my order?' eventKey={5}>
+                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>You will be provided with a tracking code, which you can check with the delivery service.</p>
+                        </Accordion.Panel>
+                        <Accordion.Panel className="accordPanel" classPrefix="temp" header='What if my package was damaged during delivery?' eventKey={5}>
+                            <p style={{ textAlign: 'justify', paddingTop: '20px' }}>In the case of mishap or damage during delviery, don't hesitate to take photos and a video.And please get into contact with us. Our products are well packaged, though we should always plan for errors.</p>
+                        </Accordion.Panel>
+                    </Accordion>
+                    <div className='infoCont'>
+                       <h4></h4>
+                        <p></p>
+                    </div>
+
                 </div>
             </div>
         </>

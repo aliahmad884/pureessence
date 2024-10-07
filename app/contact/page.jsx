@@ -32,7 +32,7 @@ export default function ContactPage() {
                             <div className="socialIcon">
                                 <a href="#"><img src="twitter.webp" alt="Twitter" /></a>
                                 <a href="#"><img src="facebook.webp" alt="Facebook" /></a>
-                                <a href="#"><img src="whatsappB.webp" alt="WhatsApp" /></a>
+                                <a href="#"><img src="whatsapp.webp" alt="WhatsApp" /></a>
                             </div>
                         </div>
                     </div>
@@ -92,6 +92,28 @@ export default function ContactPage() {
                                 </div>
                             </div>
                         </div>
+                        <div className="departmentCont">
+                        <h2>Contact Guide</h2>
+                        <div className="departSubCont">
+                            <div className="contactDetails">
+                                <h2>Why to Contact Us?</h2>
+                                <li>If you need help selecting the right natural products or supplements</li>
+                                <li>For any inquiries regarding your order status, shipping, or delivery</li>
+                                <li>If you experience any issues with a product or delivery</li>
+                                <li>When you need clarification on how to use our products or understand their benefits</li>
+                                <li>For any other general questions or feedback</li>
+                            </div>
+                            <div className="contactDetails">
+                                <h2> When to Contact Us?</h2>
+                                <p>You may contact us during business hours. Expect to hear from us in an hour on average. <br /><br/>You can also contact us on weekends, we may reply on the same day, though our guarentee is on the next working day.</p>
+                            </div>
+                            <div className="contactDetails">
+                                <h2> Visit Our FAQs</h2>
+                                <p>Please visit our FAQ Page for answers to common questions.</p><br />
+                                <a href='/frequently-asked-questions'><p style={{ textAlign: 'center' }}>Visit FAQ Page ↗️</p></a>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
