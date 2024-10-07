@@ -1,8 +1,11 @@
+"use client"
+
 import { useDataContext } from "@/context";
 import { faCartShopping, faEye, faInfoCircle, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Link from "next/link"
 
 export default function ReviewCard() {
     return (
@@ -65,7 +68,7 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
                 <h3>{shortDes}</h3>
                 <p>{price}</p>
                 <div className="btnCont">
-                    <button onClick={() => router.push(`/products/${slug}`)} className="btnPreview" type="button"><FontAwesomeIcon icon={faEye}/> View</button>
+                    <Link href={`/products/${slug}`} className="btnPreview"><FontAwesomeIcon icon={faEye}/> View</Link>
                     {/* <button className="addToCart" onClick={() => handleCart()} type="button">Add to Cart</button> */}
                     <FontAwesomeIcon onClick={() => handleCart()} className="addToCart" icon={faCartShopping} />
                 </div>
