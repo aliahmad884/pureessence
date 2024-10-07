@@ -5,11 +5,10 @@ export default function Returns() {
         <>
             <div className="legalCont">
                 <h1>Shipping and Returns Policy</h1>
-
+                <br /><hr /><br />
                 <p><strong>Last Updated: 05th October 2024</strong></p>
-
                 <p>
-                    Welcome to Pure Essence. Our goal is to ensure that you have a seamless shopping experience with us. Please review our Shipping and Returns Policy below for details on how we handle shipping and returns for your orders.
+                    Welcome to PurEssence. Our goal is to ensure that you have a seamless shopping experience with us. Please review our Shipping and Returns Policy below for details on how we handle shipping and returns for your orders.
                 </p>
 
                 <h2>Shipping Policy</h2>
