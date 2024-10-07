@@ -24,6 +24,25 @@ main {
   min-height: 60vh;
 }
 
+/* -------------Blog Headings------------ */
+
+.blogHeading h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.blogHeading h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* -------------Blog Headings End------------ */
+
+
 .quikIconCont {
   position: fixed;
   z-index: 50;
