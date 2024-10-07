@@ -25,7 +25,9 @@ main {
 }
 
 /* -------------Blog Headings------------ */
-
+.blogHeading{
+  padding: 100px 20px;
+}
 .blogHeading h1 {
   font-size: 2.5rem;
   font-weight: bold;
