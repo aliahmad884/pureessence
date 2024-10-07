@@ -86,7 +86,7 @@ const ProductData = [
     {
         id: 8,
         imgUrl: '/products/HoneyComb with Honey.webp',
-        title: 'HoneyComb with Honey.webp',
+        title: 'HoneyComb with Honey',
         slug: 'honeycomb-honey',
         shortDes: 'Honey with Honeycomb',
         description: 'Pure honey with honeycomb. A natural, raw treat, the honeycomb adds texture and enhances the experience of consuming fresh honey, packed with nutrients and enzymes.',
@@ -99,7 +99,7 @@ const ProductData = [
         id: 9,
         imgUrl: '/products/Khalta Booster.webp',
         title: 'Khalta Booster',
-        slug: 'khalta-virility-booster',
+        slug: 'khalta-vitality-booster',
         shortDes: 'A Blend of Potent Natural Ingredients in Honey',
         description: 'An very powerful honey mix designed to boost energy and vitality. Khalta Booster is ideal for those looking to enhance stamina, recovery, and overall health with natural ingredients. Royal-Khalta-Booster Ingredients: Bardakosh, ginseng, shilajit, bee propolis, Ferula hermonis (giant fennel), saffron, poppy seed paste, sesame paste, Ceylon cinnamon, sumac, Bentong ginger, solo garlic, Doum palm fruit, Akarkara root powder, Maca root powder, Nigella sativa seeds (black seed),  honey, royal Sidr honey, Nigella sativa honey, desert flower honey, golden honey, royal Sumor honey, cashew nuts, almonds, sunflower seeds, and peanuts. Allergen Advice: This product contains nuts (cashew nuts, almonds, peanuts), seeds (sunflower seeds, nigella sativa seeds), and may contain traces of other allergens.',
         price: 'Please Enquire For Price',
