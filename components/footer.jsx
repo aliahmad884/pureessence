@@ -44,10 +44,10 @@ export default function Footer() {
                     </div>
                     <div className="bestSeller">
                         <h2>Popular</h2>
-                        <a href="#">Honey</a>
-                        <a href="#">Vinegar</a>
-                        <a href="#">Concentrate</a>
-                        <a href="#">Syrup</a>
+                        <a href="/products">Honey</a>
+                        <a href="/products">Vinegar</a>
+                        <a href="/products">Concentrate</a>
+                        <a href="/products">Syrup</a>
                     </div>
                     <div className="legal">
                         <h2><Link href={'/legal'}>Legal &amp; Info</Link></h2>
