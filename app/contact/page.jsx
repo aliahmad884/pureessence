@@ -145,7 +145,7 @@ export default function ContactPage() {
                                 <div className="contactDetails">
                                     <h2> Visit Our FAQs</h2>
                                     <p>Please visit our FAQ Page for answers to common questions.</p><br />
-                                    <Link href='/frequently-asked-questions'><p style={{ textAlign: 'center' }}>Visit FAQ Page ↗️</p></Link>
+                                    <Link href='/frequently-asked-questions'><p style={{ textAlign: 'center' }}><b>Visit FAQ Page ↗️</b></p></Link>
                                 </div>
                             </div>
                         </div>

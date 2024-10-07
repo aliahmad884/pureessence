@@ -35,7 +35,7 @@ export default function Hero() {
                     <h1>About the Brand</h1>
                     <p>Feeling tired? Or just wanting that raw power you know is in your potential. Or maybe you want to preserve that precious health that you have?</p>
                     <br />
-                    <p>All of these things is why PurEssence launched an online store to serve health products and foods.</p>
+                    <p>All of these reasons is why PurEssence launched an online store to serve health products and foods.</p>
                     <br />
                     <p>The PurEssence team come from a background of herbal practitioners and philanthropists, sharing knowledge, guidance and solutions.</p>
                     <br />

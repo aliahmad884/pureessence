@@ -13,7 +13,7 @@ export default function Terms() {
                 </div>
                 <br />
                 <div>
-                        <h2><Link href="/legal/terms-conditions">Terms</Link></h2><br />
+                        <h2><Link href="/legal/terms-conditions">Terms and Conditions</Link></h2><br />
                         <h2><Link href="/legal/privacy-policy">Privacy Policy</Link></h2><br />
                         <h2><Link href="/legal/shipping-returns-policy">Shipping and Returns</Link></h2><br />
                         <h2><Link href="/legal/disclaimer">Disclaimer</Link></h2><br /><br />

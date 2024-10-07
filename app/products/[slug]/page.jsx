@@ -81,7 +81,7 @@ export default function Products({ params }) {
                         <button onClick={handleCart} style={(product.stock === 'out of stock') ? { backgroundColor: 'grey' } : null} disabled={(product.stock === 'out of stock') ? true : false} type="button">{(product.stock === 'out of stock') ? product.stock : 'Add to Cart'}</button>
                         <h4><strong>Availability :</strong> {product.stock}</h4>
                         <div>
-                            <a href="#">Ask Us Question</a> &nbsp;
+                            <a href="#">Ask Us a Question</a> &nbsp;
                             <Link href={'/products'}>Back To Products</Link>
                         </div>
                     </div>
