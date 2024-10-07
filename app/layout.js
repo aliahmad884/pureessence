@@ -27,10 +27,6 @@ export default function RootLayout({ children }) {
   // }, [])
   return (
     <html lang="en">
-      <head>
-        <title>PurEssence</title>
-        <meta name="description" content="Pur Essence Home Page..!" />
-      </head>
       <body>
         {/* {!isLoading ? <FallBackLoader /> : ( */}
         <ContextProvider>
@@ -48,7 +44,7 @@ export default function RootLayout({ children }) {
                   <Navbar />
                 </>
               )}
-              <Whatsapp/>
+              <Whatsapp />
               {children}
               {(
                 pathName.startsWith('/admin') ||
