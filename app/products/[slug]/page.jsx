@@ -77,7 +77,7 @@ export default function Products({ params }) {
                     <div className="detailsCont">
                         <h1>{product.title}</h1>
                         <p>{product.shortDes}</p>
-                        <h3>&pound;{product.price} GBP</h3>
+                        <h3 style={{cursor:'pointer',textDecoration:'underline',width:'fit-content'}} onClick={() => window.open('https://wa.me/+4401254411076')}>{product.price}</h3>
                         <button onClick={handleCart} style={(product.stock === 'out of stock') ? { backgroundColor: 'grey' } : null} disabled={(product.stock === 'out of stock') ? true : false} type="button">{(product.stock === 'out of stock') ? product.stock : 'Add to Cart'}</button>
                         <h4><strong>Availability :</strong> {product.stock}</h4>
                         <div>
@@ -88,10 +88,6 @@ export default function Products({ params }) {
                 </div>
                 <hr />
                 <div className="overViewCont">
-                    {/* <div className="tabs">
-                        <button type="button">Product Overview</button>
-                        <button type="button">Advisory Information</button>
-                    </div> */}
                     <div className="output">
                         <h1>Product Overview</h1>
                         <p>{product.description}</p>

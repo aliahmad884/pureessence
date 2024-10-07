@@ -38,8 +38,8 @@ export default function Shipping() {
         localStorage.removeItem('billingInfo')
         const uniqueId = strGen(25)
         console.log(uniqueId)
-        const storedCart = localStorage.getItem('cart')
-        let amount = calculateAmout(JSON.parse(storedCart))
+        // const storedCart = localStorage.getItem('cart')
+        // let amount = calculateAmout(JSON.parse(storedCart))
         const body = {
             email: loggedUser ? loggedUser.Email : email,
             firstName: firstName,
@@ -48,7 +48,7 @@ export default function Shipping() {
             country: country,
             city: city,
             phone: phone,
-            total: amount
+            // total: amount
         }
         localStorage.setItem('billingInfo', JSON.stringify(body))
         localStorage.setItem('uniqueId', uniqueId)

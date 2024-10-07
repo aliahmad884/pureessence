@@ -17,6 +17,7 @@ export default function Invoice() {
     }
     useEffect(() => {
         fetch(`/api/order?invId=${invId}`).then(res => res.json()).then(result => {
+            console.log(result)
             setInvData(result.data)
             setIsloading(false)
         }).catch(err => {
@@ -69,21 +70,20 @@ export default function Invoice() {
                             </tr>
                         </thead>
                         <tbody>
-                            {
-                                invData.items.map((item,i) => (
-                                    <tr key={item.id}>
-                                        <td>{i+1}</td>
-                                        <td>
-                                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                <img src={item.imgUrl} alt={item.title} width={60} />&nbsp;
-                                                <p>{item.title}</p>
-                                            </div>
-                                        </td>
-                                        <td>{item.qty}</td>
-                                        <td>&pound;{item.price}</td>
-                                        <td>&pound;{item.price * item.qty}</td>
-                                    </tr>
-                                ))
+                            {invData.items ? invData.items.map((item, i) => (
+                                <tr key={item.id}>
+                                    <td>{i + 1}</td>
+                                    <td>
+                                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                                            <img src={item.imgUrl} alt={item.title} width={60} />&nbsp;
+                                            <p>{item.title}</p>
+                                        </div>
+                                    </td>
+                                    <td>{item.qty}</td>
+                                    <td>&pound;{item.price}</td>
+                                    <td>&pound;{item.price * item.qty}</td>
+                                </tr>
+                            )) : console.log('invData.itmes Not found')
                             }
                         </tbody>
                     </table>

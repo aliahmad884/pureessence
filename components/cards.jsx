@@ -63,7 +63,7 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
                 {/* <img src={imgUrl} alt={title} /> */}
                 <h2>{title}</h2>
                 <h3>{shortDes}</h3>
-                <p>{price}&pound;</p>
+                <p>{price}</p>
                 <div className="btnCont">
                     <button onClick={() => router.push(`/products/${slug}`)} className="btnPreview" type="button"><FontAwesomeIcon icon={faEye}/> View</button>
                     {/* <button className="addToCart" onClick={() => handleCart()} type="button">Add to Cart</button> */}
