@@ -1,13 +1,14 @@
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize('pureessence', 'root', 'ali3627516', {
-    host: 'localhost',
-    dialect: 'mysql'
-})
-// const sequelize = new Sequelize('purEssence_', 'AliAhmad', '8Tj7ul85$', {
-//     host: '87.106.203.126',
-//     dialect:'mysql'
+// const sequelize = new Sequelize('pureessence', 'root', 'ali3627516', {
+//     host: 'localhost',
+//     dialect: 'mysql'
 // })
+
+const sequelize = new Sequelize('purEssence_', 'AliAhmad', '8Tj7ul85$', {
+    host: 'localhost',
+    dialect:'mysql'
+})
 
 sequelize.authenticate()
     .then(() => console.log('Connection Established!'))

@@ -1,7 +1,7 @@
 "use client"
 import FallBackLoader from "@/components/loader";
 import { useDataContext } from "@/context";
-import { faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from 'react'
@@ -30,6 +30,7 @@ export default function Checkout() {
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(body)
         }).then(res => res.json()).then(result => {
+            console.log(result)
             setIsLoading(false)
             setOrderConfirmed(true)
             localStorage.removeItem('uniqueId')
@@ -77,9 +78,9 @@ export default function Checkout() {
                                         <img src={data.imgUrl} alt={data.title} width={60} />
                                         <p>{data.title}</p>
                                     </div>
-                                    <div className="price"><strong>Price: </strong><p>&pound;{data.price}</p></div>
+                                    {/* <div className="price"><strong>Price: </strong><p>&pound;{data.price}</p></div> */}
                                     <div className="qty"><strong>Qty: </strong><p></p>{data.qty}</div>
-                                    <div className="total"><strong>Total: </strong><p>&pound;{data.qty * data.price}</p></div>
+                                    {/* <div className="total"><strong>Total: </strong><p>&pound;{data.qty * data.price}</p></div> */}
                                 </div>
                             )) : null
                         }
@@ -93,12 +94,12 @@ export default function Checkout() {
                                 <p><strong>Phone: </strong>{billingInfo.phone}</p>
                                 <p><strong>Ship to: </strong>{billingInfo.address}</p>
                             </div>
-                            <div className="orderTotal">
+                            {/* <div className="orderTotal">
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>SubTotal: </strong><p>&pound;{billingInfo.total}</p></div>
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Shipping Fee: </strong><p>&pound;12.63</p></div>
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Discount: </strong><p>&pound;0</p></div>
                                 <div style={{ borderTop: "2px solid rgb(224, 224, 224)", display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Total: </strong><p><strong>&pound;{eval(billingInfo.total + 12.63 + 0)} GBP</strong></p></div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="btnAction">

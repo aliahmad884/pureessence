@@ -1,6 +1,6 @@
 const { res } = require('../syntaxShorter.js')
 const { Order, Invoice } = require("../schemas.js")
-import { where } from "sequelize";
+import nodemailer from "nodemailer";
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -46,6 +46,17 @@ export async function POST(req) {
     const body = await req.json()
     const reqtyp = searchParams.get('reqTyp')
     const paramId = searchParams.get('paymentIntentId')
+
+    let transporter = nodemailer.createTransport({
+        host: 'smtp.ionos.co.uk',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'data@puressenceltd.co.uk',
+            pass: 'Lqv39KGQ6NUQ!_#',
+        },
+    })
+
     try {
         if (reqtyp === 'invoice') {
             const { cartData, ...billInfo } = body
@@ -55,6 +66,29 @@ export async function POST(req) {
                 date: new Date()
             })
             const invoiceId = newInvoice.dataValues.id;
+
+            // ------------ Email Section ---------------
+
+            const clientOptions = {
+                from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
+                to: billInfo.email,
+                subject: 'Order Confirmation',
+                html: `<p>Hello pa g ma spam nahi hon</p>`
+            }
+            let clientInfo = await transporter.sendMail(clientOptions)
+            console.log(clientInfo.messageId)
+
+            const adminOptions = {
+                from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
+                to: 'data@puressenceltd.co.uk',
+                subject: 'Order Placed',
+                html: `<p>Hello pa g ma spam nahi hon</p>`
+            }
+            let adminInfo = await transporter.sendMail(adminOptions)
+            console.log(adminInfo.messageId)
+
+            // ------------ Response Return ---------------
+
             return res({ res: "Request recieved", invoiceId: invoiceId }, 200)
         }
         let paymentId = (await stripe.paymentIntents.retrieve(paramId ? paramId : 'pi_3Q403YRqfkkgc0Q105cLWt8C')).payment_method
@@ -74,6 +108,6 @@ export async function POST(req) {
     }
     catch (err) {
         console.log(err)
-        return res({ res: 'Internal Server Error!' }, 500)
+        return res({ res: 'Internal Server Error!', serverError: err }, 500)
     }
 }

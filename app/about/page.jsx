@@ -1,9 +1,9 @@
 export default function AboutPage() {
     return (
         <>
-        <div className="aboutBanner">
-            <h1>About Us</h1>
-        </div>
+            <div className="aboutBanner">
+                <h1>About Us</h1>
+            </div>
             <div className="aboutPage">
                 <div className="firstCont">
                     <div className="postCont">
@@ -13,6 +13,7 @@ export default function AboutPage() {
                             The late father of the founder was a herbal practitioner, retiring as a teacher and a philanthropist.<br />
                             PurEssence runs as a living memory to his works and mission, to serve the weak, walking and the world.<br />
                             PurEssence is not only for recovering from ailment, but to preserve and better health. To do that we ensure to only use the most natural products. We only serve what excites us- natural health and products- and we believe our customers will feel the same way. Knowing that the sources are pure give us satisfaction to use these products ourselves, and to serve our customers.
+
                             </p>
                             <h2>Our Mission</h2>
                             <p>Our mission at PurEssence is to provide everyday people with the best quality product. The same quality that is found in nature.<br />We further commit to inform and motivate user to live a healthy lifestyle by being in sync with nature. The biggest way to do that is our biggest physical input, which is our mouths. By serving the best health foods and health supplements, we wish to boost our customers&apos; health and lives.</p>
@@ -28,10 +29,10 @@ export default function AboutPage() {
                         <h2>What&apos;s Behind the Name?</h2>
                         <p>In herbal medicine and in conventional medicine, each herb or medicine has an intrinsic value due to which it is used or applied. Likewise, each food, drink, herb and supplement has an intrinsic value. This value however can be reduced by time, elements, adulteration and interaction. To ensure this doesn&apos;t happen, we make sure our products are of the best and freshest quality, pure and securely packed.<br /> This is how the name PureEssence comes to be.</p><br />
                         <h2>What PurEssence Ensures for You</h2>
-                        <p>Being pure doesn&apos;t always come easy. Especially in the fast modern world, it can be tempting to just get it over and done with. But... <br /><br />
+                        <div>Being pure doesn&apos;t always come easy. Especially in the fast modern world, it can be tempting to just get it over and done with. But... <br /><br />
                             <p className="aboutQuote" style={{ textAlign: 'center' }}>&quot; With Great Pureness, Comes Great Responsibility.&quot;</p><br />
                             To ensure we live up to this standard, we ensure to provide:
-                        </p>
+                        </div>
                     </div>
                 </div>
 
@@ -64,6 +65,7 @@ export default function AboutPage() {
                             Just like those who have gone before us, we too shall pass. It&apos;s best to live healthier and stronger, whilst doing good and spreading good. I hope you join me in the mission to do good. To be kind and caring to ourselves and others, by eating, drinking and healing in the best and most natural way possible, and encouraging others to do so too.<br /><br />
                             Last but not least, sharing is caring. The best way to preserve knowledge is by writing it down. That is why I will be sharing my journey, as well as sharing ideas, tips and advice on how to live a pure and healthy life.<br /><br />
                             <i><b>~ Hashaam Naseer</b></i>
+
                             </p>
                             <h2>Learn More About Us</h2>
                             <p>You can learn more by visiting our <strong><a href="/frequently-asked-questions">FAQs</a>.</strong> You may also visit our <strong><a href="/contact">contact page</a></strong> for our social media or instant messaging. You may also email us or send us an email. </p>

@@ -22,7 +22,7 @@ export default function ProductPage() {
             <div className="productPage">
                 <div className="productsCont">
                     {
-                        data.map(data => <ProductCard key={data.id} id={data.id} imgUrl={data.imgUrl} title={data.title} price={data.price} qty={data.qty} data={data} shortDes={data.shortDes} slug={data.slug} />)
+                        data.map(data => <ProductCard key={data.id} id={data.id} imgUrl={data.imgUrl} title={data.title}  qty={data.qty} data={data} shortDes={data.shortDes} slug={data.slug} />)
                     }
                 </div>
             </div>

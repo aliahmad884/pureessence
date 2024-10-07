@@ -6,7 +6,7 @@ const ProductData = [
         slug: 'acacia-pure-honey',
         shortDes: 'Honey derived from Robinia pseudoacacia flower, commonly known as the Black Locust or False Acacia tree.',
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi sint iusto tempora illo fugit obcaecati saepe nihil ea ipsa, suscipit architecto mollitia explicabo tempore. Voluptas consequuntur suscipit possimus! Deserunt, obcaecati.',
-        price: '120',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -18,7 +18,7 @@ const ProductData = [
         slug: 'apple-vinegar',
         shortDes: 'Good Quality Apple Vinegar',
         description: 'Good Quality Apple Vinegar',
-        price: '198',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -30,7 +30,7 @@ const ProductData = [
         slug: 'apricot-flower-pure-honey',
         shortDes: 'Apricot Flower Pure Honey',
         description: 'Apricot Flower Pure Honey',
-        price: '25',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -42,7 +42,7 @@ const ProductData = [
         slug: 'black-seed-in-honey',
         shortDes: 'Black Seeds in Honey!',
         description: 'Black Seeds in Honey!',
-        price: '65',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -54,7 +54,7 @@ const ProductData = [
         slug: 'dates-syrup',
         shortDes: 'Pourable Syrup of Dates!',
         description: 'Pourable Syrup of Dates!',
-        price: '89',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -66,7 +66,7 @@ const ProductData = [
         slug: 'egyptian-desert-herb-flower-honey',
         shortDes: 'Authentic Egyptian Honey',
         description: 'Authentic Egyptian Honey',
-        price: '23',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -78,7 +78,7 @@ const ProductData = [
         slug: 'habbatus-sauda-royal-honey',
         shortDes: 'Authentic Egyptian Honey',
         description: 'Authentic Egyptian Honey',
-        price: '46',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -90,7 +90,7 @@ const ProductData = [
         slug: 'honeycomb-honey',
         shortDes: 'Authentic Egyptian Honey',
         description: 'Authentic Egyptian Honey',
-        price: '78',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -102,7 +102,7 @@ const ProductData = [
         slug: 'khalta-booster',
         shortDes: 'Authentic Egyptian Honey',
         description: 'Authentic Egyptian Honey',
-        price: '96',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -114,7 +114,7 @@ const ProductData = [
         slug: 'nuts-habbatus-sauda-in-honey',
         shortDes: 'Authentic Egyptian Honey',
         description: 'Authentic Egyptian Honey',
-        price: '56',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -126,7 +126,7 @@ const ProductData = [
         slug: 'ox-garlic',
         shortDes: 'Authentic Egyptian Honey',
         description: 'Authentic Egyptian Honey',
-        price: '74',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -138,7 +138,7 @@ const ProductData = [
         slug: 'palestinian-extra-virgin-olive-oil',
         shortDes: 'Authentic Egyptian Honey',
         description: 'Authentic Egyptian Honey',
-        price: '230',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -150,7 +150,7 @@ const ProductData = [
         slug: 'pomegranate-concentrate',
         shortDes: 'Authentic Egyptian Honey',
         description: 'Authentic Egyptian Honey',
-        price: '650',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -162,7 +162,7 @@ const ProductData = [
         slug: 'pomegranate-vinegar.webp',
         shortDes: 'Pomegranate Vinegar',
         description: 'Pomegranate Vinegar',
-        price: '123',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -174,7 +174,7 @@ const ProductData = [
         slug: 'sunnah-talbinah',
         shortDes: 'Sunnah Talbinah',
         description: 'Sunnah Talbinah',
-        price: '84',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -186,7 +186,7 @@ const ProductData = [
         slug: 'sunnah-talbinah-with-cinnamon',
         shortDes: 'Sunnah Talbinah with Cinnamon',
         description: 'Sunnah Talbinah with Cinnamony',
-        price: '23',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -198,7 +198,7 @@ const ProductData = [
         slug: 'wild-royal-yemeni-cave-sidr-honey',
         shortDes: 'Wild Royal Yemeni Cave Sidr Honey',
         description: 'Wild Royal Yemeni Cave Sidr Honey',
-        price: '550',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -210,7 +210,7 @@ const ProductData = [
         slug: 'zuriat-fruit-in-honey',
         shortDes: 'Zuriat Fruit in Honey',
         description: 'Zuriat Fruit in Honey',
-        price: '452',
+        price: 'Please Enquire For Price',
         images: [],
         qty: 1,
         stock: 'in stock'
