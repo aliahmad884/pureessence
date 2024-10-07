@@ -71,6 +71,7 @@ export default function AboutPage() {
                         </div>
                         <div className="img">
                             <img src="/PE-Honey-P6.jpg" alt="Honey" />
+
                         </div>
                     </div>
                 </div>
