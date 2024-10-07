@@ -27,7 +27,7 @@ export default function FAQs() {
         <>
             <div className="faqsCont">
                 <div className="accordCont">
-                    <h1>FAQs</h1>
+                    <h1>Frequently Asked Questions</h1>
                     <br /><hr /><br />
                     <h2>Accounts and Security</h2>
                     <Accordion defaultActiveKey={1} style={{ padding: '0 10px' }}>
@@ -44,13 +44,13 @@ export default function FAQs() {
                     </div>
                     <h2>Delivery</h2>
                     <Accordion defaultActiveKey={1} style={{ padding: '0 10px' }}>
-                        <Accordion.Panel className="accordPanel" classPrefix="temp" eventKey={4} header='What are the delivery costs?'>
+                        <Accordion.Panel className="accordPanel" classPrefix="temp" eventKey={1} header='What are the delivery costs?'>
                             <p style={{ textAlign: 'justify', paddingTop: '20px' }}>Delivery costs, ranging from free to domestic and international are quoted based on location and order amount. Please contact us for more information.</p>
                         </Accordion.Panel>
-                        <Accordion.Panel className="accordPanel" classPrefix="temp" header='How do I track my order?' eventKey={5}>
+                        <Accordion.Panel className="accordPanel" classPrefix="temp" header='How do I track my order?' eventKey={2}>
                             <p style={{ textAlign: 'justify', paddingTop: '20px' }}>You will be provided with a tracking code, which you can check with the delivery service.</p>
                         </Accordion.Panel>
-                        <Accordion.Panel className="accordPanel" classPrefix="temp" header='What if my package was damaged during delivery?' eventKey={5}>
+                        <Accordion.Panel className="accordPanel" classPrefix="temp" header='What if my package was damaged during delivery?' eventKey={3}>
                             <p style={{ textAlign: 'justify', paddingTop: '20px' }}>In the case of mishap or damage during delviery, don&apos;t hesitate to take photos and a video.And please get into contact with us. Our products are well packaged, though we should always plan for errors.</p>
                         </Accordion.Panel>
                     </Accordion>

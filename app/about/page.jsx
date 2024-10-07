@@ -58,7 +58,7 @@ export default function AboutPage() {
                     <div className="postCont">
                         <div className="text">
                             <h2>A Message From the Founder</h2>
-                            <p>Hi there, I hope you are just of a natural lover as I am.<br /><br />
+                            <p>Hi there, I hope you share my love for a natural and healthy lifestyle.<br /><br />
                                 Sometimes though, nature is not always nice. There are ill days and rough days. But that is part of life.<br /><br />
                                 Despite this I consider myself fortunate to have come from a family of herbal practitioners. My father Hakim Muhammad Naseer and my maternal grandfather Hakim Ismail Rabbani were both qualified Herbal practitioners. I grew up having to know how not only medicine, but food effects us. In fact, when our intake (food, water and whatever enters our stomachs) is good and in order, then for the most part our health is in check.<br /><br />
                                 In my life, I rarely have had to visit a hospital. That is comparing to the average modern citizen. That doesn&apos;t mean I wouldn&apos;t get ill. Rather, for the most part I would be treated using remedies from nature.<br /><br />

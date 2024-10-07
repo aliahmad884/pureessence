@@ -36,7 +36,7 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
             toast.success('Item Added to the Cart.')
         }
         else {
-            toast.success('Item already on Cart.', {
+            toast.success('Please Edit Quantity in Cart.', {
                 icon: <FontAwesomeIcon style={{ color: 'cadetblue', fontSize: '1.5rem' }} icon={faInfoCircle} />
             })
             return null;

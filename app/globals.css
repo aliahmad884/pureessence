@@ -324,7 +324,7 @@ main {
   top: 8px;
   left: 20px;
   font-size: small;
-  background-color: cadetblue;
+  background-color: #dfb434;
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -395,7 +395,7 @@ main {
   position: absolute;
   left: 50%;
   top: -5px;
-  background-color: cadetblue;
+  background-color: #dfb434;
   width: 20px;
   height: 20px;
   font-size: small;
@@ -2422,14 +2422,14 @@ select {
 }
 
 .faqsCont h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   text-align: center;
   margin: 10px 0;
 }
 
 .faqsCont h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
   margin: 10px 0;

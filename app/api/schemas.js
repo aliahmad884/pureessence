@@ -225,16 +225,34 @@ Invoice.init({
     timestamps: false
 });
 
+class NewsLetter extends Model { }
+NewsLetter.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    email: {
+        type: DataTypes.STRING
+    }
+}, {
+
+    sequelize,
+    tableName: 'newsletter',
+    modelName: 'NewsLetter',
+    timestamps: false
+});
 
 
 
-// (async () => {
-//     try {
-//         await sequelize.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
-//         console.log('Table synced successfully!');
-//     } catch (error) {
-//         console.error('Error syncing table:', error);
-//     }
-// })();
 
-module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order, Invoice };
+(async () => {
+    try {
+        await NewsLetter.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+        console.log('Table synced successfully!');
+    } catch (error) {
+        console.error('Error syncing table:', error);
+    }
+})();
+
+module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order, Invoice, NewsLetter };
