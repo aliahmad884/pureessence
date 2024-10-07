@@ -23,7 +23,7 @@ export default function Footer() {
                     {/* <img src="/transLogo.png" alt="Logo" width={50} /> */}
                     <ol>
                         <img src="/logos/PE-Small-Text-Logo-Large.png" alt="Logo" /><br />
-                        <p><b>&quot;The Purest Products, For a Better You&quot;</b></p>
+                        <p><b>&quot;The Purest Products,<br /> For a Better You&quot;</b></p>
                     </ol>
                     {/* <img src="/logos/PE-Main-Logo.png" alt="Logo"  /> */}
                     {/* <div>

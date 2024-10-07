@@ -27,6 +27,7 @@ export default function FAQs() {
             <div className="faqsCont">
                 <div className="accordCont">
                     <h1>FAQs</h1>
+                    <br /><hr /><br />
                     <h2>Accounts and Security</h2>
                     <Accordion defaultActiveKey={1} style={{ padding: '0 10px' }}>
                         <Accordion.Panel className="accordPanel" classPrefix="temp" eventKey={1} header='Can I make a purchase without logging in?'>
@@ -53,8 +54,8 @@ export default function FAQs() {
                         </Accordion.Panel>
                     </Accordion>
                     <div className='infoCont'>
-                       <h4></h4>
-                        <p></p>
+                       <h2>For More Questions Not Covered Here</h2>
+                        <p>Please contact us for any more questions you may have by visiting our <a href="/contact"><b>contact page.</b></a></p>
                     </div>
 
                 </div>

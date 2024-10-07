@@ -5,7 +5,7 @@ export default function PrivacyPolicy() {
         <>
             <div className="legalCont">
                 <h1>Privacy Policy</h1>
-
+                <br /><hr /><br />
                 <p><strong>Last Updated: 05th October 2024</strong></p>
                 <div>
                     <h2>Introduction</h2>

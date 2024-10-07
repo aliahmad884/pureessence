@@ -1,7 +1,13 @@
 export default function BlogsPage() {
     return (
         <>
-            <h1>Blogs Page</h1>
+            <br /><br />
+            <div className="blogHeading">
+                <h1>Blogs Page</h1>
+                <br /><hr />
+                <h2>Our Blogs Are Coming Soon.</h2>
+            </div>
+            <br /><br />
         </>
     )
 }

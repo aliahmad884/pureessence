@@ -4,7 +4,8 @@ export default function Terms() {
     return (
         <>
             <div className="legalCont">
-                <h1>Legal Pages</h1><br />
+                <h1>Legal Pages</h1>
+                <br /><hr /><br />
                 <p><strong>Last Updated: 24th September 2024</strong></p><br />
                 <div>
                     <h2>Here are the links for our legal pages:</h2>

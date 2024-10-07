@@ -65,7 +65,7 @@ export async function POST(req) {
                 items: cartData,
                 date: new Date()
             })
-            const invoiceId = newInvoice.dataValues.id;
+            const invoiceId = newInvoice.dataValues;
 
             // ------------ Email Section ---------------
 
@@ -73,7 +73,26 @@ export async function POST(req) {
                 from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
                 to: billInfo.email,
                 subject: 'Order Confirmation',
-                html: `<p>Hello pa g ma spam nahi hon</p>`
+                html: `
+                        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                            <a href="https://puressenceltd.co.uk"> <img src="https://test.puressenceltd.co.uk/logos/PE-Main-Logo.png"
+                            alt="Logo"></a>
+                            <h1>Order confirmation from <strong>PurEssence LTD</strong></h1>
+                            <h3>Dear ${billInfo.firstName},</h3>
+                            <p>Thank you for placing an order with <strong>PurEssence LTD</strong>. We are pleased to confirm
+                                the invoice of your order PE-INV-000${invoiceId.id}.
+                            </p>
+                            <p>
+                                Your order is now being processing and we will contact you as soon as possible. You will receive a notification
+                                once your order has been shipped. We appreciate the trust you have placed in us and aim to provide you with the highest quality of service.
+                                If you have any questions or need further assistance, please do not hesitate to contact our customer service team at
+                                <strong><a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a></strong> or contact on <strong><a href="https://wa.me/+4401254411076">WhatsApp</a></strong>. Thank you for choosing [your company name]. We value your 
+                                business and look forward to serving you again.
+                            </p>
+                            <p>To see invoice, <a href="http://localhost:3000/invoice?invId=${invoiceId.id}">Click</a></p>
+                            <h4>Warm regards,</h4>
+                            <p> PurEssence LTD.</p>
+                    </div>`
             }
             let clientInfo = await transporter.sendMail(clientOptions)
             console.log(clientInfo.messageId)
@@ -81,15 +100,24 @@ export async function POST(req) {
             const adminOptions = {
                 from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
                 to: 'data@puressenceltd.co.uk',
-                subject: 'Order Placed',
-                html: `<p>Hello pa g ma spam nahi hon</p>`
+                subject: 'New Order Placed',
+                html: `
+                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                    <h1>Order placed by <strong>${billInfo.firstName} ${billInfo.lastName}</strong></h1>
+                    <h2>Client Email: ${billInfo.email}</h2>
+                    <h2>Client Phone: ${billInfo.phone}</h2>
+                    <h2>Shipping Address: ${billInfo.address}</h2>
+                    <h2>Invoice: PE-INV-000${invoiceId.id}</h2>
+                    <h3>Date & Time: ${new Date(invoiceId.date).toDateString()} ${new Date(invoiceId.date).toLocaleTimeString()}</h3>
+                    <p>To see invoice, <a href="http://localhost:3000/invoice?invId=${invoiceId.id}">Click</a></p>
+            </div>`
             }
             let adminInfo = await transporter.sendMail(adminOptions)
             console.log(adminInfo.messageId)
 
             // ------------ Response Return ---------------
 
-            return res({ res: "Request recieved", invoiceId: invoiceId }, 200)
+            return res({ res: "Request recieved", invoiceId: invoiceId.id }, 200)
         }
         let paymentId = (await stripe.paymentIntents.retrieve(paramId ? paramId : 'pi_3Q403YRqfkkgc0Q105cLWt8C')).payment_method
         let payment_method = await stripe.paymentMethods.retrieve(paymentId)

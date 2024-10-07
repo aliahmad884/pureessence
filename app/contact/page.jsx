@@ -1,5 +1,6 @@
 "use client"
 import FallBackLoader from "@/components/loader";
+import Link from "next/link";
 import { useEffect, useState } from "react"
 import toast, { Toaster } from "react-hot-toast";
 
@@ -58,8 +59,8 @@ export default function ContactPage() {
                             <button type="submit">{isSending ? 'Please Wait...' : 'Submit'}</button>
                         </form>
                         <div className="contactDetails">
-                            <h2>PUREssence Contact Details</h2>
-                            <h3><strong>Company Name: </strong>Pure Essence LTD</h3>
+                            <h2>PurEssence Contact Details</h2>
+                            <h3><strong>Company Name: </strong>PurEssence LTD</h3>
                             <h3><strong>Address: </strong>Kings Court 33 King Street, Blackburn, UK, BB2 2DH</h3>
                             <h3><strong>Phone Number: </strong>(+44) 01254 411076</h3>
                             <h3><strong>Email Address: </strong>info@puressenceltd.co.uk</h3>
@@ -144,7 +145,7 @@ export default function ContactPage() {
                                 <div className="contactDetails">
                                     <h2> Visit Our FAQs</h2>
                                     <p>Please visit our FAQ Page for answers to common questions.</p><br />
-                                    <a href='/frequently-asked-questions'><p style={{ textAlign: 'center' }}>Visit FAQ Page ↗️</p></a>
+                                    <Link href='/frequently-asked-questions'><p style={{ textAlign: 'center' }}>Visit FAQ Page ↗️</p></Link>
                                 </div>
                             </div>
                         </div>
