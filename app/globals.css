@@ -24,6 +24,51 @@ main {
   min-height: 60vh;
 }
 
+.quikIconCont {
+  position: fixed;
+  z-index: 50;
+  bottom: 0;
+  right: 0;
+  margin: 8px;
+}
+
+.quikIconCont .whatsCont {
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.quikIconCont .whatsCont .whatsapp {
+  font-size: 35px;
+  background-color: green;
+  border-radius: 50%;
+  padding: 8px;
+  color: white;
+}
+
+.quikIconCont .whatsCont:hover {
+  transform: scale(1.1);
+}
+
+.quikIconCont .upCont {
+  cursor: pointer;
+  transition: all 0.5s;
+  display: none;
+}
+
+.quikIconCont .upCont .arrowUp {
+  font-size: 35px;
+  border-radius: 50%;
+  padding: 8px;
+  background-color: #dfb434;
+  color: white;
+  transition: all 0.5s;
+}
+
+.quikIconCont .upCont:hover .arrowUp {
+  transform: scale(1.1);
+}
+
+
 /* -------------Tool Bar------------ */
 .toolBarCont {
   position: fixed;
@@ -2465,6 +2510,7 @@ select {
   padding: 10px;
   border-radius: 10px;
 }
+
 /*
 
 .aboutPage .postCont .img img {

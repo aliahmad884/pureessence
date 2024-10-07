@@ -8,9 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPrint } from "@fortawesome/free-solid-svg-icons"
 
 export default function Invoice() {
-    const [invData, setInvData] = useState([])
-    const [invItems, setInvItems] = useState([])
-    const [billingData, setBillingData] = useState([])
+    const [invData, setInvData] = useState(null)
     const [isLoading, setIsloading] = useState(true)
     const params = useSearchParams()
     const invId = params.get('invId')
@@ -19,12 +17,8 @@ export default function Invoice() {
     }
     useEffect(() => {
         fetch(`/api/order?invId=${invId}`).then(res => res.json()).then(result => {
-            console.log(result.data)
-            // setInvItems(JSON.parse(result.data.items))
-            setInvItems(result.data.items)
+            console.log(result)
             setInvData(result.data)
-            setBillingData(result.data.billing)
-            // setBillingData(JSON.parse(result.data.billing))
             setIsloading(false)
         }).catch(err => {
             console.log(err)
@@ -52,10 +46,10 @@ export default function Invoice() {
                 <div className="billing-details">
                     <div className="client">
                         <h3>Client Details</h3>
-                        <p><strong>Name: </strong>{billingData.firstName} {billingData.lastName}</p>
-                        <p><strong>Email: </strong>{billingData.email}</p>
-                        <p><strong>Phone: </strong>{billingData.phone}</p>
-                        <p><strong>Address: </strong>{billingData.address}</p>
+                        <p><strong>Name: </strong>{invData.billing.firstName} {invData.billing.lastName}</p>
+                        <p><strong>Email: </strong>{invData.billing.email}</p>
+                        <p><strong>Phone: </strong>{invData.billing.phone}</p>
+                        <p><strong>Address: </strong>{invData.billing.address}</p>
                     </div>
                     <div className="bank">
                         <h3>Bank Account Details</h3>
@@ -76,7 +70,7 @@ export default function Invoice() {
                             </tr>
                         </thead>
                         <tbody>
-                            {invItems ? invItems.map((item, i) => (
+                            {invData.items ? invData.items.map((item, i) => (
                                 <tr key={item.id}>
                                     <td>{i + 1}</td>
                                     <td>
@@ -96,11 +90,11 @@ export default function Invoice() {
                 </div>
                 <div className="amount-container">
                     <div style={{ width: '100%', maxWidth: '400px' }}>
-                        <div className="subCont"><strong>Subtotal:</strong><p>&pound;{billingData.total}</p></div>
+                        <div className="subCont"><strong>Subtotal:</strong><p>&pound;{invData.billing.total}</p></div>
                         <div className="subCont"><strong>Shipping:</strong><p>&pound;12.63</p></div>
                         <div className="subCont"><strong>Tax(if Applicable):</strong><p>&pound;0.00</p></div>
                         <div className="subCont"><strong>Discount:</strong><p>&pound;0.00</p></div>
-                        <div style={{ borderTop: '2px solid rgb(224, 224, 224)', marginTop: '10px', paddingTop: '8px', fontSize: '1.2rem' }} className="subCont"><strong>Total:</strong><p>&pound;{eval(billingData.total + 12.63 + 0)}</p></div>
+                        <div style={{ borderTop: '2px solid rgb(224, 224, 224)', marginTop: '10px', paddingTop: '8px', fontSize: '1.2rem' }} className="subCont"><strong>Total:</strong><p>&pound;{eval(invData.billing.total + 12.63 + 0)}</p></div>
                     </div>
                 </div>
                 <div className="invoice-footer">

@@ -3,10 +3,8 @@ import nodemailer from "nodemailer"
 
 export async function POST(req) {
     const body = await req.json()
-    console.log(body)
-    let count = 0;
 
-    // const { subject, text, html } = body;
+    const { fullName, email, tel, msg } = body;
     let transporter = nodemailer.createTransport({
         host: 'smtp.ionos.co.uk',
         port: 465,
@@ -19,15 +17,21 @@ export async function POST(req) {
 
     try {
         const emailOptions = {
-            from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
-            to: 'alilatakhun2003@gmail.com',
-            subject: 'Spam Checking',
-            text: 'Second test with SSl',
-            html: `<p>Hello pa g ma spam nahi hon</p>`
+            from: 'Contact Form <data@puressenceltd.co.uk>',
+            to: 'data@puressenceltd.co.uk',
+            subject: 'From Contact Form',
+            html: `
+                <div>
+                    <h2>Sender Name: ${fullName}</h2>
+                    <h2>Sender Phone: ${tel}</h2>
+                    <h2>Message</h2>
+                    <div style={{ margin: '20px 30px', textAlign: 'justify' }}>
+                        <p style="font-size:1.2rem;">${msg}</p>
+                    </div>
+                </div>`
         }
-        let info = await transporter.sendMail(emailOptions)
-        console.log(info.messageId)
-        return res({ res: 'Email Sent', index: count }, 200)
+        await transporter.sendMail(emailOptions)
+        return res({ res: 'Email Sent' }, 200)
     }
     catch (err) {
         console.log(err)

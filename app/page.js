@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     setIsLoading(true)
   }, [])
-  if (!isLoading) return <FallBackLoader/>
+  if (!isLoading) return <FallBackLoader />
   return (
     <>
       <Hero />

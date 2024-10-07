@@ -15,6 +15,7 @@ import { CustomProvider } from 'rsuite';
 import { usePathname } from "next/navigation";
 import FallBackLoader from "@/components/loader";
 import 'rsuite/dist/rsuite-no-reset.min.css';
+import Whatsapp from "@/components/whatsapp";
 
 
 
@@ -27,8 +28,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>Pure Essence</title>
-        <meta name="description" content="Pure Essence Home Page..!" />
+        <title>PurEssence</title>
+        <meta name="description" content="Pur Essence Home Page..!" />
       </head>
       <body>
         {/* {!isLoading ? <FallBackLoader /> : ( */}
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
                   <Navbar />
                 </>
               )}
+              <Whatsapp/>
               {children}
               {(
                 pathName.startsWith('/admin') ||
