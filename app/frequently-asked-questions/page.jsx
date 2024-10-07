@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Accordion, Placeholder } from "rsuite";
 import { useEffect, useState } from 'react'
 import FallBackLoader from "@/components/loader";
+import Link from "next/link"
 
 
 export default function FAQs() {
@@ -55,7 +56,7 @@ export default function FAQs() {
                     </Accordion>
                     <div className='infoCont'>
                        <h2>For More Questions Not Covered Here</h2>
-                        <p>Please contact us for any more questions you may have by visiting our <a href="/contact"><b>contact page.</b></a></p>
+                        <p>Please contact us for any more questions you may have by visiting our <Link href="/contact"><b>contact page.</b></Link></p>
                     </div>
 
                 </div>
