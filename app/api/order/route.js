@@ -89,7 +89,7 @@ export async function POST(req) {
                                 <strong><a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a></strong> or contact on <strong><a href="https://wa.me/+4401254411076">WhatsApp</a></strong>. Thank you for choosing [your company name]. We value your 
                                 business and look forward to serving you again.
                             </p>
-                            <p>To see invoice, <a href="http://localhost:3000/invoice?invId=${invoiceId.id}">Click</a></p>
+                            <p>To see invoice, <a href="https://test.puressenceltd.co.uk/invoice?invId=${invoiceId.id}">Click</a></p>
                             <h4>Warm regards,</h4>
                             <p> PurEssence LTD.</p>
                     </div>`
@@ -109,7 +109,7 @@ export async function POST(req) {
                     <h2>Shipping Address: ${billInfo.address}</h2>
                     <h2>Invoice: PE-INV-000${invoiceId.id}</h2>
                     <h3>Date & Time: ${new Date(invoiceId.date).toDateString()} ${new Date(invoiceId.date).toLocaleTimeString()}</h3>
-                    <p>To see invoice, <a href="http://localhost:3000/invoice?invId=${invoiceId.id}">Click</a></p>
+                    <p>To see invoice, <a href="https://test.puressenceltd.co.uk/invoice?invId=${invoiceId.id}">Click</a></p>
             </div>`
             }
             let adminInfo = await transporter.sendMail(adminOptions)
