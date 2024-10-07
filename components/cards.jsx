@@ -68,7 +68,7 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
                 <h3>{shortDes}</h3>
                 <p>{price}</p>
                 <div className="btnCont">
-                    <Link href={`/products/${slug}`} className="btnPreview"><FontAwesomeIcon icon={faEye}/> View</Link>
+                    <Link style={{textAlign:'center'}} href={`/products/${slug}`} className="btnPreview"><FontAwesomeIcon icon={faEye}/> View</Link>
                     {/* <button className="addToCart" onClick={() => handleCart()} type="button">Add to Cart</button> */}
                     <FontAwesomeIcon onClick={() => handleCart()} className="addToCart" icon={faCartShopping} />
                 </div>
