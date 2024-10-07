@@ -10,7 +10,7 @@ export default function Terms() {
                     <h2>Introduction</h2>
 
                     <p>
-                        Welcome to Pure Essence LTD. These terms and conditions outline the rules and regulations for using our website, <Link href="/">puressenceltd.co.uk</Link>.
+                        Welcome to PurEssence LTD. These terms and conditions outline the rules and regulations for using our website, <Link href="/">puressenceltd.co.uk</Link>.
                         By accessing this website and/or making a purchase, you accept these terms in full. If you disagree with any part of these terms,
                         you should not use our website.
                     </p>
