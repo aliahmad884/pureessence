@@ -140,7 +140,7 @@ export default function ContactPage() {
                                 </div>
                                 <div className="contactDetails">
                                     <h2> When to Contact Us?</h2>
-                                    <p>You may contact us during business hours. Expect to hear from us in an hour on average. <br /><br />You can also contact us on weekends, we may reply on the same day, though our guarentee is on the next working day.</p>
+                                    <p>Our support team is available Monday to Friday, 9:00 AM to 4:30 PM BST (GMT+1) during summer and 9:00 AM to 4:30 PM GMT in winter. <br /><br />You can also contact us on weekends, we may reply on the same day, though our guarentee is on the next working day.</p>
                                 </div>
                                 <div className="contactDetails">
                                     <h2> Visit Our FAQs</h2>
