@@ -25,7 +25,7 @@ export default function Hero() {
             <div className="heroContainer">
                 <h1>&quot;The Purest<br /> Products, For a<br /> Better You&quot;</h1>
                 {/* PLEASE ADD FOLLOWING WITH BOLD AND WHITE TEXT: <p>We offer quality-sourced health products and foods, with international delivery.</p> */}
-                <p>We offer quality-sourced health products and foods,<br/> with international delivery.</p>
+                <p>We offer quality-sourced health foods and products,<br/> with international delivery.</p>
                 {/* <button type="button">Shop Now</button> */}
                 <Link href={'/products'}>Shop Now</Link>
                 {show && createPortal(<CustomeToast onClick={() => setShow(!show)} />, document.body)}
@@ -35,11 +35,11 @@ export default function Hero() {
                     <h1>About the Brand</h1>
                     <p>Feeling tired? Or just wanting that raw power you know is in your potential. Or maybe you want to preserve that precious health that you have?</p>
                     <br />
-                    <p>All of these things is why PUREssence launched an online store to serve health products and foods.</p>
+                    <p>All of these things is why PurEssence launched an online store to serve health products and foods.</p>
                     <br />
-                    <p>The PUREssence team come from a background of herbal practitioners and philanthropists by way of knowledge, guidance and solutions.</p>
+                    <p>The PurEssence team come from a background of herbal practitioners and philanthropists, sharing knowledge, guidance and solutions.</p>
                     <br />
-                    <p>You can read more about us on our About page.</p>
+                    <p>You can read more about us on our <a href="/about"><b>About page.</b></a></p>
                 </div>
                 <div className="aboutImg">
                     <img src="/PE-Olive-Oil-4.webp" alt="Spices" />
@@ -61,7 +61,7 @@ export default function Hero() {
                     <div className="cardCont">
                         <div style={{ backgroundImage: "url(/PE-Almond-Oil.webp)" }} className="img"></div>
                         <h2>Health Guides</h2>
-                        <p>Health guides backed by science AND traditional (non-pharma) medicine.</p>
+                        <p>Health guides backed by science <i>and</i> traditional (non-pharma) medicine.</p>
                     </div>
                     <div className="cardCont">
                         <div style={{ backgroundImage: "url(/Pure-Essence-Support.jpg)" }} className="img"></div>
