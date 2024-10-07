@@ -33,7 +33,7 @@ export default function CartPage() {
             <>
                 <div className="cartPage" style={{ padding: '200px 50px' }}>
                     <h1>{(cartData.length <= 0) ? 'Your Cart is empty' : 'Your Cart'}</h1>
-                    <Link href={'/products'}>Continue To Shopping</Link>
+                    <Link href={'/products'}>Continue Shopping</Link>
                 </div>
             </>
         )
@@ -42,7 +42,7 @@ export default function CartPage() {
         <>
             <div className="cartPage">
                 <h1>Your Cart</h1>
-                <Link href={'/products'}>Continue To Shopping</Link>
+                <Link href={'/products'}>Continue Shopping</Link>
                 <table>
                     <thead>
                         <tr>
