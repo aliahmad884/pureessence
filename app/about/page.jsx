@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 
 export default function AboutPage() {
@@ -24,7 +25,7 @@ export default function AboutPage() {
                             </p>
                         </div>
                         <div className="img">
-                            <img loading="lazy"  src="/PE-Honey-P3.webp" alt="Bee feeding on flowers" />
+                            <img loading="lazy" src="/PE-Honey-P3.webp" alt="Bee feeding on flowers" />
                         </div>
                     </div>
                     <div className="subCont">
@@ -72,9 +73,16 @@ export default function AboutPage() {
                             <h2>Learn More About Us</h2>
                             <p>You can learn more by visiting our <strong><Link href="/frequently-asked-questions">FAQs</Link>.</strong> You may also visit our <strong><Link href="/contact">contact page</Link></strong> for our social media or instant messaging. You may also email us or send us an email. </p>
                             {/* Newsletter here.*/}
+                            <h2>Or Follow Us On</h2>
+                            <div style={{marginTop:'20px'}} className="iconsCont">
+                                <img onClick={() => window.open('https://twitter.com/')} title="Twitter" loading="lazy" src="/twitter.webp" alt="Twitter" />
+                                <img onClick={() => window.open('https://www.instagram.com/')} title="Instagram" loading="lazy" src="/instagram.webp" alt="Instagram" />
+                                <img onClick={() => window.open('https://www.tiktok.com/en/')} title="TikTok" loading="lazy" src="/tiktok.webp" alt="TikTok" />
+                                <img onClick={() => window.open('https://www.facebook.com/')} title="Facebook" loading="lazy" src="/facebook.webp" alt="Facebook" />
+                            </div>
                         </div>
                         <div className="img">
-                            <img loading="lazy"  src="/PE-Honey-P6.jpg" alt="Honey" />
+                            <img loading="lazy" src="/PE-Honey-P6.jpg" alt="Honey" />
 
                         </div>
                     </div>

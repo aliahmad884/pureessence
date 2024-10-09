@@ -87,6 +87,10 @@
         width: 100%;
     }
 
+    .aboutPage .secondCont .postCont{
+        flex-flow: column-reverse;
+    }
+
     .aboutPage .postCont {
         flex-flow: column;
     }

@@ -29,7 +29,6 @@ export default function ContextProvider({ children }) {
                 setIsLogged(false)
             }).catch(err => console.log(err))
         } else {
-            console.log('without login')
             localStorage.removeItem('user')
             const storedCart = localStorage.getItem('cart')
             if (storedCart) {

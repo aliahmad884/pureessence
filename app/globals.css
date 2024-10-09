@@ -925,12 +925,33 @@ main {
 .socialCont {
   padding: 100px 20px;
   background-color: #f3f3f3;
-}
-.socialCont .iconsCont img{
   width: 100%;
-  /* height: 100px; */
+}
+
+.socialCont p {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.iconsCont {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.iconsCont img {
+  width: 40px;
   position: relative;
-} 
+  background: none;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.iconsCont img:hover {
+  transform: translateY(-7px);
+}
 
 /* -------- Social Cont End ------------- */
 
@@ -2376,6 +2397,11 @@ select {
 
 .contactUs .contactDetails .socialIcon img {
   width: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.contactUs .contactDetails .socialIcon img:hover {
+  transform: translateY(-5px);
 }
 
 .contactSubCont .contactLocation,
@@ -2567,31 +2593,7 @@ select {
   border-radius: 10px;
 }
 
-/*
 
-.aboutPage .postCont .img img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.aboutPage .firstCont .subCont {
-  padding: 20px 0;
-}
-
-.aboutPage .firstCont .subCont h3 {
-  font-size: 1.3rem;
-  font-weight: bolder;
-  text-transform: uppercase;
-  color: var(--blue-1);
-}
-
-
-.aboutPage .secondCont h3 {
-  font-size: 2rem;
-  color: var(--blue-1);
-  font-weight: bolder;
-}
-*/
 
 /* About Quote */
 .aboutPage .aboutQuote {

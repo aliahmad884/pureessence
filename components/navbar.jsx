@@ -101,7 +101,6 @@ export default function Navbar() {
     }
 
     useEffect(() => {
-        console.log('Navbar hook rendered')
         setDomLoaded(true)
         SetDOMLoaded(false)
         let droplinks = document.querySelector('.routerDropDown');
