@@ -1,4 +1,4 @@
-const { res } = require('../syntaxShorter.js')
+const { res, randomeStrGen } = require('../syntaxShorter.js')
 const { Order, Invoice } = require("../schemas.js")
 import nodemailer from "nodemailer";
 import Stripe from "stripe";
@@ -10,11 +10,12 @@ export async function GET(req) {
     const { searchParams } = new URL(req.url)
     const orderNumber = searchParams.get('orderNumber')
     const invId = searchParams.get('invId')
+    const invUrl = searchParams.get('ul')
     const order = searchParams.get('orderStatus')
     const user = searchParams.get('user')
     try {
-        if (invId) {
-            const found = await Invoice.findOne({ where: { id: invId } })
+        if (invId && invUrl) {
+            const found = await Invoice.findOne({ where: { id: invId, uniquUrl: invUrl } })
             if (found) {
                 let data = found.dataValues
                 return res({ data }, 200)
@@ -60,12 +61,16 @@ export async function POST(req) {
     try {
         if (reqtyp === 'invoice') {
             const { cartData, ...billInfo } = body
+            let randomStr = randomeStrGen(11)
+            console.log(randomStr)
             const newInvoice = await Invoice.create({
+                uniquUrl: randomStr,
                 billing: billInfo,
                 items: cartData,
                 date: new Date()
             })
-            const invoiceId = newInvoice.dataValues;
+            const invoice = newInvoice.dataValues;
+
 
             // ------------ Email Section ---------------
 
@@ -75,21 +80,21 @@ export async function POST(req) {
                 subject: 'Order Confirmation',
                 html: `
                         <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                            <a href="https://puressenceltd.co.uk"> <img src="https://test.puressenceltd.co.uk/logos/PE-Main-Logo.png"
+                            <a href="https://puressenceltd.co.uk"> <img src="https://puressenceltd.co.uk/logos/PE-Main-Logo.png"
                             alt="Logo"></a>
                             <h1>Order confirmation from <strong>PurEssence LTD</strong></h1>
                             <h3>Dear ${billInfo.firstName},</h3>
                             <p>Thank you for placing an order with <strong>PurEssence LTD</strong>. We are pleased to confirm
-                                the invoice of your order PE-INV-000${invoiceId.id}.
+                                the invoice of your order PE-INV-000${invoice.id}.
                             </p>
                             <p>
                                 Your order is now being processing and we will contact you as soon as possible. You will receive a notification
                                 once your order has been shipped. We appreciate the trust you have placed in us and aim to provide you with the highest quality of service.
                                 If you have any questions or need further assistance, please do not hesitate to contact our customer service team at
-                                <strong><a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a></strong> or contact on <strong><a href="https://wa.me/+4401254411076">WhatsApp</a></strong>. Thank you for choosing [your company name]. We value your 
+                                <strong><a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a></strong> or contact on <strong><a href="https://wa.me/+4401254411076">WhatsApp</a></strong>. Thank you for choosing <strong>PurEssence LTD</strong>. We value your 
                                 business and look forward to serving you again.
                             </p>
-                            <p>To see invoice, <a href="https://test.puressenceltd.co.uk/invoice?invId=${invoiceId.id}">Click</a></p>
+                            <p>To see invoice, <a href="https://puressenceltd.co.uk/invoice?invId=${invoice.id}&ul=${invoice.uniquUrl}">Click</a></p>
                             <h4>Warm regards,</h4>
                             <p> PurEssence LTD.</p>
                     </div>`
@@ -99,7 +104,7 @@ export async function POST(req) {
 
             const adminOptions = {
                 from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
-                to: 'data@puressenceltd.co.uk',
+                to: 'alilatakhun2003@gmail.com',
                 subject: 'New Order Placed',
                 html: `
                 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
@@ -107,9 +112,9 @@ export async function POST(req) {
                     <h2>Client Email: ${billInfo.email}</h2>
                     <h2>Client Phone: ${billInfo.phone}</h2>
                     <h2>Shipping Address: ${billInfo.address}</h2>
-                    <h2>Invoice: PE-INV-000${invoiceId.id}</h2>
-                    <h3>Date & Time: ${new Date(invoiceId.date).toDateString()} ${new Date(invoiceId.date).toLocaleTimeString()}</h3>
-                    <p>To see invoice, <a href="https://test.puressenceltd.co.uk/invoice?invId=${invoiceId.id}">Click</a></p>
+                    <h2>Invoice: PE-INV-000${invoice.id}</h2>
+                    <h3>Date & Time: ${new Date(invoice.date).toDateString()} ${new Date(invoice.date).toLocaleTimeString()}</h3>
+                    <p>To see invoice, <a href="https://puressenceltd.co.uk/invoice?invId=${invoice.id}&ul=${invoice.uniquUrl}">Click</a></p>
             </div>`
             }
             let adminInfo = await transporter.sendMail(adminOptions)
@@ -117,7 +122,7 @@ export async function POST(req) {
 
             // ------------ Response Return ---------------
 
-            return res({ res: "Request recieved", invoiceId: invoiceId.id }, 200)
+            return res({ res: "Request recieved", invId: invoice.id, invUrl: invoice.uniquUrl }, 200)
         }
         let paymentId = (await stripe.paymentIntents.retrieve(paramId ? paramId : 'pi_3Q403YRqfkkgc0Q105cLWt8C')).payment_method
         let payment_method = await stripe.paymentMethods.retrieve(paymentId)

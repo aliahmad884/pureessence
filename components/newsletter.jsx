@@ -11,8 +11,13 @@ export default function NewsLetter() {
             method: 'post',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email })
-        }).then(res => res.json()).then(result => {
-            console.log(result)
+        }).then(res => {
+            if (!res.ok) {
+                toast.error('Something went wrong, please try again!')
+                setEmail('')
+                setIsSending(false)
+                return null;
+            }
             toast.success('You have successfully joined our newsletter!')
             setEmail('')
             setIsSending(false)
@@ -33,7 +38,7 @@ export default function NewsLetter() {
                     <p>Discounts, health guides and more! All without spam or annoying frequent emails. Unsubscribe anytime.</p>
                 </div>
                 <div className="inputCont">
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="newsEmail" placeholder="Enter Your Email..." autoComplete="email"/>
+                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="newsEmail" placeholder="Enter Your Email..." autoComplete="email" />
                     <button onClick={handleSubmit} type="button">{isSending ? 'Please Wait...' : 'Join Now'}</button>
                 </div>
             </div>

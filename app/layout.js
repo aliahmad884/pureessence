@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
                   <Navbar />
                 </>
               )}
-              <Whatsapp />
+              {(pathName.startsWith('/invoice')) ? null : <Whatsapp />}
               {children}
               {(
                 pathName.startsWith('/admin') ||

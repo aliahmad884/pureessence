@@ -5,32 +5,56 @@ import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import FallBackLoader from "@/components/loader"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPrint } from "@fortawesome/free-solid-svg-icons"
+import { faCircleXmark, faCross, faPrint } from "@fortawesome/free-solid-svg-icons"
 
 export default function Invoice() {
     const [invData, setInvData] = useState([])
     const [invItems, setInvItems] = useState([])
     const [billingData, setBillingData] = useState([])
+    const [invnotFound, setInvNotFound] = useState(false)
     const [isLoading, setIsloading] = useState(true)
     const params = useSearchParams()
     const invId = params.get('invId')
+    const invUrl = params.get('ul')
     const printInvoice = () => {
         window.print()
     }
     useEffect(() => {
-        fetch(`/api/order?invId=${invId}`).then(res => res.json()).then(result => {
-            // setInvItems(JSON.parse(result.data.items))
-            setInvItems(result.data.items)
-            setInvData(result.data)
-            setBillingData(result.data.billing)
-            // setBillingData(JSON.parse(result.data.billing))
-            setIsloading(false)
-        }).catch(err => {
-            console.log(err)
-            setIsloading(false)
-        })
+
+        const fetchInv = async () => {
+            try {
+
+                let res = await fetch(`/api/order?invId=${invId}&ul=${invUrl}`)
+                if (!res.ok) {
+                    setIsloading(false)
+                    return setInvNotFound(true)
+                }
+                let result = await res.json()
+                setInvItems(JSON.parse(result.data.items))
+                // setInvItems(result.data.items)
+                setInvData(result.data)
+                // setBillingData(result.data.billing)
+                setBillingData(JSON.parse(result.data.billing))
+                setIsloading(false)
+            }
+            catch (err) {
+                console.log(err)
+                setIsloading(false)
+            }
+        }
+        fetchInv()
     }, [])
     if (isLoading) return <FallBackLoader />;
+    else if (invnotFound) {
+        return (
+            <>
+                <div style={{ margin: '150px 20px', textAlign: 'center' }}>
+                    <h1 style={{ fontSize: '2rem', marginBottom: '50px' }}><FontAwesomeIcon style={{ color: 'red' }} icon={faCircleXmark} /> Invoice not found, please provide an correct URL</h1>
+                    <Link style={{ textDecoration: 'underline' }} href={'/'}>Go to Home Page</Link>
+                </div>
+            </>
+        )
+    }
     else if (invData) {
         return (
             <div className="invoice">
@@ -56,11 +80,6 @@ export default function Invoice() {
                         <p><strong>Phone: </strong>{billingData.phone}</p>
                         <p><strong>Address: </strong>{billingData.address}</p>
                     </div>
-                    {/* <div className="bank">
-                        <h3>Bank Account Details</h3>
-                        <p><strong>Bank Name: </strong>Meezan Bank LTD.</p>
-                        <p><strong>Account Number: </strong>42479416798875456456</p>
-                    </div> */}
                 </div>
 
                 <div className="invoice-body">
@@ -70,8 +89,6 @@ export default function Invoice() {
                                 <th>Index</th>
                                 <th>Description</th>
                                 <th>Quantity</th>
-                                {/* <th>Unit Price</th> */}
-                                {/* <th>Total</th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -85,8 +102,6 @@ export default function Invoice() {
                                         </div>
                                     </td>
                                     <td>{item.qty}</td>
-                                    {/* <td>&pound;{item.price}</td> */}
-                                    {/* <td>&pound;{item.price * item.qty}</td> */}
                                 </tr>
                             )) : console.log('invData.itmes Not found')
                             }
@@ -95,10 +110,6 @@ export default function Invoice() {
                 </div>
                 <div className="amount-container">
                     <div style={{ width: '100%', maxWidth: '400px' }}>
-                        {/* <div className="subCont"><strong>Subtotal:</strong><p>&pound;{billingData.total}</p></div>
-                        <div className="subCont"><strong>Shipping:</strong><p>&pound;12.63</p></div>
-                        <div className="subCont"><strong>Tax(if Applicable):</strong><p>&pound;0.00</p></div>
-                        <div className="subCont"><strong>Discount:</strong><p>&pound;0.00</p></div> */}
                         <div style={{ borderTop: '2px solid rgb(224, 224, 224)', marginTop: '10px', paddingTop: '8px', fontSize: '1.2rem' }} className="subCont"><strong>Total:</strong> <h3 style={{ cursor: 'pointer', textDecoration: 'underline', width: 'fit-content' }} onClick={() => window.open('https://wa.me/+4401254411076')}>Please Enquire For Price</h3></div>
                     </div>
                 </div>
@@ -106,8 +117,6 @@ export default function Invoice() {
                     <div>
                         <h4><strong>Notes:</strong></h4>
                         <p>Thanks for being an awesome customer!</p>
-                        {/* <h4><strong>Terms:</strong></h4>
-                        <p>Payment due in 30 days.</p> */}
                     </div>
                     <div>
                         <button onClick={printInvoice} className="btnPrint" type="button"><FontAwesomeIcon icon={faPrint} /> Print Invoice</button>

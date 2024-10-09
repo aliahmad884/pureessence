@@ -12,6 +12,15 @@ const res = (body, code = 200, authHeader) => {
     })
 }
 
+let characters = 'gklmABCDEFGHIJOPQR7898464opqrSTUVWXYZabcd6464321fdsfwqergb6565efghinst23165414uKLMNvwxyz'
+const randomeStrGen = (length) => {
+    let str = ''
+    for (let i = 0; i < 10 + length; i++) {
+        str += characters.charAt(Math.floor(Math.random() * characters.length))
+    }
+    return str;
+}
+
 const sanitizer = {
     encryptPass: async (pass) => {
         try {
@@ -35,4 +44,4 @@ const sanitizer = {
     }
 }
 
-module.exports = { res, sanitizer }
+module.exports = { res, sanitizer, randomeStrGen }

@@ -209,6 +209,9 @@ Invoice.init({
         primaryKey: true,
         autoIncrement: true
     },
+    uniquUrl:{
+        type:DataTypes.TEXT
+    },
     billing: {
         type: DataTypes.JSON
     },
@@ -248,7 +251,7 @@ NewsLetter.init({
 
 (async () => {
     try {
-        await NewsLetter.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+        await Invoice.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
         console.log('Table synced successfully!');
     } catch (error) {
         console.error('Error syncing table:', error);

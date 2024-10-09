@@ -13,7 +13,10 @@ export default function Checkout() {
     const [cartData, setCart] = useState([])
     const [billingInfo, setBillingInfo] = useState('')
     const [isLoading, setIsLoading] = useState(true)
-    const [invId, setInvId] = useState('')
+    const [invUrl, setInvUrl] = useState({
+        invId: '',
+        invUrl: ''
+    })
     const [isOrderConfirmed, setOrderConfirmed] = useState(false)
     const router = useRouter()
     const handleCancel = () => {
@@ -37,7 +40,10 @@ export default function Checkout() {
             localStorage.removeItem('billingInfo')
             localStorage.removeItem('cart')
             setCartData([])
-            setInvId(result.invoiceId)
+            setInvUrl({
+                invId: result.invId,
+                invUrl: result.invUrl
+            })
         }).catch(err => {
             console.log(err)
             setIsLoading(false)
@@ -75,12 +81,10 @@ export default function Checkout() {
                             cartData ? cartData.map(data => (
                                 < div key={data.id} className="product" >
                                     <div className="title">
-                                        <img loading="lazy"  src={data.imgUrl} alt={data.title} width={60} />
+                                        <img loading="lazy" src={data.imgUrl} alt={data.title} width={60} />
                                         <p>{data.title}</p>
                                     </div>
-                                    {/* <div className="price"><strong>Price: </strong><p>&pound;{data.price}</p></div> */}
                                     <div className="qty"><strong>Qty: </strong><p></p>{data.qty}</div>
-                                    {/* <div className="total"><strong>Total: </strong><p>&pound;{data.qty * data.price}</p></div> */}
                                 </div>
                             )) : null
                         }
@@ -94,12 +98,6 @@ export default function Checkout() {
                                 <p><strong>Phone: </strong>{billingInfo.phone}</p>
                                 <p><strong>Ship to: </strong>{billingInfo.address}</p>
                             </div>
-                            {/* <div className="orderTotal">
-                                <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>SubTotal: </strong><p>&pound;{billingInfo.total}</p></div>
-                                <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Shipping Fee: </strong><p>&pound;12.63</p></div>
-                                <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Discount: </strong><p>&pound;0</p></div>
-                                <div style={{ borderTop: "2px solid rgb(224, 224, 224)", display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Total: </strong><p><strong>&pound;{eval(billingInfo.total + 12.63 + 0)} GBP</strong></p></div>
-                            </div> */}
                         </div>
                     </div>
                     <div className="btnAction">
@@ -107,7 +105,7 @@ export default function Checkout() {
                             isOrderConfirmed ? (<button onClick={() => router.push('/products')} className="cancelBtn" type="button">Back to shopping</button>) : <button onClick={handleCancel} className="cancelBtn" type="button">Cancel</button>
                         }
                         <div className="confirmCont">
-                            <button style={isOrderConfirmed ? { display: 'block' } : { display: 'none' }} onClick={() => router.push(`/invoice?invId=${invId}`)} className="btnInvoice" type="button">View Invoice</button>
+                            <button style={isOrderConfirmed ? { display: 'block' } : { display: 'none' }} onClick={() => router.push(`/invoice?invId=${invUrl.invId}&ul=${invUrl.invUrl}`)} className="btnInvoice" type="button">View Invoice</button>
                             <button disabled={isOrderConfirmed ? true : false} onClick={handleConfirm} className="btnConfirm" type="button">{isOrderConfirmed ? (<><FontAwesomeIcon icon={faCheckCircle} style={{ color: 'green' }} /> Confirmed</>) : 'Confirm Order'}</button>
                         </div>
                     </div>
