@@ -25,9 +25,10 @@ main {
 }
 
 /* -------------Blog Headings------------ */
-.blogHeading{
+.blogHeading {
   padding: 100px 20px;
 }
+
 .blogHeading h1 {
   font-size: 2.5rem;
   font-weight: bold;
@@ -584,6 +585,7 @@ main {
   margin-bottom: 50px;
 }
 
+.socialCont h1,
 .aboutText h1,
 .reviewCont h1,
 .offerContainer h1,
@@ -593,12 +595,7 @@ main {
   text-align: center;
   font-size: 2.5rem;
   font-weight: bold;
-  /* color: rgba(1, 79, 6, 1);
-  background: -webkit-linear-gradient(rgba(1, 79, 6, 1), rgba(5, 145, 7, 1)); */
   color: #2e2e2e;
-  /* background: -webkit-linear-gradient(#dfb434, #c97d26);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
   transition: all 0.5s;
 }
 
@@ -703,7 +700,8 @@ main {
   transition: all 0.5s;
   font-size: large;
 }
-.productCont .slider .controlls button:hover{
+
+.productCont .slider .controlls button:hover {
   background-color: #dfb434;
 }
 
@@ -923,9 +921,22 @@ main {
 
 /* ----------- Blogs End----------------- */
 
+/* ---------- Social Cont --------------- */
+.socialCont {
+  padding: 100px 20px;
+  background-color: #f3f3f3;
+}
+.socialCont .iconsCont img{
+  width: 100%;
+  /* height: 100px; */
+  position: relative;
+} 
+
+/* -------- Social Cont End ------------- */
+
 /*------------- News Letter---------------*/
 .letterCont {
-  background-color: #f3f3f3;
+  background-color: white;
   padding: 100px 20px;
   display: flex;
   flex-flow: column nowrap;

@@ -12,7 +12,7 @@ export default function Reviews() {
                 <h1>Customer Reviews</h1>
                 <div className="reviewCardCont">
                     <div className="reviewCard">
-                        <img src="/CircleLogo.webp" alt="Logo" />
+                        <img loading="lazy"  src="/CircleLogo.webp" alt="Logo" />
                         <h2>Genuine Reviews</h2>
                         <p>We promise to only show genuine verified reviews.</p>
                         <div className="stars">
@@ -24,7 +24,7 @@ export default function Reviews() {
                         </div>
                     </div>
                     <div className="reviewCard">
-                        <img src="/CircleLogo.webp" alt="Logo" />
+                        <img loading="lazy"  src="/CircleLogo.webp" alt="Logo" />
                         <h2>You (Hopefully)</h2>
                         <p>We hope you will try out our products, and leave a review here!</p>
                         <div className="stars">

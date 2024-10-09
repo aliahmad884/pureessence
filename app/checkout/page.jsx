@@ -75,7 +75,7 @@ export default function Checkout() {
                             cartData ? cartData.map(data => (
                                 < div key={data.id} className="product" >
                                     <div className="title">
-                                        <img src={data.imgUrl} alt={data.title} width={60} />
+                                        <img loading="lazy"  src={data.imgUrl} alt={data.title} width={60} />
                                         <p>{data.title}</p>
                                     </div>
                                     {/* <div className="price"><strong>Price: </strong><p>&pound;{data.price}</p></div> */}

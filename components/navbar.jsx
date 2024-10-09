@@ -160,9 +160,9 @@ export default function Navbar() {
                 <div className="navContainer">
                     {/*------Company Logo------*/}
                     <div className="navLogo" onClick={() => router.push('/')}>
-                        <img src="/logos/PE-Main-Logo.png" alt="Logo" width={200} />
-                        {/* <img src="/logos/PE-Small-Text-Logo.png" alt="Logo"  />  */}
-                        {/* <img src="/logos/PE-Main-Logo-Large.png" alt="Logo"  /> */}
+                        <img loading="lazy"  src="/logos/PE-Main-Logo.png" alt="Logo" width={200} />
+                        {/* <img loading="lazy"  src="/logos/PE-Small-Text-Logo.png" alt="Logo"  />  */}
+                        {/* <img loading="lazy"  src="/logos/PE-Main-Logo-Large.png" alt="Logo"  /> */}
                         {/* <div>
                             <h1><strong style={{ color: '#dfb434' }}>Pur</strong> Essence</h1>
                             <p>The Purest Products, For a Better You.</p>
@@ -198,7 +198,7 @@ export default function Navbar() {
                         </div>
                         {/* -------Active User------- */}
                         <div style={{ display: 'none' }} onClick={handleUserDrop} className="userCont">
-                            <img src="/avatar2.webp" alt="Temp" width={40} />
+                            <img loading="lazy"  src="/avatar2.webp" alt="Temp" width={40} />
                             <div className="userMenu">
                                 {loggedUser ? (<>
                                     <h3>{loggedUser.Name}</h3>
@@ -249,7 +249,7 @@ export default function Navbar() {
                         </div>
                         {/* --------DropDown Search User-------- */}
                         <div onClick={handleExtend} className="dropUser" style={{ display: 'none', alignItems: 'center' }}>
-                            <img src="/avatar2.webp" alt="Temp" width={40} />
+                            <img loading="lazy"  src="/avatar2.webp" alt="Temp" width={40} />
                             <h4>{loggedUser ? loggedUser.Name : 'Guest'}</h4>
                         </div>
                     </div>

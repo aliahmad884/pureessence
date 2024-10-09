@@ -73,7 +73,7 @@ export default function Login() {
             <div className="loginMainCont">
                 <div className="header">
                     <div className="logo">
-                        <img src="/CircleLogo.webp" alt="Logo" width={50} />
+                        <img loading="lazy"  src="/CircleLogo.webp" alt="Logo" width={50} />
                         <div onClick={() => router.push('/')}>
                             <h1 style={{ color: 'black' }}><strong style={{ color: '#dfb434' }}>Pure</strong> Essence</h1>
                             <p style={{ color: 'black' }}>The Purest Products, For a Better You.</p>
@@ -82,7 +82,7 @@ export default function Login() {
                 </div>
                 <div className="footBar"></div>
                 <div className="loginImgCont">
-                    <img src="/login.webp" alt="" />
+                    <img loading="lazy"  src="/login.webp" alt="" />
                 </div>
                 <div className="formCont">
                     <div className="loginForm">

@@ -65,9 +65,9 @@ export default function ContactPage() {
                             <h3><strong>Phone Number: </strong>(+44) 01254 411076</h3>
                             <h3><strong>Email Address: </strong>info@puressenceltd.co.uk</h3>
                             <div className="socialIcon">
-                                <a href="#"><img src="twitter.webp" alt="Twitter" /></a>
-                                <a href="#"><img src="facebook.webp" alt="Facebook" /></a>
-                                <img style={{cursor:'pointer'}} onClick={() => window.open('https://wa.me/+4401254411076')} src="whatsapp.webp" alt="WhatsApp" />
+                                <a href="#"><img loading="lazy"  src="twitter.webp" alt="Twitter" /></a>
+                                <a href="#"><img loading="lazy"  src="facebook.webp" alt="Facebook" /></a>
+                                <img loading="lazy"  style={{cursor:'pointer'}} onClick={() => window.open('https://wa.me/+4401254411076')} src="whatsapp.webp" alt="WhatsApp" />
                             </div>
                         </div>
                     </div>

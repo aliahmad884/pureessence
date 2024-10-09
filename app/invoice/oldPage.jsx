@@ -37,7 +37,7 @@ export default function Invoice() {
                     </div>
                     {/* Your company information */}
                     <div className="brandInfo">
-                        <Link href={'/'}><img src="/logos/PE-Main-Logo.png" alt="Pur Essence" width={300} /></Link>
+                        <Link href={'/'}><img loading="lazy"  src="/logos/PE-Main-Logo.png" alt="Pur Essence" width={300} /></Link>
                         <p><strong>Address: </strong>Kings court 33 king street BB2 2DH</p>
                         <p><strong>Email:</strong> info@puressenceltd.co.uk</p>
                         <p><strong>Phone:</strong> +1234567890</p>
@@ -75,7 +75,7 @@ export default function Invoice() {
                                     <td>{i + 1}</td>
                                     <td>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <img src={item.imgUrl} alt={item.title} width={60} />&nbsp;
+                                            <img loading="lazy"  src={item.imgUrl} alt={item.title} width={60} />&nbsp;
                                             <p>{item.title}</p>
                                         </div>
                                     </td>

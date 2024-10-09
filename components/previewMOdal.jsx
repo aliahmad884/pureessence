@@ -24,7 +24,7 @@ export default function PreviewModal({ path }) {
                 <button onClick={handleUpload} type="button">Upload</button>
                 <p style={{ color: 'wheat' }}>{uploadStatus}</p>
                 {/* </form> */}
-                {imgPath && <img src={`/uploads/${imgPath}`} alt="Profile" />}
+                {imgPath && <img loading="lazy"  src={`/uploads/${imgPath}`} alt="Profile" />}
             </div>
         </>
     )

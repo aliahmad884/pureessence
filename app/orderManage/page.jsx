@@ -36,7 +36,7 @@ export default function OrderManage() {
                                 {data.product ? data.product.map(p => (
                                     <div key={`${p.id}`} className="product">
                                         <div className="title">
-                                            <img src={p.imgUrl} alt={p.title} width={60} />
+                                            <img loading="lazy"  src={p.imgUrl} alt={p.title} width={60} />
                                             <p>{p.title}</p>
                                         </div>
                                         <div className="price"><strong>Price: </strong><p>{p.price}$</p></div>

@@ -24,7 +24,7 @@ export default function AboutPage() {
                             </p>
                         </div>
                         <div className="img">
-                            <img src="/PE-Honey-P3.webp" alt="Bee feeding on flowers" />
+                            <img loading="lazy"  src="/PE-Honey-P3.webp" alt="Bee feeding on flowers" />
                         </div>
                     </div>
                     <div className="subCont">
@@ -74,7 +74,7 @@ export default function AboutPage() {
                             {/* Newsletter here.*/}
                         </div>
                         <div className="img">
-                            <img src="/PE-Honey-P6.jpg" alt="Honey" />
+                            <img loading="lazy"  src="/PE-Honey-P6.jpg" alt="Honey" />
 
                         </div>
                     </div>

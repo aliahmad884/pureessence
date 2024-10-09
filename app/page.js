@@ -6,6 +6,7 @@ import FallBackLoader from "@/components/loader";
 import NewsLetter from "@/components/newsletter";
 import PopularProducts from "@/components/product";
 import Reviews from "@/components/reviews";
+import Socials from "@/components/social";
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 // import { useEffect, useState } from "react";
@@ -28,6 +29,7 @@ export default function Home() {
       <PopularProducts />
       <Reviews />
       <Blogs />
+      <Socials />
       <NewsLetter />
     </>
   );

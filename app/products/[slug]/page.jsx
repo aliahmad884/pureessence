@@ -60,16 +60,16 @@ export default function Products({ params }) {
                 <div className="productSlug">
                     <div className="imgCont">
                         <div className="thumbnails">
-                            <img onClick={() => setImgPath(product.imgUrl)} src={product.imgUrl} alt="Main Image" />
+                            <img loading="lazy"  onClick={() => setImgPath(product.imgUrl)} src={product.imgUrl} alt="Main Image" />
                             {
-                                product.images ? product.images.map((img, i) => <img onClick={() => setImgPath(img)} key={i} src={img} alt={img} />) : null
+                                product.images ? product.images.map((img, i) => <img loading="lazy"  onClick={() => setImgPath(img)} key={i} src={img} alt={img} />) : null
                             }
                         </div>
                         <div className="mainImg">
-                            <img onClick={() => setShowImgFull(true)} src={imgPath} alt={product.title} />
+                            <img loading="lazy"  onClick={() => setShowImgFull(true)} src={imgPath} alt={product.title} />
                             {showImgFull && createPortal(<>
                                 <div className="imgPortalCont">
-                                    <img id='img' onClick={() => window.open(imgPath, '_blank')} src={imgPath} alt={product.title} />
+                                    <img loading="lazy"  id='img' onClick={() => window.open(imgPath, '_blank')} src={imgPath} alt={product.title} />
                                 </div>
                             </>, document.body)}
                         </div>

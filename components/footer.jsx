@@ -20,12 +20,12 @@ export default function Footer() {
         <>
             <div className="footer">
                 <div className="logo">
-                    {/* <img src="/transLogo.png" alt="Logo" width={50} /> */}
+                    {/* <img loading="lazy"  src="/transLogo.png" alt="Logo" width={50} /> */}
                     <ol>
-                        <img src="/logos/PE-Small-Text-Logo-Large.png" alt="Logo" /><br />
+                        <img loading="lazy"  src="/logos/PE-Small-Text-Logo-Large.png" alt="Logo" /><br />
                         <p><b>&quot;The Purest Products,<br /> For a Better You&quot;</b></p>
                     </ol>
-                    {/* <img src="/logos/PE-Main-Logo.png" alt="Logo"  /> */}
+                    {/* <img loading="lazy"  src="/logos/PE-Main-Logo.png" alt="Logo"  /> */}
                     {/* <div>
                         <h1><strong style={{ color: '#dfb434' }}>Pur</strong> Essence</h1>
                     </div> */}

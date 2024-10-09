@@ -9,7 +9,7 @@ export default function Blogs() {
                 <div className="cardCont">
                     <div className="card">
                         <div className="imgCont">
-                            <img src="/logos/PE-Small-Text-Logo.png" alt="blog photo" />
+                            <img loading="lazy"  src="/logos/PE-Small-Text-Logo.png" alt="blog photo" />
                             {/* <div className="overLay">
                                 <FontAwesomeIcon icon={faCalendar} /> <time dateTime="2024-09-23T15:00">20-Sep-2024</time>
                             </div> */}
@@ -20,7 +20,7 @@ export default function Blogs() {
                     </div>
                     <div className="card">
                         <div className="imgCont">
-                            <img src="/logos/PE-Small-Text-Logo.png" alt="blog photo" />
+                            <img loading="lazy"  src="/logos/PE-Small-Text-Logo.png" alt="blog photo" />
                             {/* <div className="overLay">
                                 <FontAwesomeIcon icon={faCalendar} /> <time dateTime="2024-09-23T15:00">20-Sep-2024</time>
                             </div> */}
@@ -31,7 +31,7 @@ export default function Blogs() {
                     </div>
                     <div className="card">
                         <div className="imgCont">
-                            <img src="/logos/PE-Small-Text-Logo.png" alt="blog photo" />
+                            <img loading="lazy"  src="/logos/PE-Small-Text-Logo.png" alt="blog photo" />
                             {/* <div className="overLay">
                                 <FontAwesomeIcon icon={faCalendar} /> <time dateTime="2024-09-23T15:00">20-Sep-2024</time>
                             </div> */}

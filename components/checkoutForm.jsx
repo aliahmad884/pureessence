@@ -126,7 +126,7 @@ export default function CheckoutForm({ dpmCheckerLink }) {
                                                     margin: '0 20px 0 0',
                                                     position: 'relative'
                                                 }
-                                            }><img src={data.imgUrl} alt={data.title} width={80} /> <strong style={
+                                            }><img loading="lazy"  src={data.imgUrl} alt={data.title} width={80} /> <strong style={
                                                 {
                                                     whiteSpace: 'nowrap',
                                                     overflowY: 'hidden',

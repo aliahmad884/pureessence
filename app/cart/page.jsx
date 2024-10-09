@@ -59,7 +59,7 @@ export default function CartPage() {
                                 <tr key={data.id}>
                                     <td data-label='Product' colSpan={2}>
                                         <div className="tableProduct">
-                                            <img src={data.imgUrl} alt="fsfsk" width={100} />&nbsp;
+                                            <img loading="lazy"  src={data.imgUrl} alt="fsfsk" width={100} />&nbsp;
                                             <p>{data.title}</p>
                                         </div>
                                     </td>

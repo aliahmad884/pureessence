@@ -84,7 +84,7 @@ export default function Profile() {
                 <div className="sidePanel">
                     <div onClick={handleSidePanel} className="toggleIcon"><FontAwesomeIcon icon={faGripVertical} /></div>
                     <div className="proImgCont">
-                        <img src="/avatar2.webp" alt="Avatar" />
+                        <img loading="lazy"  src="/avatar2.webp" alt="Avatar" />
                         <h1>{loggedUser ? loggedUser.Name : 'Guest User'}</h1>
                     </div>
                     <div className="optionsCont">
@@ -191,7 +191,7 @@ export default function Profile() {
                                             <td data-label={'Product'}>
                                                 <div style={{ display: 'flex', flexFlow: 'column', justifyContent: 'space-evenly' }}>
                                                     {
-                                                        data.product.map((p) => <img key={`${data.id}-${p.id}-img`} src={p.imgUrl} width={50} />)
+                                                        data.product.map((p) => <img loading="lazy"  key={`${data.id}-${p.id}-img`} src={p.imgUrl} width={50} />)
                                                     }
                                                 </div>
                                             </td>
@@ -225,56 +225,56 @@ export default function Profile() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Shilajit Pure Himalian</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Cancelled</td>
                                     <td data-label={'Refund Status'}>Null</td>
                                 </tr>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Black Seed Oil</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Cancelled</td>
                                     <td data-label={'Refund Status'}>Null</td>
                                 </tr>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Shilajit Pure Himalian</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Cancelled</td>
                                     <td data-label={'Refund Status'}>Null</td>
                                 </tr>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Black Seed Oil</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Cancelled</td>
                                     <td data-label={'Refund Status'}>Null</td>
                                 </tr>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Shilajit Pure Himalian</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Cancelled</td>
                                     <td data-label={'Refund Status'}>Null</td>
                                 </tr>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Black Seed Oil</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Cancelled</td>
                                     <td data-label={'Refund Status'}>Null</td>
                                 </tr>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Shilajit Pure Himalian</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Cancelled</td>
                                     <td data-label={'Refund Status'}>Null</td>
                                 </tr>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Black Seed Oil</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Cancelled</td>
@@ -297,14 +297,14 @@ export default function Profile() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Shilajit Pure Himalian</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Returned</td>
                                     <td data-label={'Refund Status'}>Refund Pending</td>
                                 </tr>
                                 <tr>
-                                    <td data-label={'Product'}><img src="/shilajit.webp" width={50} /></td>
+                                    <td data-label={'Product'}><img loading="lazy"  src="/shilajit.webp" width={50} /></td>
                                     <td colSpan={2} data-label={'Name'}>Black Seed Oil</td>
                                     <td colSpan={2} data-label={'Order Number'}>#45687418718974174</td>
                                     <td data-label={'Status'}>Returned</td>

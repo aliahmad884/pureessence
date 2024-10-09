@@ -42,7 +42,7 @@ export default function Hero() {
                     <p>You can read more about us on our <a href="/about"><b>About page.</b></a></p>
                 </div>
                 <div className="aboutImg">
-                    <img src="/PE-Olive-Oil-4.webp" alt="Spices" />
+                    <img loading="lazy"  src="/PE-Olive-Oil-4.webp" alt="Spices" />
                 </div>
             </div>
             <div className="offerContainer">

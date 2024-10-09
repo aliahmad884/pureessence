@@ -10,7 +10,7 @@ import Link from "next/link"
 export default function ReviewCard() {
     return (
         <div className="reviewCard">
-            <img src="/CircleLogo.webp" alt="Logo" />
+            <img loading="lazy"  src="/CircleLogo.webp" alt="Logo" />
             <h2>Bob Honeyson</h2>
             <p>Testimonials are short quotes from people who love your brand. It&apos;s a great way to convince customers to try your products.</p>
             <div className="stars">
@@ -63,7 +63,7 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
         <>
             <div className="productCard">
                 <div style={{ backgroundImage: `url('${imgUrl}')` }} className="img"></div>
-                {/* <img src={imgUrl} alt={title} /> */}
+                {/* <img loading="lazy"  src={imgUrl} alt={title} /> */}
                 <h2>{title}</h2>
                 <h3>{shortDes}</h3>
                 <p>{price}</p>
