@@ -22,15 +22,10 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export default function RootLayout({ children }) {
   const pathName = usePathname()
-  // const [isLoading, setIsLoading] = useState(false)
-  // useEffect(() => {
-  //   setIsLoading(true)
-  // }, [])
   return (
     <html lang="en">
       <GoogleAnalytics />
       <body>
-        {/* {!isLoading ? <FallBackLoader /> : ( */}
         <ContextProvider>
           <Suspense fallback={<FallBackLoader />}>
             <CustomProvider>
