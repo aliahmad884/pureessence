@@ -16,6 +16,7 @@ import { usePathname } from "next/navigation";
 import FallBackLoader from "@/components/loader";
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import Whatsapp from "@/components/whatsapp";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
   // }, [])
   return (
     <html lang="en">
+      <GoogleAnalytics />
       <body>
         {/* {!isLoading ? <FallBackLoader /> : ( */}
         <ContextProvider>
