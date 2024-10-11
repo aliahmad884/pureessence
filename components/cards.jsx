@@ -6,11 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link"
+import Image from "next/image";
 
 export default function ReviewCard() {
     return (
         <div className="reviewCard">
-            <img loading="lazy"  src="/CircleLogo.webp" alt="Logo" />
+            <img loading="lazy" src="/CircleLogo.webp" alt="Logo" />
             <h2>Bob Honeyson</h2>
             <p>Testimonials are short quotes from people who love your brand. It&apos;s a great way to convince customers to try your products.</p>
             <div className="stars">
@@ -68,10 +69,34 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
                 <h3>{shortDes}</h3>
                 <p>{price}</p>
                 <div className="btnCont">
-                    <Link style={{textAlign:'center'}} href={`/products/${slug}`} className="btnPreview"><FontAwesomeIcon icon={faEye}/> View</Link>
+                    <Link style={{ textAlign: 'center' }} href={`/products/${slug}`} className="btnPreview"><FontAwesomeIcon icon={faEye} /> View</Link>
                     {/* <button className="addToCart" onClick={() => handleCart()} type="button">Add to Cart</button> */}
                     <FontAwesomeIcon onClick={() => handleCart()} className="addToCart" icon={faCartShopping} />
                 </div>
+            </div>
+        </>
+    )
+}
+export function BlogCard({type}) {
+    return (
+        <>
+            <div className="blogCardCont">
+                <div className="img">
+                    <Image
+                        src={'/plastics.png'}
+                        alt="Temp Img"
+                        sizes="100vw"
+                        style={{
+                            width: '100%',
+                            height: "auto"
+                        }}
+                        width={500}
+                        height={300}
+                    />
+                </div>
+                <p>{type}</p>
+                <h2>Lorem Ipsum site lowub loyibtiq</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas suscipit maiores vero animi modi totam earum magnam expedita temporibus, libero provident sint ipsa dignissimos veritatis odio, aut numquam blanditiis. Quia.</p>
             </div>
         </>
     )

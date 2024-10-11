@@ -2400,6 +2400,7 @@ select {
   transition: all 0.5s;
   cursor: pointer;
 }
+
 .contactUs .contactDetails .socialIcon img:hover {
   transform: translateY(-5px);
 }
@@ -2620,3 +2621,67 @@ select {
 }
 
 /* ---------- About Page End -------------- */
+
+/* ------------ Blogs Page ---------------- */
+.blogPage {
+  padding: 50px 20px;
+  width: 100%;
+}
+
+.blogPage h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.blogPage .blogsCont {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.blogCardCont {
+  width: 100%;
+  max-width: 600px;
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+}
+
+
+.blogCardCont img {
+  width: 100%;
+  border-radius: 7px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+.blogCardCont h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: left;
+  margin: 10px 0;
+  user-select: none;
+  transition: all 0.5s;
+}
+
+.blogCardCont p {
+  font-size: 1rem;
+  text-align: left;
+  color: #828686;
+}
+.blogCardCont h2:hover{
+  color: #dfb434;
+  cursor: pointer;
+}
+
+/* ---------- Blogs Page End--------------- */

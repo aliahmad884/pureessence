@@ -1,13 +1,20 @@
+"use client"
+
+import BlogNav from "@/components/blogNavPanel";
+import { BlogCard } from "@/components/cards";
+
 export default function BlogsPage() {
     return (
         <>
-            <br /><br />
-            <div className="blogHeading">
-                <h1>Blogs Page</h1>
-                <br /><hr /><br />
-                <h2>Our Blogs Are Coming Soon.</h2>
+            <div className="blogPage">
+                <h1>Explore Our Blogs & Health Guides</h1>
+                <div className="blogsCont">
+                    <BlogCard type={'Health Guide'}/>
+                    <BlogCard type={'Thoughts'}/>
+                    <BlogCard type={'Health Guide'}/>
+                    <BlogCard type={'Blog'}/>
+                </div>
             </div>
-            <br /><br />
         </>
     )
 }
