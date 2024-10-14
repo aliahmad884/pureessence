@@ -77,25 +77,27 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
         </>
     )
 }
-export function BlogCard({type}) {
+export function BlogCard({ type, slug }) {
     return (
         <>
             <div className="blogCardCont">
                 <div className="img">
-                    <Image
-                        src={'/plastics.png'}
-                        alt="Temp Img"
-                        sizes="100vw"
-                        style={{
-                            width: '100%',
-                            height: "auto"
-                        }}
-                        width={500}
-                        height={300}
-                    />
+                    <Link href={`${slug}`}>
+                        <Image
+                            src={'/plastics.png'}
+                            alt="Temp Img"
+                            sizes="100vw"
+                            style={{
+                                width: '100%',
+                                height: "auto"
+                            }}
+                            width={500}
+                            height={300}
+                        />
+                    </Link>
                 </div>
                 <p>{type}</p>
-                <h2>Lorem Ipsum site lowub loyibtiq</h2>
+                <h2><Link href={`${slug}`}>Lorem Ipsum site lowub loyibtiq</Link></h2>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas suscipit maiores vero animi modi totam earum magnam expedita temporibus, libero provident sint ipsa dignissimos veritatis odio, aut numquam blanditiis. Quia.</p>
             </div>
         </>

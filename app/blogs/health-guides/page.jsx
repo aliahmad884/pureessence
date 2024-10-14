@@ -1,13 +1,18 @@
+import { BlogCard } from "@/components/cards";
+
 export default function GuidesPage() {
     return (
         <>
-            <br /><br />
-            <div className="blogHeading">
-                <h1>Health Guides Page</h1>
-                <br /><hr /><br />
-                <h2>Our Health Guides Are Coming Soon.</h2>
+            <div className="blogPage">
+                <h1>Health Guides</h1>
+                <div className="blogsCont">
+                    <BlogCard type={'Health Guide'} slug={`/blogs/health-guides/guide1`} />
+                    <BlogCard type={'Health Guide'} slug={`/blogs/health-guides/guide2`} />
+                    <BlogCard type={'Health Guide'} slug={`/blogs/health-guides/guide3`} />
+                    <BlogCard type={'Health Guide'} slug={`/blogs/health-guides/guide4`} />
+                    <BlogCard type={'Health Guide'} slug={`/blogs/health-guides/guide5`} />
+                </div>
             </div>
-            <br /><br />
         </>
     )
 }
