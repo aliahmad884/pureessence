@@ -28,7 +28,7 @@ export default function BlogSlug({ params }) {
                         </div>
                         <div className="postHeader">
                             <p>Published October 9, 2024 in <Link href={'/blogs'}>Blogs</Link></p>
-                            <h1>Lorem Ipsum uyhteq</h1>
+                            <h1>Lorem Ipsum uyhteq {decodedSlug}</h1>
                             <h2>By Haji Robert Wilson</h2>
                         </div>
                     </div>
@@ -63,11 +63,6 @@ export default function BlogSlug({ params }) {
                                 ><Image src={'/facebook.webp'} alt="Facebook" height={30} width={30} /></Link>
                                 <Link
                                     href={`https://wa.me/?text=${encodeURIComponent(`Check this out ${postUrl}`)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                ><Image src={'/whatsapp.webp'} alt="Whatsapp" height={30} width={30} /></Link>
-                                <Link
-                                    href={`https://wa.me/?text=${postUrl}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 ><Image src={'/whatsapp.webp'} alt="Whatsapp" height={30} width={30} /></Link>
