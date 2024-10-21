@@ -59,7 +59,7 @@ export default function CartPage() {
                                 <tr key={data.id}>
                                     <td data-label='Product' colSpan={2}>
                                         <div className="tableProduct">
-                                            <img loading="lazy"  src={data.imgUrl} alt="fsfsk" width={100} />&nbsp;
+                                            <img loading="lazy" src={data.imgUrl} alt="fsfsk" width={100} />&nbsp;
                                             <p>{data.title}</p>
                                         </div>
                                     </td>
@@ -103,6 +103,15 @@ export default function CartPage() {
                         <p>Taxes and shipping calculated at checkout</p>
                     </div> */}
                     <button onClick={handleCheckout} type="button">Procceed To Checkout</button>
+                </div>
+                <div className="acceptPay">
+                    <p>Payment Methods Accepted Here:</p>
+                    <div className="payCards">
+                        <img src="/icons/applePay.webp" alt="Apple Pay" loading="lazy" />
+                        <img src="/icons/masterCard.webp" alt="Master Card" loading="lazy" />
+                        <img src="/icons/paypal.webp" alt="Pay Pal" loading="lazy" />
+                        <img src="/icons/visaCard.webp" alt="Visa" loading="lazy" />
+                    </div>
                 </div>
             </div>
         </>

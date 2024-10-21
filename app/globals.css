@@ -1028,6 +1028,17 @@ main {
   text-align: center;
 }
 
+.copy .payCards {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.copy .payCards img {
+  width: 40px;
+}
+
 /* .copy p {
   color: white;
 } */
@@ -1192,9 +1203,46 @@ main {
   background-color: #dfb434;
   font-size: large;
   outline: none;
-  border: 1px solid;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 10px 50px;
+  border-radius: 10px;
+  margin-top: 30px;
+  transition: all 0.5s;
+}
+
+.cartPage .checkoutCont button:hover {
+  background-color: white;
+  color: black;
   border-radius: 30px;
+}
+
+.cartPage .acceptPay {
+  width: 100%;
+  max-width: 1600px;
+  display: flex;
+  flex-flow: column;
+  align-items: end;
+  justify-content: right;
+  gap: 10px;
+  margin-top: 50px;
+  /* margin: auto; */
+}
+
+.cartPage .acceptPay p {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.cartPage .acceptPay .payCards {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartPage .acceptPay .payCards img {
+  width: 60px;
 }
 
 .cartPage .checkoutCont .subTotal {

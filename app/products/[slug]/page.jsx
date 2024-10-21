@@ -27,7 +27,7 @@ export default function Products({ params }) {
             toast.success('Item Added to the Cart.')
         }
         else {
-            toast.success('Item already on Cart.', {
+            toast.success('Please Edit Quantity in Cart.', {
                 icon: <FontAwesomeIcon style={{ color: 'cadetblue', fontSize: '1.5rem' }} icon={faInfoCircle} />
             })
             return null;
@@ -37,10 +37,6 @@ export default function Products({ params }) {
         setIsLoading(false)
         let mainImg = document.querySelector('.mainImg')
         let img = document.getElementById('img')
-        if (showImgFull) {
-            document.body.style.maxHeight = '100vh'
-            document.body.style.overflow = 'hidden'
-        }
         const handlePortal = (event) => {
             if (showImgFull && !mainImg.contains(event.target) && !img.contains(event.target)) {
                 setShowImgFull(false)
