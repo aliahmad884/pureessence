@@ -277,7 +277,7 @@ main {
 }
 
 .navMainCont .routerDropDown.drop.extend {
-  height: 380px;
+  height: 390px;
 }
 
 .navMainCont .routerDropDown a {
@@ -312,7 +312,7 @@ main {
   position: relative;
   cursor: pointer;
   width: 100%;
-  /* padding-top: 10px; */
+  border-right: 2px solid;
 }
 
 .dropCart a {
@@ -322,7 +322,7 @@ main {
 
 .dropCart .count {
   position: absolute;
-  top: 8px;
+  top: -8px;
   left: 20px;
   font-size: small;
   background-color: #dfb434;
@@ -332,6 +332,11 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.routerDropDown .dropUser{
+  width: 100%;
+  align-items: center;
+  justify-content: end;
 }
 
 .routerDropDown .dropUser img {
@@ -1027,6 +1032,15 @@ main {
   color: white;
   text-align: center;
 }
+.copy .payCards{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+.copy .payCards img{
+  width: 40px;
+}
 
 /* .copy p {
   color: white;
@@ -1192,9 +1206,41 @@ main {
   background-color: #dfb434;
   font-size: large;
   outline: none;
-  border: 1px solid;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 10px 50px;
+  border-radius: 10px;
+  margin-top: 30px;
+  transition: all 0.5s;
+}
+.cartPage .checkoutCont button:hover{
+  background-color: white;
+  color: black;
   border-radius: 30px;
+}
+.cartPage .acceptPay{
+  width: 100%;
+  max-width: 1600px;
+  display: flex;
+  flex-flow: column;
+  align-items: end;
+  justify-content: right;
+  gap: 10px;
+  margin-top: 50px;
+  /* margin: auto; */
+}
+.cartPage .acceptPay p{
+  font-size: 1rem;
+  font-weight: bold;
+}
+.cartPage .acceptPay .payCards{
+  display:flex;
+  flex-flow: row wrap;
+  gap: 5px 10px;
+  align-items: center;
+  justify-content: center;
+}
+.cartPage .acceptPay .payCards img{
+  width: 60px;
 }
 
 .cartPage .checkoutCont .subTotal {
@@ -1393,25 +1439,28 @@ select {
 .loginMainCont .header {
   position: fixed;
   width: 100%;
-  /* max-width: 2200px; */
   top: 0;
   left: 0;
   background-color: white;
-  /* width: fit-content; */
-  padding: 20px 20px 0 20px;
   margin: auto;
+  padding: 5px 15px;
+  border-bottom: 2px solid #c4c1c1;
 }
 
-.signupMainCont .header .logo,
-.loginMainCont .header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  gap: 5px;
+.signupMainCont .header .subCont,
+.loginMainCont .header .subCont{
   width: fit-content;
-  line-height: 1;
+  margin-top: auto;
+}
+.signupMainCont .header .subCont p,
+.loginMainCont .header .subCont p{
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 0.53rem;
+  /* letter-spacing: 0px; */
+  margin-top: -10px;
+  margin-left: 60px;
+  /* word-spacing: -1px; */
 }
 
 .signupMainCont .signupImgCont,
@@ -1630,7 +1679,7 @@ select {
   margin-bottom: 8px;
 }
 
-.proMainCont .sidePanel .optionsCont ul li {
+.proMainCont .sidePanel .optionsCont a {
   padding-left: 20px;
   margin-bottom: 4px;
   font-size: 1rem;
@@ -1638,14 +1687,11 @@ select {
   transition: all 0.5s;
 }
 
-.proMainCont .sidePanel .optionsCont ul li:hover {
+.proMainCont .sidePanel .optionsCont a:hover {
   color: #dfb434;
   padding-left: 22px;
 }
 
-.proMainCont .rightPanel .tab {
-  display: none;
-}
 
 .proMainCont .rightPanel {
   width: 100%;
@@ -1656,6 +1702,7 @@ select {
   padding: 10px;
   border-left: 1px solid #a09f9f;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  position: relative;
 }
 
 .rightPanel h1 {

@@ -1,0 +1,333 @@
+/* 
+    aPanel Dashboard Designed & Developed by AldorTech LTD,
+    Copyright apnel 1.0.0 All Rights Reserverd by AldorTech LTD.
+    To see our privacy policy visit: https://aldortech.com/privacy-policy .
+    or see our services and projects on https://aldortech.com .
+    or contact us on: +44 7928 092974
+
+*/
+
+
+/* ------------------- Global Styles ------------------ */
+.adminRoute {
+    margin-top: -44px;
+    margin-left: 271px;
+    transition: all 0.5s;
+    padding: 20px;
+    /* height: 2200px; */
+}
+
+.adminRoute h1 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.adminRoute .subCont {
+    width: 100%;
+    max-width: 1300px;
+    margin: 20px auto;
+    position: relative;
+    transition: all 0.5s;
+}
+
+.actionIcon {
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.actionIcon:hover {
+    transform: translateY(-5px);
+}
+
+/* -------------------- Global Styles End ----------------------- */
+
+/* ----------------------==============-------------------------- */
+/* ============================================================== */
+/* ----------------------==============-------------------------- */
+
+/* ------------------ Global Table Styles ----------------------- */
+
+.tableCont {
+    width: 100%;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    overflow-x: auto;
+    margin-top: 40px;
+    transition: all 0.5s;
+}
+
+.tableCont table {
+    width: 100%;
+    min-width: 850px;
+}
+
+.tableCont tr {
+    border: 1px solid #c9c7c7;
+}
+
+.tableCont th,
+td {
+    text-align: left;
+    padding: 10px;
+}
+
+.tableCont .tableFlex {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ----------------- Global Table Styles End -------------------- */
+
+/* ----------------------==============-------------------------- */
+/* ============================================================== */
+/* ----------------------==============-------------------------- */
+
+/* ---------- Admin Navigation Panel & Toolbar Styles ----------- */
+
+.adminNavCont {
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 270px;
+    background-color: #f7f7f8;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-flow: column;
+    overflow-y: auto;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 10;
+    transition: all 0.5s;
+}
+
+.adminNavCont.toggleNav {
+    left: 0;
+}
+
+.adminNavCont .adminLogo {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 9px 20px;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.adminNavCont .adminLogo img {
+    width: 100%;
+    max-width: 200px;
+}
+
+.adminNavCont .adminLogo .badge {
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
+    padding: 5px 10px;
+    font-size: small;
+}
+
+.adminNavCont .adminNavLinks {
+    display: flex;
+    flex-flow: column;
+    margin-top: 40px;
+}
+
+.adminNavCont .adminNavLinks a {
+    margin: 5px 20px;
+    padding: 5px 15px;
+    transition: all 0.5s;
+    border-radius: 10px;
+    font-size: medium;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.adminNavCont .adminNavLinks a:hover {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.adminNavCont .adminNavLinks p {
+    color: #888888;
+    font-size: small;
+    padding: 0 35px;
+}
+
+.activeTab {
+    background-color: white;
+    font-size: 0.8rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.adminNavCont .adminCopR {
+    margin-top: 150px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: end;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.adminNavCont .adminCopR img {
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 150px;
+}
+
+/* ----- Tool Bar ------- */
+
+.adminToolCont {
+    width: 100%;
+    max-width: 2200px;
+    background-color: #f7f7f8;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding: 8px 20px;
+    z-index: 1;
+}
+
+.adminToolCont .user {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.adminToolCont .user img {
+    width: 100%;
+    max-width: 35px;
+}
+
+.adminToolCont .toggleIcon img {
+    width: 100%;
+    max-width: 30px;
+    cursor: pointer;
+}
+
+/* ---- Tool Bar End ------ */
+
+/* ------------ Navigation & Toolbar Styles End Here ------------ */
+
+/* ----------------------==============-------------------------- */
+/* ============================================================== */
+/* ----------------------==============-------------------------- */
+
+/* ------------------ Product Page Styles ----------------------- */
+
+.formCont form .btnSubmit,
+.newProductBtn {
+    border: none;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 2px;
+    padding: 10px 30px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    transition: all 0.5s;
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+
+.formCont form .btnSubmit img,
+.newProductBtn img {
+    transition: all 0.5s;
+}
+
+.formCont form .btnSubmit:hover img,
+.newProductBtn:hover img {
+    transform: translateX(-4px);
+}
+
+.formCont form .btnSubmit:hover,
+.newProductBtn:hover {
+    border-radius: 15px;
+}
+
+/* ---------------- Product Page Styles End --------------------- */
+
+/* ----------------------==============-------------------------- */
+/* ============================================================== */
+/* ----------------------==============-------------------------- */
+
+/* ---------------- New Product Page Styles --------------------- */
+
+.formCont {
+    margin-top: 40px;
+    transition: all 0.5s;
+}
+
+.formCont form {
+    width: 100%;
+    transition: all 0.5s;
+}
+
+/* .formCont form .btnSubmit{
+    padding
+} */
+
+.formCont form label {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.formCont form input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #e4e2e2;
+    /* border-radius: 6px; */
+    padding: 8px;
+    margin-bottom: 20px;
+}
+
+.formCont form input:focus {
+    outline: 2px solid #0169dd;
+    border-radius: 2px;
+}
+
+.formCont .formSec {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+}
+
+.formCont .formSec p {
+    margin-top: -20px;
+    font-size: small;
+    color: #888888;
+}
+
+.formCont .formSec h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.formCont .formSec .slug {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.tox-tinymce {
+    border-radius: 0 !important;
+}
+
+/* -------------- New Product Page Styles End ------------------- */
+
+/* ----------------------==============-------------------------- */
+/* ============================================================== */
+/* ----------------------==============-------------------------- */

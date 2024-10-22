@@ -1,0 +1,21 @@
+@media (width<=1200px) {
+    .adminNavCont {
+        left: -100%;
+    }
+
+    .adminRoute {
+        margin-left: 0;
+    }
+}
+@media (width<=500px){
+    .newProductBtn{
+        top: 70px;
+        width: 100%;
+    }
+    .tableCont{
+        margin-top: 70px;
+    }
+    .formCont .formSec .slug #dSlug{
+        display: none;
+    }
+}

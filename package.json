@@ -14,6 +14,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@ionic/react": "^8.2.6",
+    "@tinymce/tinymce-react": "^5.1.1",
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.5.0",
     "bcrypt": "^5.1.1",
@@ -37,7 +38,8 @@
     "rsuite": "^5.71.0",
     "sequelize": "^6.37.3",
     "slick-carousel": "^1.8.1",
-    "stripe": "^16.12.0"
+    "stripe": "^16.12.0",
+    "tinymce": "^7.3.0"
   },
   "devDependencies": {
     "eslint": "^8.57.1",

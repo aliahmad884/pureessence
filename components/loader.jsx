@@ -9,3 +9,14 @@ export default function FallBackLoader() {
         </>
     )
 }
+export function ChildLoader() {
+    return (
+        <>
+            <div className="childLoaderCont">
+                <div className="temp">
+                    <span className="mainLoader"></span>
+                </div>
+            </div>
+        </>
+    )
+}

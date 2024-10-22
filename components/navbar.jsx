@@ -186,7 +186,7 @@ export default function Navbar() {
                             <span></span>
                         </div>
                         {/* ---------Search Bar--------- */}
-                        <div style={{ display: 'none' }} className="searchBar">
+                        <div className="searchBar">
                             <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" />
                             <FontAwesomeIcon className="searchIcon" onClick={handleSearch} icon={faMagnifyingGlass} />
                         </div>
@@ -196,7 +196,7 @@ export default function Navbar() {
                             <FontAwesomeIcon style={{ fontSize: '1.5rem', paddingTop: '7px' }} icon={faCartShopping} />
                         </div>
                         {/* -------Active User------- */}
-                        <div style={{ display: 'none' }} onClick={handleUserDrop} className="userCont">
+                        <div onClick={handleUserDrop} className="userCont">
                             <img loading="lazy"  src="/avatar2.webp" alt="Temp" width={40} />
                             <div className="userMenu">
                                 {loggedUser ? (<>
@@ -236,23 +236,23 @@ export default function Navbar() {
                         >{navlink.link}</Link>)
                     }
                     {/* --------DropDown Search Bar-------- */}
-                    <div className="dropSearch" style={{ display: 'none', flexFlow: 'row nowrap' }}>
+                    <div className="dropSearch" style={{  flexFlow: 'row nowrap' }}>
                         <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" />
                         <FontAwesomeIcon style={{ cursor: 'pointer', margin: '0 15px' }} onClick={handleSearch} icon={faMagnifyingGlass} />
                     </div>
-                    <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', flexFlow: 'row nowrap',alignItems:'center', justifyContent: 'space-between' }}>
                         {/* --------DropDown Search Cart-------- */}
                         <div onClick={() => router.push('/cart')} className="dropCart">
                             <div className="count">{cartData.length}</div>
                             <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faCartShopping} />
                         </div>
                         {/* --------DropDown Search User-------- */}
-                        <div onClick={handleExtend} className="dropUser" style={{ display: 'none', alignItems: 'center' }}>
+                        <div onClick={handleExtend} className="dropUser">
                             <img loading="lazy"  src="/avatar2.webp" alt="Temp" width={40} />
                             <h4>{loggedUser ? loggedUser.Name : 'Guest'}</h4>
                         </div>
                     </div>
-                    <div style={{ display: 'none' }} className="userDropMenu">
+                    <div className="userDropMenu">
                         {loggedUser ? (<>
                             <ul>
                                 <li>

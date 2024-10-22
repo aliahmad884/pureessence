@@ -3,7 +3,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function NewsLetter() {
-    const [email, setEmail] = useState()
+    const [email, setEmail] = useState('')
     const [isSending, setIsSending] = useState(false)
     const handleSubmit = () => {
         setIsSending(true)

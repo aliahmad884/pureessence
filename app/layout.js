@@ -4,6 +4,8 @@ import Navbar from "@/components/navbar";
 import "./globals.css";
 import "./google.css";
 import "./loaders.css";
+import './adminStyles.css';
+import './adminMediaQueries.css';
 import "./media-queries.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -41,7 +43,7 @@ export default function RootLayout({ children }) {
                   <Navbar />
                 </>
               )}
-              {(pathName.startsWith('/invoice')) ? null : <Whatsapp />}
+              {(pathName.startsWith('/invoice') || (pathName.startsWith('/admin'))) ? null : <Whatsapp />}
               {children}
               {(
                 pathName.startsWith('/admin') ||

@@ -54,9 +54,10 @@
     .aboutContainer .aboutImg {
         width: 100%;
     }
-    .aboutPage{
+
+    .aboutPage {
         padding: 50px 20px;
-      }
+    }
 
     .letterCont .inputCont {
         width: 70%;
@@ -87,7 +88,7 @@
         width: 100%;
     }
 
-    .aboutPage .secondCont .postCont{
+    .aboutPage .secondCont .postCont {
         flex-flow: column-reverse;
     }
 
@@ -140,7 +141,8 @@
     .productSlug {
         flex-flow: column nowrap;
     }
-    .blogPage .blogsCont{
+
+    .blogPage .blogsCont {
         flex-flow: column;
         align-items: center;
     }
@@ -154,6 +156,7 @@
         flex-flow: column;
         align-items: center;
     }
+
     .aboutPage .secondCont ul {
         flex-flow: column;
     }
@@ -161,29 +164,35 @@
     .aboutPage .secondCont li {
         width: 100%;
     }
-    .readerHeader .breadCrumbs{
+
+    .readerHeader .breadCrumbs {
         max-width: 100%;
     }
-    .readerHeader .breadCrumbs a{
+
+    .readerHeader .breadCrumbs a {
         border: 1px solid #8b8a8a;
         padding: 5px 20px;
         border-radius: 5px;
         color: black;
     }
-    .readerHeader .postHeader h1{
+
+    .readerHeader .postHeader h1 {
         font-size: 2rem;
     }
-    .readerHeader .postHeader h2{
+
+    .readerHeader .postHeader h2 {
         font-size: 1rem;
     }
+
     .readerCont .mainBody,
-    .readerHeader{
+    .readerHeader {
         flex-flow: column;
     }
 
 }
 
 @media screen and (max-width: 700px) {
+
     .cartPage {
         padding-top: 50px;
     }
@@ -272,11 +281,11 @@
     .routerDropDown .dropSearch,
     .routerDropDown .dropCart,
     .routerDropDown .dropUser {
-        display: block;
+        display: flex;
     }
 
     .navMainCont .routerDropDown.drop {
-        height: 300px;
+        height: 330px;
     }
 
     .heroContainer h1 {
@@ -380,8 +389,9 @@
     .productCard .img {
         height: 400px;
     }
+
     .productPageBanner,
-    .aboutBanner{
+    .aboutBanner {
         height: 500px;
     }
 }
@@ -438,8 +448,9 @@
     .productCard .img {
         height: 250px;
     }
+
     .productPageBanner,
-    .aboutBanner{
+    .aboutBanner {
         height: 400px;
     }
 }

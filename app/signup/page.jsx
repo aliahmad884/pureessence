@@ -84,17 +84,14 @@ export default function Signup() {
         <>
             <div className="signupMainCont">
                 <div className="header">
-                    <div className="logo">
-                        <img loading="lazy"  src="/CircleLogo.webp" alt="Logo" width={50} />
-                        <div onClick={() => router.push('/')}>
-                            <h1 style={{ color: 'black' }}><strong style={{ color: '#dfb434' }}>Pure</strong> Essence</h1>
-                            <p style={{ color: 'black' }}>The Purest Products, For a Better You.</p>
-                        </div>
+                    <div className="subCont">
+                        <Link href={'/'}><img src="/logos/PE-Main-Logo.png" alt="Logo" loading="lazy" width={280} /></Link>
+                        <p><strong>&quot;The Purest Products,For a Better You&quot;</strong></p>
                     </div>
                 </div>
                 <div className="footBar"></div>
                 <div className="signupImgCont">
-                    <img loading="lazy"  src="/login.webp" alt="Login" />
+                    <img loading="lazy" src="/login.webp" alt="Login" />
                 </div>
                 <div className="formCont">
                     <div className="signupForm">

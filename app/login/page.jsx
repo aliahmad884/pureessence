@@ -50,7 +50,7 @@ export default function Login() {
                 setIsLoading(false)
                 SetDOMLoaded(true)
                 // setTimeout(() => {
-                    router.push(path?path:'/')
+                router.push(path ? path : '/')
                 // }, 1000)
             } else {
                 setErrMsg(data.res)
@@ -72,17 +72,14 @@ export default function Login() {
         <>
             <div className="loginMainCont">
                 <div className="header">
-                    <div className="logo">
-                        <img loading="lazy"  src="/CircleLogo.webp" alt="Logo" width={50} />
-                        <div onClick={() => router.push('/')}>
-                            <h1 style={{ color: 'black' }}><strong style={{ color: '#dfb434' }}>Pure</strong> Essence</h1>
-                            <p style={{ color: 'black' }}>The Purest Products, For a Better You.</p>
-                        </div>
+                    <div className="subCont">
+                        <Link href={'/'}><img src="/logos/PE-Main-Logo.png" alt="Logo" loading="lazy" width={280} /></Link>
+                        <p><strong>&quot;The Purest Products,For a Better You&quot;</strong></p>
                     </div>
                 </div>
                 <div className="footBar"></div>
                 <div className="loginImgCont">
-                    <img loading="lazy"  src="/login.webp" alt="" />
+                    <img loading="lazy" src="/login.webp" alt="" />
                 </div>
                 <div className="formCont">
                     <div className="loginForm">
