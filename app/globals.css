@@ -1197,6 +1197,7 @@ main {
   max-width: 1600px;
   width: 100%;
   text-align: right;
+  margin-top: 20px;
 }
 
 .cartPage .checkoutCont button {

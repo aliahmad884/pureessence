@@ -56,16 +56,16 @@ export default function Products({ params }) {
                 <div className="productSlug">
                     <div className="imgCont">
                         <div className="thumbnails">
-                            <img loading="lazy"  onClick={() => setImgPath(product.imgUrl)} src={product.imgUrl} alt="Main Image" />
+                            <img loading="lazy" onClick={() => setImgPath(product.imgUrl)} src={product.imgUrl} alt="Main Image" />
                             {
-                                product.images ? product.images.map((img, i) => <img loading="lazy"  onClick={() => setImgPath(img)} key={i} src={img} alt={img} />) : null
+                                product.images ? product.images.map((img, i) => <img loading="lazy" onClick={() => setImgPath(img)} key={i} src={img} alt={img} />) : null
                             }
                         </div>
                         <div className="mainImg">
-                            <img loading="lazy"  onClick={() => setShowImgFull(true)} src={imgPath} alt={product.title} />
+                            <img loading="lazy" onClick={() => setShowImgFull(true)} src={imgPath} alt={product.title} />
                             {showImgFull && createPortal(<>
                                 <div className="imgPortalCont">
-                                    <img loading="lazy"  id='img' onClick={() => window.open(imgPath, '_blank')} src={imgPath} alt={product.title} />
+                                    <img loading="lazy" id='img' onClick={() => window.open(imgPath, '_blank')} src={imgPath} alt={product.title} />
                                 </div>
                             </>, document.body)}
                         </div>
@@ -73,7 +73,7 @@ export default function Products({ params }) {
                     <div className="detailsCont">
                         <h1>{product.title}</h1>
                         <p>{product.shortDes}</p>
-                        <h3 style={{cursor:'pointer',textDecoration:'underline',width:'fit-content'}} onClick={() => window.open('https://wa.me/+4401254411076')}>{product.price}</h3>
+                        <h3 style={{ width: 'fit-content' }}>&pound;{product.price}</h3>
                         <button onClick={handleCart} style={(product.stock === 'out of stock') ? { backgroundColor: 'grey' } : null} disabled={(product.stock === 'out of stock') ? true : false} type="button">{(product.stock === 'out of stock') ? product.stock : 'Add to Cart'}</button>
                         <h4><strong>Availability :</strong> {product.stock}</h4>
                         <div>

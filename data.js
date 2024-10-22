@@ -6,7 +6,7 @@ const ProductData = [
         slug: 'acacia-pure-honey',
         shortDes: 'Honey derived from Robinia pseudoacacia flower, commonly known as the Black Locust or False Acacia tree.',
         description: 'A delicate, light, and subtly sweet honey derived from the flowers of the Robinia pseudoacacia, also known as the Black Locust or False Acacia tree. Ideal for those who love mild-flavored honey.',
-        price: '£22.00',
+        price: '22.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -18,7 +18,7 @@ const ProductData = [
         slug: 'apple-vinegar',
         shortDes: 'Good Quality Apple Vinegar',
         description: 'Premium apple vinegar made from fresh apples. A versatile condiment and health tonic known for its beneficial properties in digestion, weight management, and skin care, among others.',
-        price: '£7.00',
+        price: '7.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -30,7 +30,7 @@ const ProductData = [
         slug: 'apricot-flower-pure-honey',
         shortDes: 'Apricot Flower Pure Honey',
         description: 'A unique and fragrant honey harvested from the blossoms of apricot flowers. Perfect for those who enjoy sweet honey with a hint of fruity floral notes.',
-        price: '£25.00',
+        price: '25.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -42,7 +42,7 @@ const ProductData = [
         slug: 'black-seed-in-honey',
         shortDes: 'Black Seeds in Honey!',
         description: 'A potent combination of black seeds (Nigella sativa) mixed with pure honey. Known for its medicinal properties, this blend supports overall health and wellness.',
-        price: '£14.50',
+        price: '14.50',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -54,7 +54,7 @@ const ProductData = [
         slug: 'dates-syrup',
         shortDes: 'Pourable Syrup of Dates',
         description: 'A rich and sweet syrup concentrate extracted from dates. Date syrup has a pH value of 4.5–4.67, which is slightly acidic due to the natural composition of its sugars. Uses Date syrup is a popular natural sweetener and flavor enhancer in Middle Eastern and Arab cooking, as well as in vegan baking. It can be used in place of sugar in almost any recipe, and is commonly used as a topping for pancakes, ice cream, pudding, and fresh yogurt. It can also be used in savory dishes like marinating meat and vegetables, dips and sauces, barbecue sauces, and honey mustard dressings. To store date syrup, keep it in an airtight jar in a cool place or the refrigerator. Refrigerating date syrup can help it last longer without going rancid.',
-        price: '£7.50',
+        price: '7.50',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -66,7 +66,7 @@ const ProductData = [
         slug: 'egyptian-desert-herb-flower-honey',
         shortDes: 'Authentic Egyptian Desert Herb Flower Honey',
         description: 'Sourced from desert herbs in Egypt, this honey is packed with the essence of medicinal herbs and a rich, earthy flavor. A rare treat for honey connoisseurs.',
-        price: '£26.00',
+        price: '26.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -78,7 +78,7 @@ const ProductData = [
         slug: 'nigella-sativa-royal-honey',
         shortDes: 'Authentic honey derived from the flowers of Nigella sativa ',
         description: 'A premium honey derived from Nigella sativa, also known as Habbatus Sauda or black seed. This royal honey is renowned for its rich, robust flavor and remarkable health benefits. Packed with antioxidants and nutrients, it is believed to enhance immune function, improve digestion, and provide various therapeutic properties. Perfect for those seeking a natural and nutritious sweetener, it is a delightful addition to teas, smoothies, or enjoyed on its own.',
-        price: '£30.00',
+        price: '30.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -90,7 +90,7 @@ const ProductData = [
         slug: 'honeycomb-honey',
         shortDes: 'Honey with Honeycomb',
         description: 'Pure honey with honeycomb. A natural, raw treat, the honeycomb adds texture and enhances the experience of consuming fresh honey, packed with nutrients and enzymes.',
-        price: '£20.00',
+        price: '20.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -102,7 +102,7 @@ const ProductData = [
         slug: 'khalta-vitality-booster',
         shortDes: 'A Blend of Potent Natural Ingredients in Honey',
         description: 'An very powerful honey mix designed to boost energy and vitality. Khalta Booster is ideal for those looking to enhance stamina, recovery, and overall health with natural ingredients. Royal-Khalta-Booster Ingredients: Bardakosh, ginseng, shilajit, bee propolis, Ferula hermonis (giant fennel), saffron, poppy seed paste, sesame paste, Ceylon cinnamon, sumac, Bentong ginger, solo garlic, Doum palm fruit, Akarkara root powder, Maca root powder, Nigella sativa seeds (black seed),  honey, royal Sidr honey, Nigella sativa honey, desert flower honey, golden honey, royal Sumor honey, cashew nuts, almonds, sunflower seeds, and peanuts. Allergen Advice: This product contains nuts (cashew nuts, almonds, peanuts), seeds (sunflower seeds, nigella sativa seeds), and may contain traces of other allergens.',
-        price: '£66.50',
+        price: '66.50',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -114,7 +114,7 @@ const ProductData = [
         slug: 'nuts-black-seed-in-honey',
         shortDes: 'Nuts and Black Seed (Nigella sativa) in Honey.',
         description: 'A delightful blend of premium nuts and Black Seed (Nigella sativa) mixed with pure honey. Rich in antioxidants and healthy fats, this product is both a tasty and nutritious snack. Allergen Advice: Contains nuts and seeds.',
-        price: '£23.00',
+        price: '23.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -126,7 +126,7 @@ const ProductData = [
         slug: 'ox-garlic',
         shortDes: 'Honey infused with garlic for health use.',
         description: 'A unique blend of pure honey and garlic, offering strong antibacterial and immune-boosting properties. Ideal for those looking for a natural health remedy.',
-        price: '£45.00',
+        price: '45.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -138,7 +138,7 @@ const ProductData = [
         slug: 'palestinian-extra-virgin-olive-oil',
         shortDes: 'Cold-pressed extra virgin olive oil from Palestine.',
         description: 'This high-quality, cold-pressed olive oil from Palestinian olives offers a rich flavor and exceptional health benefits. Perfect for culinary use or as a health supplement.',
-        price: '£14.50',
+        price: '14.50',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -150,7 +150,7 @@ const ProductData = [
         slug: 'pomegranate-concentrate',
         shortDes: 'Concentrated Pomegranate from Pomegranate juice.',
         description: 'A potent, antioxidant-rich pomegranate concentrate, packed with the goodness of this superfruit. Ideal for mixing in water, smoothies, or using as a health supplement.',
-        price: '£7.50',
+        price: '7.50',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -162,7 +162,7 @@ const ProductData = [
         slug: 'pomegranate-vinegar',
         shortDes: 'Pomegranate Vinegar',
         description: 'A tangy and flavourful pomegranate vinegar that adds a refreshing twist to salads and dressings while offering a host of health benefits.',
-        price: '£7.00',
+        price: '7.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -174,7 +174,7 @@ const ProductData = [
         slug: 'sunnah-talbinah-barley-porridge',
         shortDes: 'Traditional Sunnah Talbinah Barley Porridge',
         description: 'A classic, nourishing barley-based porridge known for its health-promoting properties. Perfect as a breakfast or snack for supporting digestion and overall well-being.',
-        price: '£7.00',
+        price: '7.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -186,7 +186,7 @@ const ProductData = [
         slug: 'sunnah-talbinah-barley-porridge-with-cinnamon',
         shortDes: 'Traditional Sunnah Talbinah Barley Porridge Enhanced With Cinnamon',
         description: 'A variation of traditional barley porridge, enhanced with the warm, aromatic flavor of cinnamon. A comforting and nutritious porridge for any time of day.',
-        price: '£8.00',
+        price: '8.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -198,7 +198,7 @@ const ProductData = [
         slug: 'rare-wild-royal-yemeni-cave-sidr-honey',
         shortDes: 'Rare Yemeni Cave Sidr Honey',
         description: 'This rare and luxurious honey is sourced from the caves of Yemen, made from Sidr tree nectar. Known for its exquisite taste and numerous health benefits.',
-        price: '£67.00',
+        price: '67.00',
         images: [],
         qty: 1,
         stock: 'in stock'
@@ -210,7 +210,7 @@ const ProductData = [
         slug: 'zuriat-doum-fruit-in-honey',
         shortDes: 'Zuriat (Doum Palm) Fruit Combined With Honey',
         description: 'A specialty blend combining the nutrient-rich Zuriat fruit with pure honey. Zuriat fruit is also known as gingerbread fruit or Doum fruit. A flavourful and health-boosting mix that offers a unique and exotic taste experience.',
-        price: '£17.00',
+        price: '17.00',
         images: [],
         qty: 1,
         stock: 'in stock'

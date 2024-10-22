@@ -13,6 +13,7 @@ export default function Checkout() {
     const [cartData, setCart] = useState([])
     const [billingInfo, setBillingInfo] = useState('')
     const [isLoading, setIsLoading] = useState(true)
+    const [subTotal, setSubTotal] = useState('')
     const [invUrl, setInvUrl] = useState({
         invId: '',
         invUrl: ''
@@ -51,6 +52,13 @@ export default function Checkout() {
     }
     useEffect(() => {
         let cart = localStorage.getItem('cart')
+        let arr = []
+        let cartData = JSON.parse(cart)
+        cartData.forEach(ele => {
+            arr.push(Number(ele.price) * ele.qty)
+        })
+        let total = arr.reduce((prev, curr) => prev + curr, 0)
+        setSubTotal(total)
         let billInfo = localStorage.getItem('billingInfo')
         let uniqId = localStorage.getItem('uniqueId')
         if (!billInfo) {
@@ -84,7 +92,9 @@ export default function Checkout() {
                                         <img loading="lazy" src={data.imgUrl} alt={data.title} width={60} />
                                         <p>{data.title}</p>
                                     </div>
+                                    <div className="price"><strong>Price: </strong><p>&pound;{data.price}</p></div>
                                     <div className="qty"><strong>Qty: </strong><p></p>{data.qty}</div>
+                                    <div className="total"><strong>Total: </strong><p>&pound;{data.qty * data.price}</p></div>
                                 </div>
                             )) : null
                         }
@@ -97,6 +107,12 @@ export default function Checkout() {
                                 <p><strong>Email: </strong>{billingInfo.email}</p>
                                 <p><strong>Phone: </strong>{billingInfo.phone}</p>
                                 <p><strong>Ship to: </strong>{billingInfo.address}</p>
+                            </div>
+                            <div className="orderTotal">
+                                <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>SubTotal: </strong><p>&pound;{subTotal}</p></div>
+                                <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Shipping Fee: </strong><p>&pound;12.63</p></div>
+                                <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Discount: </strong><p>&pound;0</p></div>
+                                <div style={{ borderTop: "2px solid rgb(224, 224, 224)", display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Total: </strong><p><strong>&pound;{eval(subTotal + 12.63 + 0)} GBP</strong></p></div>
                             </div>
                         </div>
                     </div>

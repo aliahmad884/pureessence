@@ -18,12 +18,12 @@ export default function CartPage() {
     }
     useEffect(() => {
         setLoading(false)
-        // let arr = []
-        // cartData.forEach(ele => {
-        //     arr.push(Number(ele.price) * ele.qty)
-        // })
-        // let total = arr.reduce((prev, curr) => prev + curr, 0)
-        // setSubTotal(total)
+        let arr = []
+        cartData.forEach(ele => {
+            arr.push(Number(ele.price) * ele.qty)
+        })
+        let total = arr.reduce((prev, curr) => prev + curr, 0)
+        setSubTotal(total)
     }, [cartData])
 
     if (loading) return <FallBackLoader />
@@ -47,10 +47,10 @@ export default function CartPage() {
                     <thead>
                         <tr>
                             <th style={{ textAlign: 'left' }} colSpan={2}>Product</th>
-                            {/* <th>Price</th> */}
+                            <th>Price</th>
                             <th>Quantity</th>
                             <th>Action</th>
-                            {/* <th style={{ textAlign: 'right' }}>Total</th> */}
+                            <th style={{ textAlign: 'right' }}>Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,7 +63,7 @@ export default function CartPage() {
                                             <p>{data.title}</p>
                                         </div>
                                     </td>
-                                    {/* <td data-label='Price'>&pound;{data.price}</td> */}
+                                    <td data-label='Price'>&pound;{data.price}</td>
                                     <td data-label='Quantity'>
                                         <div className="innerBtn">
                                             <button onClick={() => {
@@ -91,17 +91,17 @@ export default function CartPage() {
                                             />
                                         )}
                                     </td>
-                                    {/* <td data-label='Total' id="total" style={{ textAlign: 'right' }}>&pound;{data.price * data.qty}</td> */}
+                                    <td data-label='Total' id="total" style={{ textAlign: 'right' }}>&pound;{data.price * data.qty}</td>
                                 </tr>
                             ))
                         }
                     </tbody>
                 </table>
                 <div className="checkoutCont">
-                    {/* <div className="subTotal">
+                    <div className="subTotal">
                         <h3>SubTotal: &pound;{subTotal}</h3>
                         <p>Taxes and shipping calculated at checkout</p>
-                    </div> */}
+                    </div>
                     <button onClick={handleCheckout} type="button">Procceed To Checkout</button>
                 </div>
                 <div className="acceptPay">
