@@ -34,7 +34,6 @@ export default function Checkout() {
             headers: { 'Content-Type': "application/json" },
             body: JSON.stringify(body)
         }).then(res => res.json()).then(result => {
-            console.log(result)
             setIsLoading(false)
             setOrderConfirmed(true)
             localStorage.removeItem('uniqueId')
