@@ -13,6 +13,7 @@ export default function Invoice() {
     const [billingData, setBillingData] = useState([])
     const [invnotFound, setInvNotFound] = useState(false)
     const [isLoading, setIsloading] = useState(true)
+    const [subTotal, setSubTotal] = useState('')
     const params = useSearchParams()
     const invId = params.get('invId')
     const invUrl = params.get('ul')
@@ -36,6 +37,14 @@ export default function Invoice() {
                 // setBillingData(result.data.billing)
                 setBillingData(JSON.parse(result.data.billing))
                 setIsloading(false)
+                result
+                let arr = []
+                let items = JSON.parse(result.data.items)
+                items.forEach(ele => {
+                    arr.push(Number(ele.price) * ele.qty)
+                })
+                let total = arr.reduce((prev, curr) => prev + curr, 0)
+                setSubTotal(total)
             }
             catch (err) {
                 console.log(err)
@@ -89,6 +98,8 @@ export default function Invoice() {
                                 <th>Index</th>
                                 <th>Description</th>
                                 <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,6 +113,8 @@ export default function Invoice() {
                                         </div>
                                     </td>
                                     <td>{item.qty}</td>
+                                    <td>&pound;{item.price}</td>
+                                    <td>&pound;{item.price * item.qty}</td>
                                 </tr>
                             )) : console.log('invData.itmes Not found')
                             }
@@ -110,7 +123,21 @@ export default function Invoice() {
                 </div>
                 <div className="amount-container">
                     <div style={{ width: '100%', maxWidth: '400px' }}>
-                        <div style={{ borderTop: '2px solid rgb(224, 224, 224)', marginTop: '10px', paddingTop: '8px', fontSize: '1.2rem' }} className="subCont"><strong>Total:</strong> <h3 style={{ cursor: 'pointer', textDecoration: 'underline', width: 'fit-content' }} onClick={() => window.open('https://wa.me/+4401254411076')}>Please Enquire For Price</h3></div>
+                        <div className="subCont"><strong>Subtotal:</strong><p>&pound;{subTotal}</p></div>
+                        <div className="subCont"><strong>Shipping:</strong><p>&pound;12.63</p></div>
+                        <div className="subCont"><strong>Tax(if Applicable):</strong><p>&pound;0.00</p></div>
+                        <div className="subCont"><strong>Discount:</strong><p>&pound;0.00</p></div>
+                        <div style={
+                            {
+                                borderTop: '2px solid rgb(224, 224, 224)',
+                                marginTop: '10px',
+                                paddingTop: '8px',
+                                fontSize: '1.2rem'
+                            }
+                        } className="subCont"><strong>Total:</strong> <h3><strong>&pound;{(subTotal + 12.63).toLocaleString('en-GB', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        })}</strong></h3></div>
                     </div>
                 </div>
                 <div className="invoice-footer">

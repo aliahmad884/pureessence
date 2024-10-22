@@ -1200,12 +1200,14 @@ main {
   max-width: 1600px;
   width: 100%;
   text-align: right;
+  margin-top: 20px;
 }
 
 .cartPage .checkoutCont button {
   background-color: #dfb434;
   font-size: large;
   outline: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 10px 50px;
   border-radius: 10px;

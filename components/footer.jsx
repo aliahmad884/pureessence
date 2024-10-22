@@ -23,6 +23,7 @@ export default function Footer() {
                     {/* <img loading="lazy"  src="/transLogo.png" alt="Logo" width={50} /> */}
                     <ol>
                         <img loading="lazy" src="/logos/PE-Small-Text-Logo-Large.png" alt="Logo" /><br />
+                        <img loading="lazy" src="/logos/PE-Small-Text-Logo-Large.png" alt="Logo" /><br />
                         <p><b>&quot;The Purest Products,<br /> For a Better You&quot;</b></p>
                     </ol>
                     {/* <img loading="lazy"  src="/logos/PE-Main-Logo.png" alt="Logo"  /> */}
@@ -75,7 +76,6 @@ export default function Footer() {
                 <div className="payCards">
                     <img src="/icons/applePay.webp" alt="Apple Pay" loading="lazy" />
                     <img src="/icons/masterCard.webp" alt="Master Card" loading="lazy" />
-                    <img src="/icons/paypal.webp" alt="Pay Pal" loading="lazy" />
                     <img src="/icons/visaCard.webp" alt="Visa" loading="lazy" />
                 </div>
                 <p>Copyright &copy; {new Date().getFullYear()} <Link href={'/'}>PurEssence LTD </Link>- All Rights Reserved | Designed and Developed by <Link style={{ textDecoration: 'underline' }} href={'https://aldortech.com'}>AldorTech</Link>

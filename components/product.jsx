@@ -57,7 +57,7 @@ export default function PopularProducts() {
                 <div className="slider">
                     <Slider ref={slider => { sliderRef = slider }} {...settings} style={{ padding: '0 -15px' }}>
                         {
-                            data.map(data => <ProductCard key={data.id} id={data.id} imgUrl={data.imgUrl} title={data.title} qty={data.qty} data={data} slug={data.slug} />)
+                            data.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.imgUrl} title={data.title} qty={data.qty} data={data} slug={data.slug} />)
                         }
                     </Slider>
 

@@ -67,7 +67,7 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
                 {/* <img loading="lazy"  src={imgUrl} alt={title} /> */}
                 <h2>{title}</h2>
                 <h3>{shortDes}</h3>
-                <p>{price}</p>
+                <p>&pound;{price}</p>
                 <div className="btnCont">
                     <Link style={{ textAlign: 'center' }} href={`/products/${slug}`} className="btnPreview"><FontAwesomeIcon icon={faEye} /> View</Link>
                     {/* <button className="addToCart" onClick={() => handleCart()} type="button">Add to Cart</button> */}

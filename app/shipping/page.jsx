@@ -37,9 +37,6 @@ export default function Shipping() {
         event.preventDefault()
         localStorage.removeItem('billingInfo')
         const uniqueId = strGen(25)
-        console.log(uniqueId)
-        // const storedCart = localStorage.getItem('cart')
-        // let amount = calculateAmout(JSON.parse(storedCart))
         const body = {
             email: loggedUser ? loggedUser.Email : email,
             firstName: firstName,
