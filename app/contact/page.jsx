@@ -62,7 +62,7 @@ export default function ContactPage() {
                             <h2>PurEssence Contact Details</h2>
                             <h3><strong>Company Name: </strong>PurEssence LTD</h3>
                             <h3><strong>Address: </strong>Kings Court 33 King Street, Blackburn, UK, BB2 2DH</h3>
-                            <h3><strong>Phone Number: </strong>(+44) 01254 411076</h3>
+                            <h3><strong>Phone Number: </strong>+44 1254 411076</h3>
                             <h3><strong>Email Address: </strong>info@puressenceltd.co.uk</h3>
                             <div className="socialIcon">
                                 <img onClick={() => window.open('https://twitter.com/')} title="Twitter" loading="lazy" src="/icons/twitter.webp" alt="Twitter" />
