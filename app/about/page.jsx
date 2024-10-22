@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 import Link from "next/link";
 
 export default function AboutPage() {
@@ -74,11 +75,11 @@ export default function AboutPage() {
                             <p>You can learn more by visiting our <strong><Link href="/frequently-asked-questions">FAQs</Link>.</strong> You may also visit our <strong><Link href="/contact">contact page</Link></strong> for our social media or instant messaging. You may also email us or send us an email. </p>
                             {/* Newsletter here.*/}
                             <h2>Or Follow Us On</h2>
-                            <div style={{marginTop:'20px'}} className="iconsCont">
-                                <img onClick={() => window.open('https://twitter.com/')} title="Twitter" loading="lazy" src="/icons/twitter.webp" alt="Twitter" />
-                                <img onClick={() => window.open('https://www.instagram.com/')} title="Instagram" loading="lazy" src="/icons/instagram.webp" alt="Instagram" />
-                                <img onClick={() => window.open('https://www.tiktok.com/en/')} title="TikTok" loading="lazy" src="/icons/tiktok.webp" alt="TikTok" />
-                                <img onClick={() => window.open('https://www.facebook.com/')} title="Facebook" loading="lazy" src="/icons/facebook.webp" alt="Facebook" />
+                            <div style={{ marginTop: '20px' }} className="iconsCont">
+                                <Image onClick={() => window.open('https://twitter.com/')} src="/icons/twitter.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                                <Image onClick={() => window.open('https://www.instagram.com/')} src="/icons/instagram.webp" alt="Master Card" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                                <Image onClick={() => window.open('https://www.tiktok.com/en/')} src="/icons/tiktok.webp" alt="Visa" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                                <Image onClick={() => window.open('https://www.facebook.com/')} src="/icons/facebook.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
                             </div>
                         </div>
                         <div className="img">

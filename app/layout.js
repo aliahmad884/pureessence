@@ -17,6 +17,7 @@ import FallBackLoader from "@/components/loader";
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import Whatsapp from "@/components/whatsapp";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Head from "next/head";
 
 
 
@@ -24,6 +25,9 @@ export default function RootLayout({ children }) {
   const pathName = usePathname()
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/CircleLogo.webp" sizes="any" type="image/x-icon" />
+      </head>
       <GoogleAnalytics />
       <body>
         <ContextProvider>
