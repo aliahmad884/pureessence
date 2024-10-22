@@ -54,9 +54,11 @@ export default function Checkout() {
         let cart = localStorage.getItem('cart')
         let arr = []
         let cartData = JSON.parse(cart)
-        cartData.forEach(ele => {
-            arr.push(Number(ele.price) * ele.qty)
-        })
+        if (cartData) {
+            cartData.forEach(ele => {
+                arr.push(Number(ele.price) * ele.qty)
+            })
+        }
         let total = arr.reduce((prev, curr) => prev + curr, 0)
         setSubTotal(total)
         let billInfo = localStorage.getItem('billingInfo')
@@ -112,7 +114,20 @@ export default function Checkout() {
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>SubTotal: </strong><p>&pound;{subTotal}</p></div>
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Shipping Fee: </strong><p>&pound;12.63</p></div>
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Discount: </strong><p>&pound;0</p></div>
-                                <div style={{ borderTop: "2px solid rgb(224, 224, 224)", display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>Total: </strong><p><strong>&pound;{eval(subTotal + 12.63 + 0)} GBP</strong></p></div>
+                                <div style={
+                                    {
+                                        borderTop: "2px solid rgb(224, 224, 224)",
+                                        display: 'flex', flexFlow: 'row nowrap',
+                                        justifyContent: 'space-between'
+                                    }
+                                }><strong>Total: </strong><p><strong>&pound;{
+                                    (subTotal + 12.63 + 0).toLocaleString('eng-GB',
+                                        {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2
+                                        }
+                                    )
+                                } GBP</strong></p></div>
                             </div>
                         </div>
                     </div>

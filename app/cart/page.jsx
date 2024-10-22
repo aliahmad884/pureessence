@@ -5,7 +5,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState} from "react";
 
 export default function CartPage() {
     const router = useRouter()
@@ -91,7 +91,14 @@ export default function CartPage() {
                                             />
                                         )}
                                     </td>
-                                    <td data-label='Total' id="total" style={{ textAlign: 'right' }}>&pound;{data.price * data.qty}</td>
+                                    <td data-label='Total' id="total" style={{ textAlign: 'right' }}>&pound;{
+                                        (data.price * data.qty).toLocaleString('eng-GB',
+                                            {
+                                                minimumFractionDigits: 2,
+                                                maximumFractionDigits: 2
+                                            }
+                                        )
+                                    }</td>
                                 </tr>
                             ))
                         }
