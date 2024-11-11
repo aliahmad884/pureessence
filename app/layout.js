@@ -28,8 +28,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Head>
         <link rel="icon" href="/CircleLogo.webp" sizes="any" type="image/x-icon" />
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="e04eb72e-b07b-4af5-8e3b-71046098496a"></script>
       </Head>
+      <Script defer src="https://cloud.umami.is/script.js" data-website-id="e04eb72e-b07b-4af5-8e3b-71046098496a"></Script>
       <GoogleAnalytics />
       <body>
         <ContextProvider>
