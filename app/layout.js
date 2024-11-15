@@ -19,6 +19,8 @@ import FallBackLoader from "@/components/loader";
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import Whatsapp from "@/components/whatsapp";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Head from "next/head";
+import Script from 'next/script';
 
 
 
@@ -26,9 +28,10 @@ export default function RootLayout({ children }) {
   const pathName = usePathname()
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/CircleLogo.webp"/>
-      </head>
+      <Head>
+        <link rel="icon" href="/CircleLogo.webp" sizes="any" type="image/x-icon" />
+      </Head>
+      <Script defer src="https://cloud.umami.is/script.js" data-website-id="e04eb72e-b07b-4af5-8e3b-71046098496a" />
       <GoogleAnalytics />
       <body>
         <ContextProvider>

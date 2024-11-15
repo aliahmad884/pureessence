@@ -1,5 +1,7 @@
 "use client"
 
+import Image from "next/image"
+
 export default function Socials() {
     return (
         <>
@@ -7,10 +9,10 @@ export default function Socials() {
                 <h1>Get Social with Us</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, adipisci molestias perferendis odit </p>
                 <div style={{ marginTop: '80px' }} className="iconsCont">
-                    <img onClick={() => window.open('https://twitter.com/')} title="Twitter" loading="lazy" src="/icons/twitter.webp" alt="Twitter" />
-                    <img onClick={() => window.open('https://www.instagram.com/')} title="Instagram" loading="lazy" src="/icons/instagram.webp" alt="Instagram" />
-                    <img onClick={() => window.open('https://www.tiktok.com/en/')} title="TikTok" loading="lazy" src="/icons/tiktok.webp" alt="TikTok" />
-                    <img onClick={() => window.open('https://www.facebook.com/')} title="Facebook" loading="lazy" src="/icons/facebook.webp" alt="Facebook" />
+                    <Image onClick={() => window.open('https://twitter.com/')} src="/icons/twitter.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                    <Image onClick={() => window.open('https://www.instagram.com/')} src="/icons/instagram.webp" alt="Master Card" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                    <Image onClick={() => window.open('https://www.tiktok.com/en/')} src="/icons/tiktok.webp" alt="Visa" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                    <Image onClick={() => window.open('https://www.facebook.com/')} src="/icons/facebook.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
                 </div>
             </div>
         </>

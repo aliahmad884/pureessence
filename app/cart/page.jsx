@@ -3,6 +3,7 @@ import FallBackLoader from "@/components/loader";
 import { useDataContext } from "@/context";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -114,9 +115,9 @@ export default function CartPage() {
                 <div className="acceptPay">
                     <p>Payment Methods Accepted Here:</p>
                     <div className="payCards">
-                        <img src="/icons/applePay.webp" alt="Apple Pay" loading="lazy" />
-                        <img src="/icons/masterCard.webp" alt="Master Card" loading="lazy" />
-                        <img src="/icons/visaCard.webp" alt="Visa" loading="lazy" />
+                        <Image src="/icons/applePay.webp" alt="Apple Pay" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
+                        <Image src="/icons/masterCard.webp" alt="Master Card" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
+                        <Image src="/icons/visaCard.webp" alt="Visa" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
                     </div>
                 </div>
             </div>
