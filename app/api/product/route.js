@@ -7,8 +7,20 @@ export async function POST(req) {
     let body = await req.json()
     try {
         if (body) {
-            const newProduct = await Product.create(body)
-            return res({ res: 'Product Added Successfully!', id: newProduct.id }, 201)
+            await Product.create({
+                pName: body.pName,
+                slug: body.slug,
+                sDesc: body.sDesc,
+                description: body.description,
+                price: body.price,
+                pImages: body.pImages,
+                qty: body.qty,
+                pageTitle: body.pageTitle,
+                metaDesc: body.metaDesc,
+                reviews: null,
+                category: null
+            })
+            return res({ res: 'Product Added Successfully!' }, 201)
         }
         return res({ res: "Product Body Not Recieved!" }, 404)
     }
@@ -21,12 +33,18 @@ export async function POST(req) {
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url)
-    let id = searchParams.get('id')
+    let id = searchParams.get('pId')
+    let pSlug = searchParams.get('slug')
     try {
         if (id) {
-            const findById = await Category.findByPk(id)
+            const findById = await Product.findByPk(id)
             if (findById === null) return res({ res: `Data Not found against id: ${id}` }, 404)
-            else return res(findById.dataValues, 200)
+            return res(findById.dataValues, 200)
+        }
+        else if (pSlug) {
+            const findBySlug = await Product.findOne({ where: { slug: pSlug } })
+            if (findBySlug === null) return res({ res: `Product Not found against Slug: ${pSlug}` }, 404)
+            return res(findBySlug.dataValues, 200)
         }
         const products = await Product.findAll()
         if (products) {
@@ -46,15 +64,15 @@ export async function PUT(req) {
     const body = await req.json()
     try {
         if (body) {
-            const found = await Product.findByPk(body.Id)
-            if (found === null) return res({ res: `Product Not found against id: ${body.Id}` }, 404)
+            const found = await Product.findByPk(body.id)
+            if (found === null) return res({ res: `Product Not found against id: ${body.id}` }, 404)
             else {
-                await Product.update(body, {
+                let record = await Product.update(body, {
                     where: {
-                        Id: body.Id
+                        id: body.id
                     }
                 })
-                return res({ res: 'Product Updated Successfully!' }, 201)
+                return res({ res: 'Product Updated Successfully!', updatedRecord: record[0] }, 201)
             }
         }
         return res({ res: "Product Body Not Recieved!" }, 404)
@@ -68,26 +86,16 @@ export async function PUT(req) {
 
 
 export async function DELETE(req) {
-    const body = await req.json()
     const { searchParams } = new URL(req.url)
     let id = searchParams.get('id')
-    console.log(body)
     try {
         if (id) {
+            console.log("Product ID: ", id)
             const find = await Product.findByPk(id)
+            // console.log(find)
             if (find === null) return res({ res: `Data Not found against param id: ${id}` }, 404)
-            else {
-                await find.destroy()
-                return res({ res: 'Data Deleted Successfully against id: ' + id }, 202)
-            }
-        }
-        if (body.id) {
-            const find = await Product.findByPk(body.id);
-            if (find === null) return res({ res: `Data Not found against body id: ${body.id}` }, 404)
-            else {
-                await find.destroy()
-                return res({ res: 'Data Deleted Successfully against id: ' + body.id }, 201)
-            }
+            await find.destroy()
+            return res({ res: 'Data Deleted Successfully against id: ' + id }, 202)
         }
         return res({ res: 'Products Data Not Found!' }, 404)
     }

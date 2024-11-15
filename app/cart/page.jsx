@@ -5,7 +5,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 export default function CartPage() {
     const router = useRouter()
@@ -59,8 +59,8 @@ export default function CartPage() {
                                 <tr key={data.id}>
                                     <td data-label='Product' colSpan={2}>
                                         <div className="tableProduct">
-                                            <img loading="lazy" src={data.imgUrl} alt="fsfsk" width={100} />&nbsp;
-                                            <p>{data.title}</p>
+                                            <img loading="lazy" src={data.pImages[0]} alt="fsfsk" width={100} />&nbsp;
+                                            <p>{data.pName}</p>
                                         </div>
                                     </td>
                                     <td data-label='Price'>&pound;{data.price}</td>
@@ -92,7 +92,7 @@ export default function CartPage() {
                                         )}
                                     </td>
                                     <td data-label='Total' id="total" style={{ textAlign: 'right' }}>&pound;{
-                                        (data.price * data.qty).toLocaleString('eng-GB',
+                                        (data.price * data.qty).toLocaleString('en-GB',
                                             {
                                                 minimumFractionDigits: 2,
                                                 maximumFractionDigits: 2

@@ -40,6 +40,21 @@
     transform: translateY(-5px);
 }
 
+.swal2-cancel,
+.swal2-confirm {
+    color: black;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: all 0.5s;
+}
+
+.swal2-cancel:hover,
+.swal2-confirm:hover {
+    border-radius: 10px;
+}
+
+
 /* -------------------- Global Styles End ----------------------- */
 
 /* ----------------------==============-------------------------- */
@@ -99,7 +114,7 @@ td {
     flex-flow: column;
     overflow-y: auto;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    z-index: 10;
+    z-index: 20;
     transition: all 0.5s;
 }
 
@@ -196,7 +211,7 @@ td {
     flex-flow: row;
     justify-content: space-between;
     padding: 8px 20px;
-    z-index: 1;
+    z-index: 10;
 }
 
 .adminToolCont .user {
@@ -227,7 +242,7 @@ td {
 
 /* ------------------ Product Page Styles ----------------------- */
 
-.formCont form .btnSubmit,
+.btn,
 .newProductBtn {
     border: none;
     outline: none;
@@ -239,22 +254,33 @@ td {
     align-items: center;
     transition: all 0.5s;
     position: absolute;
-    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 20px;
 }
 
-.formCont form .btnSubmit img,
-.newProductBtn img {
+.addNew,
+.submit{
+    right: 0;
+}
+.cancel{
+    right: 110px;
+    background-color: #888888;
+}
+
+.formCont form .btn img,
+.addNew img {
     transition: all 0.5s;
 }
 
-.formCont form .btnSubmit:hover img,
-.newProductBtn:hover img {
+.formCont form .btn:hover img,
+.addNew:hover img {
     transform: translateX(-4px);
 }
 
-.formCont form .btnSubmit:hover,
-.newProductBtn:hover {
+.formCont form .btn:hover,
+.addNew:hover {
     border-radius: 15px;
 }
 
@@ -282,18 +308,33 @@ td {
 
 .formCont form label {
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
+.formCont form input[type='file'] {
+    padding: 0;
+}
+
+.formCont form input[type='file']::file-selector-button {
+    height: 100%;
+    border: none;
+    padding: 8px;
+}
+
+.formCont form select,
+.formCont form textarea,
 .formCont form input {
     width: 100%;
     outline: none;
     border: 1px solid #e4e2e2;
-    /* border-radius: 6px; */
+    /* border-radius: 0; */
     padding: 8px;
     margin-bottom: 20px;
+    font-size: 0.9rem;
 }
 
+.formCont form select:focus,
+.formCont form textarea:focus,
 .formCont form input:focus {
     outline: 2px solid #0169dd;
     border-radius: 2px;
@@ -303,6 +344,7 @@ td {
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 20px;
+    margin-top: 50px;
 }
 
 .formCont .formSec p {
@@ -315,12 +357,63 @@ td {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 30px;
+    text-transform: capitalize;
+}
+
+.formCont .formSec h5 {
+    font-size: 1rem;
+    margin-top: -25px;
+    margin-bottom: 30px;
+    color: #888888;
 }
 
 .formCont .formSec .slug {
     display: flex;
     flex-flow: row nowrap;
 }
+
+.formCont .formSec .thumbnailImg {
+    margin-top: -15px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 120px;
+    transition: all 0.5s;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.formCont .formSec .thumbnailImg .trashBtn {
+    /* margin: auto; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+}
+
+.formCont .formSec .thumbnailImg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    transition: opacity 0.5s;
+    opacity: 0;
+    border-radius: 10px;
+}
+
+.formCont .formSec .thumbnailImg:hover .trashBtn,
+.formCont .formSec .thumbnailImg:hover::before {
+    opacity: 1;
+}
+
 
 .tox-tinymce {
     border-radius: 0 !important;

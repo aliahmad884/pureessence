@@ -1,6 +1,23 @@
 import { NextResponse } from "next/server"
 const bcrypt = require("bcrypt")
 
+const updateVersion = async (entryKey, table) => {
+    let ver = await table.findOne({ where: { key: entryKey } })
+    let preVersion = ver.dataValues.version;
+    try {
+        let update = await table.update({
+            version: Number(preVersion) + 1
+        }, { where: { key: entryKey } })
+        console.log(entryKey, update)
+        return update;
+    }
+    catch (err) {
+        console.log('Error when updating Version')
+        console.error(err)
+        return null;
+    }
+};
+
 const res = (body, code = 200, authHeader) => {
     let headers = {
         "Content-Type": 'application/json',
@@ -44,4 +61,4 @@ const sanitizer = {
     }
 }
 
-module.exports = { res, sanitizer, randomeStrGen }
+module.exports = { res, sanitizer, randomeStrGen, updateVersion }

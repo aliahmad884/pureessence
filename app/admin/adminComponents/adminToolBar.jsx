@@ -2,9 +2,10 @@
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { useAdminContext } from "../adminContext";
 
 export default function AdminToolbar() {
-    const [isToggled, setIsToggled] = useState(false);
+    const { isToggled, setIsToggled } = useAdminContext()
     const handleNav = () => {
         setIsToggled(true)
         let nav = document.querySelector('.adminNavCont')
@@ -16,7 +17,6 @@ export default function AdminToolbar() {
             if (isToggled && !nav.contains(event.target)) {
                 nav.classList.remove('toggleNav')
                 setIsToggled(false)
-                console.log('function called')
             }
         }
         document.addEventListener('click', handleClickOutside)
@@ -33,7 +33,7 @@ export default function AdminToolbar() {
                     <img onClick={handleNav} src="/icons/menus.webp" alt="Icons" />
                 </div>
                 <div className="user">
-                    <img src="/user.png" alt="User" />
+                    <img src="/icons/user.png" alt="User" />
                     <p>Haji Robert Wilson</p>
                 </div>
             </div>

@@ -7,15 +7,41 @@
         margin-left: 0;
     }
 }
-@media (width<=500px){
-    .newProductBtn{
-        top: 70px;
+
+@media (width<=700px) {
+    .formCont .formSec .thumbnailImg {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+@media (width<=500px) {
+
+    .formCont form .btn,
+    .addNew {
+        top: 90px;
         width: 100%;
     }
-    .tableCont{
-        margin-top: 70px;
+
+    .formCont form .cancel{
+        top: 140px;
+        right: 0;
+        width: 100%;
     }
-    .formCont .formSec .slug #dSlug{
+
+    .formCont{
+        margin-top: 140px;
+    }
+    .tableCont {
+        margin-top: 80px;
+    }
+
+    .formCont .formSec .slug #dSlug {
         display: none;
+    }
+
+    .formCont .formSec .thumbnailImg {
+        width: 100%;
+        height: 200px;
     }
 }

@@ -1,18 +1,48 @@
 "use client"
 
-import BlogNav from "@/components/blogNavPanel";
 import { BlogCard } from "@/components/cards";
+import FallBackLoader from "@/components/loader";
+import { loadCache, saveCache } from "@/options";
+import { useEffect, useState } from "react";
 
 export default function BlogsPage() {
+    const CACHE_TIME_STAMP = 86400000;
+    const CACHE_KEY = 'caheBlogs'
+    const [blogs, setBlogs] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            const cachedData = await loadCache(CACHE_KEY, CACHE_TIME_STAMP)
+            if (cachedData) {
+                setBlogs(cachedData)
+                setIsLoading(false)
+                return;
+            }
+            try {
+                let res = await fetch('/api/blog')
+                let result = await res.json()
+                setBlogs(result)
+                await saveCache(result, CACHE_KEY)
+            }
+            catch (err) {
+                console.log('Error on blogs api')
+                console.error(err)
+            }
+            finally {
+                setIsLoading(false)
+            }
+        }
+        fetchBlogs()
+    }, [])
+    if (isLoading) return <FallBackLoader />
     return (
         <>
             <div className="blogPage">
                 <h1>Explore Our Blogs & Health Guides</h1>
                 <div className="blogsCont">
-                    <BlogCard type={'Health Guide'} slug={'/blogs/blog1'} />
-                    <BlogCard type={'Thoughts'} slug={'/blogs/blog2'} />
-                    <BlogCard type={'Health Guide'} slug={'/blogs/blog3'} />
-                    <BlogCard type={'Blog'} slug={'/blogs/blog3'} />
+                    {
+                        blogs && blogs.map((blog, i) => <BlogCard key={i} type={blog.bCategory} slug={blog.bCategory === 'Blog' ? `/blogs/${blog.bSlug}` : `/blogs/health-guides/${blog.bSlug}`} imgSrc={blog.bTitleImg} title={blog.bTitle} sDesc={blog.bShortDesc} />)
+                    }
                 </div>
             </div>
         </>

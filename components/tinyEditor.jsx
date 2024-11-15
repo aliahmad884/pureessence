@@ -53,10 +53,10 @@ import 'tinymce/plugins/emoticons/js/emojis';
 import 'tinymce/skins/content/default/content';
 import 'tinymce/skins/ui/oxide/content';
 
-export default function ProductEditor(props) {
+export default function BlogEditor({ onContentChanges, initValue }) {
     const [content, setContent] = useState('')
     const [temp, setTemp] = useState('')
- 
+
     useEffect(() => {
         console.log(temp)
     }, [temp])
@@ -64,34 +64,39 @@ export default function ProductEditor(props) {
     return (
         <>
             <Editor
-                initialValue=''
+                // initialValue={initValue}
+                value={initValue}
                 onEditorChange={(content, editor) => {
                     // seTemp(content)
                     // console.log(content)
+                    onContentChanges(content)
                 }}
                 init={{
                     height: 500,
                     menubar: false,
                     plugins: [
                         'advlist', 'anchor', 'autolink', 'code', 'codesample', 'charmap', 'emoticons', 'fullscreen', 'help',
-                        'image', 'insertdatetime', 'link', 'lists', 'media', 'preview', 'quickbars', 'searchreplace',
+                        'image', 'insertdatetime', 'link', 'lists', 'media', 'preview', 'searchreplace',
                         'table', 'visualchars', 'visualblocks', 'wordcount',
                     ],
-                    toolbar: 'blocks | ' +
-                        'bold italic forecolor backcolor blockquote|' +
-                        'alignleft aligncenter alignright alignjustify|' +                        
+                    toolbar: 'undo redo | blocks | ' +
+                        'bold italic underline forecolor backcolor|' +
+                        'alignleft aligncenter alignright alignjustify|' +
                         'bullist numlist outdent indent|' +
-                        'emoticons charmap| insertdatetime' +
+                        'emoticons charmap|' +
                         'link image media table hr|' +
-                        ' code codesample searchreplace removeformat|' +
-                        ' quickbars preview fullscreen| help',
+                        ' searchreplace removeformat|' +
+                        'quickbars preview fullscreen| help',
                     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
                     license_key: 'gpl',
                     branding: false,
                     statusbar: false,
-                    quickbars_selection_toolbar: 'bold italic forecolor backcolor| quicklink h2 h3 blockquote emoticons',
+                    // quickbars_selection_toolbar: 'bold italic forecolor backcolor| quicklink h2 h3 blockquote emoticons',
                     automatic_uploads: true,
-                    help_tabs: ['shortcuts', 'keyboardnav']
+                    images_reuse_filename: false,
+                    help_tabs: ['shortcuts', 'keyboardnav'],
+
+                    images_upload_url: `/api/uploadImg?path=blogs`, // URL for handling image uploads
                 }}
 
             />
@@ -99,7 +104,7 @@ export default function ProductEditor(props) {
     );
 }
 
-export function BlogEditor(props) {
+export function AllConfigEditor(props) {
     const [content, setContent] = useState('')
     const [temp, setTemp] = useState('')
     const editorRef = useRef(null);

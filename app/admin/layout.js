@@ -1,6 +1,7 @@
 
 import AdminNav from './adminComponents/adminNav';
 import AdminToolbar from './adminComponents/adminToolBar';
+import AdminContextProvider from './adminContext';
 // import './adminMediaQueries.css';
 // import './adminStyles.css';
 
@@ -12,9 +13,11 @@ export const metadata = {
 export default function AdminLayout({ children }) {
     return (
         <>
-            <AdminNav />
-            <AdminToolbar />
-            {children}
+            <AdminContextProvider>
+                <AdminNav />
+                <AdminToolbar />
+                {children}
+            </AdminContextProvider>
         </>
     )
 }

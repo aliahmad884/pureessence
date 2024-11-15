@@ -1,19 +1,17 @@
 @media (width<=1050px) {
-    .footer {
+    .footer .footerSubCont {
         flex-wrap: wrap;
         /* align-items: center; */
     }
 
-    .footer .mainCont {
+    .footer .footerSubCont .mainCont {
         width: 100%;
         flex-wrap: wrap;
         gap: 10px;
     }
 
-    .footer .logo {
-        width: 100%;
-        justify-content: center;
-        min-width: max-content;
+    .logo {
+        margin: auto;
     }
 }
 
@@ -453,17 +451,12 @@
     .aboutBanner {
         height: 400px;
     }
+
 }
 
 @media (width<=330px) {
     .footer {
-        padding: 10px 40px;
-    }
-
-    .footer .mainCont {
-        width: 100%;
-        align-items: center;
-        justify-content: center;
+        padding: 10px 20px;
     }
 
     .productCard button {

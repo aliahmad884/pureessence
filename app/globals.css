@@ -98,15 +98,21 @@ main {
   z-index: 1;
   width: 100%;
   max-width: 2200px;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-between;
+
   padding: 6px 40px;
   /* background-color: #171717; */
   background-color: #000000;
   color: white;
   transition: all 0.5s;
+}
+
+.toolBarCont .toolSubCont {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s;
+  /* max-width: 1600px; */
 }
 
 .toolBarCont .contact {
@@ -146,10 +152,12 @@ main {
 
 .navContainer {
   width: 100%;
+  /* max-width: 1600px; */
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+  /* margin: auto; */
 }
 
 /* ------Nav Company Logo------ */
@@ -333,7 +341,8 @@ main {
   align-items: center;
   justify-content: center;
 }
-.routerDropDown .dropUser{
+
+.routerDropDown .dropUser {
   width: 100%;
   align-items: center;
   justify-content: end;
@@ -1015,12 +1024,19 @@ main {
 .footer {
   /* background-color: #171717; */
   background-color: #000000;
-  padding: 30px 50px;
+  padding: 30px 60px;
+  width: 100%;
+  transition: all 0.5s;
+}
+
+.footer .footerSubCont {
   display: flex;
   gap: 20px;
   align-items: start;
   justify-content: space-between;
   width: 100%;
+  /* max-width: 1500px; */
+  margin: auto;
   transition: all 0.5s;
 }
 
@@ -1032,13 +1048,15 @@ main {
   color: white;
   text-align: center;
 }
-.copy .payCards{
+
+.copy .payCards {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin: 10px 0;
 }
-.copy .payCards img{
+
+.copy .payCards img {
   width: 40px;
 }
 
@@ -1062,8 +1080,8 @@ main {
 
 .logo {
   display: flex;
-  flex-flow: row nowrap;
-  gap: 10px;
+  flex-flow: column;
+  gap: 0px;
   width: 5%;
   max-width: 100px;
   align-items: center;
@@ -1214,12 +1232,14 @@ main {
   margin-top: 30px;
   transition: all 0.5s;
 }
-.cartPage .checkoutCont button:hover{
+
+.cartPage .checkoutCont button:hover {
   background-color: white;
   color: black;
   border-radius: 30px;
 }
-.cartPage .acceptPay{
+
+.cartPage .acceptPay {
   width: 100%;
   max-width: 1600px;
   display: flex;
@@ -1230,18 +1250,21 @@ main {
   margin-top: 50px;
   /* margin: auto; */
 }
-.cartPage .acceptPay p{
+
+.cartPage .acceptPay p {
   font-size: 1rem;
   font-weight: bold;
 }
-.cartPage .acceptPay .payCards{
-  display:flex;
+
+.cartPage .acceptPay .payCards {
+  display: flex;
   flex-flow: row wrap;
   gap: 5px 10px;
   align-items: center;
   justify-content: center;
 }
-.cartPage .acceptPay .payCards img{
+
+.cartPage .acceptPay .payCards img {
   width: 60px;
 }
 
@@ -1311,7 +1334,7 @@ main {
 
 
 .checkoutForm input,
-select {
+.checkoutForm select {
   border: 1px solid #e6e6e6;
   /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
   border-radius: 20px;
@@ -1450,12 +1473,13 @@ select {
 }
 
 .signupMainCont .header .subCont,
-.loginMainCont .header .subCont{
+.loginMainCont .header .subCont {
   width: fit-content;
   margin-top: auto;
 }
+
 .signupMainCont .header .subCont p,
-.loginMainCont .header .subCont p{
+.loginMainCont .header .subCont p {
   text-transform: uppercase;
   font-weight: bolder;
   font-size: 0.53rem;
@@ -1563,6 +1587,7 @@ select {
 .loginMainCont .formCont .loginForm form .eyeCont input {
   width: 100%;
   padding: 0 15px;
+  border: none;
 }
 
 .signupMainCont .formCont .signupForm form .eye,
@@ -1596,6 +1621,7 @@ select {
   border-radius: 30px;
   outline: none;
   margin: 15px 0;
+  border: none;
 }
 
 .signupMainCont .formCont .signupForm p,
@@ -1610,6 +1636,7 @@ select {
   align-items: center;
   justify-content: space-between;
   font-size: 0.9rem;
+
 }
 
 .loginMainCont .formCont .loginForm form .remember a {
@@ -2846,9 +2873,42 @@ select {
   transform: translateY(-5px);
 }
 
+.mainBody .postContent iframe {
+  width: 100%;
+  max-width: 1000px;
+  max-height: 500px;
+}
+
+@media (width<=600px) {
+  .mainBody .postContent iframe {
+    max-height: 300px;
+  }
+}
+
 .mainBody .postContent {
   width: 100%;
   max-width: 1000px;
+}
+
+.mainBody .postContent h1,
+.mainBody .postContent h2,
+.mainBody .postContent h3,
+.mainBody .postContent h4,
+.mainBody .postContent h5,
+.mainBody .postContent h6,
+.mainBody .postContent p,
+.mainBody .postContent a {
+  font-size: revert;
+  font-weight: revert;
+  text-decoration: revert;
+  color: revert;
+}
+
+.mainBody .postContent ul,
+.mainBody .postContent ol,
+.mainBody .postContent dl {
+  list-style: revert;
+  list-style-position: inside;
 }
 
 /* ---------- Blogs Page End--------------- */

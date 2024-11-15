@@ -1,4 +1,7 @@
 "use client"
+import { cacheBlogs } from "@/cache";
+import FallBackLoader from "@/components/loader";
+import { loadCache, saveCache } from "@/options";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DOMPurify from "dompurify";
@@ -7,129 +10,108 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function BlogSlug({ params }) {
+    const CACHE_TIME_STAMP = 86400000;
+    const CACHE_KEY = 'caheBlogs'
     const { slug } = params;
     const [postUrl, setPostUrl] = useState("")
+    const [blog, setBlog] = useState('')
     const [sanitizedHtml, setSanitizedHtml] = useState(null)
+    const [isLoading, setIsLoading] = useState(true);
     const decodedSlug = decodeURIComponent(slug)
-    let html = ``;
+    const sanitizeHtml = (html) => {
+        const clearHtml = DOMPurify.sanitize(html, {
+            ADD_TAGS: ["iframe"],
+            ADD_ATTR: ["allow", "allowfullscreen", "frameborder", "scrolling"]
+        })
+        return clearHtml;
+    }
     useEffect(() => {
-        setPostUrl(`${window.location.origin}/blogs/${slug}`)
-        const clearHtml = DOMPurify.sanitize(html)
-        setSanitizedHtml(clearHtml)
-        console.log(encodeURIComponent(`${window.location.origin}/blogs/${slug}`))
+        setPostUrl(`${window.location.href}`)
+        console.log('current url', window.location.href)
+        const fetchBlog = async () => {
+            const cachedData = await loadCache(CACHE_KEY, CACHE_TIME_STAMP)
+            if (cachedData) {
+                let find = cachedData.find(b => b.bSlug === decodedSlug)
+                setBlog(find)
+                setIsLoading(false)
+                const clearHtml = sanitizeHtml(find.blogHtml)
+                setSanitizedHtml(clearHtml)
+                return;
+            }
+            try {
+                let res = await fetch(`/api/blog?slug=${slug}`);
+                let result = await res.json()
+                const clearHtml = sanitizeHtml(result.blogHtml)
+                setSanitizedHtml(clearHtml)
+                setBlog(result)
+            }
+            catch (err) {
+                console.err(err)
+            }
+            finally {
+                setIsLoading(false)
+            }
+        }
+        fetchBlog()
     }, [])
+
+    if (isLoading) return <FallBackLoader />
     return (
         <>
-            <div className="postReader">
-                <div className="readerCont">
-                    <div className="readerHeader">
-                        <div className="breadCrumbs" aria-label="breadcrumb">
-                            <Link href={'/blogs'}><FontAwesomeIcon icon={faArrowLeft} />  Blogs</Link>
-                        </div>
-                        <div className="postHeader">
-                            <p>Published October 9, 2024 in <Link href={'/blogs'}>Blogs</Link></p>
-                            <h1>Lorem Ipsum uyhteq {decodedSlug}</h1>
-                            <h2>By Haji Robert Wilson</h2>
-                        </div>
-                    </div>
-                    <div className="img">
-                        <Image
-                            src={'/PE-Bath-Oils.webp'}
-                            alt="Temp Image"
-                            sizes="100vw"
-                            height={1000}
-                            width={1000}
-                            style={{
-                                width: '100%',
-                                height: 'auto'
-                            }}
-                        />
-                    </div>
-                    <div className="mainBody">
-                        <div className="shareCont">
-                            <h3 style={{ fontWeight: 'bold' }}>5 Min Read</h3>
-                            <br />
-                            <p>Share this post</p>
-                            <div className="sIcons">
-                                <Link
-                                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=Some Text to share on Twitter`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                ><Image src={'/twitter.webp'} alt="Twitter" height={30} width={30} /></Link>
-                                <Link
-                                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                ><Image src={'/facebook.webp'} alt="Facebook" height={30} width={30} /></Link>
-                                <Link
-                                    href={`https://wa.me/?text=${encodeURIComponent(`Check this out ${postUrl}`)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                ><Image src={'/whatsapp.webp'} alt="Whatsapp" height={30} width={30} /></Link>
+            {blog &&
+                <div className="postReader">
+                    <div className="readerCont">
+                        <div className="readerHeader">
+                            <div className="breadCrumbs" aria-label="breadcrumb">
+                                <Link href={'/blogs'}><FontAwesomeIcon icon={faArrowLeft} />  Blogs</Link>
+                            </div>
+                            <div className="postHeader">
+                                <p>Published: {new Date(blog.date).toDateString()} in <Link href={'/blogs'}>Blogs</Link></p>
+                                <h1>{blog.bTitle}</h1>
+                                <h2>By {blog.bAuthor}</h2>
                             </div>
                         </div>
-                        {/* <div className="postContent" dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div> */}
-                        <div className="postContent">
-                            Over the past few years, the number of data assets and systems Notion uses has skyrocketed. That increase has made it essential to develop a robust, easy-to-use data catalog. In this post well guide you through the hurdles we encountered and the solutions we implemented. The evolution of our data catalog has been marked by three distinct phases.
-                            <br />
-                            <br />
-                            <br />
-                            <h2 style={{ fontSize: '2rem' }}>Phase One: Living in the early chaos of the Wild West</h2>
-                            Notion began without a data catalog. Our data grew organically and chaotically, stored mostly in unstructured formats like JSON. This approach was supported by tools like Amplitude, which facilitated rapid data integration and analysis without the need for strict data management practices. We prioritized speed in order to accommodate a diverse audience, from developers to data scientists to product managers.
-
-                            These early choices resulted in many pitfalls:
-
-                            Our data environment was marked by tribal knowledge without formal guidelines or standards to ensure naming consistency and data standardization.
-
-                            The absence of a structured system made it difficult to classify data events as critical or non-critical when making product decisions.
-
-                            Unclear ownership and responsibilities led to frequent governance and quality issues (e.g. a mistakenly updated event broke downstream consumers of the data).
-
-                            Data can drive product decision-making, but without data discoverability, teams were potentially unaware of the resources at their disposal.
-
-                            <br /><br /><br />
-                            Finally, our use of diverse data sources—including data warehouses, stream processing, various data lakes, and operational data stores—further complicated our data ecosystem.
-
-                            This disarray became a fundamental challenge that our engineering team needed to overcome in order to enhance data utility and governance as Notion grew and expanded our operations.
-
-                            Phase Two: Laying a firm foundation with building blocks
-                            Our first step in bringing order to our data landscape was to select and utilize a data catalog, Acryl DataHub, which would link directly to our data warehouse for displaying table names and their schemas. We also created an event tiering and ownership system (P0, P1, etc), which allowed us to ensure the availability of owners to maintain the most important events.
-
-                            Despite this integration&apos;s technical success, we soon noticed that the new system was delivering lower-than-expected user engagement.
-
-
-                            Over the past few years, the number of data assets and systems Notion uses has skyrocketed. That increase has made it essential to develop a robust, easy-to-use data catalog. In this post well guide you through the hurdles we encountered and the solutions we implemented. The evolution of our data catalog has been marked by three distinct phases.
-                            <br />
-                            <br />
-                            <br />
-                            <h2 style={{ fontSize: '2rem' }}>Phase One: Living in the early chaos of the Wild West</h2>
-                            Notion began without a data catalog. Our data grew organically and chaotically, stored mostly in unstructured formats like JSON. This approach was supported by tools like Amplitude, which facilitated rapid data integration and analysis without the need for strict data management practices. We prioritized speed in order to accommodate a diverse audience, from developers to data scientists to product managers.
-
-                            These early choices resulted in many pitfalls:
-
-                            Our data environment was marked by tribal knowledge without formal guidelines or standards to ensure naming consistency and data standardization.
-
-                            The absence of a structured system made it difficult to classify data events as critical or non-critical when making product decisions.
-
-                            Unclear ownership and responsibilities led to frequent governance and quality issues (e.g. a mistakenly updated event broke downstream consumers of the data).
-
-                            Data can drive product decision-making, but without data discoverability, teams were potentially unaware of the resources at their disposal.
-
-                            <br /><br /><br />
-                            Finally, our use of diverse data sources—including data warehouses, stream processing, various data lakes, and operational data stores—further complicated our data ecosystem.
-
-                            This disarray became a fundamental challenge that our engineering team needed to overcome in order to enhance data utility and governance as Notion grew and expanded our operations.
-
-                            Phase Two: Laying a firm foundation with building blocks
-                            Our first step in bringing order to our data landscape was to select and utilize a data catalog, Acryl DataHub, which would link directly to our data warehouse for displaying table names and their schemas. We also created an event tiering and ownership system (P0, P1, etc), which allowed us to ensure the availability of owners to maintain the most important events.
-
-                            Despite this integration&apos;s technical success, we soon noticed that the new system was delivering lower-than-expected user engagement.
-
-
+                        <div className="img">
+                            <Image
+                                src={blog.bTitleImg}
+                                alt={blog.bTitle}
+                                sizes="100vw"
+                                height={1000}
+                                width={1000}
+                                style={{
+                                    width: '100%',
+                                    height: 'auto'
+                                }}
+                            />
+                        </div>
+                        <div className="mainBody">
+                            <div className="shareCont">
+                                <h3 style={{ fontWeight: 'bold' }}>5 Min Read</h3>
+                                <br />
+                                <p>Share this post</p>
+                                <div className="sIcons">
+                                    <Link
+                                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=Some Text to share on Twitter`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    ><Image src={'/icons/twitter.webp'} alt="Twitter" height={30} width={30} /></Link>
+                                    <Link
+                                        href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    ><Image src={'/icons/facebook.webp'} alt="Facebook" height={30} width={30} /></Link>
+                                    <Link
+                                        href={`https://wa.me/?text=${encodeURIComponent(postUrl)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    ><Image src={'/icons/whatsapp.webp'} alt="Whatsapp" height={30} width={30} /></Link>
+                                </div>
+                            </div>
+                            <div className="postContent" dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </>
     )
 }

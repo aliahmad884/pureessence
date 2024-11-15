@@ -137,7 +137,7 @@ export default function Navbar() {
 
     // --------- Active Tab Handler-------------//
     useEffect(() => {
-        let navLinks = document.querySelectorAll('.navLinks')
+        let navLinks = document.querySelectorAll('.navLinksItems')
         navLinks.forEach(link => {
             link.style.color = ''
             link.style.fontWeight = 'normal'
@@ -175,7 +175,7 @@ export default function Navbar() {
                                     data-value={navlink.path}
                                     key={navlink.link}
                                     href={navlink.path}
-                                    className="navLinks"
+                                    className="navLinksItems"
                                 >{navlink.link}</Link>)
                             }
                         </div>
@@ -232,7 +232,7 @@ export default function Navbar() {
                             data-value={navlink.path}
                             key={navlink.link}
                             href={navlink.path}
-                            className="navLinks"
+                            className="navLinksItems"
                         >{navlink.link}</Link>)
                     }
                     {/* --------DropDown Search Bar-------- */}

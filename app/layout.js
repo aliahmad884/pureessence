@@ -26,6 +26,9 @@ export default function RootLayout({ children }) {
   const pathName = usePathname()
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/CircleLogo.webp"/>
+      </head>
       <GoogleAnalytics />
       <body>
         <ContextProvider>
