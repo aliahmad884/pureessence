@@ -268,13 +268,13 @@ Versions.init({
 
 
 
-// (async () => {
-//     try {
-//         await Blogs.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
-//         console.log('Table synced successfully!');
-//     } catch (error) {
-//         console.error('Error syncing table:', error);
-//     }
-// })();
+(async () => {
+    try {
+        await sequelize.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+        console.log('Table synced successfully!');
+    } catch (error) {
+        console.error('Error syncing table:', error);
+    }
+})();
 
 module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order, Invoice, NewsLetter, Versions };
