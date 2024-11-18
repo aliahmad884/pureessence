@@ -217,3 +217,50 @@ const ProductData = [
     }
 ]
 export default ProductData;
+
+export const BlogsData = [
+    {
+        "id": 1,
+        "bTitle": "Meaningful name",
+        "bSlug": "Meaningful-name",
+        "bTitleImg": "/blogs/andromeda-galaxy-with-brilliant-stars-8h0whxac9bmse2fq.jpg",
+        "bShortDesc": "Some short description",
+        "bAuthor": "Haji Mushtaq",
+        "bCategory": "Blog",
+        "blogHtml": "<h1 style=\"text-align: center;\">Blog Content<br><img src=\"../../blogs/colorful-nebula-in-space-universal-t4vd6i9226cja0ip.jpg\" alt=\"\" width=\"1000\" height=\"563\"></h1>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><iframe src=\"https://www.youtube.com/embed/3t86CVlk_2o\" width=\"1000\" height=\"561\" allowfullscreen=\"allowfullscreen\"></iframe></p>",
+        "date": "2024-11-14T18:08:27.000Z"
+    },
+    {
+        "id": 2,
+        "bTitle": "Temp Guide",
+        "bSlug": "temp-guide",
+        "bTitleImg": "/blogs/pale-gold-space-background-soh2wb1cw4xg3f99.jpg",
+        "bShortDesc": "Some short description",
+        "bAuthor": "Haji Robert",
+        "bCategory": "Health-Guide",
+        "blogHtml": "<h1 style=\"text-align: center;\">Guide Content</h1>\n<p>Table Example</p>\n<table style=\"border-collapse: collapse; width: 100%; background-color: #3598db; border: 1px solid #34495e;\" border=\"1\"><colgroup><col style=\"width: 9.96732%;\"><col style=\"width: 9.96732%;\"><col style=\"width: 9.96732%;\"><col style=\"width: 9.96732%;\"><col style=\"width: 9.96732%;\"><col style=\"width: 9.96732%;\"><col style=\"width: 9.96732%;\"><col style=\"width: 9.96732%;\"><col style=\"width: 9.96732%;\"><col style=\"width: 9.96732%;\"></colgroup>\n<tbody>\n<tr>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n</tr>\n<tr>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n</tr>\n<tr>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n<td style=\"border-color: #34495e;\">&nbsp;</td>\n</tr>\n</tbody>\n</table>\n<p>&nbsp;</p>\n<h2>List Example</h2>\n<ol>\n<li>List</li>\n<li><strong>Bold List Item</strong></li>\n<li><em><strong>Italick Bold Lost Item</strong></em></li>\n<li><span style=\"text-decoration: underline;\"><em><strong>Underlined Italic Bold list item</strong></em></span></li>\n<li style=\"font-weight: bold; font-style: italic; color: #169179;\"><span style=\"text-decoration: underline; color: #169179;\"><em><strong>Underlined Italic Bold list item</strong></em></span></li>\n</ol>\n<p style=\"font-weight: bold;font-style: italic;color: rgb(22, 145, 121);\"><span style=\"text-decoration: underline; color: #169179;\"><em><strong>Unordered list</strong></em></span></p>\n<ul>\n<li>list item</li>\n</ul>\n<p><a href=\"https://www.youtube.com/watch?v=Dd3OwXacVoQ\" target=\"_blank\" rel=\"noopener\">Link will open in new window</a></p>\n<p>&nbsp;</p>\n<p style=\"text-align: center;\"><img src=\"../../blogs/free-image-purple-nebula-twbt3bskoflyctul.jpg\" alt=\"\" width=\"1000\" height=\"563\"></p>",
+        "date": "2024-11-14T18:12:38.000Z"
+    },
+    {
+        "id": 3,
+        "bTitle": "New",
+        "bSlug": "new",
+        "bTitleImg": "/blogs/Yellow Desert2.png",
+        "bShortDesc": "Some short description",
+        "bAuthor": "Haji Robert",
+        "bCategory": "Health-Guide",
+        "blogHtml": "<p>SOme Content</p>",
+        "date": "2024-11-14T18:35:42.000Z"
+    },
+    {
+        "id": 4,
+        "bTitle": "Temp New",
+        "bSlug": "temp-new",
+        "bTitleImg": "/blogs/wallpaper-para-pc-qf52t46ygwp3jlf5.jpg",
+        "bShortDesc": "Some short description",
+        "bAuthor": "Haji Robert",
+        "bCategory": "Blog",
+        "blogHtml": "<p>dsdf</p>",
+        "date": "2024-11-14T18:45:29.000Z"
+    }
+]

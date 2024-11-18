@@ -1,9 +1,6 @@
-import { where } from 'sequelize';
-
+import { Cart } from '../schemas.js';
 const { res } = require('../syntaxShorter.js')
-const { Cart } = require("../schemas.js")
 const jwt = require('jsonwebtoken')
-const sequelize = require('../dbConnection.js')
 
 export async function GET(req) {
     const accessToken = req.cookies.get('token')?.value;

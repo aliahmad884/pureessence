@@ -16,10 +16,6 @@ export const saveCache = async (data, key) => {
 
 const fetchVersion = async () => {
     try {
-        // let str = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas suscipit maiores vero animi modi totam earum magnam expedita temporibus, libero provident sint ipsa dignissimos veritatis odio, aut numquam blanditiis. Quia.'
-        // let arr = str.split('')
-        // console.log(arr)
-        // console.log('str length: ', arr.length)
         let res = await fetch('/api/blog?getVersion=blog');
         let result = await res.json()
         console.log(result)

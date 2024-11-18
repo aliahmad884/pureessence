@@ -1,4 +1,5 @@
-const { Pages } = require('../schemas.js')
+import { Pages } from "../schemas.js";
+
 const { res } = require("../syntaxShorter.js");
 
 

@@ -1,6 +1,6 @@
-const { Product } = require('../schemas.js')
+import ProductData from "@/data.js";
+import { Product } from "../schemas.js";
 const { res } = require("../syntaxShorter.js");
-
 
 
 export async function POST(req) {
@@ -13,6 +13,7 @@ export async function POST(req) {
                 sDesc: body.sDesc,
                 description: body.description,
                 price: body.price,
+                // pImages: JSON.stringify(body.pImages),
                 pImages: body.pImages,
                 qty: body.qty,
                 pageTitle: body.pageTitle,
@@ -38,17 +39,35 @@ export async function GET(req) {
     try {
         if (id) {
             const findById = await Product.findByPk(id)
-            if (findById === null) return res({ res: `Data Not found against id: ${id}` }, 404)
-            return res(findById.dataValues, 200)
+            if (findById === null) return res({ res: `Data Not found against id: ${id}` }, 404);
+            let data = { ...findById.dataValues, pImages: JSON.parse(findById.dataValues.pImages) }
+            // for (let i = 0; i < ProductData.length; i++) {
+            //     await Product.create({
+            //         pName: ProductData[i].title,
+            //         slug: ProductData[i].slug,
+            //         sDesc: ProductData[i].shortDes,
+            //         description: ProductData[i].description,
+            //         price: ProductData[i].price,
+            //         pImages: JSON.stringify([ProductData[i].imgUrl]),
+            //         qty: ProductData[i].qty,
+            //         pageTitle: ProductData[i].title,
+            //         metaDesc: ProductData[i].description,
+            //         reviews: null,
+            //         category: null
+            //     })
+            //     console.log(`Product ${ProductData[i].title} has been Inserted to DataBase`)
+            // }
+            return res(data, 200)
         }
         else if (pSlug) {
             const findBySlug = await Product.findOne({ where: { slug: pSlug } })
-            if (findBySlug === null) return res({ res: `Product Not found against Slug: ${pSlug}` }, 404)
-            return res(findBySlug.dataValues, 200)
+            if (findBySlug === null) return res({ res: `Product Not found against Slug: ${pSlug}` }, 404);
+            let data = { ...findBySlug.dataValues, pImages: JSON.parse(findBySlug.dataValues.pImages) }
+            return res(data, 200)
         }
         const products = await Product.findAll()
         if (products) {
-            const data = products.map(product => product.dataValues)
+            const data = products.map(product => ({ ...product.dataValues, pImages: JSON.parse(product.dataValues.pImages) }))
             return res(data, 200)
         }
         return res({ res: 'Products Data Not Found!' }, 404)

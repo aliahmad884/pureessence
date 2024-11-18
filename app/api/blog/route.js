@@ -1,4 +1,7 @@
-const { Blogs, Versions } = require('../schemas.js')
+import { BlogsData } from "@/data.js";
+import { Blogs, Versions } from "../schemas.js";
+
+// const { Blogs, Versions } = require('../schemas.js')
 const { res, updateVersion } = require("../syntaxShorter.js");
 
 export async function POST(req) {
@@ -42,6 +45,18 @@ export async function GET(req) {
         const blogs = await Blogs.findAll()
         if (blogs) {
             const data = blogs.map(blog => blog.dataValues)
+            // for (let i = 0; i < BlogsData.length; i++) {
+            //     await Blogs.create({
+            //         bTitle: BlogsData[i].bTitle,
+            //         bSlug: BlogsData[i].bSlug,
+            //         bShortDesc: BlogsData[i].bShortDesc,
+            //         bTitleImg: BlogsData[i].bTitleImg,
+            //         bAuthor: BlogsData[i].bAuthor,
+            //         bCategory: BlogsData[i].bCategory,
+            //         blogHtml: BlogsData[i].blogHtml
+            //     })
+            //     console.log(`Blog ${BlogsData[i].bTitle} has been Inserted to DataBase`)
+            // }
             return res(data, 200)
         }
         return res({ res: 'Blog Not Found!' }, 404)

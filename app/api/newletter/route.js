@@ -1,5 +1,6 @@
+import { NewsLetter } from '../schemas.js'
+
 const { res } = require('../syntaxShorter.js')
-const { NewsLetter } = require("../schemas.js")
 
 export async function POST(req) {
     const body = await req.json()

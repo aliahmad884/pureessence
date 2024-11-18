@@ -1,7 +1,6 @@
-// import { where } from "sequelize";
-const { RegisterUser } = require("../schemas.js")
 const { res, sanitizer } = require("../syntaxShorter.js")
 import jwt from "jsonwebtoken";
+import { RegisterUser } from "../schemas.js";
 
 const cookieOptions = {
     httpOnly: true,

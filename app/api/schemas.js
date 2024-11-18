@@ -1,7 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
-const sequelize = require('./dbConnection.js')
+import sequelize from './dbConnection';
+// const sequelize = require('./dbConnection.js')
 
-class Product extends Model { }
+export class Product extends Model { }
 Product.init({
     id: {
         type: DataTypes.INTEGER,
@@ -49,7 +50,7 @@ Product.init({
 });
 
 
-class Pages extends Model { }
+export class Pages extends Model { }
 
 Pages.init({
     Id: {
@@ -71,7 +72,7 @@ Pages.init({
 })
 
 
-class Blogs extends Model { }
+export class Blogs extends Model { }
 Blogs.init({
     id: {
         type: DataTypes.INTEGER,
@@ -109,7 +110,7 @@ Blogs.init({
     timestamps: false
 });
 
-class RegisterUser extends Model { }
+export class RegisterUser extends Model { }
 RegisterUser.init({
     Id: {
         type: DataTypes.INTEGER,
@@ -135,7 +136,7 @@ RegisterUser.init({
     timestamps: false
 });
 
-class Cart extends Model { }
+export class Cart extends Model { }
 Cart.init({
     id: {
         type: DataTypes.INTEGER,
@@ -164,7 +165,7 @@ Cart.init({
     timestamps: false
 });
 
-class Order extends Model { }
+export class Order extends Model { }
 Order.init({
     id: {
         type: DataTypes.INTEGER,
@@ -202,7 +203,7 @@ Order.init({
     timestamps: false
 });
 
-class Invoice extends Model { }
+export class Invoice extends Model { }
 Invoice.init({
     id: {
         type: DataTypes.INTEGER,
@@ -228,7 +229,7 @@ Invoice.init({
     timestamps: false
 });
 
-class NewsLetter extends Model { }
+export class NewsLetter extends Model { }
 NewsLetter.init({
     id: {
         type: DataTypes.INTEGER,
@@ -246,7 +247,7 @@ NewsLetter.init({
     timestamps: false
 });
 
-class Versions extends Model { }
+export class Versions extends Model { }
 Versions.init({
     id: {
         type: DataTypes.INTEGER,
@@ -268,13 +269,13 @@ Versions.init({
 
 
 
-(async () => {
-    try {
-        await sequelize.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
-        console.log('Table synced successfully!');
-    } catch (error) {
-        console.error('Error syncing table:', error);
-    }
-})();
+// (async () => {
+//     try {
+//         await Versions.sync({force:true}); // Set to false to avoid dropping and re-creating tables
+//         console.log('Table synced successfully!');
+//     } catch (error) {
+//         console.error('Error syncing table:', error);
+//     }
+// })();
 
-module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order, Invoice, NewsLetter, Versions };
+// module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order, Invoice, NewsLetter, Versions };
