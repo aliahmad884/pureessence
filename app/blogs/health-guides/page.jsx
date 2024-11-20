@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 
 export default function GuidesPage() {
     const CACHE_TIME_STAMP = 86400000;
-    const CACHE_KEY = 'caheBlogs'
+    const CACHE_KEY = 'blog'
     const [blogs, setBlogs] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const fetchBlogs = async () => {
-            const cachedData = await loadCache(CACHE_KEY, CACHE_TIME_STAMP)
+            const cachedData = await loadCache(CACHE_KEY)
             if (cachedData) {
                 let filteredBlog = cachedData.filter(f => f.bCategory === 'Health-Guide')
                 setBlogs(filteredBlog)

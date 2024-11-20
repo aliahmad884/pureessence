@@ -32,9 +32,10 @@ export async function POST(req) {
     const file = formData.get('file');
     if (!file) return res({ res: 'File Not recieved' }, 400);
     const buffer = Buffer.from(await file.arrayBuffer())
+    let fileDest = `/${destPath}/${file.name}`
     try {
         await writeFile(path.join(process.cwd(), `public/${destPath}/${file.name}`), buffer)
-        return res({ res: 'Img Uploaded', path: `/${destPath}/${file.name}`, location: `/${destPath}/${file.name}` }, 200)
+        return res({ res: 'Img Uploaded', path: `/api/uploadImg?path=${encodeURIComponent(fileDest)}`, location: `/api/uploadImg?path=${encodeURIComponent(fileDest)}` }, 200)
     }
     catch (err) {
         console.log(err);

@@ -1,29 +1,27 @@
 "use client"
 import { ProductCard } from "@/components/cards";
 import FallBackLoader from "@/components/loader";
-import ProductData from "@/data";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import dynamic from "next/dynamic";
-import CachedProducts from "@/cache";
+import { loadCache, saveCache } from "@/options";
 
 export default function ProductPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [apiData, setApiData] = useState([]);
-    const data = ProductData;
     useEffect(() => {
         const fetchProducts = async () => {
-            if (CachedProducts.products) {
-                setApiData(CachedProducts.products)
+            const cachedData = await loadCache('product')
+            if (cachedData) {
+                setApiData(cachedData)
                 setIsLoading(false)
                 return;
             }
-
             try {
                 let res = await fetch('/api/product');
                 let result = await res.json();
-                CachedProducts.products = result;
+                await saveCache(result, 'product')
                 setApiData(result);
             }
             catch (err) {

@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 export default function BlogSlug({ params }) {
     const CACHE_TIME_STAMP = 86400000;
-    const CACHE_KEY = 'caheBlogs'
+    const CACHE_KEY = 'blog'
     const { slug } = params;
     const [postUrl, setPostUrl] = useState("")
     const [blog, setBlog] = useState('')
@@ -29,7 +29,7 @@ export default function BlogSlug({ params }) {
         setPostUrl(`${window.location.href}`)
         console.log('current url', window.location.href)
         const fetchBlog = async () => {
-            const cachedData = await loadCache(CACHE_KEY, CACHE_TIME_STAMP)
+            const cachedData = await loadCache(CACHE_KEY)
             if (cachedData) {
                 let find = cachedData.find(b => b.bSlug === decodedSlug)
                 setBlog(find)

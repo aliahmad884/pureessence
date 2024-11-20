@@ -11,6 +11,7 @@ import toast, { Toaster } from "react-hot-toast"
 import { createPortal } from "react-dom"
 import { useRouter } from "next/navigation"
 import CachedProducts from "@/cache"
+import { loadCache } from "@/options"
 
 export default function Products({ params }) {
     const router = useRouter();
@@ -37,12 +38,13 @@ export default function Products({ params }) {
     }
     useEffect(() => {
         const fetchProduct = async () => {
-            // if (CachedProducts.products) {
-            //     let result = CachedProducts.products.find(p => p.slug === slug)
-            //     setProduct(result)
-            //     setIsLoading(false);
-            //     return;
-            // }
+            const cachedData = await loadCache('product')
+            if (cachedData) {
+                let result = cachedData.find(p => p.slug === slug)
+                setProduct(result)
+                setIsLoading(false);
+                return;
+            }
             try {
                 let res = await fetch(`/api/product?slug=${slug}`)
                 let result = await res.json()
@@ -91,7 +93,7 @@ export default function Products({ params }) {
                                 <img loading="lazy" onClick={() => setShowImgFull(true)} src={imgPath ? `/api/uploadImg?path=${encodeURIComponent(imgPath)}` : `/api/uploadImg?path=${encodeURIComponent(product.pImages[0])}`} alt={product.pName} />
                                 {showImgFull && createPortal(<>
                                     <div className="imgPortalCont">
-                                        <img loading="lazy" id='img' onClick={() => window.open(imgPath ? `/api/uploadImg?path=${encodeURIComponent(imgPath)}` : `/api/uploadImg?path=${encodeURIComponent(product.pImages[0])}`, '_blank')} src={imgPath ? imgPath : `/api/uploadImg?path=${encodeURIComponent(product.pImages[0])}`} alt={product.pName} />
+                                        <img loading="lazy" id='img' onClick={() => window.open(imgPath ? imgPath : product.pImages[0], '_blank')} src={imgPath ? imgPath : `/api/uploadImg?path=${encodeURIComponent(product.pImages[0])}`} alt={product.pName} />
                                     </div>
                                 </>, document.body)}
                             </div>

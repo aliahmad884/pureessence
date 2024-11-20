@@ -9,16 +9,15 @@ export const strGen = (length) => {
 
 export const saveCache = async (data, key) => {
     console.log('Save Cache function called')
-    const currentVersion = await fetchVersion()
+    const currentVersion = await fetchVersion(key)
     localStorage.setItem(key, JSON.stringify({ timestamp: Date.now(), data }))
-    localStorage.setItem('blogVersion', currentVersion.version)
+    localStorage.setItem(`${key}version`, JSON.stringify(currentVersion))
 }
 
-const fetchVersion = async () => {
+const fetchVersion = async (key) => {
     try {
-        let res = await fetch('/api/blog?getVersion=blog');
+        let res = await fetch(`/api/blog?getVersion=${key}`);
         let result = await res.json()
-        console.log(result)
         return result;
     }
     catch (err) {
@@ -27,11 +26,12 @@ const fetchVersion = async () => {
     }
 }
 
-export const loadCache = async (key, time) => {
-    const currentVersion = await fetchVersion()
-    const prevVersion = localStorage.getItem('blogVersion')
+export const loadCache = async (key) => {
+    const currentVersion = await fetchVersion(key)
+    const prevVersion = JSON.parse(localStorage.getItem(`${key}version`))
     const cache = JSON.parse(localStorage.getItem(key))
-    if (cache && Date.now() - cache.timestamp < time && currentVersion.version === prevVersion) {
+    if (cache && prevVersion.key === key && currentVersion.version === prevVersion.version) {
+        console.log('cached data available!')
         return cache.data;
     }
     console.log('Versions are not identical.')

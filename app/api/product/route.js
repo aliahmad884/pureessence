@@ -1,6 +1,6 @@
 import ProductData from "@/data.js";
-import { Product } from "../schemas.js";
-const { res } = require("../syntaxShorter.js");
+import { Product, Versions } from "../schemas.js";
+const { res, updateVersion } = require("../syntaxShorter.js");
 
 
 export async function POST(req) {
@@ -21,6 +21,7 @@ export async function POST(req) {
                 reviews: null,
                 category: null
             })
+            updateVersion('product', Versions)
             return res({ res: 'Product Added Successfully!' }, 201)
         }
         return res({ res: "Product Body Not Recieved!" }, 404)
@@ -91,6 +92,7 @@ export async function PUT(req) {
                         id: body.id
                     }
                 })
+                updateVersion('product', Versions)
                 return res({ res: 'Product Updated Successfully!', updatedRecord: record[0] }, 201)
             }
         }
@@ -114,6 +116,7 @@ export async function DELETE(req) {
             // console.log(find)
             if (find === null) return res({ res: `Data Not found against param id: ${id}` }, 404)
             await find.destroy()
+            updateVersion('product', Versions)
             return res({ res: 'Data Deleted Successfully against id: ' + id }, 202)
         }
         return res({ res: 'Products Data Not Found!' }, 404)

@@ -1,8 +1,5 @@
-import { BlogsData } from "@/data.js";
 import { Blogs, Versions } from "../schemas.js";
-
-// const { Blogs, Versions } = require('../schemas.js')
-const { res, updateVersion } = require("../syntaxShorter.js");
+const { res ,updateVersion} = require("../syntaxShorter.js");
 
 export async function POST(req) {
     let body = await req.json()
@@ -33,8 +30,8 @@ export async function GET(req) {
             return res(findById.dataValues, 200)
         }
         else if (getVersion) {
-            const findVersion = await Versions.findOne({ where: { key: 'blog' } })
-            if (findVersion === null) return res({ res: `Version Not found against blog` }, 404)
+            const findVersion = await Versions.findOne({ where: { key: getVersion } })
+            if (findVersion === null) return res({ res: `Version Not found against ${getVersion}` }, 404)
             else return res(findVersion.dataValues, 200)
         }
         else if (slug) {
