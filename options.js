@@ -34,7 +34,7 @@ export const loadCache = async (key, time) => {
     if (cache && Date.now() - cache.timestamp < time && currentVersion.version === prevVersion) {
         return cache.data;
     }
-    console.log('versions are not samed.')
+    console.log('Versions are not identical.')
     return null;
 }
 export const checkLocalStorageUsage = () => {

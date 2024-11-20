@@ -66,7 +66,7 @@ export default function ManageBlogs() {
                                         <td style={{ textAlign: 'center' }}>{index + 1}</td>
                                         <td >
                                             <div className="tableFlex">
-                                                <img src={blog.bTitleImg} alt={blog.bTitle} width={50} />
+                                                <img src={`/api/uploadImg?path=${encodeURIComponent(blog.bTitleImg)}`} alt={blog.bTitle} width={50} />
                                                 <p>{blog.bTitle}</p>
                                             </div>
                                         </td>
@@ -75,8 +75,8 @@ export default function ManageBlogs() {
                                         <td>{new Date(blog.date).toDateString()} {new Date(blog.date).toLocaleTimeString()}</td>
                                         <td>{blog.bAuthor}</td>
                                         <td style={{ justifyContent: 'center' }} className="tableFlex">
-                                            <Link href={`/admin/manage-blogs/blog?bId=${blog.id}`}><img title="Edit Blog" className="actionIcon" src="/icons/edit.webp" alt="Edit Icon" width={25} /></Link>
-                                            <img onClick={() => handleDelete(blog.id)} title="Delete Blog" className="actionIcon" src="/icons/delete.webp" alt="Delete Icon" width={25} />
+                                            <Link href={`/admin/manage-blogs/blog?bId=${blog.id}`}><img title="Edit Blog" className="actionIcon" src="/iconImgs/edit.webp" alt="Edit Icon" width={25} /></Link>
+                                            <img onClick={() => handleDelete(blog.id)} title="Delete Blog" className="actionIcon" src="/iconImgs/delete.webp" alt="Delete Icon" width={25} />
                                         </td>
                                     </tr>
                                 ))

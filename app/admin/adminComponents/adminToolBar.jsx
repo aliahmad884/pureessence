@@ -30,10 +30,10 @@ export default function AdminToolbar() {
         <>
             <div className="adminToolCont">
                 <div className="toggleIcon">
-                    <img onClick={handleNav} src="/icons/menus.webp" alt="Icons" />
+                    <img onClick={handleNav} src="/iconImgs/menus.webp" alt="Icons" />
                 </div>
                 <div className="user">
-                    <img src="/icons/user.png" alt="User" />
+                    <img src="/iconImgs/user.png" alt="User" />
                     <p>Haji Robert Wilson</p>
                 </div>
             </div>

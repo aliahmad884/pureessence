@@ -191,8 +191,8 @@ export default function NewBlog() {
                             <h3>Placeholder/Title Image</h3>
                             <div style={{ display: 'flex', flexFlow: 'row wrap', gap: '10px' }}>
                                 {selectedImg &&
-                                    <div className="thumbnailImg" style={{ backgroundImage: `url('${selectedImg}')` }}>
-                                        <img title="Delete Image" onClick={() => handleImgDel()} className="trashBtn" src="/icons/delete.webp" alt="Trash" width={30} />
+                                    <div className="thumbnailImg" style={{ backgroundImage: `url('/api/uploadImg?path=${encodeURIComponent(selectedImg)}')` }}>
+                                        <img title="Delete Image" onClick={() => handleImgDel()} className="trashBtn" src="/iconImgs/delete.webp" alt="Trash" width={30} />
                                     </div>
                                 }
                             </div>

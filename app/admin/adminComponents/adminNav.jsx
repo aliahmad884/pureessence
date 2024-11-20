@@ -21,15 +21,15 @@ export default function AdminNav() {
                 </div>
                 <div className="adminNavLinks">
                     <p>General</p>
-                    <Link onClick={toggler} className={(pathName === '/admin') ? 'activeTab' : null} href={'/admin'}><img src="/icons/dashboard1.webp" alt="Dash Icon" width={20} /> Dashboard</Link>
-                    <Link onClick={toggler} className={(pathName === '/admin/manage-products') ? 'activeTab' : null} href={'/admin/manage-products'}><img src="/icons/new-product.webp" alt="Product Icon" width={20} /> Manage Products</Link>
-                    <Link onClick={toggler} className={(pathName === '/admin/manage-blogs') ? 'activeTab' : null} href={'/admin/manage-blogs'}><img src="/icons/blog.webp" alt="Blog Icon" width={20} /> Manage Blogs</Link>
-                    <Link onClick={toggler} className={(pathName === '/admin/registered-users') ? 'activeTab' : null} href={'/admin/registered-users'}><img src="/icons/group.webp" alt="Users Icon" width={20} /> Registered Users</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin') ? 'activeTab' : null} href={'/admin'}><img src="/iconImgs/dashboard1.webp" alt="Dash Icon" width={20} /> Dashboard</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/manage-products') ? 'activeTab' : null} href={'/admin/manage-products'}><img src="/iconImgs/new-product.webp" alt="Product Icon" width={20} /> Manage Products</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/manage-blogs') ? 'activeTab' : null} href={'/admin/manage-blogs'}><img src="/iconImgs/blog.webp" alt="Blog Icon" width={20} /> Manage Blogs</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/registered-users') ? 'activeTab' : null} href={'/admin/registered-users'}><img src="/iconImgs/group.webp" alt="Users Icon" width={20} /> Registered Users</Link>
                     <br />
                     <hr />
                     <br />
                     <p>Admin related</p>
-                    <Link onClick={toggler} className={(pathName === '/admin/settings') ? 'activeTab' : null} href={'/admin/settings'}><img src="/icons/settings.webp" alt="Setting Icon" width={20} /> Settings</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/settings') ? 'activeTab' : null} href={'/admin/settings'}><img src="/iconImgs/settings.webp" alt="Setting Icon" width={20} /> Settings</Link>
                     <br />
                 </div>
                 <div className="adminCopR">

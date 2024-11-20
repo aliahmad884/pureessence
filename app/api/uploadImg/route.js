@@ -1,13 +1,28 @@
 import path from 'path';
-import { writeFile, readFile, unlink } from 'fs/promises';
-import { readFileSync } from 'fs';
+import { writeFile, unlink } from 'fs/promises';
+import { readFileSync, existsSync } from 'fs';
 const { res } = require('../syntaxShorter.js')
 
 export async function GET(req) {
-    const { searchParams } = new URL(req.url)
-    const destPath = searchParams.get('test')
-    console.log(destPath)
-    return res({ res: "request recieved" }, 200)
+    const { searchParams } = new URL(req.url);
+    const parampPath = searchParams.get('path');
+    const splitPath = parampPath.split('/');
+    const filename = splitPath[splitPath.length - 1]
+    const fileDir = splitPath[1];
+    const fileExt = path.extname(filename).toLowerCase().slice(1)
+    const destPath = path.join(process.cwd(), 'public', fileDir, filename);
+
+    if (existsSync(destPath)) {
+        const fileBuffer = readFileSync(destPath)
+        return new Response(fileBuffer, {
+            status: 200,
+            headers: {
+                'Content-Type': `images/${fileExt}`
+            }
+        })
+    }
+
+    return res({ res: "file not found" }, 404)
 }
 
 export async function POST(req) {

@@ -73,7 +73,7 @@ export default function BlogSlug({ params }) {
                         </div>
                         <div className="img">
                             <Image
-                                src={blog.bTitleImg}
+                                src={`/api/uploadImg?path=${encodeURIComponent(blog.bTitleImg)}`}
                                 alt={blog.bTitle}
                                 sizes="100vw"
                                 height={1000}
@@ -94,17 +94,17 @@ export default function BlogSlug({ params }) {
                                         href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=Some Text to share on Twitter`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                    ><Image src={'/icons/twitter.webp'} alt="Twitter" height={30} width={30} /></Link>
+                                    ><Image src={'/iconImgs/twitter.webp'} alt="Twitter" height={30} width={30} /></Link>
                                     <Link
                                         href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                    ><Image src={'/icons/facebook.webp'} alt="Facebook" height={30} width={30} /></Link>
+                                    ><Image src={'/iconImgs/facebook.webp'} alt="Facebook" height={30} width={30} /></Link>
                                     <Link
                                         href={`https://wa.me/?text=${encodeURIComponent(postUrl)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                    ><Image src={'/icons/whatsapp.webp'} alt="Whatsapp" height={30} width={30} /></Link>
+                                    ><Image src={'/iconImgs/whatsapp.webp'} alt="Whatsapp" height={30} width={30} /></Link>
                                 </div>
                             </div>
                             <div className="postContent" dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>

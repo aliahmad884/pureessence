@@ -66,11 +66,11 @@ export default function ContactPage() {
                             <h3><strong>Phone Number: </strong>+44 1254 411076</h3>
                             <h3><strong>Email Address: </strong>info@puressenceltd.co.uk</h3>
                             <div className="socialIcon">
-                                <Image onClick={() => window.open('https://twitter.com/')} src="/icons/twitter.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
-                                <Image onClick={() => window.open('https://www.instagram.com/')} src="/icons/instagram.webp" alt="Master Card" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
-                                <Image onClick={() => window.open('https://www.tiktok.com/en/')} src="/icons/tiktok.webp" alt="Visa" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
-                                <Image onClick={() => window.open('https://www.facebook.com/')} src="/icons/facebook.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
-                                <Image onClick={() => window.open('https://wa.me/+4401254411076')} src="/icons/whatsapp.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                                <Image onClick={() => window.open('https://twitter.com/')} src="/iconImgs/twitter.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                                <Image onClick={() => window.open('https://www.instagram.com/')} src="/iconImgs/instagram.webp" alt="Master Card" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                                <Image onClick={() => window.open('https://www.tiktok.com/en/')} src="/iconImgs/tiktok.webp" alt="Visa" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                                <Image onClick={() => window.open('https://www.facebook.com/')} src="/iconImgs/facebook.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                                <Image onClick={() => window.open('https://wa.me/+4401254411076')} src="/iconImgs/whatsapp.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
                             </div>
                         </div>
                     </div>

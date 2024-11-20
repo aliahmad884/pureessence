@@ -1,10 +1,6 @@
 "use client"
 
-import { faEnvelope, faHouse, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IonIcon } from "@ionic/react";
 import Link from "next/link";
-import { logoFacebook, logoLinkedin, logoTwitter, logoYoutube } from "ionicons/icons"
 import Image from "next/image";
 
 export default function Footer() {
@@ -69,9 +65,9 @@ export default function Footer() {
             </div>
             <div className="copy">
                 <div className="payCards">
-                    <Image src="/icons/applePay.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
-                    <Image src="/icons/masterCard.webp" alt="Master Card" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
-                    <Image src="/icons/visaCard.webp" alt="Visa" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                    <Image src="/iconImgs/applePay.webp" alt="Apple Pay" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                    <Image src="/iconImgs/masterCard.webp" alt="Master Card" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
+                    <Image src="/iconImgs/visaCard.webp" alt="Visa" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
                 </div>
                 <p>Copyright &copy; {new Date().getFullYear()} <Link href={'/'}>PurEssence LTD </Link>- All Rights Reserved | Designed and Developed by <Link style={{ textDecoration: 'underline' }} href={'https://aldortech.com'}>AldorTech</Link>
                 </p>

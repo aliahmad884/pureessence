@@ -63,7 +63,7 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
     return (
         <>
             <div className="productCard">
-                <div style={{ backgroundImage: `url('${imgUrl}')` }} className="img"></div>
+                <div style={{ backgroundImage: `url('/api/uploadImg?path=${encodeURIComponent(imgUrl)}')` }} className="img"></div>
                 {/* <img loading="lazy"  src={imgUrl} alt={title} /> */}
                 <h2>{title}</h2>
                 <h3>{shortDes}</h3>
@@ -77,14 +77,14 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
         </>
     )
 }
-export function BlogCard({ type, slug, imgSrc, title ,sDesc}) {
+export function BlogCard({ type, slug, imgSrc, title, sDesc }) {
     return (
         <>
             <div className="blogCardCont">
                 <div className="img">
                     <Link href={`${slug}`}>
                         <Image
-                            src={imgSrc ? imgSrc : '/plastics.png'}
+                            src={imgSrc ? `/api/uploadImg?path=${encodeURIComponent(imgSrc)}` : '/plastics.png'}
                             alt="Temp Img"
                             sizes="100vw"
                             style={{

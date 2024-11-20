@@ -45,7 +45,7 @@ export default function ManageProducts() {
                     <p style={{ color: '#888888' }}><Link style={{textDecoration:'underline'}} href="/admin">Dashboard</Link> / Manage Products</p>
                 </div>
                 <h1>Manage Products</h1>
-                <button onClick={() => router.push('/admin/manage-products/product')} className="btn addNew" type="button"><img src="/icons/store.webp" alt="Store Icon" width={25} /> Add Product</button>
+                <button onClick={() => router.push('/admin/manage-products/product')} className="btn addNew" type="button"><img src="/iconImgs/store.webp" alt="Store Icon" width={25} /> Add Product</button>
                 <div className="tableCont">
                     <table>
                         <thead>
@@ -64,15 +64,15 @@ export default function ManageProducts() {
                                         <td style={{ textAlign: 'center' }}>{i + 1}</td>
                                         <td >
                                             <div className="tableFlex">
-                                                <img src={p.pImages[0]} alt={p.pName} width={50} />
+                                                <img src={`/api/uploadImg?path=${encodeURIComponent(p.pImages[0])}`} alt={p.pName} width={50} />
                                                 <p>{p.pName}</p>
                                             </div>
                                         </td>
                                         <td><Link style={{color:'#006BFF'}} href={`/products/${p.slug}`} target="_blank">{`/products/${p.slug}`}</Link></td>
                                         <td>&pound;{p.price}</td>
                                         <td style={{ justifyContent: 'center' }} className="tableFlex">
-                                            <Link href={`/admin/manage-products/product?pId=${p.id}`}><img title="Edit Product" className="actionIcon" src="/icons/edit.webp" alt="Edit Icon" width={25} /></Link>
-                                            <img onClick={() => handleDelete(p.id)} title="Delete Product" className="actionIcon" src="/icons/delete.webp" alt="Delete Icon" width={25} />
+                                            <Link href={`/admin/manage-products/product?pId=${p.id}`}><img title="Edit Product" className="actionIcon" src="/iconImgs/edit.webp" alt="Edit Icon" width={25} /></Link>
+                                            <img onClick={() => handleDelete(p.id)} title="Delete Product" className="actionIcon" src="/iconImgs/delete.webp" alt="Delete Icon" width={25} />
                                         </td>
                                     </tr>
                                 ))

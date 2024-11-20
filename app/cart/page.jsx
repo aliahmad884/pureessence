@@ -60,7 +60,7 @@ export default function CartPage() {
                                 <tr key={data.id}>
                                     <td data-label='Product' colSpan={2}>
                                         <div className="tableProduct">
-                                            <img loading="lazy" src={data.pImages[0]} alt="fsfsk" width={100} />&nbsp;
+                                            <img loading="lazy" src={`/api/uploadImg?path=${encodeURIComponent(data.pImages[0])}`} alt="fsfsk" width={100} />&nbsp;
                                             <p>{data.pName}</p>
                                         </div>
                                     </td>
@@ -115,9 +115,9 @@ export default function CartPage() {
                 <div className="acceptPay">
                     <p>Payment Methods Accepted Here:</p>
                     <div className="payCards">
-                        <Image src="/icons/applePay.webp" alt="Apple Pay" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
-                        <Image src="/icons/masterCard.webp" alt="Master Card" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
-                        <Image src="/icons/visaCard.webp" alt="Visa" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
+                        <Image src="/iconImgs/applePay.webp" alt="Apple Pay" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
+                        <Image src="/iconImgs/masterCard.webp" alt="Master Card" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
+                        <Image src="/iconImgs/visaCard.webp" alt="Visa" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
                     </div>
                 </div>
             </div>

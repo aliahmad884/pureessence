@@ -108,7 +108,7 @@ export default function Invoice() {
                                     <td>{i + 1}</td>
                                     <td>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <img loading="lazy" src={item.pImages[0]} alt={item.pName} width={60} />&nbsp;
+                                            <img loading="lazy" src={`/api/uploadImg?path=${encodeURIComponent(item.pImages[0])}`} alt={item.pName} width={60} />&nbsp;
                                             <p>{item.pName}</p>
                                         </div>
                                     </td>

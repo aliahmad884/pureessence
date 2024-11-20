@@ -201,8 +201,8 @@ export default function NewProduct() {
                                 {
                                     selectedImg.length > 0 && selectedImg.map((img, i) => (
 
-                                        <div key={i} className="thumbnailImg" style={{ backgroundImage: `url('${img}')` }}>
-                                            <img title="Delete Image" onClick={() => handleImgDel(i)} className="trashBtn" src="/icons/delete.webp" alt="Trash" width={30} />
+                                        <div key={i} className="thumbnailImg" style={{ backgroundImage: `url('/api/uploadImg?path=${encodeURIComponent(img)}')` }}>
+                                            <img title="Delete Image" onClick={() => handleImgDel(i)} className="trashBtn" src="/iconImgs/delete.webp" alt="Trash" width={30} />
                                         </div>
                                     ))
                                 }
