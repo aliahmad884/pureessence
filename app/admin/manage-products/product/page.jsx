@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
+import { useAdminContext } from "../../adminContext";
 
 export default function NewProduct() {
     const router = useRouter()
@@ -160,7 +161,10 @@ export default function NewProduct() {
         }
     }, [])
 
-
+    const { isAuthUser } = useAdminContext()
+    useEffect(() => {
+        if (!isAuthUser) router.push('/admin/authenticate')
+    }, [isAuthUser])
     return (
         <div className="adminRoute">
             <div className="subCont">

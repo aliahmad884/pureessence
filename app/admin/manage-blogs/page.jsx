@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { useAdminContext } from "../adminContext";
 
 export default function ManageBlogs() {
     const [blogs, setBlogs] = useState([])
     const router = useRouter()
+    const [isChecked, setIsChecked] = useState(false)
     const handleDelete = async (id) => {
         let found = blogs.filter(b => b.id !== id)
         let result = await Swal.fire({
@@ -33,11 +35,20 @@ export default function ManageBlogs() {
             });
         }
     }
+    const handleInputState = (event) => {
+        setIsChecked(event.target.checked)
+        // if (isChecked) alert('input checked')
+        // else alert('input not checked')
+    }
     useEffect(() => {
         fetch('/api/blog').then(res => res.json()).then(result => {
             setBlogs(result)
         }).catch(err => console.error(err))
     }, [])
+    const { isAuthUser } = useAdminContext()
+    useEffect(() => {
+        if (!isAuthUser) router.push('/admin/authenticate')
+    }, [isAuthUser])
     return (
         <div className="adminRoute">
             <div className="subCont">
@@ -50,8 +61,8 @@ export default function ManageBlogs() {
                     <table>
                         <thead>
                             <tr>
-                                <th style={{ width: '20px' }}>Index</th>
-                                <th >Title</th>
+                                <th style={{ width: '20px', whiteSpace: 'nowrap' }}> <input type="checkbox" checked={isChecked} onChange={handleInputState} name="" id="" /> Index</th>
+                                <th>Title</th>
                                 <th>View</th>
                                 <th>Category</th>
                                 <th>Published On</th>
@@ -63,7 +74,7 @@ export default function ManageBlogs() {
                             {
                                 blogs && blogs.map((blog, index) => (
                                     <tr key={blog.id}>
-                                        <td style={{ textAlign: 'center' }}>{index + 1}</td>
+                                        <td><input type="checkbox" checked={isChecked} name="" id="" /> &nbsp;&nbsp; {index + 1}</td>
                                         <td >
                                             <div className="tableFlex">
                                                 <img src={`/api/uploadImg?path=${encodeURIComponent(blog.bTitleImg)}`} alt={blog.bTitle} width={50} />

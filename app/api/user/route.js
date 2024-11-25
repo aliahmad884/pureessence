@@ -10,12 +10,26 @@ const cookieOptions = {
     path: '/', // Set for entire site
 };
 
+const admin = {
+    username: 'hajisab',
+    password: 'hajiadmin420'
+}
+
 export async function POST(req) {
     const { searchParams } = new URL(req.url);
     const body = await req.json();
     const action = searchParams.get('action');
     try {
-        if (action === 'logout') {
+        if (action === 'adminAuth') {
+            const verify = admin.username === body.username && admin.password === body.password;
+            if (verify) {
+                return res({ res: 'User Authenticated', }, 200)
+                // response.cookies.set('token',admin.username,{})
+                // return res
+            }
+            return res({ res: 'Incorrect credentials' }, 401)
+        }
+        else if (action === 'logout') {
             const response = res({ message: 'Logged out successfully' }, 200);
             response.cookies.set('token', '', {
                 httpOnly: true,
@@ -25,7 +39,7 @@ export async function POST(req) {
             });
             return response;
         }
-        if (action === 'signup') {
+        else if (action === 'signup') {
             if (body) {
                 const found = await RegisterUser.findOne({ where: { Email: body.email } })
                 if (found) return res({ res: 'User already exists!' }, 401)
@@ -42,7 +56,7 @@ export async function POST(req) {
             }
             return res({ res: 'Request Body is missing!' }, 400);
         }
-        if (action === 'login') {
+        else if (action === 'login') {
             if (body) {
                 const found = await RegisterUser.findOne({
                     where: {

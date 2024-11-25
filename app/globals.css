@@ -810,6 +810,10 @@ main {
   color: #555;
   text-align: left;
   padding: 0 10px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .productCard p {

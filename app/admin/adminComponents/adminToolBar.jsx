@@ -3,8 +3,10 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useAdminContext } from "../adminContext";
+import { usePathname } from "next/navigation";
 
 export default function AdminToolbar() {
+    const pathName= usePathname()
     const { isToggled, setIsToggled } = useAdminContext()
     const handleNav = () => {
         setIsToggled(true)
@@ -28,7 +30,7 @@ export default function AdminToolbar() {
     }, [isToggled])
     return (
         <>
-            <div className="adminToolCont">
+            <div className="adminToolCont" style={pathName.startsWith('/admin/authenticate') ? { display: 'none' } : null}>
                 <div className="toggleIcon">
                     <img onClick={handleNav} src="/iconImgs/menus.webp" alt="Icons" />
                 </div>

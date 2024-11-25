@@ -70,6 +70,7 @@
     overflow-x: auto;
     margin-top: 40px;
     transition: all 0.5s;
+    padding: 20px;
 }
 
 .tableCont table {
@@ -77,8 +78,24 @@
     min-width: 850px;
 }
 
-.tableCont tr {
-    border: 1px solid #c9c7c7;
+.tableCont tr{
+    transition: all 0.5s;
+}
+.tableCont tr:nth-child(even) {
+    /* background-color: #f2f2f2; */
+    background-color: #f8f9fc;
+}
+
+.tableCont tr:hover {
+    /* border: 1px solid #c9c7c7; */
+    /* background-color: #d3d2d2; */
+    background-color: #edf1f5;
+}
+
+.tableCont th{
+    /* background-color: #f2f2f2; */
+    /* background-color: #bbbbbb; */
+    background-color: #f8f9fc;
 }
 
 .tableCont th,
@@ -156,14 +173,18 @@ td {
     padding: 5px 15px;
     transition: all 0.5s;
     border-radius: 10px;
-    font-size: medium;
+    font-size: 0.9rem;
     display: flex;
-    align-items: center;
-    gap: 8px;
+    /* align-items: center; */
+    gap: 18px;
+    color: #797878;
 }
+
+/* .adminNavCont .adminNavLinks i{} */
 
 .adminNavCont .adminNavLinks a:hover {
     background-color: white;
+    color: black;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -176,6 +197,7 @@ td {
 .activeTab {
     background-color: white;
     font-size: 0.8rem;
+    color: black !important;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -261,10 +283,11 @@ td {
 }
 
 .addNew,
-.submit{
+.submit {
     right: 0;
 }
-.cancel{
+
+.cancel {
     right: 110px;
     background-color: #888888;
 }

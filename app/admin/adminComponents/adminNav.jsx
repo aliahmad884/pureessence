@@ -14,22 +14,29 @@ export default function AdminNav() {
     }
     return (
         <>
-            <div className="adminNavCont">
+            <div className="adminNavCont" style={pathName.startsWith('/admin/authenticate') ? { display: 'none' } : null}>
                 <div className="adminLogo">
                     <Link onClick={toggler} href={'/admin'}><img src="/logos/PE-Main-Logo.png" alt="Logo" /></Link>
                     <div className="badge">Admin</div>
                 </div>
                 <div className="adminNavLinks">
                     <p>General</p>
-                    <Link onClick={toggler} className={(pathName === '/admin') ? 'activeTab' : null} href={'/admin'}><img src="/iconImgs/dashboard1.webp" alt="Dash Icon" width={20} /> Dashboard</Link>
-                    <Link onClick={toggler} className={(pathName === '/admin/manage-products') ? 'activeTab' : null} href={'/admin/manage-products'}><img src="/iconImgs/new-product.webp" alt="Product Icon" width={20} /> Manage Products</Link>
-                    <Link onClick={toggler} className={(pathName === '/admin/manage-blogs') ? 'activeTab' : null} href={'/admin/manage-blogs'}><img src="/iconImgs/blog.webp" alt="Blog Icon" width={20} /> Manage Blogs</Link>
-                    <Link onClick={toggler} className={(pathName === '/admin/registered-users') ? 'activeTab' : null} href={'/admin/registered-users'}><img src="/iconImgs/group.webp" alt="Users Icon" width={20} /> Registered Users</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin') ? 'activeTab' : null} href={'/admin'}>
+                        <i className="fi fi-sr-chart-histogram"></i>Dashboard</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/manage-products') ? 'activeTab' : null} href={'/admin/manage-products'}>
+                        <i className="fi fi-sr-dolly-flatbed-alt"></i>Manage Products</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/manage-blogs') ? 'activeTab' : null} href={'/admin/manage-blogs'}>
+                        <i className="fi fi-sr-blog-pencil"></i>Manage Blogs</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/orders') ? 'activeTab' : null} href={'/admin/orders'}>
+                        <i className="fi fi-sr-apps-sort"></i>Orders</Link>
                     <br />
                     <hr />
                     <br />
                     <p>Admin related</p>
-                    <Link onClick={toggler} className={(pathName === '/admin/settings') ? 'activeTab' : null} href={'/admin/settings'}><img src="/iconImgs/settings.webp" alt="Setting Icon" width={20} /> Settings</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/settings') ? 'activeTab' : null} href={'/admin/settings'}>
+                        <i className="fi fi-sr-settings"></i>Settings</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/registered-users') ? 'activeTab' : null} href={'/admin/registered-users'}>
+                        <i className="fi fi-sr-users-alt"></i>Registered Users</Link>
                     <br />
                 </div>
                 <div className="adminCopR">

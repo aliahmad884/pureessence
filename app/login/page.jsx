@@ -94,7 +94,7 @@ export default function Login() {
                             <div className="remember">
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', gap: '10px', borderRadius: '50%' }}>
                                     <input type="checkbox" name="remember" id="remember" />
-                                    <label style={{ cursor: 'pointer' }} htmlFor="remember">Remember me</label>
+                                    <label style={{ cursor: 'pointer', whiteSpace:'nowrap' }} htmlFor="remember">Remember me</label>
                                 </div>
                                 <a href="#">Forgot Password?</a>
                             </div>

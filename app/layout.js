@@ -1,6 +1,7 @@
 'use client'
 
 import Navbar from "@/components/navbar";
+import "@flaticon/flaticon-uicons/css/all/all.css"
 import "./globals.css";
 import "./google.css";
 import "./loaders.css";
