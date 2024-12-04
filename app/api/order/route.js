@@ -104,7 +104,7 @@ export async function POST(req) {
 
             const adminOptions = {
                 from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
-                to: 'alilatakhun2003@gmail.com',
+                to: 'info@puressenceltd.co.uk',
                 subject: 'New Order Placed',
                 html: `
                 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
