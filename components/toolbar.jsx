@@ -14,23 +14,25 @@ export default function ToolBar() {
     return (
         <>
             <div className="toolBarCont">
-                <div className="contact">
-                    <a href="tel:+441254411076">
-                        {(innerWidth <= 780) ? (<><strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faPhone} /></strong></>) : (
-                            <>
-                            {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faPhone} /></strong>  */}
-                            +44 1254 411076</>
-                        )}</a>
-                    <a href="mailto:info@puressenceltd.co.uk">
-                        {(innerWidth <= 780) ? (<><strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faEnvelope} /></strong></>) : (
-                            <>
-                            {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faEnvelope} /></strong>  */}
-                            info@puressenceltd.co.uk</>
-                        )}</a>
-                </div>
-                {/* <div className="promo"> */}
+                <div className="toolSubCont">
+                    <div className="contact">
+                        <a href="tel:+441254411076">
+                            {(innerWidth <= 780) ? (<><strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faPhone} /></strong></>) : (
+                                <>
+                                    {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faPhone} /></strong>  */}
+                                    +44 1254 411076</>
+                            )}</a>
+                        <a href="mailto:info@puressenceltd.co.uk">
+                            {(innerWidth <= 780) ? (<><strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faEnvelope} /></strong></>) : (
+                                <>
+                                    {/* <strong style={{ color: '#dfb434' }}><FontAwesomeIcon icon={faEnvelope} /></strong>  */}
+                                    info@puressenceltd.co.uk</>
+                            )}</a>
+                    </div>
+                    {/* <div className="promo"> */}
                     <p>Keep an eye out for Promo Codes!</p>
-                {/* </div> */}
+                    {/* </div> */}
+                </div>
             </div>
         </>
     )

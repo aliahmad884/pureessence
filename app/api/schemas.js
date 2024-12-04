@@ -1,54 +1,46 @@
 import { Model, DataTypes } from 'sequelize';
-const sequelize = require('./dbConnection.js')
+import sequelize from './dbConnection';
+// const sequelize = require('./dbConnection.js')
 
-class Product extends Model { }
+export class Product extends Model { }
 Product.init({
-    Id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    TitleName: {
+    pName: {
         type: DataTypes.STRING
     },
-    ShortDesc: {
+    slug: {
         type: DataTypes.STRING
     },
-    Brief: {
+    sDesc: {
         type: DataTypes.TEXT
     },
-    TitleImg: {
-        type: DataTypes.STRING
+    description: {
+        type: DataTypes.TEXT
     },
-    ProductImages: {
+    price: {
+        type: DataTypes.DECIMAL(10, 2)
+    },
+    pImages: {
         type: DataTypes.JSON
     },
-    Stock: {
+    qty: {
         type: DataTypes.INTEGER
     },
-    Ingredients: {
+    pageTitle: {
+        type: DataTypes.TEXT
+    },
+    metaDesc: {
+        type: DataTypes.TEXT
+    },
+    reviews: {
         type: DataTypes.JSON
     },
-    SuggestUse: {
-        type: DataTypes.TEXT
-    },
-    NutFact: {
-        type: DataTypes.TEXT
-    },
-    Advise: {
-        type: DataTypes.TEXT
-    },
-    Information: {
-        type: DataTypes.TEXT
-    },
-    Reviews: {
-        type: DataTypes.JSON
-    },
-    Category: {
+    category: {
         type: DataTypes.STRING
-    },
-    Price: {
-        type: DataTypes.DECIMAL(10, 2)
     }
 }, {
     sequelize,
@@ -58,7 +50,7 @@ Product.init({
 });
 
 
-class Pages extends Model { }
+export class Pages extends Model { }
 
 Pages.init({
     Id: {
@@ -80,26 +72,35 @@ Pages.init({
 })
 
 
-class Blogs extends Model { }
+export class Blogs extends Model { }
 Blogs.init({
-    Id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    Title: {
+    bTitle: {
         type: DataTypes.STRING
     },
-    TitleImg: {
+    bSlug: {
         type: DataTypes.STRING
     },
-    Comments: {
-        type: DataTypes.JSON
+    bTitleImg: {
+        type: DataTypes.STRING
     },
-    BlogContent: {
+    bShortDesc: {
         type: DataTypes.TEXT
     },
-    Date: {
+    bAuthor: {
+        type: DataTypes.STRING
+    },
+    bCategory: {
+        type: DataTypes.STRING
+    },
+    blogHtml: {
+        type: DataTypes.TEXT
+    },
+    date: {
         type: DataTypes.DATE
     }
 }, {
@@ -109,7 +110,7 @@ Blogs.init({
     timestamps: false
 });
 
-class RegisterUser extends Model { }
+export class RegisterUser extends Model { }
 RegisterUser.init({
     Id: {
         type: DataTypes.INTEGER,
@@ -135,7 +136,7 @@ RegisterUser.init({
     timestamps: false
 });
 
-class Cart extends Model { }
+export class Cart extends Model { }
 Cart.init({
     id: {
         type: DataTypes.INTEGER,
@@ -164,7 +165,7 @@ Cart.init({
     timestamps: false
 });
 
-class Order extends Model { }
+export class Order extends Model { }
 Order.init({
     id: {
         type: DataTypes.INTEGER,
@@ -202,15 +203,15 @@ Order.init({
     timestamps: false
 });
 
-class Invoice extends Model { }
+export class Invoice extends Model { }
 Invoice.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    uniquUrl:{
-        type:DataTypes.TEXT
+    uniquUrl: {
+        type: DataTypes.TEXT
     },
     billing: {
         type: DataTypes.JSON
@@ -228,7 +229,7 @@ Invoice.init({
     timestamps: false
 });
 
-class NewsLetter extends Model { }
+export class NewsLetter extends Model { }
 NewsLetter.init({
     id: {
         type: DataTypes.INTEGER,
@@ -246,16 +247,35 @@ NewsLetter.init({
     timestamps: false
 });
 
+export class Versions extends Model { }
+Versions.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    key: {
+        type: DataTypes.STRING
+    },
+    version: {
+        type: DataTypes.DECIMAL(13, 2)
+    }
+}, {
+    sequelize,
+    tableName: 'versions',
+    modelName: 'Versions',
+    timestamps: false
+});
 
 
 
 // (async () => {
 //     try {
-//         await Invoice.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+//         await Versions.sync({force:true}); // Set to false to avoid dropping and re-creating tables
 //         console.log('Table synced successfully!');
 //     } catch (error) {
 //         console.error('Error syncing table:', error);
 //     }
 // })();
 
-module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order, Invoice, NewsLetter };
+// module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order, Invoice, NewsLetter, Versions };

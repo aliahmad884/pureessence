@@ -87,17 +87,17 @@ export default function Checkout() {
                         <h2>Order Details</h2>
 
                         {
-                            cartData ? cartData.map(data => (
+                            cartData && cartData.map(data => (
                                 < div key={data.id} className="product" >
                                     <div className="title">
-                                        <img loading="lazy" src={data.imgUrl} alt={data.title} width={60} />
-                                        <p>{data.title}</p>
+                                        <img loading="lazy" src={data.pImages[0]} alt={data.pName} width={60} />
+                                        <p>{data.pName}</p>
                                     </div>
                                     <div className="price"><strong>Price: </strong><p>&pound;{data.price}</p></div>
                                     <div className="qty"><strong>Qty: </strong><p></p>{data.qty}</div>
                                     <div className="total"><strong>Total: </strong><p>&pound;{data.qty * data.price}</p></div>
                                 </div>
-                            )) : null
+                            ))
                         }
                     </div>
                     <div className="orderSummary">

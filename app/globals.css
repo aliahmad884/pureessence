@@ -98,15 +98,21 @@ main {
   z-index: 1;
   width: 100%;
   max-width: 2200px;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: space-between;
+
   padding: 6px 40px;
   /* background-color: #171717; */
   background-color: #000000;
   color: white;
   transition: all 0.5s;
+}
+
+.toolBarCont .toolSubCont {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s;
+  /* max-width: 1600px; */
 }
 
 .toolBarCont .contact {
@@ -146,10 +152,12 @@ main {
 
 .navContainer {
   width: 100%;
+  /* max-width: 1600px; */
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+  /* margin: auto; */
 }
 
 /* ------Nav Company Logo------ */
@@ -277,7 +285,7 @@ main {
 }
 
 .navMainCont .routerDropDown.drop.extend {
-  height: 380px;
+  height: 390px;
 }
 
 .navMainCont .routerDropDown a {
@@ -312,7 +320,7 @@ main {
   position: relative;
   cursor: pointer;
   width: 100%;
-  /* padding-top: 10px; */
+  border-right: 2px solid;
 }
 
 .dropCart a {
@@ -322,7 +330,7 @@ main {
 
 .dropCart .count {
   position: absolute;
-  top: 8px;
+  top: -8px;
   left: 20px;
   font-size: small;
   background-color: #dfb434;
@@ -332,6 +340,12 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.routerDropDown .dropUser {
+  width: 100%;
+  align-items: center;
+  justify-content: end;
 }
 
 .routerDropDown .dropUser img {
@@ -796,6 +810,10 @@ main {
   color: #555;
   text-align: left;
   padding: 0 10px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .productCard p {
@@ -1010,12 +1028,19 @@ main {
 .footer {
   /* background-color: #171717; */
   background-color: #000000;
-  padding: 30px 50px;
+  padding: 30px 60px;
+  width: 100%;
+  transition: all 0.5s;
+}
+
+.footer .footerSubCont {
   display: flex;
   gap: 20px;
   align-items: start;
   justify-content: space-between;
   width: 100%;
+  /* max-width: 1500px; */
+  margin: auto;
   transition: all 0.5s;
 }
 
@@ -1059,8 +1084,8 @@ main {
 
 .logo {
   display: flex;
-  flex-flow: row nowrap;
-  gap: 10px;
+  flex-flow: column;
+  gap: 0px;
   width: 5%;
   max-width: 100px;
   align-items: center;
@@ -1205,6 +1230,7 @@ main {
   font-size: large;
   outline: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 10px 50px;
   border-radius: 10px;
   margin-top: 30px;
@@ -1312,7 +1338,7 @@ main {
 
 
 .checkoutForm input,
-select {
+.checkoutForm select {
   border: 1px solid #e6e6e6;
   /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
   border-radius: 20px;
@@ -1442,25 +1468,29 @@ select {
 .loginMainCont .header {
   position: fixed;
   width: 100%;
-  /* max-width: 2200px; */
   top: 0;
   left: 0;
   background-color: white;
-  /* width: fit-content; */
-  padding: 20px 20px 0 20px;
   margin: auto;
+  padding: 5px 15px;
+  border-bottom: 2px solid #c4c1c1;
 }
 
-.signupMainCont .header .logo,
-.loginMainCont .header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  gap: 5px;
+.signupMainCont .header .subCont,
+.loginMainCont .header .subCont {
   width: fit-content;
-  line-height: 1;
+  margin-top: auto;
+}
+
+.signupMainCont .header .subCont p,
+.loginMainCont .header .subCont p {
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 0.53rem;
+  /* letter-spacing: 0px; */
+  margin-top: -10px;
+  margin-left: 60px;
+  /* word-spacing: -1px; */
 }
 
 .signupMainCont .signupImgCont,
@@ -1561,6 +1591,7 @@ select {
 .loginMainCont .formCont .loginForm form .eyeCont input {
   width: 100%;
   padding: 0 15px;
+  border: none;
 }
 
 .signupMainCont .formCont .signupForm form .eye,
@@ -1594,6 +1625,7 @@ select {
   border-radius: 30px;
   outline: none;
   margin: 15px 0;
+  border: none;
 }
 
 .signupMainCont .formCont .signupForm p,
@@ -1608,6 +1640,7 @@ select {
   align-items: center;
   justify-content: space-between;
   font-size: 0.9rem;
+
 }
 
 .loginMainCont .formCont .loginForm form .remember a {
@@ -1679,7 +1712,7 @@ select {
   margin-bottom: 8px;
 }
 
-.proMainCont .sidePanel .optionsCont ul li {
+.proMainCont .sidePanel .optionsCont a {
   padding-left: 20px;
   margin-bottom: 4px;
   font-size: 1rem;
@@ -1687,14 +1720,11 @@ select {
   transition: all 0.5s;
 }
 
-.proMainCont .sidePanel .optionsCont ul li:hover {
+.proMainCont .sidePanel .optionsCont a:hover {
   color: #dfb434;
   padding-left: 22px;
 }
 
-.proMainCont .rightPanel .tab {
-  display: none;
-}
 
 .proMainCont .rightPanel {
   width: 100%;
@@ -1705,6 +1735,7 @@ select {
   padding: 10px;
   border-left: 1px solid #a09f9f;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  position: relative;
 }
 
 .rightPanel h1 {
@@ -2846,9 +2877,42 @@ select {
   transform: translateY(-5px);
 }
 
+.mainBody .postContent iframe {
+  width: 100%;
+  max-width: 1000px;
+  max-height: 500px;
+}
+
+@media (width<=600px) {
+  .mainBody .postContent iframe {
+    max-height: 300px;
+  }
+}
+
 .mainBody .postContent {
   width: 100%;
   max-width: 1000px;
+}
+
+.mainBody .postContent h1,
+.mainBody .postContent h2,
+.mainBody .postContent h3,
+.mainBody .postContent h4,
+.mainBody .postContent h5,
+.mainBody .postContent h6,
+.mainBody .postContent p,
+.mainBody .postContent a {
+  font-size: revert;
+  font-weight: revert;
+  text-decoration: revert;
+  color: revert;
+}
+
+.mainBody .postContent ul,
+.mainBody .postContent ol,
+.mainBody .postContent dl {
+  list-style: revert;
+  list-style-position: inside;
 }
 
 /* ---------- Blogs Page End--------------- */

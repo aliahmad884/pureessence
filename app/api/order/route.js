@@ -1,7 +1,7 @@
 const { res, randomeStrGen } = require('../syntaxShorter.js')
-const { Order, Invoice } = require("../schemas.js")
 import nodemailer from "nodemailer";
 import Stripe from "stripe";
+import { Order, Invoice } from "../schemas.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 export async function GET(req) {
