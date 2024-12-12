@@ -101,16 +101,15 @@ export default function Products({ params }) {
                         <div className="detailsCont">
                             <h1>{product.pName}</h1>
                             <p>{product.sDesc}</p>
-                            <h3 style={{ width: 'fit-content' }}>&pound;{product.price}</h3>
+                            <h3 style={(product.status === 'out of stock') ? { display: 'none' } : { width: 'fit-content' }}>&pound;{product.price}</h3>
                             <button
                                 onClick={handleCart}
-                                // style={(product.stock === 'out of stock') ? { backgroundColor: 'grey' } : null}
-                                // disabled={(product.stock === 'out of stock') ? true : false}
+                                style={(product.status === 'out of stock') ? { backgroundColor: 'grey' } : null}
+                                disabled={(product.status === 'out of stock') ? true : false}
                                 type="button">
-                                {/* {(product.stock === 'out of stock') ? product.stock : 'Add to Cart'} */}
-                                Add to Cart
+                                {(product.status === 'out of stock') ? product.status : 'Add to Cart'}
                             </button>
-                            {/* <h4><strong>Availability :</strong></h4> */}
+                            <h4>Availability:<strong style={product.status === 'in stock' ? { color: 'green' } : { color: 'red' }}> {product.status}</strong></h4>
                             <div>
                                 <Link href="/contact">Ask Us a Question</Link> &nbsp;
                                 <Link href={'/products'}>Back To Products</Link>

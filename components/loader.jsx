@@ -20,3 +20,11 @@ export function ChildLoader() {
         </>
     )
 }
+
+export function BlindsFallBack() {
+    return (
+        <>
+            <div className="blindCont"></div>
+        </>
+    )
+}

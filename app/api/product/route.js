@@ -7,20 +7,7 @@ export async function POST(req) {
     let body = await req.json()
     try {
         if (body) {
-            await Product.create({
-                pName: body.pName,
-                slug: body.slug,
-                sDesc: body.sDesc,
-                description: body.description,
-                price: body.price,
-                // pImages: JSON.stringify(body.pImages),
-                pImages: body.pImages,
-                qty: body.qty,
-                pageTitle: body.pageTitle,
-                metaDesc: body.metaDesc,
-                reviews: null,
-                category: null
-            })
+            await Product.create(body)
             updateVersion('product', Versions)
             return res({ res: 'Product Added Successfully!' }, 201)
         }
@@ -51,6 +38,7 @@ export async function GET(req) {
             //         price: ProductData[i].price,
             //         pImages: JSON.stringify([ProductData[i].imgUrl]),
             //         qty: ProductData[i].qty,
+            //         status: 'in stock',
             //         pageTitle: ProductData[i].title,
             //         metaDesc: ProductData[i].description,
             //         reviews: null,

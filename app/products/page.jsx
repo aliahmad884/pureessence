@@ -49,7 +49,7 @@ export default function ProductPage() {
                         data.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.imgUrl} title={data.title} qty={data.qty} data={data} shortDes={data.shortDes} slug={data.slug} />)
                     } */}
                     {
-                        apiData.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.pImages[0]} title={data.pName} qty={data.qty} data={data} shortDes={data.sDesc} slug={data.slug} />)
+                        apiData.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.pImages[0]} title={data.pName} qty={data.qty} data={data} status={data.status} shortDes={data.sDesc} slug={data.slug} />)
                     }
                 </div>
             </div>

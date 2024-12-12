@@ -24,7 +24,7 @@ export default function ReviewCard() {
         </div>
     )
 }
-export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slug }) {
+export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slug ,status}) {
     const router = useRouter()
 
     const { cartData, setCartData } = useDataContext()
@@ -67,11 +67,10 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
                 {/* <img loading="lazy"  src={imgUrl} alt={title} /> */}
                 <h2>{title}</h2>
                 <h3>{shortDes}</h3>
-                <p>&pound;{price}</p>
+                <p>{(status==='out of stock')?<strong style={{color:'red'}}>Out of Stock</strong>: (<>&pound;{price}</>)}</p>
                 <div className="btnCont">
                     <Link style={{ textAlign: 'center' }} href={`/products/${slug}`} className="btnPreview"><FontAwesomeIcon icon={faEye} /> View</Link>
-                    {/* <button className="addToCart" onClick={() => handleCart()} type="button">Add to Cart</button> */}
-                    <FontAwesomeIcon onClick={() => handleCart()} className="addToCart" icon={faCartShopping} />
+                    <FontAwesomeIcon style={(status==='out of stock')?{display:'none'}:null} onClick={() => handleCart()} className="addToCart" icon={faCartShopping} />
                 </div>
             </div>
         </>

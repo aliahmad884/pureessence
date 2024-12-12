@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useAdminContext } from "../adminContext";
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 
 export default function Auth() {
+    const param=useSearchParams()
+    const path=param.get('path')
     const router = useRouter();
     const [formData, setFormData] = useState({});
     const { isAuthUser, setIsAuthUser } = useAdminContext();
@@ -12,7 +14,7 @@ export default function Auth() {
 
     const handleInput = (event) => {
         const { name, value } = event.target;
-        setFormData(prev=>({ ...prev, [name]: value }))
+        setFormData(prev => ({ ...prev, [name]: value }))
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +26,8 @@ export default function Auth() {
             })
             if (res.ok) {
                 setIsAuthUser(true)
-                router.push('/admin')
+                router.push(path?path:'/admin')
+                console.log(path)
             }
             let result = await res.json();
             setErrMsg(result.res);
@@ -35,19 +38,19 @@ export default function Auth() {
     }
     return (
         <>
-            <div style={{ display: 'flex', flexFlow: 'row', width: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="formCont" style={{ maxWidth: '400px', width: '100%' }}>
+            <div style={{ marginTop: '-95px', display: 'flex', flexFlow: 'row', width: '100%', alignItems: 'center', justifyContent: 'center',height:'90vh',padding:'0 20px' }}>
+                <div className="formCont" style={{ maxWidth: '400px', width: '100%', marginTop: '0' }}>
                     <form onSubmit={handleSubmit} autoComplete="on">
-                        <div className="formSec">
-                            <h3 style={{ textAlign: 'center' }}>Admin Login</h3>
+                        <div className="formSec" style={{ marginTop: '0' }}>
+                            <h3><img style={{ margin:'auto'}} src="/logos/apanel.png" alt="Apanel" loading="lazy" width={150}/></h3>
                             <label htmlFor="username">Username</label>
-                            <input onChange={handleInput} type="text" name="username" id="username" required placeholder="Username" autoComplete="username"/>
+                            <input onChange={handleInput} type="text" name="username" id="username" required placeholder="Username" autoComplete="username" />
                             <br />
                             <label htmlFor="pass">Password</label>
                             <input onChange={handleInput} type="password" name="password" id="pass" required placeholder="Password" autoComplete="current-password" />
                             <p style={{ color: 'red' }}>{errMsg}</p>
                             <br />
-                            <button type="submit" style={{ padding: '10px 50px', backgroundColor: 'blueviolet', color: 'white' }}>Login</button>
+                            <button type="submit" style={{ padding: '10px 50px', backgroundColor: 'blueviolet', color: 'white' }}>Unlock</button>
                         </div>
                     </form>
                 </div>

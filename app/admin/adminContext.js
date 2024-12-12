@@ -9,7 +9,7 @@ const AdminContext = createContext()
 export default function AdminContextProvider({ children }) {
     const router = useRouter()
     const [isToggled, setIsToggled] = useState(false)
-    const [isAuthUser, setIsAuthUser] = useState(false);
+    const [isAuthUser, setIsAuthUser] = useState(true);
     // useEffect(() => {
     //     if (!isAuthUser) router.push('/admin/authenticate');
     // }, [isAuthUser])

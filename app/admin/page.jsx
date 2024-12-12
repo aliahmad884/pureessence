@@ -1,16 +1,20 @@
 'use client'
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useAdminContext } from "./adminContext"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
+import { BlindsFallBack } from "@/components/loader"
 
 export default function AdminHome() {
     const { isAuthUser } = useAdminContext()
     const router = useRouter()
+    const pathname = usePathname()
+    const [isAuthe, setIsAuth] = useState(true)
     useEffect(() => {
-        if (!isAuthUser) router.push('/admin/authenticate')
+        if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
+        else setIsAuth(false);
     }, [isAuthUser])
-
+    if (isAuthe) return <BlindsFallBack />
     return (
         <>
             <div className="adminRoute full">

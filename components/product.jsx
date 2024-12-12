@@ -78,7 +78,7 @@ export default function PopularProducts() {
                 <div className="slider">
                     <Slider ref={slider => { sliderRef = slider }} {...settings} style={{ padding: '0 -15px' }}>
                         {
-                            apiData.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.pImages[0]} title={data.pName} qty={data.qty} data={data} shortDes={data.sDesc} slug={data.slug} />)
+                            apiData.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.pImages[0]} title={data.pName} qty={data.qty} data={data} status={data.status} shortDes={data.sDesc} slug={data.slug} />)
                         }
                     </Slider>
 

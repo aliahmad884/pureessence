@@ -2,14 +2,18 @@
 import dynamic from "next/dynamic";
 const BlogEditor = dynamic(() => import("@/components/tinyEditor"), { ssr: false });
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import { useAdminContext } from "../../adminContext";
+import { BlindsFallBack } from "@/components/loader";
 
 export default function NewBlog() {
+    const { isAuthUser } = useAdminContext()
+    const [isAuthe, setIsAuth] = useState(true)
     const router = useRouter()
     const params = useSearchParams()
+    const pathname = usePathname()
     const bId = params.get('bId')
     const inputFileRef = useRef()
     const [selectedImg, setSelectedImg] = useState(null)
@@ -160,10 +164,11 @@ export default function NewBlog() {
             fetchProduct()
         }
     }, [])
-    const { isAuthUser } = useAdminContext()
     useEffect(() => {
-        if (!isAuthUser) router.push('/admin/authenticate')
+        if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
+        else setIsAuth(false);
     }, [isAuthUser])
+    if (isAuthe) return <BlindsFallBack />
 
     return (
         <div className="adminRoute">

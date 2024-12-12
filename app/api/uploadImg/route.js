@@ -5,13 +5,12 @@ const { res } = require('../syntaxShorter.js')
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url);
-    const parampPath = searchParams.get('path');
+    const parampPath = decodeURIComponent(searchParams.get('path'));
     const splitPath = parampPath.split('/');
     const filename = splitPath[splitPath.length - 1]
-    const fileDir = splitPath[1];
+    const fileDir = splitPath[splitPath.length-2];
     const fileExt = path.extname(filename).toLowerCase().slice(1)
     const destPath = path.join(process.cwd(), 'public', fileDir, filename);
-
     if (existsSync(destPath)) {
         const fileBuffer = readFileSync(destPath)
         return new Response(fileBuffer, {
@@ -21,7 +20,6 @@ export async function GET(req) {
             }
         })
     }
-
     return res({ res: "file not found" }, 404)
 }
 

@@ -4,16 +4,21 @@
 import Image from "next/image";
 // const ProductEditor = dynamic(() => import("@/components/tinyEditor"), { ssr: false });
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
 import { useAdminContext } from "../../adminContext";
+import { BlindsFallBack } from "@/components/loader";
 
 export default function NewProduct() {
+    const validate = /^[0-9]*\.?[0-9]*$/
+    const { isAuthUser } = useAdminContext()
+    const [isAuthe, setIsAuth] = useState(true)
     const router = useRouter()
     const params = useSearchParams()
     const pId = params.get('pId')
     const inputFileRef = useRef()
+    const pathname = usePathname()
     const [selectedImg, setSelectedImg] = useState([])
     const pInitalState = {
         pName: '',
@@ -23,6 +28,7 @@ export default function NewProduct() {
         price: '',
         pImages: [],
         qty: 1,
+        status: 'in stock',
         pageTitle: '',
         metaDesc: '',
         reviews: null,
@@ -75,6 +81,7 @@ export default function NewProduct() {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const pStatus = newP.status ? newP.status : 'in stock'
         if (newP.pImages.length <= 0) {
             alert('Please Provide at least one image')
             return null;
@@ -107,7 +114,7 @@ export default function NewProduct() {
         let res = await fetch('/api/product', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newP)
+            body: JSON.stringify({ ...newP, status: pStatus })
         })
         if (!res.ok) {
             Swal.fire({
@@ -144,6 +151,7 @@ export default function NewProduct() {
                     slug: result.slug,
                     sDesc: result.sDesc,
                     description: result.description,
+                    status: result.status,
                     price: result.price,
                     pImages: result.pImages,
                     pageTitle: result.pageTitle,
@@ -160,11 +168,11 @@ export default function NewProduct() {
             fetchProduct()
         }
     }, [])
-
-    const { isAuthUser } = useAdminContext()
     useEffect(() => {
-        if (!isAuthUser) router.push('/admin/authenticate')
+        if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
+        else setIsAuth(false);
     }, [isAuthUser])
+    if (isAuthe) return <BlindsFallBack />
     return (
         <div className="adminRoute">
             <div className="subCont">
@@ -197,7 +205,15 @@ export default function NewProduct() {
                         <div className="formSec">
                             <h3>Pricing</h3>
                             <label htmlFor="pPrice">Product Price</label>
-                            <input value={newP.price} type="text" onChange={(e) => setNewP(prev => ({ ...prev, price: e.target.value }))} name="pPrice" id="pPrice" required placeholder="£10.22" />
+                            <input disabled={newP.status === 'out of stock' ? true : false} value={newP.price} type="text" onChange={(e) => {
+                                const value = e.target.value
+                                if (validate.test(value)) setNewP(prev => ({ ...prev, price: value }))
+                            }} name="pPrice" id="pPrice" required placeholder="£10.22" />
+                            <label htmlFor="pStatus">Stock Status</label>
+                            <select name="pStatus" id="pStatus" value={newP.status} onChange={(e) => setNewP(prev => ({ ...prev, status: e.target.value }))}>
+                                <option value="in stock">In stock</option>
+                                <option value="out of stock">Out of Stock</option>
+                            </select>
                         </div>
                         <div className="formSec">
                             <h3>Images</h3>

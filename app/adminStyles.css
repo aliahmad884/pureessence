@@ -264,6 +264,9 @@ td {
 
 /* ------------------ Product Page Styles ----------------------- */
 
+i{
+    margin-top: 3px;
+}
 .btn,
 .newProductBtn {
     border: none;
