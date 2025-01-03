@@ -37,7 +37,7 @@ export default function Auth() {
                     <h1>Enter your code</h1>
                     <p>We sent a code to example@gmail.com!</p>
                     <input type="text" name="otp" id="otp" placeholder="Enter you code" />
-                    <p>Did't recieved the email?click to resend</p>
+                    <p>Did&apos;t recieved the email?click to resend</p>
                     <button type="button" onClick={() => {
                         setOtp(false)
                         setPass(true)
