@@ -8,6 +8,24 @@
     }
 }
 
+@media (width<=980px) {
+    .o-summary-cont {
+        width: 100%;
+        display: flex;
+        flex-flow: column-reverse;
+    }
+    .cus-d-cont,
+    .o-d-cont {
+        width: 100%;
+    }
+}
+
+@media (width<=780px){
+    .settings .row{
+        flex-flow: column;
+    }
+}
+
 @media (width<=700px) {
     .formCont .formSec .thumbnailImg {
         width: 100%;
@@ -23,15 +41,16 @@
         width: 100%;
     }
 
-    .formCont form .cancel{
+    .formCont form .cancel {
         top: 140px;
         right: 0;
         width: 100%;
     }
 
-    .formCont{
+    .formCont {
         margin-top: 140px;
     }
+
     .tableCont {
         margin-top: 80px;
     }

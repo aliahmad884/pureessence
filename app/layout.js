@@ -43,6 +43,7 @@ export default function RootLayout({ children }) {
                 (pathName.startsWith('/login')) ||
                 (pathName.startsWith('/signup')) ||
                 (pathName.startsWith('/completed')) ||
+                (pathName.startsWith('/auth')) ||
                 (pathName.startsWith('/invoice'))
               ) ? null : (
                 <>
@@ -57,7 +58,9 @@ export default function RootLayout({ children }) {
                 (pathName.startsWith('/login')) ||
                 (pathName.startsWith('/signup')) ||
                 (pathName.startsWith('/completed')) ||
-                (pathName.startsWith('/invoice'))
+                (pathName.startsWith('/invoice'))||
+                (pathName.startsWith('/auth')) ||
+                (pathName.startsWith('/profile'))
               ) ? null : <Footer />}
             </CustomProvider>
           </Suspense>

@@ -1,6 +1,11 @@
+'use client'
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Disclaimer() {
+    useEffect(()=>{
+        document.title='Disclaimer | PurEssence'
+    },[])
     return (
         <>
             <div className="legalCont">

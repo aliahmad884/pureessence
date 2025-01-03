@@ -12,8 +12,9 @@ import { useEffect, useState } from "react"
 export default function Login() {
     const searchParams = useSearchParams()
     const path = searchParams.get('retTo')
+    const isGoogleAuth = searchParams.get('authMethod')
     const router = useRouter()
-    const { setCartData, setLoggedUser, setIsLogged, DOMLoaded, SetDOMLoaded } = useDataContext()
+    const { setCartData, setLoggedUser, setIsLogged, loggedUser } = useDataContext()
     const [email, setEmail] = useState('')
     const [pass, setPas] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -48,7 +49,6 @@ export default function Login() {
                 setLoggedUser(data)
                 setCartData([])
                 setIsLoading(false)
-                SetDOMLoaded(true)
                 // setTimeout(() => {
                 router.push(path ? path : '/')
                 // }, 1000)
@@ -61,11 +61,40 @@ export default function Login() {
     const handlePassState = () => {
         setPassState(!passState)
     }
+    const handleGoogleLogin = () => {
+        window.location.href = '/api/google'
+    }
+    const googleSignup = async () => {
+        const name = searchParams.get('Name');
+        const email = searchParams.get('Email')
+        const response = await fetch('/api/user?action=login&authMethod=google', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                Email: email,
+            })
+        })
+        if (response.ok) {
+            localStorage.setItem('user', JSON.stringify({ Name: name, Email: email }))
+            setIsLogged(true);
+            setLoggedUser({ Name: name, Email: email });
+            setCartData([]);
+            router.push('/')
+        }
+    }
     useEffect(() => {
+        const user = localStorage.getItem('user')
+        document.title = 'Login | PurEssence'
+        if (isGoogleAuth) {
+            setIsLoading(true)
+            console.log('Google Auth')
+            googleSignup()
+        }
+        else if (user) router.push('/')
 
         setErrMsg('')
     }, [email, pass])
-    if (DOMLoaded) {
+    if (isLoading) {
         return <FallBackLoader />
     }
     return (
@@ -94,15 +123,15 @@ export default function Login() {
                             <div className="remember">
                                 <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', gap: '10px', borderRadius: '50%' }}>
                                     <input type="checkbox" name="remember" id="remember" />
-                                    <label style={{ cursor: 'pointer', whiteSpace:'nowrap' }} htmlFor="remember">Remember me</label>
+                                    <label style={{ cursor: 'pointer', whiteSpace: 'nowrap' }} htmlFor="remember">Remember me</label>
                                 </div>
-                                <a href="#">Forgot Password?</a>
+                                <Link href="/auth">Forgot Password?</Link>
                             </div>
                             <button type="submit">{isLoading ? (<span className="loader"></span>) : 'Sign in'}</button>
                         </form>
                         <h3>Or login with</h3>
                         <hr />
-                        <GoogleBtn textContent={'Sign in with Google'} />
+                        <GoogleBtn clickHandler={handleGoogleLogin} textContent={'Sign in with Google'} />
                         {/* <button className="googleBtn" type="button">Google</button> */}
                         <h4>Dont&apos;t have an account? <Link href="/signup">Sign Up Now</Link></h4>
                     </div>

@@ -38,7 +38,8 @@ export async function POST(req) {
             imgUrl: body.imgUrl,
             title: body.title,
             price: body.price,
-            qty: body.qty
+            qty: body.qty,
+            slug: body.slug
         })
         return res({ res: addNew }, 201)
     }

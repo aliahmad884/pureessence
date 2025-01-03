@@ -1,6 +1,11 @@
+'use client'
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Terms() {
+    useEffect(() => {
+        document.title = 'Terms & Conditions | PurEssence'
+    }, [])
     return (
         <>
             <div className="legalCont">

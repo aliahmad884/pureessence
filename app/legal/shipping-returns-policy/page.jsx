@@ -1,6 +1,11 @@
+'use client'
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Returns() {
+    useEffect(()=>{
+        document.title='Shipping & Returns Policy | PurEssence'
+    },[])
     return (
         <>
             <div className="legalCont">

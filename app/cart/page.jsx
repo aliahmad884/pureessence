@@ -18,6 +18,7 @@ export default function CartPage() {
         router.push(`/shipping`)
     }
     useEffect(() => {
+        document.title = 'Cart'
         setLoading(false)
         let arr = []
         cartData.forEach(ele => {
@@ -60,8 +61,8 @@ export default function CartPage() {
                                 <tr key={data.id}>
                                     <td data-label='Product' colSpan={2}>
                                         <div className="tableProduct">
-                                            <img loading="lazy" src={`/api/uploadImg?path=${encodeURIComponent(data.pImages[0])}`} alt="fsfsk" width={100} />&nbsp;
-                                            <p>{data.pName}</p>
+                                            <img loading="lazy" src={`/api/uploadImg?path=${encodeURIComponent(data.pImages ? data.pImages[0] : data.imgUrl)}`} alt={data.pName ? data.pName : data.title} width={100} />&nbsp;
+                                            <p><Link href={`/products/${data.slug}`} target="_blank">{data.pName ? data.pName : data.title}</Link></p>
                                         </div>
                                     </td>
                                     <td data-label='Price'>&pound;{data.price}</td>

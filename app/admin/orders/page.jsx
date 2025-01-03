@@ -6,29 +6,66 @@ import { BlindsFallBack } from "@/components/loader"
 import Link from "next/link"
 
 export default function Orders() {
-    const [orderData, setOrderData] = useState([
-        { id: "#12452", customer: "Haji Allah Ditta", type: 'Guest', status: "Processing", amount: 1235 },
-        { id: "#17842", customer: "Sheikh Sab", type: 'Registered', status: "Completed", amount: 1200 },
-    ])
-
-
+    const [orderData, setOrderData] = useState([])
     const { isAuthUser } = useAdminContext()
     const router = useRouter()
     const pathname = usePathname()
     const [isEditable, setIsEditable] = useState(null)
     const [updateStatus, setUpdateStatus] = useState('')
     const [isAuthe, setIsAuth] = useState(true)
-    const handleSave = (id) => {
+    const handleSave = async (id) => {
         setOrderData(prev =>
-            prev.map(order => order.id === id ? { ...order, status: updateStatus } : order)
+            prev.map(order => order.id === id ? { ...order, orderStatus: updateStatus || order.orderStatus } : order)
         )
         setIsEditable(null);
-        setUpdateStatus('');
+        try {
+            const res = await fetch(`/api/order?orderId=${id}&status=${updateStatus}`, { method: 'put' })
+            if (res.ok) {
+                setUpdateStatus('');
+            }
+            else alert('Having Error in updating status!')
+        }
+        catch (err) {
+            console.log(err)
+        }
+
     };
     const handleDiscard = () => {
         setIsEditable(null);
         setUpdateStatus('');
     };
+
+    const handleDelete = async (id) => {
+        const remainingOrd = orderData.filter(o => o.id !== id)
+        try {
+            const res = await fetch(`/api/order?orderId=${id}`, {
+                method: 'delete'
+            })
+            if (res.ok) {
+                setOrderData(remainingOrd)
+                const result = await res.json();
+                console.log(result)
+            }
+            else alert('order not deleted!')
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    const fetchData = async () => {
+        try {
+            const res = await fetch('/api/order');
+            const result = await res.json()
+            setOrderData(result)
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+    useEffect(() => {
+        fetchData();
+    }, [])
     useEffect(() => {
         if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
         else setIsAuth(false);
@@ -47,11 +84,14 @@ export default function Orders() {
                     <table>
                         <thead>
                             <tr>
-                                <th style={{ width: '20px', whiteSpace: 'nowrap' }}> <input type="checkbox" name="" id="" />&nbsp; Ind.</th>
+                                <th style={{ width: '20px', whiteSpace: 'nowrap' }}>
+                                    {/* <input type="checkbox" name="" id="" />&nbsp; */}
+                                    Ind.
+                                </th>
                                 <th style={{ textAlign: 'center' }}>Ord. ID</th>
                                 <th>Cust. Name</th>
-                                <th style={{ textAlign: 'center' }}>Cust. Type</th>
                                 <th style={{ textAlign: 'center' }}>Ord. Date</th>
+                                <th style={{ textAlign: 'center' }}>Ord. Time</th>
                                 <th style={{ textAlign: 'center' }}>Ord. Status</th>
                                 <th style={{ textAlign: 'center' }}>T. Amount</th>
                                 <th style={{ textAlign: 'center' }}>Inv.</th>
@@ -62,22 +102,25 @@ export default function Orders() {
                             {
                                 orderData.map((data, index) => (
                                     <tr key={data.id}>
-                                        <td><input type="checkbox" name="" id="" /> &nbsp;&nbsp; {index+1}</td>
-                                        <td style={{ textAlign: 'center' }}>{data.id}</td>
-                                        <td>{data.customer}</td>
-                                        <td style={{ textAlign: 'center' }}>{data.type}</td>
-                                        <td style={{ textAlign: 'center' }}>12 Jul 2024</td>
+                                        <td>
+                                            {/* <input type="checkbox" name="" id="" /> &nbsp;&nbsp; */}
+                                            {index + 1}
+                                        </td>
+                                        <td style={{ textAlign: 'center' }}>#{data.id}</td>
+                                        <td>{data.shippingDetails.firstName} {data.shippingDetails.lastName}</td>
+                                        <td style={{ textAlign: 'center' }}>{new Date(data.orderDate).toDateString()}</td>
+                                        <td style={{ textAlign: 'center' }}>{new Date(data.orderDate).toLocaleTimeString()}</td>
                                         <td style={{ textAlign: 'center' }}>
                                             {isEditable === data.id ?
-                                                <select onChange={(e) => setUpdateStatus(e.target.value)} defaultValue={data.status}>
+                                                <select onChange={(e) => setUpdateStatus(e.target.value)} defaultValue={data.orderStatus}>
                                                     <option value="Processing">Processing</option>
                                                     <option value="Completed">Completed</option>
                                                     <option value="Canceled">Canceled</option>
                                                 </select>
-                                                : data.status}
+                                                : <span className={(data.orderStatus === "Processing") ? 'badge-caution' : (data.orderStatus === 'Completed') ? 'badge-complete' : 'badge-cancel'}>{data.orderStatus}</span>}
                                         </td>
-                                        <td style={{ textAlign: 'center' }}>{data.amount}</td>
-                                        <td style={{ textAlign: 'center' }}><i style={{ color: 'blue', cursor: 'pointer' }} title="Invoice Link" className="fi fi-sr-document"></i></td>
+                                        <td style={{ textAlign: 'center' }}>{data.totalAmount}</td>
+                                        <td style={{ textAlign: 'center' }}><Link href={data.invLink} target="_blank"><i style={{ color: 'blue', cursor: 'pointer' }} title="Invoice Link" className="fi fi-sr-document"></i></Link></td>
                                         <td style={{ textAlign: 'center' }}>
                                             {
                                                 isEditable === data.id ? (
@@ -89,13 +132,13 @@ export default function Orders() {
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <i style={{ cursor: 'pointer' }} title="View Details" className="fi fi-sr-overview"></i>
+                                                        <Link href={`/admin/orders/${data.id}`}><i title="View Details" className="fi fi-sr-overview"></i></Link>
                                                         &nbsp;
                                                         &nbsp;
                                                         <i style={{ cursor: 'pointer' }} onClick={() => setIsEditable(data.id)} title="Edit Order" className="fi fi-sr-pencil"></i>
                                                         &nbsp;
                                                         &nbsp;
-                                                        <i style={{ cursor: 'pointer', color: 'red' }} className="fi fi-rr-trash-empty" title="Delete Order"></i>
+                                                        <i style={{ cursor: 'pointer', color: 'red' }} className="fi fi-rr-trash-empty" title="Delete Order" onClick={() => handleDelete(data.id)}></i>
                                                     </>
                                                 )
                                             }

@@ -1,6 +1,6 @@
-export default function GoogleBtn({ textContent }) {
+export default function GoogleBtn({ textContent, clickHandler }) {
     return (
-        <div className="googleBtn">
+        <div className="googleBtn" onClick={() => clickHandler()}>
             <button className="gsi-material-button">
                 <div className="gsi-material-button-state" />
                 <div className="gsi-material-button-content-wrapper">

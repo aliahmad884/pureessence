@@ -1,8 +1,5 @@
 "use client";
 
-
-import { IonIcon } from "@ionic/react";
-import { arrowUpCircleOutline, logoWhatsapp } from "ionicons/icons";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
@@ -41,10 +38,10 @@ export default function Whatsapp() {
         <>
             <div className="quikIconCont">
                 <div onClick={() => handleWhats()} className="whatsCont">
-                    <IonIcon className="whatsapp" icon={logoWhatsapp} />
+                    <img src="/iconImgs/whatsapp1.webp" alt="whatsapp" width={50} />
                 </div>
                 <div id="arrowBtn" onClick={() => returnToTop()} className="upCont">
-                    <IonIcon className="arrowUp" icon={arrowUpCircleOutline} />
+                    <i className="fi fi-rs-arrow-circle-up arrowUp"></i>
                 </div>
             </div>
         </>

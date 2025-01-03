@@ -13,7 +13,6 @@ export default function Invoice() {
     const [billingData, setBillingData] = useState([])
     const [invnotFound, setInvNotFound] = useState(false)
     const [isLoading, setIsloading] = useState(true)
-    const [subTotal, setSubTotal] = useState('')
     const params = useSearchParams()
     const invId = params.get('invId')
     const invUrl = params.get('ul')
@@ -21,6 +20,7 @@ export default function Invoice() {
         window.print()
     }
     useEffect(() => {
+        document.title = 'Invoice | PurEssence'
 
         const fetchInv = async () => {
             try {
@@ -31,20 +31,12 @@ export default function Invoice() {
                     return setInvNotFound(true)
                 }
                 let result = await res.json()
-                setInvItems(JSON.parse(result.data.items))
                 // setInvItems(result.data.items)
-                setInvData(result.data)
                 // setBillingData(result.data.billing)
+                setInvItems(JSON.parse(result.data.items))
                 setBillingData(JSON.parse(result.data.billing))
+                setInvData(result.data)
                 setIsloading(false)
-                result
-                let arr = []
-                let items = JSON.parse(result.data.items)
-                items.forEach(ele => {
-                    arr.push(Number(ele.price) * ele.qty)
-                })
-                let total = arr.reduce((prev, curr) => prev + curr, 0)
-                setSubTotal(total)
             }
             catch (err) {
                 console.log(err)
@@ -108,8 +100,8 @@ export default function Invoice() {
                                     <td>{i + 1}</td>
                                     <td>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                                            <img loading="lazy" src={`/api/uploadImg?path=${encodeURIComponent(item.pImages[0])}`} alt={item.pName} width={60} />&nbsp;
-                                            <p>{item.pName}</p>
+                                            <img loading="lazy" src={`/api/uploadImg?path=${encodeURIComponent(item.pImages ? item.pImages[0] : item.imgUrl)}`} alt={item.pName} width={60} />&nbsp;
+                                            <p><Link style={{textDecoration:'underline'}} href={`/products/${item.slug}`} target="_blank">{item.pName ? item.pName : item.title}</Link></p>
                                         </div>
                                     </td>
                                     <td>{item.qty}</td>
@@ -123,10 +115,10 @@ export default function Invoice() {
                 </div>
                 <div className="amount-container">
                     <div style={{ width: '100%', maxWidth: '400px' }}>
-                        <div className="subCont"><strong>Subtotal:</strong><p>&pound;{subTotal}</p></div>
-                        <div className="subCont"><strong>Shipping:</strong><p>&pound;12.63</p></div>
-                        <div className="subCont"><strong>Tax(if Applicable):</strong><p>&pound;0.00</p></div>
-                        <div className="subCont"><strong>Discount:</strong><p>&pound;0.00</p></div>
+                        <div className="subCont"><strong>Subtotal:</strong><p>&pound;{invData.total}</p></div>
+                        <div className="subCont"><strong>Shipping:</strong><p>&pound;{invData.shipFee}</p></div>
+                        {/* <div className="subCont"><strong>Tax(if Applicable):</strong><p>&pound;0.00</p></div> */}
+                        <div className="subCont"><strong>Discount:</strong><p>&pound;{invData.discount}</p></div>
                         <div style={
                             {
                                 borderTop: '2px solid rgb(224, 224, 224)',
@@ -134,10 +126,7 @@ export default function Invoice() {
                                 paddingTop: '8px',
                                 fontSize: '1.2rem'
                             }
-                        } className="subCont"><strong>Total:</strong> <h3><strong>&pound;{(subTotal + 12.63).toLocaleString('en-GB', {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2
-                        })}</strong></h3></div>
+                        } className="subCont"><strong>Total:</strong> <h3><strong>&pound;{((parseFloat(invData.total) - parseFloat(invData.discount)) + parseFloat(invData.shipFee)).toFixed(2)}</strong></h3></div>
                     </div>
                 </div>
                 <div className="invoice-footer">

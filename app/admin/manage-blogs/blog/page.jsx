@@ -64,7 +64,7 @@ export default function NewBlog() {
         if (e.target.files.length <= 0) {
             return null;
         }
-        if (selectedImg) {
+        else if (selectedImg) {
             await fetch(`/api/uploadImg?path=${selectedImg}`, { method: 'delete' })
         }
         let formData = new FormData()

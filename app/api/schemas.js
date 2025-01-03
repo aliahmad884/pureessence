@@ -131,6 +131,15 @@ RegisterUser.init({
     },
     Password: {
         type: DataTypes.STRING
+    },
+    RegDate: {
+        type: DataTypes.DATE
+    },
+    LastLogin: {
+        type: DataTypes.DATE
+    },
+    AuthMethod: {
+        type: DataTypes.STRING
     }
 }, {
     sequelize,
@@ -141,10 +150,13 @@ RegisterUser.init({
 
 export class Cart extends Model { }
 Cart.init({
-    id: {
+    pId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
+    },
+    id: {
+        type: DataTypes.INTEGER
     },
     userId: {
         type: DataTypes.STRING
@@ -160,6 +172,9 @@ Cart.init({
     },
     qty: {
         type: DataTypes.INTEGER
+    },
+    slug: {
+        type: DataTypes.STRING
     }
 }, {
     sequelize,
@@ -198,6 +213,18 @@ Order.init({
     },
     orderStatus: {
         type: DataTypes.JSON
+    },
+    invLink: {
+        type: DataTypes.TEXT
+    },
+    invId: {
+        type: DataTypes.INTEGER
+    },
+    shipFee: {
+        type: DataTypes.DECIMAL(10, 2)
+    },
+    discount: {
+        type: DataTypes.DECIMAL(10, 2)
     }
 }, {
     sequelize,
@@ -213,6 +240,9 @@ Invoice.init({
         primaryKey: true,
         autoIncrement: true
     },
+    orderId: {
+        type: DataTypes.INTEGER
+    },
     uniquUrl: {
         type: DataTypes.TEXT
     },
@@ -225,6 +255,15 @@ Invoice.init({
     date: {
         type: DataTypes.DATE
     },
+    total: {
+        type: DataTypes.DECIMAL(10, 2)
+    },
+    shipFee: {
+        type: DataTypes.DECIMAL(10, 2)
+    },
+    discount: {
+        type: DataTypes.DECIMAL(10, 2)
+    }
 }, {
     sequelize,
     tableName: 'invoice',
@@ -270,15 +309,52 @@ Versions.init({
     timestamps: false
 });
 
+export class AdminUser extends Model { }
+AdminUser.init(
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        username: {
+            type: DataTypes.STRING
+        },
+        email: {
+            type: DataTypes.STRING
+        },
+        phone: {
+            type: DataTypes.STRING
+        },
+        password: {
+            type: DataTypes.STRING
+        },
+        userRole: {
+            type: DataTypes.STRING
+        },
+        proImg: {
+            type: DataTypes.TEXT
+        }
+    },
+    {
+        sequelize,
+        tableName: 'adminuser',
+        modelName: 'AdminUser',
+        timestamps: false
+    }
+);
+
 
 
 (async () => {
     try {
-        await Product.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+        await AdminUser.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+        await RegisterUser.sync({ force: true });
+        await Cart.sync({ force: true });
+        await Invoice.sync({ force: true });
+        await Order.sync({ force: true });
         console.log('Table synced successfully!');
     } catch (error) {
         console.error('Error syncing table:', error);
     }
 })();
-
-// module.exports = { Pages, Blogs, Product, RegisterUser, Cart, Order, Invoice, NewsLetter, Versions };

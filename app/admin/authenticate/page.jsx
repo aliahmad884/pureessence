@@ -5,11 +5,11 @@ import { useAdminContext } from "../adminContext";
 import { useRouter, useSearchParams } from "next/navigation"
 
 export default function Auth() {
-    const param=useSearchParams()
-    const path=param.get('path')
+    const param = useSearchParams()
+    const path = param.get('path')
     const router = useRouter();
     const [formData, setFormData] = useState({});
-    const { isAuthUser, setIsAuthUser } = useAdminContext();
+    const { isAuthUser, setIsAuthUser, setLoggedUser } = useAdminContext();
     const [errMsg, setErrMsg] = useState("");
 
     const handleInput = (event) => {
@@ -19,18 +19,23 @@ export default function Auth() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            let res = await fetch('/api/user?action=adminAuth', {
+            let res = await fetch('/api/adminAuth?action=login', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             })
             if (res.ok) {
+                let result = await res.json();
                 setIsAuthUser(true)
-                router.push(path?path:'/admin')
-                console.log(path)
+                setLoggedUser(result)
+                localStorage.setItem('isLogged', true)
+                localStorage.setItem('loggedUser', JSON.stringify(result))
+                router.push(path ? path : '/admin')
             }
-            let result = await res.json();
-            setErrMsg(result.res);
+            else {
+                let result = await res.json();
+                setErrMsg(result.res);
+            }
         }
         catch (err) {
             console.log(err)
@@ -38,11 +43,11 @@ export default function Auth() {
     }
     return (
         <>
-            <div style={{ marginTop: '-95px', display: 'flex', flexFlow: 'row', width: '100%', alignItems: 'center', justifyContent: 'center',height:'90vh',padding:'0 20px' }}>
+            <div style={{ marginTop: '-95px', display: 'flex', flexFlow: 'row', width: '100%', alignItems: 'center', justifyContent: 'center', height: '90vh', padding: '0 20px' }}>
                 <div className="formCont" style={{ maxWidth: '400px', width: '100%', marginTop: '0' }}>
                     <form onSubmit={handleSubmit} autoComplete="on">
                         <div className="formSec" style={{ marginTop: '0' }}>
-                            <h3><img style={{ margin:'auto'}} src="/logos/apanel.png" alt="Apanel" loading="lazy" width={150}/></h3>
+                            <h3><img style={{ margin: 'auto' }} src="/logos/apanel.png" alt="Apanel" loading="lazy" width={150} /></h3>
                             <label htmlFor="username">Username</label>
                             <input onChange={handleInput} type="text" name="username" id="username" required placeholder="Username" autoComplete="username" />
                             <br />

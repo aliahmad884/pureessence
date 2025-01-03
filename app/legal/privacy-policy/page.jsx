@@ -1,6 +1,11 @@
+'use client'
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function PrivacyPolicy() {
+    useEffect(()=>{
+        document.title='Privacy Policy | PurEssence'
+    },[])
     return (
         <>
             <div className="legalCont">

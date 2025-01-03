@@ -54,6 +54,7 @@ export default function Shipping() {
         router.push(`/checkout?huihbc=hdhdiusbdhwyd&uniqueId=${uniqueId}`)
     }
     useEffect(() => {
+        document.title = 'Shipping Details'
         setIsLoading(false)
     }, [])
     // useEffect(() => {

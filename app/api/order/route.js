@@ -2,6 +2,7 @@ const { res, randomeStrGen } = require('../syntaxShorter.js')
 import nodemailer from "nodemailer";
 import Stripe from "stripe";
 import { Order, Invoice } from "../schemas.js";
+import { ordConfirm, ordPlacedNotify } from "../mailTemplates.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 export async function GET(req) {
@@ -11,8 +12,8 @@ export async function GET(req) {
     const orderNumber = searchParams.get('orderNumber')
     const invId = searchParams.get('invId')
     const invUrl = searchParams.get('ul')
-    const order = searchParams.get('orderStatus')
-    const user = searchParams.get('user')
+    const orderStatus = searchParams.get('orderStatus')
+    const userId = searchParams.get('user')
     try {
         if (invId && invUrl) {
             const found = await Invoice.findOne({ where: { id: invId, uniquUrl: invUrl } })
@@ -22,18 +23,34 @@ export async function GET(req) {
             }
             return res({ res: 'Invoice not found!' }, 404)
         }
-        if (orderNumber) {
-            const found = await Order.findOne({ where: { id: orderNumber } })
-            if (found) {
-                let data = found.dataValues
-                return res({ data }, 200)
+        else if (orderNumber) {
+            if (userId) {
+                const foundwithId = await Order.findOne({ where: { id: orderNumber, userId: userId } })
+                if (foundwithId) {
+                    let data = foundwithId.dataValues
+                    return res({ data }, 200)
+                }
+                return res({ res: 'Order details not found!' }, 404)
             }
-            return res({ res: 'Order details not found!' }, 404)
+            else {
+                const found = await Order.findOne({ where: { id: orderNumber } })
+                if (found) {
+                    let data = found.dataValues
+                    return res({ data }, 200)
+                }
+                return res({ res: 'Order details not found!' }, 404)
+            }
         }
-        const orders = await Order.findAll({ where: { orderType: order, userId: user } });
-        if (order) {
+        else if (orderStatus) {
+            const orders = await Order.findAll({ where: { userId: userId } });
             const data = orders.map(data => data.dataValues)
             return res({ data }, 200)
+        }
+        else {
+            console.log('api called')
+            const allOrders = await Order.findAll()
+            const data = allOrders.map(data => data.dataValues)
+            return res(data, 200)
         }
     }
     catch (err) {
@@ -60,17 +77,41 @@ export async function POST(req) {
 
     try {
         if (reqtyp === 'invoice') {
-            const { cartData, ...billInfo } = body
+            const { cartData, subTotal, discount, shipFee, userId, ...billInfo } = body;
             let randomStr = randomeStrGen(11)
-            console.log(randomStr)
+            // console.log(randomStr)
+            const transaction = await Invoice.sequelize.transaction()
             const newInvoice = await Invoice.create({
+                orderId: null,
                 uniquUrl: randomStr,
                 billing: billInfo,
                 items: cartData,
-                date: new Date()
-            })
+                date: new Date(),
+                total: (subTotal - discount) + shipFee,
+                shipFee: shipFee,
+                discount: discount
+            },
+                { transaction }
+            )
             const invoice = newInvoice.dataValues;
-
+            const newOrder = await Order.create({
+                userId: userId,
+                product: cartData,
+                totalAmount: (subTotal - discount) + shipFee,
+                orderDate: new Date(),
+                paymentMethod: null,
+                shippingDetails: billInfo,
+                orderType: null,
+                orderStatus: 'Processing',
+                invLink: `/invoice?invId=${invoice.id}&ul=${invoice.uniquUrl}`,
+                invId: invoice.id,
+                shipFee: shipFee,
+                discount: discount
+            },
+                { transaction }
+            )
+            await Invoice.update({ orderId: newOrder.dataValues.id }, { where: { id: invoice.id }, transaction })
+            await transaction.commit()
 
             // ------------ Email Section ---------------
 
@@ -78,51 +119,23 @@ export async function POST(req) {
                 from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
                 to: billInfo.email,
                 subject: 'Order Confirmation',
-                html: `
-                        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                            <a href="https://puressenceltd.co.uk"> <img src="https://puressenceltd.co.uk/logos/PE-Main-Logo.png"
-                            alt="Logo"></a>
-                            <h1>Order confirmation from <strong>PurEssence LTD</strong></h1>
-                            <h3>Dear ${billInfo.firstName},</h3>
-                            <p>Thank you for placing an order with <strong>PurEssence LTD</strong>. We are pleased to confirm
-                                the invoice of your order PE-INV-000${invoice.id}.
-                            </p>
-                            <p>
-                                Your order is now being processing and we will contact you as soon as possible. You will receive a notification
-                                once your order has been shipped. We appreciate the trust you have placed in us and aim to provide you with the highest quality of service.
-                                If you have any questions or need further assistance, please do not hesitate to contact our customer service team at
-                                <strong><a href="mailto:info@puressenceltd.co.uk">info@puressenceltd.co.uk</a></strong> or contact on <strong><a href="https://wa.me/+4401254411076">WhatsApp</a></strong>. Thank you for choosing <strong>PurEssence LTD</strong>. We value your 
-                                business and look forward to serving you again.
-                            </p>
-                            <p>To see invoice, <a href="https://puressenceltd.co.uk/invoice?invId=${invoice.id}&ul=${invoice.uniquUrl}">Click</a></p>
-                            <h4>Warm regards,</h4>
-                            <p> PurEssence LTD.</p>
-                    </div>`
+                html: ordConfirm(billInfo, invoice)
             }
             let clientInfo = await transporter.sendMail(clientOptions)
             console.log(clientInfo.messageId)
 
             const adminOptions = {
                 from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
-                to: 'info@puressenceltd.co.uk',
+                to: process.env.ADMIN_MAIL,
                 subject: 'New Order Placed',
-                html: `
-                <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                    <h1>Order placed by <strong>${billInfo.firstName} ${billInfo.lastName}</strong></h1>
-                    <h2>Client Email: ${billInfo.email}</h2>
-                    <h2>Client Phone: ${billInfo.phone}</h2>
-                    <h2>Shipping Address: ${billInfo.address}</h2>
-                    <h2>Invoice: PE-INV-000${invoice.id}</h2>
-                    <h3>Date & Time: ${new Date(invoice.date).toDateString()} ${new Date(invoice.date).toLocaleTimeString()}</h3>
-                    <p>To see invoice, <a href="https://puressenceltd.co.uk/invoice?invId=${invoice.id}&ul=${invoice.uniquUrl}">Click</a></p>
-            </div>`
+                html: ordPlacedNotify(billInfo, invoice)
             }
             let adminInfo = await transporter.sendMail(adminOptions)
             console.log(adminInfo.messageId)
 
             // ------------ Response Return ---------------
 
-            return res({ res: "Request recieved", invId: invoice.id, invUrl: invoice.uniquUrl }, 200)
+            return res({ res: "Order Completed successfully", invId: invoice.id, invUrl: invoice.uniquUrl }, 200)
         }
         let paymentId = (await stripe.paymentIntents.retrieve(paramId ? paramId : 'pi_3Q403YRqfkkgc0Q105cLWt8C')).payment_method
         let payment_method = await stripe.paymentMethods.retrieve(paymentId)
@@ -142,5 +155,37 @@ export async function POST(req) {
     catch (err) {
         console.log(err)
         return res({ res: 'Internal Server Error!', serverError: err }, 500)
+    }
+}
+
+export async function DELETE(req) {
+    const { searchParams } = new URL(req.url)
+    const orderId = searchParams.get('orderId')
+    try {
+        const findOrd = await Order.findOne({ where: { id: orderId } })
+        const findInv = await Invoice.findOne({ where: { orderId: orderId } })
+        await findOrd.destroy()
+        await findInv.destroy()
+        return res({ res: 'Order Deleted' }, 201)
+    }
+    catch (err) {
+        console.log(err)
+        return res({ res: 'Internal Server Error!', err: err }, 500)
+    }
+}
+
+export async function PUT(req) {
+    const { searchParams } = new URL(req.url)
+    const orderId = searchParams.get('orderId')
+    const status = searchParams.get('status')
+    try {
+        const findOrd = await Order.findOne({ where: { id: orderId } })
+        await findOrd.update({ orderStatus: status })
+        // await findOrd.update
+        return res({ res: 'Status Updated' }, 201)
+    }
+    catch (err) {
+        console.log(err)
+        return res({ res: 'Internal Server Error!', err: err }, 500)
     }
 }

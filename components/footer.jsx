@@ -35,17 +35,17 @@ export default function Footer() {
                         </div>
                         <div className="bestSeller">
                             <h2>Popular</h2>
-                            <a href="/products">Honey</a>
-                            <a href="/products">Vinegar</a>
-                            <a href="/products">Concentrate</a>
-                            <a href="/products">Syrup</a>
+                            <Link href="/products">Honey</Link>
+                            <Link href="/products">Vinegar</Link>
+                            <Link href="/products">Concentrate</Link>
+                            <Link href="/products">Syrup</Link>
                         </div>
                         <div className="legal">
                             <h2><Link href={'/legal'}>Legal &amp; Info</Link></h2>
-                            <Link href={'/legal/terms-conditions'}>Terms &amp; Conditions</Link>
-                            <Link href={'/legal/privacy-policy'}>Privacy Policy</Link>
-                            <Link href={'/legal/disclaimer'}>Disclaimer</Link>
-                            <Link href={'/legal/shipping-returns-policy'}>Shipping &amp; Returns</Link>
+                            <Link className="navLinksItems" data-value={'/legal/terms-conditions'} href={'/legal/terms-conditions'}>Terms &amp; Conditions</Link>
+                            <Link className="navLinksItems" data-value={'/legal/privacy-policy'} href={'/legal/privacy-policy'}>Privacy Policy</Link>
+                            <Link className="navLinksItems" data-value={'/legal/disclaimer'} href={'/legal/disclaimer'}>Disclaimer</Link>
+                            <Link className="navLinksItems" data-value={'/legal/shipping-returns-policy'} href={'/legal/shipping-returns-policy'}>Shipping &amp; Returns</Link>
                             <Link href={'/sitemap.xml'}>Sitemap</Link>
 
                         </div>

@@ -1,6 +1,6 @@
 const { res, sanitizer } = require("../syntaxShorter.js")
 import jwt from "jsonwebtoken";
-import { RegisterUser } from "../schemas.js";
+import { Cart, Order, RegisterUser } from "../schemas.js";
 
 const cookieOptions = {
     httpOnly: true,
@@ -10,26 +10,40 @@ const cookieOptions = {
     path: '/', // Set for entire site
 };
 
-const admin = {
-    username: 'hajisab',
-    password: 'hajiadmin420'
+export async function GET(req) {
+    const { searchParams } = new URL(req.url);
+    const userEmail = searchParams.get('userEmail')
+    const action = searchParams.get('action');
+    const pass = searchParams.get('pass')
+    try {
+        if (userEmail && !action) {
+            const found = await RegisterUser.findOne({ where: { Email: userEmail } })
+            return res(found.dataValues, 200)
+        }
+        else if (action === 'checkpass' && userEmail) {
+            const findUser = await RegisterUser.findOne({ where: { Email: userEmail } })
+            const prevPass = findUser.dataValues.Password;
+            const compare = await sanitizer.decryptPass(pass, prevPass)
+            if (compare) return res({ res: 's' }, 200);
+            return res({ res: "Incorrect Password" }, 401)
+        }
+        const allUsers = await RegisterUser.findAll()
+        const data = allUsers.map(data => data.dataValues);
+        return res(data, 200)
+    }
+    catch (err) {
+        console.log(err);
+        return res({ res: 'internel server error!' }, 500)
+    }
 }
 
 export async function POST(req) {
     const { searchParams } = new URL(req.url);
     const body = await req.json();
     const action = searchParams.get('action');
+    const authMethod = searchParams.get('authMethod')
     try {
-        if (action === 'adminAuth') {
-            const verify = admin.username === body.username && admin.password === body.password;
-            if (verify) {
-                return res({ res: 'User Authenticated', }, 200)
-                // response.cookies.set('token',admin.username,{})
-                // return res
-            }
-            return res({ res: 'Incorrect credentials' }, 401)
-        }
-        else if (action === 'logout') {
+        if (action === 'logout') {
             const response = res({ message: 'Logged out successfully' }, 200);
             response.cookies.set('token', '', {
                 httpOnly: true,
@@ -42,12 +56,15 @@ export async function POST(req) {
         else if (action === 'signup') {
             if (body) {
                 const found = await RegisterUser.findOne({ where: { Email: body.email } })
-                if (found) return res({ res: 'User already exists!' }, 401)
+                if (found) return res({ res: 'User already exists!' }, 401);
                 await RegisterUser.create({
                     FirstName: body.firstName,
                     LastName: body.lastName,
                     Email: body.email,
-                    Password: await sanitizer.encryptPass(body.password)
+                    Password: body.password ? await sanitizer.encryptPass(body.password) : null,
+                    RegDate: Date.now(),
+                    LastLogin: Date.now(),
+                    AuthMethod: authMethod
                 });
                 const authToken = jwt.sign({ email: body.email }, 'secretKey', { expiresIn: '3d' })
                 const response = res({ Name: `${body.firstName} ${body.lastName}`, Email: body.email }, 200);
@@ -57,7 +74,14 @@ export async function POST(req) {
             return res({ res: 'Request Body is missing!' }, 400);
         }
         else if (action === 'login') {
-            if (body) {
+            if (authMethod === 'google') {
+                const authToken = jwt.sign({ email: body.Email }, 'secretKey', { expiresIn: '3d' })
+                const response = res({ res: 'Logged in with google!' }, 200);
+                response.cookies.set('token', authToken, cookieOptions)
+                await RegisterUser.update({ LastLogin: Date.now() }, { where: { Email: body.Email } })
+                return response;
+            }
+            else {
                 const found = await RegisterUser.findOne({
                     where: {
                         Email: body.Email
@@ -70,13 +94,13 @@ export async function POST(req) {
                         const authToken = jwt.sign({ email: found.dataValues.Email }, 'secretKey', { expiresIn: '3d' })
                         const response = res({ Name: `${found.dataValues.FirstName} ${found.dataValues.LastName}`, Email: found.dataValues.Email }, 200);
                         response.cookies.set('token', authToken, cookieOptions)
+                        await RegisterUser.update({ LastLogin: Date.now() }, { where: { Email: found.dataValues.Email } })
                         return response;
                     }
                     else return res({ res: 'Incorrect Password! Please recheck and try again' }, 401);
                 };
                 return res({ res: 'Incorrect Username and password!' }, 401);
-            };
-            return res({ res: 'Request Body is missing!' }, 400);
+            }
         };
         return res({ res: 'Something went wrong! please try again' }, 505);
     }
@@ -85,3 +109,39 @@ export async function POST(req) {
         return res({ err: 'Internel Server Error!' }, 500);
     };
 };
+
+export async function PUT(req) {
+    const body = await req.json();
+    try {
+        const findUser = await RegisterUser.findOne({ where: { Email: body.currentEmail } })
+        if (findUser) {
+            await RegisterUser.update(
+                {
+                    FirstName: body.FirstName,
+                    LastName: body.LastName,
+                    Email: body.Email,
+                    Password: (body.Password !== '') ? await sanitizer.encryptPass(body.Password) : findUser.dataValues.Password
+                },
+                { where: { Email: body.currentEmail } }
+            )
+            await Cart.update(
+                {
+                    userId: body.Email
+                },
+                { where: { userId: body.currentEmail } }
+            )
+            await Order.update(
+                {
+                    userId: body.Email
+                },
+                { where: { userId: body.currentEmail } }
+            )
+            return res({ res: 'request recieved' }, 200)
+        }
+        return res({ res: 'user not found with the email!' }, 404)
+    }
+    catch (err) {
+        console.log(err);
+        return res({ err: 'Internel Server Error!' }, 500);
+    };
+}

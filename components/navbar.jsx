@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faCartShopping, faUser, faCircleQuestion, faCircleArrowLeft, faRightToBracket, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faCartShopping, faUser, faRightToBracket, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useDataContext } from "@/context";
@@ -56,9 +56,7 @@ export default function Navbar() {
             if (res.ok) {
                 localStorage.removeItem('user')
                 localStorage.removeItem('cart')
-                // SetDOMLoaded(false)
                 setTimeout(() => {
-                    // SetDOMLoaded(false)
                     window.location.reload()
                 }, 1500)
 
@@ -66,15 +64,17 @@ export default function Navbar() {
             return res.json()
         }).then(result => {
             console.log(result)
-            // toast.success("Logout successfully!", toastOptions.success)
         }).catch(err => console.log(err));
     }
     let isCalled = false;
     const handleUserDrop = (event) => {
         event.stopPropagation()
         let userMenu = document.querySelector('.userMenu')
-        userMenu.classList.toggle('active')
-        isCalled = true;
+        if (!loggedUser) return null;
+        else {
+            userMenu.classList.toggle('active')
+            isCalled = true;
+        }
     }
 
     if (domLoaded) {
@@ -159,13 +159,7 @@ export default function Navbar() {
                 <div className="navContainer">
                     {/*------Company Logo------*/}
                     <div className="navLogo" onClick={() => router.push('/')}>
-                        <img loading="lazy"  src="/logos/PE-Main-Logo.png" alt="Logo" width={200} />
-                        {/* <img loading="lazy"  src="/logos/PE-Small-Text-Logo.png" alt="Logo"  />  */}
-                        {/* <img loading="lazy"  src="/logos/PE-Main-Logo-Large.png" alt="Logo"  /> */}
-                        {/* <div>
-                            <h1><strong style={{ color: '#dfb434' }}>Pur</strong> Essence</h1>
-                            <p>The Purest Products, For a Better You.</p>
-                        </div> */}
+                        <img loading="lazy" src="/logos/PE-Main-Logo.png" alt="Logo" width={200} />
                     </div>
                     <div className="navMenu">
                         {/*-----Routes Link------*/}
@@ -187,7 +181,7 @@ export default function Navbar() {
                         </div>
                         {/* ---------Search Bar--------- */}
                         <div className="searchBar">
-                            <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" />
+                            <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" placeholder="Search"/>
                             <FontAwesomeIcon className="searchIcon" onClick={handleSearch} icon={faMagnifyingGlass} />
                         </div>
                         {/* -------Cart--------- */}
@@ -197,30 +191,21 @@ export default function Navbar() {
                         </div>
                         {/* -------Active User------- */}
                         <div onClick={handleUserDrop} className="userCont">
-                            <img loading="lazy"  src="/avatar2.webp" alt="Temp" width={40} />
+                            {loggedUser ? <img loading="lazy" src="/avatar2.webp" alt="Temp" width={40} /> : <p style={{ cursor: 'pointer' }}><Link href={'/login'}>Login</Link></p>}
                             <div className="userMenu">
-                                {loggedUser ? (<>
-                                    <h3>{loggedUser.Name}</h3>
-                                    <ul>
-                                        <li>
-                                            <FontAwesomeIcon icon={faUser} /><Link href={'/profile'}>My profile</Link>
-                                        </li>
-                                        <li><FontAwesomeIcon icon={faCircleQuestion} /><a href="#">Help</a></li>
-                                        <li onClick={handleLogout}>
-                                            <FontAwesomeIcon style={{ transform: 'rotate(180deg)' }} icon={faRightToBracket} /><p>Logout</p>
-                                        </li>
-                                    </ul>
-                                </>) : (<>
-                                    <h3>Guest</h3>
-                                    <ul>
-                                        <li>
-                                            <FontAwesomeIcon icon={faRightToBracket} /><Link href={`/login?retTo=${pathName}`}>Login</Link>
-                                        </li>
-                                        <li>
-                                            <FontAwesomeIcon icon={faUserPlus} /><Link href={"/signup"}>Signup</Link>
-                                        </li>
-                                    </ul>
-                                </>)}
+                                {loggedUser &&
+                                    <>
+                                        <h3>{loggedUser.Name}</h3>
+                                        <ul>
+                                            <li>
+                                                <Link href={'/profile'}><FontAwesomeIcon style={{ color: 'black' }} icon={faUser} /> My profile</Link>
+                                            </li>
+                                            <li onClick={handleLogout}>
+                                                <p><FontAwesomeIcon style={{ transform: 'rotate(180deg)', color: 'black' }} icon={faRightToBracket} /> Logout</p>
+                                            </li>
+                                        </ul>
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>
@@ -236,24 +221,29 @@ export default function Navbar() {
                         >{navlink.link}</Link>)
                     }
                     {/* --------DropDown Search Bar-------- */}
-                    <div className="dropSearch" style={{  flexFlow: 'row nowrap' }}>
-                        <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" />
+                    <div className="dropSearch" style={{ flexFlow: 'row nowrap' }}>
+                        <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" placeholder="Search" />
                         <FontAwesomeIcon style={{ cursor: 'pointer', margin: '0 15px' }} onClick={handleSearch} icon={faMagnifyingGlass} />
                     </div>
-                    <div style={{ display: 'flex', flexFlow: 'row nowrap',alignItems:'center', justifyContent: 'space-between' }}>
-                        {/* --------DropDown Search Cart-------- */}
+                    <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'space-between' }}>
+                        {/* --------DropDown Cart-------- */}
                         <div onClick={() => router.push('/cart')} className="dropCart">
                             <div className="count">{cartData.length}</div>
                             <FontAwesomeIcon style={{ fontSize: '1.5rem' }} icon={faCartShopping} />
                         </div>
-                        {/* --------DropDown Search User-------- */}
-                        <div onClick={handleExtend} className="dropUser">
-                            <img loading="lazy"  src="/avatar2.webp" alt="Temp" width={40} />
-                            <h4>{loggedUser ? loggedUser.Name : 'Guest'}</h4>
+                        {/* --------DropDown User-------- */}
+                        <div className="dropUser">
+                            {loggedUser ? (<>
+                                <img onClick={handleExtend} loading="lazy" src="/avatar2.webp" alt="Temp" width={40} />
+                                &nbsp;
+                                <h4>{loggedUser ? loggedUser.Name : 'Guest'}</h4>
+                            </>) :
+                                <p style={{ cursor: 'pointer', margin: '10px 0' }}><Link href={'/login'}>Login</Link></p>
+                            }
                         </div>
                     </div>
-                    <div className="userDropMenu">
-                        {loggedUser ? (<>
+                    {loggedUser ? (
+                        <div className="userDropMenu">
                             <ul>
                                 <li>
                                     <FontAwesomeIcon icon={faUser} /><Link href={'/profile'}>My profile</Link>
@@ -262,17 +252,8 @@ export default function Navbar() {
                                     <FontAwesomeIcon style={{ transform: 'rotate(180deg)' }} icon={faRightToBracket} /><p>Logout</p>
                                 </li>
                             </ul>
-                        </>) : (<>
-                            <ul>
-                                <li>
-                                    <FontAwesomeIcon icon={faRightToBracket} /><Link href={`/login?retTo=${pathName}`}>Login</Link>
-                                </li>
-                                <li>
-                                    <FontAwesomeIcon icon={faUserPlus} /><Link href={'/signup'}>Signup</Link>
-                                </li>
-                            </ul>
-                        </>)}
-                    </div>
+                        </div>
+                    ) : null}
                 </div>
             </div>
         </>

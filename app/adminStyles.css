@@ -54,6 +54,119 @@
     border-radius: 10px;
 }
 
+.card {
+    width: 100%;
+    height: 100%;
+}
+
+.box-shadow-1 {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.card h1 {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.btn-primary {
+    border: none;
+    outline: none;
+    padding: 10px 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 2px;
+}
+
+.btn-secondary {
+    border: none;
+    outline: none;
+    padding: 10px 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 2px;
+    background-color: #888888;
+}
+
+.row {
+    display: flex;
+    flex-flow: row;
+}
+
+
+.align-center {
+    align-items: center;
+}
+
+.just-right {
+    justify-content: right;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.column {
+    display: flex;
+    flex-flow: column;
+}
+
+.div-center {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge-caution {
+    background-color: #F0BB78;
+    border-radius: 2px;
+    /* font-weight: bold; */
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+.badge-complete {
+    background-color: #2da36a;
+    border-radius: 2px;
+    /* font-weight: bold; */
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+.badge-cancel {
+    background-color: #fc6767;
+    border-radius: 2px;
+    /* font-weight: bold; */
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+.mt-5 {
+    margin-top: 30px;
+}
+
+.mt-6 {
+    margin-top: 40px;
+}
+
+.mb-4 {
+    margin-bottom: 20px;
+}
+
+.p-1 {
+    padding: 5px;
+}
+
+.p-4 {
+    padding: 20px;
+}
+
+.pb-2 {
+    padding-bottom: 5px;
+}
+
+.border-b-1 {
+    border-bottom: 1px solid #e5e7eb;
+}
+
 
 /* -------------------- Global Styles End ----------------------- */
 
@@ -78,9 +191,10 @@
     min-width: 850px;
 }
 
-.tableCont tr{
+.tableCont tr {
     transition: all 0.5s;
 }
+
 .tableCont tr:nth-child(even) {
     /* background-color: #f2f2f2; */
     background-color: #f8f9fc;
@@ -92,7 +206,7 @@
     background-color: #edf1f5;
 }
 
-.tableCont th{
+.tableCont th {
     /* background-color: #f2f2f2; */
     /* background-color: #bbbbbb; */
     background-color: #f8f9fc;
@@ -112,6 +226,93 @@ td {
 }
 
 /* ----------------- Global Table Styles End -------------------- */
+
+/* ----------------------==============-------------------------- */
+/* ============================================================== */
+/* ----------------------==============-------------------------- */
+
+/* ------------------- Global Form Styles ----------------------- */
+.formCont {
+    margin-top: 40px;
+    transition: all 0.5s;
+}
+
+.formCont form {
+    width: 100%;
+    transition: all 0.5s;
+}
+
+/* .formCont form .btnSubmit{
+    padding
+} */
+
+.formCont form label {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.formCont form input[type='file'] {
+    padding: 0;
+}
+
+.formCont form input[type='file']::file-selector-button {
+    height: 100%;
+    border: none;
+    padding: 8px;
+}
+
+.formCont form select,
+.formCont form textarea,
+.formCont form input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #e4e2e2;
+    /* border-radius: 0; */
+    padding: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.formCont form select:focus,
+.formCont form textarea:focus,
+.formCont form input:focus {
+    outline: 2px solid #0169dd;
+    border-radius: 2px;
+}
+
+.formCont .formSec {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.formCont .formSec p {
+    margin-top: -20px;
+    font-size: small;
+    color: #888888;
+}
+
+.formCont .formSec h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+}
+
+.formCont .formSec h4 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.formCont .formSec h5 {
+    font-size: 1rem;
+    margin-top: -25px;
+    margin-bottom: 30px;
+    color: #888888;
+}
+
+/* ----------------- Global Form Styles End -------------------- */
 
 /* ----------------------==============-------------------------- */
 /* ============================================================== */
@@ -264,9 +465,10 @@ td {
 
 /* ------------------ Product Page Styles ----------------------- */
 
-i{
+i {
     margin-top: 3px;
 }
+
 .btn,
 .newProductBtn {
     border: none;
@@ -318,80 +520,6 @@ i{
 
 /* ---------------- New Product Page Styles --------------------- */
 
-.formCont {
-    margin-top: 40px;
-    transition: all 0.5s;
-}
-
-.formCont form {
-    width: 100%;
-    transition: all 0.5s;
-}
-
-/* .formCont form .btnSubmit{
-    padding
-} */
-
-.formCont form label {
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-.formCont form input[type='file'] {
-    padding: 0;
-}
-
-.formCont form input[type='file']::file-selector-button {
-    height: 100%;
-    border: none;
-    padding: 8px;
-}
-
-.formCont form select,
-.formCont form textarea,
-.formCont form input {
-    width: 100%;
-    outline: none;
-    border: 1px solid #e4e2e2;
-    /* border-radius: 0; */
-    padding: 8px;
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-}
-
-.formCont form select:focus,
-.formCont form textarea:focus,
-.formCont form input:focus {
-    outline: 2px solid #0169dd;
-    border-radius: 2px;
-}
-
-.formCont .formSec {
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 20px;
-    margin-top: 50px;
-}
-
-.formCont .formSec p {
-    margin-top: -20px;
-    font-size: small;
-    color: #888888;
-}
-
-.formCont .formSec h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-    text-transform: capitalize;
-}
-
-.formCont .formSec h5 {
-    font-size: 1rem;
-    margin-top: -25px;
-    margin-bottom: 30px;
-    color: #888888;
-}
 
 .formCont .formSec .slug {
     display: flex;
@@ -446,6 +574,118 @@ i{
 }
 
 /* -------------- New Product Page Styles End ------------------- */
+
+/* ----------------------==============-------------------------- */
+/* ============================================================== */
+/* ----------------------==============-------------------------- */
+
+/* ------------------------ Order Slug -------------------------- */
+
+.orderStatusBar {
+    width: 100%;
+    border-top: 1px solid #dfe2e5;
+    border-bottom: 1px solid #dfe2e5;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 5px;
+    padding: 8px 0;
+    margin: 20px 0;
+}
+
+.orderStatusBar p {
+    border-left: 2px solid #dfe2e5;
+    padding: 0 8px;
+}
+
+.o-summary-cont {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    gap: 20px;
+    transition: all 0.5s;
+}
+
+.o-summary-cont h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.cus-d-cont .card,
+.o-d-cont .card {
+    margin-bottom: 20px;
+}
+
+.cus-d-cont {
+    width: 30%;
+    transition: all 0.5s;
+}
+
+.o-d-cont {
+    width: 70%;
+    transition: all 0.5s;
+}
+
+.profile {
+    gap: 15px;
+    /* margin-top: 10px; */
+}
+
+.o-d-cont h2,
+.cus-d-cont h2 {
+    margin-bottom: 10px;
+}
+
+.o-d-cont p,
+.cus-d-cont p {
+    font-size: 1rem;
+}
+
+.o-d-cont .tableCont {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.o-d-cont .tableCont table {
+    min-width: 500px;
+}
+
+/* ---------------------- Order Slug End ------------------------ */
+
+/* ----------------------==============-------------------------- */
+/* ============================================================== */
+/* ----------------------==============-------------------------- */
+
+/* ----------------------- Settings End ------------------------- */
+.settings .formCont {
+    margin-top: 0;
+}
+
+.settings .img-select {
+    border: 2px dashed #dfe2e5;
+    height: 207px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.settings .img-select img{
+    border-radius: 50%;
+}
+
+/* .settings .row{
+    flex-wrap: wrap;
+} */
+/* .settings .card{
+    min-width: 200px;
+
+    max-width: 420px;
+} */
+
+/* ----------------------- Settings End ------------------------- */
 
 /* ----------------------==============-------------------------- */
 /* ============================================================== */

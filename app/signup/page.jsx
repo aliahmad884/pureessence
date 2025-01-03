@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function Signup() {
     const searchParams = useSearchParams()
-    const path = searchParams.get('retTo')
+    const isGoogleAuth = searchParams.get('authMethod')
     const router = useRouter()
     const { setCartData, setLoggedUser, setIsLogged, DOMLoaded, SetDOMLoaded } = useDataContext()
     const [email, setEmail] = useState('')
@@ -42,7 +42,7 @@ export default function Signup() {
             return null;
         }
         setIsLoading(true)
-        fetch('/api/user?action=signup', {
+        fetch('/api/user?action=signup&authMethod=custome', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -73,8 +73,39 @@ export default function Signup() {
     const handlePassState = () => {
         setPassState(!passState)
     }
+    const handleGoogleSignup = () => {
+        window.location.href = '/api/google'
+    }
+    const googleSignup = async () => {
+        const fName = searchParams.get('FirstName');
+        const lName = searchParams.get('LastName');
+        const email = searchParams.get('Email')
+        const response = await fetch('/api/user?action=signup&authMethod=google', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                firstName: fName,
+                lastName: lName,
+                email: email
+            })
+        })
+        if (response.ok) {
+            localStorage.setItem('user', JSON.stringify({ Name: `${fName} ${lName}`, Email: email }))
+            setIsLogged(true);
+            setLoggedUser({ Name: `${fName} ${lName}`, Email: email });
+            setCartData([]);
+            router.push('/')
+        }
+    }
     useEffect(() => {
-
+        const user = localStorage('user')
+        document.title = 'Signup | PurEssence'
+        if (isGoogleAuth) {
+            console.log('Google Auth')
+            googleSignup()
+        }
+        else if (user) router.push('/')
+        console.log('Not Google Auth')
         setErrMsg('')
     }, [email, pass, firstName, lastName])
     if (DOMLoaded) {
@@ -119,7 +150,7 @@ export default function Signup() {
                         </form>
                         <h3>Or sign up with</h3>
                         <hr />
-                        <GoogleBtn textContent={'Sign up with Google'} />
+                        <GoogleBtn clickHandler={handleGoogleSignup} textContent={'Sign up with Google'} />
                         {/* <button className="googleBtn" type="button">Google</button> */}
                         <h4>Already have an account? <Link href="/login">Login Now</Link></h4>
                     </div>

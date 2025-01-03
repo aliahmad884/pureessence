@@ -83,8 +83,8 @@ export default function PopularProducts() {
                     </Slider>
 
                     <div className="controlls">
-                        <button onClick={previous} type="button"><FontAwesomeIcon icon={faArrowLeft} /></button>
-                        <button onClick={next} type="button"><FontAwesomeIcon icon={faArrowRight} /></button>
+                        <button aria-label="Previous Product" onClick={previous} type="button"><FontAwesomeIcon icon={faArrowLeft} /></button>
+                        <button aria-label="Next Product" onClick={next} type="button"><FontAwesomeIcon icon={faArrowRight} /></button>
                     </div>
                     <div style={{ textAlign: 'center', width: '100%', marginTop: '30px', textDecoration: 'underline' }}>
                         <Link style={{ fontWeight: 'bolder' }} href={'/products'}>View All Products</Link>

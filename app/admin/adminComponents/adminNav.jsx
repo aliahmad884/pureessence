@@ -29,14 +29,16 @@ export default function AdminNav() {
                         <i className="fi fi-sr-blog-pencil"></i>Manage Blogs</Link>
                     <Link onClick={toggler} className={(pathName === '/admin/orders') ? 'activeTab' : null} href={'/admin/orders'}>
                         <i className="fi fi-sr-apps-sort"></i>Orders</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/registered-users') ? 'activeTab' : null} href={'/admin/registered-users'}>
+                        <i className="fi fi-sr-users-alt"></i>Registered Users</Link>
                     <br />
                     <hr />
                     <br />
                     <p>Admin related</p>
                     <Link onClick={toggler} className={(pathName === '/admin/settings') ? 'activeTab' : null} href={'/admin/settings'}>
                         <i className="fi fi-sr-settings"></i>Settings</Link>
-                    <Link onClick={toggler} className={(pathName === '/admin/registered-users') ? 'activeTab' : null} href={'/admin/registered-users'}>
-                        <i className="fi fi-sr-users-alt"></i>Registered Users</Link>
+                    <Link onClick={toggler} className={(pathName === '/admin/admin-users') ? 'activeTab' : null} href={'/admin/admin-users'}>
+                        <i className="fi fi-sr-admin-alt"></i>Admin Users</Link>
                     <br />
                 </div>
                 <div className="adminCopR">

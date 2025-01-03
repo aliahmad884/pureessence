@@ -10,11 +10,17 @@ export default function AdminContextProvider({ children }) {
     const router = useRouter()
     const [isToggled, setIsToggled] = useState(false)
     const [isAuthUser, setIsAuthUser] = useState(true);
-    // useEffect(() => {
-    //     if (!isAuthUser) router.push('/admin/authenticate');
-    // }, [isAuthUser])
+    const [loggedUser, setLoggedUser] = useState(null)
+    useEffect(() => {
+        // localStorage.removeItem('isLogged')
+        const user = localStorage.getItem('loggedUser');
+        setLoggedUser(JSON.parse(user))
+        const isLogged = localStorage.getItem('isLogged')
+        if (isLogged === 'true') setIsAuthUser(true)
+        else setIsAuthUser(false)
+    }, [])
     return (
-        <AdminContext.Provider value={{ isToggled, setIsToggled, isAuthUser, setIsAuthUser }}>
+        <AdminContext.Provider value={{ isToggled, setIsToggled, isAuthUser, setIsAuthUser, loggedUser, setLoggedUser }}>
             {children}
         </AdminContext.Provider>
     )

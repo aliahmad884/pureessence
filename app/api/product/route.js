@@ -7,7 +7,7 @@ export async function POST(req) {
     let body = await req.json()
     try {
         if (body) {
-            await Product.create(body)
+            await Product.create({ ...body, pImages: JSON.stringify(body.pImages) })
             updateVersion('product', Versions)
             return res({ res: 'Product Added Successfully!' }, 201)
         }
@@ -75,7 +75,7 @@ export async function PUT(req) {
             const found = await Product.findByPk(body.id)
             if (found === null) return res({ res: `Product Not found against id: ${body.id}` }, 404)
             else {
-                let record = await Product.update(body, {
+                let record = await Product.update({ ...body, pImages: JSON.stringify(body.pImages) }, {
                     where: {
                         id: body.id
                     }
