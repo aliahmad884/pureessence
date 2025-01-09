@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { RegisterUser } from "../../schemas";
+import { appendFileSync, existsSync, mkdirSync } from 'fs'
+import path from "path";
 
 
 const handler = NextAuth({
@@ -12,12 +14,24 @@ const handler = NextAuth({
     ],
     callbacks: {
         async signIn({ profile }) {
-            const { name, email, picture, given_name, family_name } = profile;
-            const checkuser = await RegisterUser.findOne({ where: { Email: email } })
-            if (!checkuser) {
-                return `/signup?FirstName=${given_name}&LastName=${family_name}&Email=${email}&authMethod=google`
+            const logFile = path.join(process.cwd(), 'logs/google/logs.txt');
+            const dirPath = path.dirname(logFile);
+            if (!existsSync(dirPath)) {
+                mkdirSync(dirPath, { recursive: true });
             }
-            return `/login?Name=${name}&Email=${email}&authMethod=google`
+            try {
+                appendFileSync(logFile, 'api called by google')
+                const { name, email, picture, given_name, family_name } = profile;
+                const checkuser = await RegisterUser.findOne({ where: { Email: email } })
+                if (!checkuser) {
+                    return `/signup?FirstName=${given_name}&LastName=${family_name}&Email=${email}&authMethod=google`
+                }
+                return `/login?Name=${name}&Email=${email}&authMethod=google`
+            }
+            catch (err) {
+                appendFileSync(logFile, '"Google OAuth Error:"')
+                appendFileSync(logFile, err.message)
+            }
         }
     },
     session: {
