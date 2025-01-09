@@ -8,6 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { signIn } from "next-auth/react"
 
 export default function Signup() {
     const searchParams = useSearchParams()
@@ -73,8 +74,8 @@ export default function Signup() {
     const handlePassState = () => {
         setPassState(!passState)
     }
-    const handleGoogleSignup = () => {
-        window.location.href = '/api/google'
+    const handleGoogleSignup = async () => {
+        await signIn("google")
     }
     const googleSignup = async () => {
         const fName = searchParams.get('FirstName');
@@ -98,7 +99,7 @@ export default function Signup() {
         }
     }
     useEffect(() => {
-        const user = localStorage('user')
+        const user = localStorage.getItem('user')
         document.title = 'Signup | PurEssence'
         if (isGoogleAuth) {
             console.log('Google Auth')

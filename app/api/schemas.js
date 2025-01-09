@@ -212,7 +212,7 @@ Order.init({
         type: DataTypes.STRING
     },
     orderStatus: {
-        type: DataTypes.JSON
+        type: DataTypes.STRING
     },
     invLink: {
         type: DataTypes.TEXT
@@ -346,15 +346,15 @@ AdminUser.init(
 
 
 
-(async () => {
-    try {
-        await AdminUser.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
-        await RegisterUser.sync({ force: true });
-        await Cart.sync({ force: true });
-        await Invoice.sync({ force: true });
-        await Order.sync({ force: true });
-        console.log('Table synced successfully!');
-    } catch (error) {
-        console.error('Error syncing table:', error);
-    }
-})();
+// (async () => {
+//     try {
+//         // await AdminUser.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+//         // await RegisterUser.sync({ force: true });
+//         // await Cart.sync({ force: true });
+//         // await Invoice.sync({ force: true });
+//         await Order.sync({ force: true });
+//         console.log('Table synced successfully!');
+//     } catch (error) {
+//         console.error('Error syncing table:', error);
+//     }
+// })();

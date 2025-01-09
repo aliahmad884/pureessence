@@ -6,34 +6,45 @@ import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import dynamic from "next/dynamic";
 import { loadCache, saveCache } from "@/options";
+import { useSearchParams } from "next/navigation";
 
 export default function ProductPage() {
+    const searchParams = useSearchParams()
+    const query = searchParams.get('query')
     const [isLoading, setIsLoading] = useState(true);
     const [apiData, setApiData] = useState([]);
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const cachedData = await loadCache('product')
-            if (cachedData) {
-                setApiData(cachedData)
-                setIsLoading(false)
-                return;
-            }
-            try {
-                let res = await fetch('/api/product');
-                let result = await res.json();
-                await saveCache(result, 'product')
-                setApiData(result);
-            }
-            catch (err) {
-                console.log('Error From Product Api Call: ')
-                console.error(err)
-            }
-            finally {
-                setIsLoading(false)
-            }
+    const fetchProducts = async () => {
+        const cachedData = await loadCache('product')
+        if (cachedData) {
+            setApiData(cachedData)
+            setIsLoading(false)
+            return;
         }
+        try {
+            let res = await fetch('/api/product');
+            let result = await res.json();
+            await saveCache(result, 'product')
+            setApiData(result);
+        }
+        catch (err) {
+            console.log('Error From Product Api Call: ')
+            console.error(err)
+        }
+        finally {
+            setIsLoading(false)
+        }
+    }
+    const findSearchProduct = async (query) => {
+        console.log(query)
+        const cachedData = await loadCache('product')
+        
+        // console.log(cachedData)
+    }
+    useEffect(() => {
         fetchProducts();
-
+        if (query) {
+            findSearchProduct(query)
+        }
     }, [])
 
     if (isLoading) return <FallBackLoader />
@@ -41,7 +52,7 @@ export default function ProductPage() {
         <>
             <Toaster />
             <div className="productPageBanner">
-                <h1>Products</h1>
+                <h1>{query ? `Search Result for: ${query}` : "Products"}</h1>
             </div>
             <div className="productPage">
                 <div className="productsCont">

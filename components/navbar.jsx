@@ -15,6 +15,7 @@ export default function Navbar() {
     const [inputEle, setInputEle] = useState(null);
     const [searchValue, setSearchValue] = useState('');
     const [domLoaded, setDomLoaded] = useState(false)
+    const [istoggled, setIstoggled] = useState(false)
     const navLinks = [
         { link: 'Home', path: '/' },
         { link: 'Products', path: '/products' },
@@ -28,8 +29,24 @@ export default function Navbar() {
         if (inputEle) {
             inputEle.classList.add('show')
             inputEle.nextSibling.style.color = '#dfb434'
+            setIstoggled(true)
         }
     }
+    const searchInput = () => {
+        if (istoggled) {
+            console.log('search button clicked')
+            console.log(searchValue)
+            router.push(`/search?query=${searchValue}`)
+        }
+    }
+    const handleMobileSearch = () => {
+        let droplinks = document.querySelector('.routerDropDown');
+        let menuBtn = document.getElementById('barBtn');
+        droplinks.classList.remove('drop')
+        menuBtn.classList.remove('open')
+        router.push(`/search?query=${searchValue}`)
+    }
+
     let isDropped = false;
     const handleMenu = (event) => {
         event.stopPropagation();
@@ -113,6 +130,7 @@ export default function Navbar() {
             if (input && searchValue === '' && !event.target.closest('#search')) {
                 input.classList.remove('show');
                 input.nextSibling.style.color = ''
+                setIstoggled(false)
             };
         };
         const handleWindow = () => {
@@ -181,8 +199,8 @@ export default function Navbar() {
                         </div>
                         {/* ---------Search Bar--------- */}
                         <div className="searchBar">
-                            <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" placeholder="Search"/>
-                            <FontAwesomeIcon className="searchIcon" onClick={handleSearch} icon={faMagnifyingGlass} />
+                            <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" placeholder="Search" />
+                            <FontAwesomeIcon className="searchIcon" onClick={() => { handleSearch(), searchInput() }} icon={faMagnifyingGlass} />
                         </div>
                         {/* -------Cart--------- */}
                         <div onClick={() => router.push('/cart')} className="cartCont">
@@ -223,7 +241,7 @@ export default function Navbar() {
                     {/* --------DropDown Search Bar-------- */}
                     <div className="dropSearch" style={{ flexFlow: 'row nowrap' }}>
                         <input onChange={(e) => setSearchValue(e.target.value)} type="search" value={searchValue} id="search" placeholder="Search" />
-                        <FontAwesomeIcon style={{ cursor: 'pointer', margin: '0 15px' }} onClick={handleSearch} icon={faMagnifyingGlass} />
+                        <FontAwesomeIcon style={{ cursor: 'pointer', margin: '0 15px' }} onClick={() => handleMobileSearch()} icon={faMagnifyingGlass} />
                     </div>
                     <div style={{ display: 'flex', flexFlow: 'row nowrap', alignItems: 'center', justifyContent: 'space-between' }}>
                         {/* --------DropDown Cart-------- */}

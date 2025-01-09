@@ -21,7 +21,7 @@ export default function OrderManage() {
                 title: 'Order cancellation',
                 text: 'Please provide the reason for your order cancellation. Our support team will review your request and contact you as soon as possible to assist further.',
                 input: 'textarea',
-                inputPlaceholder:'Enter the reason of cancellation'
+                inputPlaceholder: 'Enter the reason of cancellation'
             })
             if (reason) {
                 const res = await fetch(`/api/sendMail?action=cancelOrder`, {
@@ -47,6 +47,7 @@ export default function OrderManage() {
             const res = await fetch(`/api/order?orderNumber=${orderNumber}&user=${userInfo.Email}`)
             if (res.ok) {
                 const result = await res.json()
+                console.log(result.data)
                 let orderDate = new Date(result.data.orderDate)
                 let mili = Date.now() - orderDate
                 const time = mili / (1000 * 60 * 60)
@@ -85,11 +86,11 @@ export default function OrderManage() {
                         </div>
                         <div className="orderDetail">
                             <h2>Order Details</h2>
-                            {data.product ? data.product.map(p => (
+                            {data.product ? JSON.parse(data.product).map(p => (
                                 <div key={`${p.id}`} className="product">
                                     <div className="title">
                                         <img loading="lazy" src={`/api/uploadImg?path=${encodeURIComponent(p.pImages ? p.pImages[0] : p.imgUrl)}`} alt={p.pName ? p.pName : p.title} width={60} />
-                                        <p><Link style={{textDecoration:'underline'}} href={`/products/${p.slug}`} target="_blank">{p.pName ? p.pName : p.title}</Link></p>
+                                        <p><Link style={{ textDecoration: 'underline' }} href={`/products/${p.slug}`} target="_blank">{p.pName ? p.pName : p.title}</Link></p>
                                     </div>
                                     <div className="price"><strong>Price: </strong><p>£{p.price}</p></div>
                                     <div className="qty"><strong>Qty: </strong><p>{p.qty}</p></div>
@@ -124,9 +125,9 @@ export default function OrderManage() {
                             <h2>Summary</h2>
                             <div className="ordersummaryCont">
                                 <div className="shipCont">
-                                    <p><strong>Name: </strong>{data.shippingDetails.firstName} {data.shippingDetails.lastName}</p>
-                                    <p><strong>Ship to: </strong>{data.shippingDetails.address}</p>
-                                    <p><strong>Phone: </strong>{data.shippingDetails.phone}</p>
+                                    <p><strong>Name: </strong>{JSON.parse(data.shippingDetails).firstName} {JSON.parse(data.shippingDetails).lastName}</p>
+                                    <p><strong>Ship to: </strong>{JSON.parse(data.shippingDetails).address}</p>
+                                    <p><strong>Phone: </strong>{JSON.parse(data.shippingDetails).phone}</p>
                                 </div>
                                 <div className="orderTotal">
                                     <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>SubTotal: </strong><p>£{data.totalAmount}</p></div>

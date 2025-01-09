@@ -29,9 +29,9 @@ export default function RootLayout({ children }) {
   const pathName = usePathname()
   return (
     <html lang="en">
-      <Head>
+      <head>
         <link rel="icon" href="/CircleLogo.webp" sizes="any" type="image/x-icon" />
-      </Head>
+      </head>
       <Script defer src="https://cloud.umami.is/script.js" data-website-id="e04eb72e-b07b-4af5-8e3b-71046098496a" />
       {/* <GoogleAnalytics /> */}
       <body>

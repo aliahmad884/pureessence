@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
+import { signIn } from "next-auth/react"
 
 export default function Login() {
     const searchParams = useSearchParams()
@@ -61,8 +62,10 @@ export default function Login() {
     const handlePassState = () => {
         setPassState(!passState)
     }
-    const handleGoogleLogin = () => {
-        window.location.href = '/api/google'
+    const handleGoogleLogin = async () => {
+        // window.location.href = '/api/google'
+        await signIn("google")
+
     }
     const googleSignup = async () => {
         const name = searchParams.get('Name');
@@ -80,6 +83,10 @@ export default function Login() {
             setLoggedUser({ Name: name, Email: email });
             setCartData([]);
             router.push('/')
+        }
+        else{
+            setIsLoading(false)
+            alert('Google login is not working! please try again.')
         }
     }
     useEffect(() => {

@@ -44,8 +44,10 @@ export default function Checkout() {
     }
     const handleConfirm = async () => {
         setIsLoading(true)
+        let user = localStorage.getItem('user')
+        const parseUser = JSON.parse(user)
         try {
-            let body = { ...billingInfo, cartData, subTotal, discount: 0, shipFee: 0, userId: loggedUser.Email }
+            let body = { ...billingInfo, cartData, subTotal, discount: 0, shipFee: 0, userId: parseUser.Email }
             const res = await fetch('/api/order?reqTyp=invoice', {
                 method: 'post',
                 headers: { 'Content-Type': "application/json" },
@@ -117,7 +119,7 @@ export default function Checkout() {
                             < div key={data.id} className="product" >
                                 <div className="title">
                                     <img loading="lazy" src={data.pImages ? data.pImages[0] : data.imgUrl} alt={data.pName ? data.pName : data.title} width={60} />
-                                    <p><Link style={{textDecoration:'underline'}} href={`/products/${data.slug}`} target="_blank">{data.pName ? data.pName : data.title}</Link></p>
+                                    <p><Link style={{ textDecoration: 'underline' }} href={`/products/${data.slug}`} target="_blank">{data.pName ? data.pName : data.title}</Link></p>
                                 </div>
                                 <div className="price"><strong>Price: </strong><p>&pound;{data.price}</p></div>
                                 <div className="qty"><strong>Qty: </strong><p></p>{data.qty}</div>

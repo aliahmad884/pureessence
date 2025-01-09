@@ -3,6 +3,8 @@ import { RegisterUser } from "../../schemas.js";
 
 const { res } = require("../../syntaxShorter.js")
 const { OAuth2Client } = require("google-auth-library")
+import { appendFileSync, existsSync, mkdirSync } from 'fs'
+import path from "path";
 
 const oAuth2Client = new OAuth2Client(
     process.env.GOOGLE_CLIENT_ID,
@@ -11,9 +13,16 @@ const oAuth2Client = new OAuth2Client(
 )
 
 export async function GET(req) {
+    const logFile = path.join(process.cwd(), 'logs/google/logs.txt');
+    const dirPath = path.dirname(logFile);
+    if (!existsSync(dirPath)) {
+        mkdirSync(dirPath, { recursive: true });
+    }
+    appendFileSync(logFile, 'api called by google')
     const { searchParams } = new URL(req.url)
     const code = searchParams.get('code');
     if (!code) {
+        appendFileSync(logFile, 'Authorization code is missing!')
         return res({ err: 'Authorization code is missing!' }, 400);
     }
 
@@ -30,6 +39,7 @@ export async function GET(req) {
         });
 
         if (!response.ok) {
+            appendFileSync(logFile, 'Failed to fetch user info.')
             throw new Error("Failed to fetch user info.");
         }
 
@@ -46,6 +56,8 @@ export async function GET(req) {
 
     }
     catch (error) {
+        appendFileSync(logFile, '"Google OAuth Error:"')
+        appendFileSync(logFile, error.message)
         console.error("Google OAuth Error:", error.message);
         return res({ err: 'failed to fetch user information!' }, 500)
     }
