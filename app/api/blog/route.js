@@ -1,5 +1,5 @@
 import { Blogs, Versions } from "../schemas.js";
-const { res ,updateVersion} = require("../syntaxShorter.js");
+const { res, updateVersion } = require("../syntaxShorter.js");
 
 export async function POST(req) {
     let body = await req.json()

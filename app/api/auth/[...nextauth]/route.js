@@ -32,6 +32,9 @@ const handler = NextAuth({
                 appendFileSync(logFile, '"Google OAuth Error:"')
                 appendFileSync(logFile, err.message)
             }
+        },
+        async redirect({ url, baseUrl }) {
+            return baseUrl
         }
     },
     session: {

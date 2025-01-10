@@ -53,3 +53,22 @@ export const checkLocalStorageUsage = () => {
     console.log(`Approximate remaining capacity: ${remainingMB} MB`);
     return { usedMB, remainingMB };
 }
+
+export const fetchsitemapData = async () => {
+    const blogsRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/blog`);
+    const productRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product`);
+    const blogs = await blogsRes.json();
+    const products = await productRes.json();
+
+    const blogPath = blogs.map(data => ({
+        loc: data.bSlug,
+        lastmod: data.date
+    }))
+    const productPath = products.map(data => ({
+        loc: data.slug,
+        lastmod: Date.now()
+    }))
+
+    return [...blogPath, ...productPath]
+
+}
