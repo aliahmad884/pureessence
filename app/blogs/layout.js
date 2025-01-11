@@ -6,12 +6,21 @@ export const metadata = {
 };
 
 const fetchBLogsData = async () => {
-    const res = await fetch(`${process.env.BASE_URL}/api/blog`);
-    if (res.ok) {
-        const result = res.json();
-        return result;
+    try {
+        const res = await fetch(`${process.env.BASE_URL}/api/blog`);
+        if (res.ok) {
+            const result = await res.json();
+            return result;
+        }
+        else {
+            console.log(res.text);
+            return [];
+        }
     }
-    return null;
+    catch (err) {
+        console.error(err)
+        return []
+    }
 }
 
 
