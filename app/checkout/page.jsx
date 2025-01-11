@@ -66,6 +66,8 @@ export default function Checkout() {
                 })
             }
             else {
+                const result = await res.json()
+                console.log(result)
                 alert('Having problem to proceed your order, please try again later.')
             }
         }

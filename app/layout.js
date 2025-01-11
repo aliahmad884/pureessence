@@ -57,10 +57,10 @@ export default function RootLayout({ children }) {
   const showWhatsapp = !(pathName.startsWith("/invoice") || pathName.startsWith("/admin"));
   return (
     <html lang="en">
-      <Head>
+      <head>
         <link rel="icon" href="/CircleLogo.webp" sizes="any" type="image/x-icon" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
-      </Head>
+      </head>
       <Script defer src="https://cloud.umami.is/script.js" data-website-id="e04eb72e-b07b-4af5-8e3b-71046098496a" />
       {/* <GoogleAnalytics /> */}
       <body>
