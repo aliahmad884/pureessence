@@ -75,7 +75,7 @@ export async function PUT(req) {
             const found = await Product.findByPk(body.id)
             if (found === null) return res({ res: `Product Not found against id: ${body.id}` }, 404)
             else {
-                let record = await Product.update({ ...body, pImages: JSON.stringify(body.pImages) }, {
+                let record = await Product.update({ ...body, pImages: process.env.NODE_ENV === 'development' ? JSON.stringify(body.pImages) : body.pImages }, {
                     where: {
                         id: body.id
                     }
