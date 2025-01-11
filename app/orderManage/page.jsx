@@ -14,6 +14,8 @@ export default function OrderManage() {
     const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [isCancelable, setIsCancelable] = useState(false)
+    const [shipDetails, setShipDetails] = useState(null)
+    const [btnText, setBtnText] = useState(null)
 
     const handleCancel = async () => {
         try {
@@ -31,6 +33,7 @@ export default function OrderManage() {
                 })
                 if (res.ok) {
                     const result = await res.json()
+                    localStorage.setItem('cancelReq', JSON.stringify({ orderId: data.id, sent: true }))
                     console.log(result)
                 }
             }
@@ -41,19 +44,24 @@ export default function OrderManage() {
     }
 
     const fetchOrder = async () => {
+        const cancelReq = JSON.parse(localStorage.getItem('cancelReq'))
+        console.log('cancel', cancelReq.orderId)
         const user = localStorage.getItem('user');
         const userInfo = JSON.parse(user)
         try {
             const res = await fetch(`/api/order?orderNumber=${orderNumber}&user=${userInfo.Email}`)
             if (res.ok) {
                 const result = await res.json()
-                console.log(result.data)
                 let orderDate = new Date(result.data.orderDate)
                 let mili = Date.now() - orderDate
                 const time = mili / (1000 * 60 * 60)
                 if (time >= 70) setIsCancelable(true);
-                else setIsCancelable(false)
                 setData(result.data)
+                setShipDetails(process.env.NODE_ENV === 'development' ? result.data.shippingDetails : JSON.parse(result.data.shippingDetails))
+                if (cancelReq && cancelReq.orderId === result.data.id) {
+                    setIsCancelable(true)
+                    setBtnText('Cancelation in progress')
+                }
             }
             return null;
         }
@@ -69,7 +77,7 @@ export default function OrderManage() {
         document.title = 'Order Manage | PurEssence'
         setIsLoading(true)
         fetchOrder()
-    }, [])
+    }, [isCancelable])
     if (isLoading) return <FallBackLoader />
     return (
         <div className="manageMainCont">
@@ -86,7 +94,7 @@ export default function OrderManage() {
                         </div>
                         <div className="orderDetail">
                             <h2>Order Details</h2>
-                            {data.product ? JSON.parse(data.product).map(p => (
+                            {data.product ? (process.env.NODE_ENV === 'development' ? data.product : JSON.parse(data.product)).map(p => (
                                 <div key={`${p.id}`} className="product">
                                     <div className="title">
                                         <img loading="lazy" src={`/api/uploadImg?path=${encodeURIComponent(p.pImages ? p.pImages[0] : p.imgUrl)}`} alt={p.pName ? p.pName : p.title} width={60} />
@@ -110,7 +118,7 @@ export default function OrderManage() {
                                     <p><strong>Paid by: </strong> {data.paymentMethod}</p> */}
                                 </div>
                                 <div className="actionCont">
-                                    <button onClick={handleCancel} disabled={isCancelable} style={isCancelable ? { backgroundColor: 'grey' } : null} type="button">Cancel Order</button>
+                                    <button onClick={handleCancel} disabled={isCancelable} style={isCancelable ? { backgroundColor: 'grey' } : null} type="button">{btnText ? btnText : 'Cancel Order'}</button>
                                     <p className="infomsg">lorem ipsum sit amit</p>
                                     {/* <FontAwesomeIcon className="infoIcon" icon={faCircleInfo} />
                                     <div className="infomsg">lorem ipsum</div> */}
@@ -125,9 +133,9 @@ export default function OrderManage() {
                             <h2>Summary</h2>
                             <div className="ordersummaryCont">
                                 <div className="shipCont">
-                                    <p><strong>Name: </strong>{JSON.parse(data.shippingDetails).firstName} {JSON.parse(data.shippingDetails).lastName}</p>
-                                    <p><strong>Ship to: </strong>{JSON.parse(data.shippingDetails).address}</p>
-                                    <p><strong>Phone: </strong>{JSON.parse(data.shippingDetails).phone}</p>
+                                    <p><strong>Name: </strong>{shipDetails.firstName} {shipDetails.lastName}</p>
+                                    <p><strong>Ship to: </strong>{shipDetails.address}</p>
+                                    <p><strong>Phone: </strong>{shipDetails.phone}</p>
                                 </div>
                                 <div className="orderTotal">
                                     <div style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'space-between' }}><strong>SubTotal: </strong><p>£{data.totalAmount}</p></div>

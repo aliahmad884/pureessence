@@ -31,10 +31,8 @@ export default function Invoice() {
                     return setInvNotFound(true)
                 }
                 let result = await res.json()
-                // setInvItems(result.data.items)
-                // setBillingData(result.data.billing)
-                setInvItems(JSON.parse(result.data.items))
-                setBillingData(JSON.parse(result.data.billing))
+                setInvItems(process.env.NODE_ENV === 'development' ? result.data.items : JSON.parse(result.data.items))
+                setBillingData(process.env.NODE_ENV === 'development' ? result.data.billing : JSON.parse(result.data.billing))
                 setInvData(result.data)
                 setIsloading(false)
             }
@@ -101,7 +99,7 @@ export default function Invoice() {
                                     <td>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <img loading="lazy" src={`/api/uploadImg?path=${encodeURIComponent(item.pImages ? item.pImages[0] : item.imgUrl)}`} alt={item.pName} width={60} />&nbsp;
-                                            <p><Link style={{textDecoration:'underline'}} href={`/products/${item.slug}`} target="_blank">{item.pName ? item.pName : item.title}</Link></p>
+                                            <p><Link style={{ textDecoration: 'underline' }} href={`/products/${item.slug}`} target="_blank">{item.pName ? item.pName : item.title}</Link></p>
                                         </div>
                                     </td>
                                     <td>{item.qty}</td>

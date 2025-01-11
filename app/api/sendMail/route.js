@@ -34,7 +34,7 @@ export async function POST(req) {
     return res({ res: 'Email Sent' }, 200)
   }
   catch (err) {
-    console.log(err)
+    console.log('Error in transporter',err)
     return res({ res: 'Internal Server Error!' }, 500)
   }
 }

@@ -83,7 +83,7 @@ export default function AboutPage() {
                             </div>
                         </div>
                         <div className="img">
-                            <img loading="lazy" src="/PE-Honey-P6.jpg" alt="Honey" />
+                            <img loading="lazy" src="/PE-Honey-P6.webp" alt="Honey" />
 
                         </div>
                     </div>

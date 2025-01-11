@@ -1,12 +1,46 @@
+import Head from 'next/head';
+
 export const metadata = {
-    title: 'Products | PurEssence | The PurestProducts, For a Better You',
-    // description: "Learn more about Aldor Technologies, a leader in IT solutions and digital marketing. Our About page provides insights into our mission, vision, and the team behind our cutting-edge services. Discover our commitment to delivering exceptional solutions and driving success for our clients."
+    title: 'Products | PurEssence | The Purest Products, For a Better You',
+    description: "Discover the purest health products at PurEssence, including honey, olive oil, immunity boosters, and more. Enhance your well-being with our high-quality natural products."
+};
+
+const fetchProductsData = async () => {
+    const res = await fetch(`${process.env.BASE_URL}/api/product`);
+    if (res.ok) {
+        const result = res.json();
+        return result;
+    }
+    return null;
 }
 
-export default function AboutLayout({ children }) {
+export default async function ProductsLayout({ children }) {
+    const products = await fetchProductsData()
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Products - PurEssence Ltd",
+        "url": "https://puressenceltd.co.uk/products",
+        "description": "Explore our range of natural health products.",
+        "itemListElement": products.map((product, index) => ({
+            "@type": "Product",
+            "position": index + 1,
+            "name": product.pName,
+            "url": `https://puressenceltd.co.uk/products/${product.slug}`,
+            "image": `https://puressenceltd.co.uk/${product.pImages[0]}`
+        }))
+    };
     return (
         <>
+            <Head>
+                <title>{metadata.title}</title>
+                <meta name="description" content={metadata.description} />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+                />
+            </Head>
             {children}
         </>
-    )
+    );
 }

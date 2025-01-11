@@ -1,14 +1,48 @@
-import BlogNav from "@/components/blogNavPanel"
+import Head from 'next/head';
 
 export const metadata = {
-    title: 'Blogs | PurEssence | The PurestProducts, For a Better You',
-    // description: "Learn more about Aldor Technologies, a leader in IT solutions and digital marketing. Our About page provides insights into our mission, vision, and the team behind our cutting-edge services. Discover our commitment to delivering exceptional solutions and driving success for our clients."
+    title: 'Blogs | PurEssence | The Purest Products, For a Better You',
+    description: "Read our blogs for insights into natural health, product benefits, and wellness tips. Stay informed with PurEssence's latest articles and updates."
+};
+
+const fetchBLogsData = async () => {
+    const res = await fetch(`${process.env.BASE_URL}/api/blog`);
+    if (res.ok) {
+        const result = res.json();
+        return result;
+    }
+    return null;
 }
 
-export default function AboutLayout({ children }) {
+
+export default async function BlogsLayout({ children }) {
+    const blogs = await fetchBLogsData()
+    const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "PurEssence Blogs",
+        "url": "https://test.puressenceltd.co.uk/blogs",
+        "description": "Insights and tips on natural health and wellness.",
+        "blogPost": blogs.map((blog, index) => ({
+            "@type": "BlogPosting",
+            "headline": blog.bTitle,
+            "url": `https://test.puressenceltd.co.uk/blogs/${blog.bCategory === 'Blog' ? blog.bSlug : (`health-guides/${blog.bSlug}`)}`,
+            "image": `https://test.puressenceltd.co.uk/${blog.bTitleImg}`,
+            "datePublished": blog.date
+        }))
+    };
+
     return (
         <>
+            <Head>
+                <title>{metadata.title}</title>
+                <meta name="description" content={metadata.description} />
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+                />
+            </Head>
             {children}
         </>
-    )
+    );
 }
