@@ -111,9 +111,8 @@ export const ordcancelConfirm = (body) => {
   const shipDetails = process.env.NODE_ENV === 'development' ? body.shippingDetails : JSON.parse(body.shippingDetails)
   const html = `
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-        <a href="https://puressenceltd.co.uk">
-            <img src="https://puressenceltd.co.uk/logos/PE-Main-Logo.png" alt="Logo" style="max-width: 200px; height: auto; display: block; margin-bottom: 20px;">
-        </a>
+<a href="https://puressenceltd.co.uk"> <img src="https://puressenceltd.co.uk/logos/PE-Main-Logo.png"
+                            alt="Logo"></a>
         <h1>Cancellation Request Received</h1>
         <h3>Dear ${shipDetails.firstName} ${shipDetails.lastName},</h3>
         <p>

@@ -25,7 +25,7 @@ export async function POST(req) {
     }
     const clientOptions = {
       from: `Admin@PurEssence <${process.env.SMTP_AUTH_USER}>`,
-      to: process.env.NODE_ENV === 'development' ? body.shippingDetails.email : JSON.parse(body.shippingDetails.email),
+      to: process.env.NODE_ENV === 'development' ? body.shippingDetails.email : JSON.parse(body.shippingDetails).email,
       subject: `Working on Order Cancellation - OrderId #${body.id}`,
       html: ordcancelConfirm(body)
     }
