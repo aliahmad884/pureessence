@@ -29,15 +29,15 @@ export async function POST(req) {
       subject: `Working on Order Cancellation - OrderId #${body.id}`,
       html: ordcancelConfirm(body)
     }
-    console.log('env process.env.SMTP_HOST: ',process.env.SMTP_HOST)
-    console.log('env process.env.SMTP_AUTH_USER: ',process.env.SMTP_AUTH_USER)
-    console.log('env process.env.SMTP_AUTH_PASS: ',process.env.SMTP_AUTH_PASS)
+    console.log('env process.env.SMTP_HOST: ', process.env.SMTP_HOST)
+    console.log('env process.env.SMTP_AUTH_USER: ', process.env.SMTP_AUTH_USER)
+    console.log('env process.env.SMTP_AUTH_PASS: ', process.env.SMTP_AUTH_PASS)
     await transporter.sendMail(adminOptions)
     await transporter.sendMail(clientOptions)
     return res({ res: 'Email Sent' }, 200)
   }
   catch (err) {
     console.log('Error in transporter', err)
-    return res({ res: 'Internal Server Error!' }, 500)
+    return res({ res: 'Internal Server Error!', err: err }, 500)
   }
 }

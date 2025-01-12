@@ -37,6 +37,8 @@ export default function OrderManage() {
                     setIsCancelable(true)
                 }
                 else {
+                    const result = await res.json()
+                    console.log(result)
                     setBtnText(null)
                 }
             }
