@@ -4,6 +4,7 @@ import { useAdminContext } from "../adminContext"
 import { usePathname, useRouter } from "next/navigation"
 import { BlindsFallBack } from "@/components/loader"
 import Link from "next/link"
+import Swal from "sweetalert2"
 
 export default function Settings() {
     const { isAuthUser, setIsAuthUser } = useAdminContext()
@@ -13,6 +14,7 @@ export default function Settings() {
     const [showPass, setShowPass] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
     const [changePass, setChangePass] = useState(true)
+    const [isEdited, setIsEdited] = useState(false)
     const editOpt = {
         username: '',
         email: '',
@@ -82,21 +84,38 @@ export default function Settings() {
             };
         }
         try {
-            const res = await fetch(`/api/adminAuth?user=${loggedUser.username}`, {
-                method: 'put',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...editUser, changePass: !changePass })
+            const { value: password } = await Swal.fire({
+                title: 'Enter your password',
+                input: 'password',
+                inputLabel: 'Password',
+                inputPlaceholder: 'Enter your password',
+                inputAttributes: {
+                    maxlength: "10",
+                    autocapitalize: "off",
+                    autocorrect: "off"
+                }
             })
-            if (res.ok) {
-                const result = await res.json()
-                setIsAuthUser(false)
-                localStorage.removeItem('isLogged')
-                localStorage.removeItem('loggedUser')
-                console.log(result)
-            }
-            else {
-                const result = await res.json()
-                alert(result.res)
+            if (password) {
+                const res = await fetch(`/api/adminAuth?user=${loggedUser.username}`, {
+                    method: 'put',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ ...editUser, curPass: password, changePass: !changePass })
+                })
+                if (res.ok) {
+                    const result = await res.json()
+                    setIsAuthUser(false)
+                    localStorage.removeItem('isLogged')
+                    localStorage.removeItem('loggedUser')
+                    console.log(result)
+                }
+                else {
+                    const result = await res.json()
+                    await Swal.fire({
+                        icon: 'error',
+                        title: 'Incorrect Password',
+                        text: `${result.res}`
+                    })
+                }
             }
         }
         catch (err) {
@@ -113,7 +132,7 @@ export default function Settings() {
                 const res = await fetch('/api/adminAuth', {
                     method: 'post',
                     headers: { 'Content-Type': 'application/json' },
-                    credentials:'include',
+                    credentials: 'include',
                     body: JSON.stringify(newUser)
                 })
                 if (res.ok) {
@@ -168,7 +187,17 @@ export default function Settings() {
                     <form onSubmit={handleEditUser}>
                         <div className="formSec">
                             <h3>Update Admin Credentials</h3>
-                            <div className="row">
+                            <div className="row editPrfileCont">
+                                <div className="card p-1">
+                                    <h4 className="mb-4 border-b-1 pb-2">Profile Picture</h4>
+                                    <label htmlFor="profile">Select Picture</label>
+                                    <div className="img-select" onClick={handleProfileImg}>
+                                        {editUser.proImg && (
+                                            <img src={editUser.proImg} alt="user" width={100} />
+                                        )}
+                                        <h4>Click</h4>
+                                    </div>
+                                </div>
                                 <div className="card p-1">
                                     <h4 className="mb-4 border-b-1 pb-2">Basic Information</h4>
                                     <label htmlFor="username">Username</label>
@@ -182,9 +211,9 @@ export default function Settings() {
                                 </div>
                                 <div className="card p-1">
                                     <h4 className="mb-4 border-b-1 pb-2">Authentication</h4>
-                                    <label htmlFor="curPass">Current Password</label>
+                                    {/* <label htmlFor="curPass">Current Password</label>
                                     <input onChange={(e) => handleInp(e, setEditUser)} value={editUser.curPass} type={showPass ? 'text' : 'password'} name="curPass" id="curPass" placeholder="Current Password" required />
-                                    <br />
+                                    <br /> */}
                                     <label htmlFor="newPass">New Password</label>
                                     <input onChange={(e) => handleInp(e, setEditUser)} disabled={changePass} value={editUser.newPass} type={showPass ? 'text' : 'password'} name="newPass" id="newPass" placeholder="New Password" required />
                                     <br />
@@ -192,23 +221,13 @@ export default function Settings() {
                                     <input onChange={(e) => handleInp(e, setEditUser)} disabled={changePass} value={editUser.conPass} type={showPass ? 'text' : 'password'} name="conPass" id="conPass" placeholder="Confirm Password" required />
                                     <p style={{ color: 'red' }}>{errorMsg}</p>
                                     <br />
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '20px' }}>
                                         <input onChange={(e) => setShowPass(!showPass)} checked={showPass} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="show" />
                                         <label style={{ cursor: 'pointer', userSelect: 'none' }} htmlFor="show">Show Password</label>
                                     </div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                                         <input onChange={(e) => setChangePass(!changePass)} checked={!changePass} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="changePass" />
                                         <label style={{ cursor: 'pointer', userSelect: 'none' }} htmlFor="changePass">Change Password</label>
-                                    </div>
-                                </div>
-                                <div className="card p-1">
-                                    <h4 className="mb-4 border-b-1 pb-2">Profile Picture</h4>
-                                    <label htmlFor="profile">Select Picture</label>
-                                    <div className="img-select" onClick={handleProfileImg}>
-                                        {editUser.proImg && (
-                                            <img src={editUser.proImg} alt="user" width={100} />
-                                        )}
-                                        <h4>Click</h4>
                                     </div>
                                 </div>
                             </div>

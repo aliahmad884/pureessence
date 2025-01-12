@@ -1,8 +1,8 @@
 "use client"
 // import TinyEditor from "@/components/tinyEditor";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-// const ProductEditor = dynamic(() => import("@/components/tinyEditor"), { ssr: false });
+const ProductEditor = dynamic(() => import("@/components/tinyEditor").then((mod) => mod.ProductEditor), { ssr: false });
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -46,6 +46,11 @@ export default function NewProduct() {
             method: 'delete'
         })
         // let result = await res.json()
+    }
+
+    const editorContent = (content) => {
+        // console.log(content)
+        setNewP(prev => ({ ...prev, description: content }))
     }
 
     const handleCancel = async () => {
@@ -200,7 +205,8 @@ export default function NewProduct() {
                             <input value={newP.sDesc} type="text" onChange={(e) => setNewP(prev => ({ ...prev, sDesc: e.target.value }))} name="pShortDesc" id="pShortDesc" required placeholder="Short Description" />
                             <br />
                             <label htmlFor="pDesc">Description (optional)</label>
-                            <textarea value={newP.description} onChange={(e) => setNewP(prev => ({ ...prev, description: e.target.value }))} name="pDesc" id="pDesc" rows="10" placeholder="write product detailed overview" />
+                            {/* <textarea value={newP.description} onChange={(e) => setNewP(prev => ({ ...prev, description: e.target.value }))} name="pDesc" id="pDesc" rows="10" placeholder="write product detailed overview" /> */}
+                            <ProductEditor onContentChanges={editorContent} initValue={newP.description}/>
                         </div>
                         <div className="formSec">
                             <h3>Pricing</h3>

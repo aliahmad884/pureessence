@@ -1,9 +1,54 @@
 /** @type {import('next-sitemap').IConfig} */
 
+const testExclude = [
+  "/admin",
+  "/admin/*",
+  "/about",
+  "/auth",
+  "/blogs/health-guides",
+  "/blogs",
+  "/cart",
+  "/checkout",
+  "/checkoutStripe",
+  "/contact",
+  "/frequently-asked-questions",
+  "/invoice",
+  "/legal/disclaimer",
+  "/legal",
+  "/legal/privacy-policy",
+  "/legal/shipping-returns-policy",
+  "/legal/terms-conditions",
+  "/login",
+  "/orderManage",
+  "/products",
+  "/profile/my-orders",
+  "/profile",
+  "/profilesd",
+  "/search",
+  "/shipping",
+  "/signup",
+  "/"
+]
+
 module.exports = {
   siteUrl: process.env.SITE_URL || 'https://puressenceltd.co.uk/',
   generateRobotsTxt: true,
   changefreq: 'daily',
   priority: 0.7,
-  sitemapSize: 5000
+  sitemapSize: 5000,
+  exclude: testExclude,
+  //  [
+  //   // '/admin',
+  //   // '/admin/*'
+  // ],
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: '*',
+        disallow: ['/', '/*']
+        // allow: '/',
+        // disallow: ['/admin','/admin/*']
+      },
+    ]
+  }
 };

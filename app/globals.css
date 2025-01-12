@@ -2313,7 +2313,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 20px;
+  padding: 50px 20px 100px 20px;
 }
 
 .productPage .productsCont {
@@ -3000,6 +3000,14 @@ main {
   max-width: 1000px;
 }
 
+.descCont h1,
+.descCont h2,
+.descCont h3,
+.descCont h4,
+.descCont h5,
+.descCont h6,
+.descCont p,
+.descCont a,
 .mainBody .postContent h1,
 .mainBody .postContent h2,
 .mainBody .postContent h3,
@@ -3014,6 +3022,9 @@ main {
   color: revert;
 }
 
+.descCont ul,
+.descCont ol,
+.descCont dl,
 .mainBody .postContent ul,
 .mainBody .postContent ol,
 .mainBody .postContent dl {

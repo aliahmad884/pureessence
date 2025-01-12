@@ -65,13 +65,13 @@ export async function POST(req) {
     const reqtyp = searchParams.get('reqTyp')
     const paramId = searchParams.get('paymentIntentId')
 
-    let transporter = nodemailer.createTransport({
-        host: 'smtp.ionos.co.uk',
+    const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
         port: 465,
         secure: true,
         auth: {
-            user: 'data@puressenceltd.co.uk',
-            pass: 'Lqv39KGQ6NUQ!_#',
+            user: process.env.SMTP_AUTH_USER,
+            pass: process.env.SMTP_AUTH_PASS,
         },
     })
 

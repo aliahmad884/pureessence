@@ -67,7 +67,7 @@ export default function ManageBlogs() {
                     <table>
                         <thead>
                             <tr>
-                                <th style={{ width: '20px', whiteSpace: 'nowrap' }}> <input type="checkbox" checked={isChecked} onChange={handleInputState} name="" id="" />&nbsp; Ind.</th>
+                                <th style={{ width: '20px', whiteSpace: 'nowrap' }}> <input type="checkbox"  onChange={handleInputState} name="" id="" />&nbsp; Ind.</th>
                                 <th>Title</th>
                                 <th>View</th>
                                 <th>Category</th>
@@ -80,7 +80,7 @@ export default function ManageBlogs() {
                             {
                                 blogs && blogs.map((blog, index) => (
                                     <tr key={blog.id}>
-                                        <td><input type="checkbox" checked={isChecked} name="" id="" /> &nbsp;&nbsp; {index + 1}</td>
+                                        <td><input type="checkbox" name="" id="" /> &nbsp;&nbsp; {index + 1}</td>
                                         <td >
                                             <div className="tableFlex">
                                                 <img src={`/api/uploadImg?path=${encodeURIComponent(blog.bTitleImg)}`} alt={blog.bTitle} width={50} />

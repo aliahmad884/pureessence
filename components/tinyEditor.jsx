@@ -54,12 +54,6 @@ import 'tinymce/skins/content/default/content';
 import 'tinymce/skins/ui/oxide/content';
 
 export default function BlogEditor({ onContentChanges, initValue }) {
-    const [content, setContent] = useState('')
-    const [temp, setTemp] = useState('')
-
-    useEffect(() => {
-        console.log(temp)
-    }, [temp])
 
     return (
         <>
@@ -67,8 +61,6 @@ export default function BlogEditor({ onContentChanges, initValue }) {
                 // initialValue={initValue}
                 value={initValue}
                 onEditorChange={(content, editor) => {
-                    // seTemp(content)
-                    // console.log(content)
                     onContentChanges(content)
                 }}
                 init={{
@@ -102,6 +94,39 @@ export default function BlogEditor({ onContentChanges, initValue }) {
             />
         </>
     );
+}
+
+export function ProductEditor({ onContentChanges, initValue }) {
+    return (
+        <Editor
+            value={initValue}
+            onEditorChange={(content, editor) => {
+                onContentChanges(content)
+            }}
+            init={{
+                height: 500,
+                menubar: false,
+                plugins: [
+                    'advlist', 'anchor', 'autolink', 'code', 'codesample', 'charmap', 'emoticons', 'fullscreen', 'help',
+                    'insertdatetime', 'link', 'lists', 'preview', 'searchreplace',
+                    'table', 'visualchars', 'visualblocks', 'wordcount',
+                ],
+                toolbar: 'undo redo | blocks | ' +
+                    'bold italic underline forecolor backcolor|' +
+                    'alignleft aligncenter alignright alignjustify|' +
+                    'bullist numlist outdent indent|' +
+                    'emoticons charmap link table hr|' +
+                    ' searchreplace removeformat|' +
+                    'quickbars preview fullscreen| help',
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+                license_key: 'gpl',
+                branding: false,
+                statusbar: false,
+                automatic_uploads: false,
+                help_tabs: ['shortcuts', 'keyboardnav']
+            }}
+        />
+    )
 }
 
 export function AllConfigEditor(props) {

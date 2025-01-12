@@ -1,8 +1,5 @@
 "use client"
 import FallBackLoader from "@/components/loader"
-import { faCircleInfo } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Head from "next/head"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -26,15 +23,21 @@ export default function OrderManage() {
                 inputPlaceholder: 'Enter the reason of cancellation'
             })
             if (reason) {
+                setBtnText('sending....')
                 const res = await fetch(`/api/sendMail?action=cancelOrder`, {
                     method: 'post',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ ...data, reason: reason })
                 })
                 if (res.ok) {
-                    const result = await res.json()
-                    localStorage.setItem('cancelReq', JSON.stringify({ orderId: data.id, sent: true }))
-                    console.log(result)
+                    const cancelReq = JSON.parse(localStorage.getItem('cancelReq'))
+                    await res.json()
+                    localStorage.setItem('cancelReq', JSON.stringify([...cancelReq, { orderId: data.id, sent: true }]))
+                    setBtnText('Cancelation in progress')
+                    setIsCancelable(true)
+                }
+                else {
+                    setBtnText(null)
                 }
             }
         }
@@ -45,7 +48,6 @@ export default function OrderManage() {
 
     const fetchOrder = async () => {
         const cancelReq = JSON.parse(localStorage.getItem('cancelReq'))
-        console.log('cancel', cancelReq.orderId)
         const user = localStorage.getItem('user');
         const userInfo = JSON.parse(user)
         try {
@@ -55,13 +57,21 @@ export default function OrderManage() {
                 let orderDate = new Date(result.data.orderDate)
                 let mili = Date.now() - orderDate
                 const time = mili / (1000 * 60 * 60)
-                if (time >= 70) setIsCancelable(true);
-                setData(result.data)
-                setShipDetails(process.env.NODE_ENV === 'development' ? result.data.shippingDetails : JSON.parse(result.data.shippingDetails))
-                if (cancelReq && cancelReq.orderId === result.data.id) {
+                if (time >= 24) {
+                    setIsCancelable(true)
+                    setBtnText(null)
+                    const find = cancelReq.some(prev => prev.orderId === result.data.id)
+                    if (find) {
+                        const remaining = cancelReq.filter(data => data.orderId !== result.data.id)
+                        localStorage.setItem('cancelReq', JSON.stringify([...remaining]))
+                    }
+                }
+                else if (cancelReq && cancelReq.some(prev => prev.orderId === result.data.id)) {
                     setIsCancelable(true)
                     setBtnText('Cancelation in progress')
                 }
+                setData(result.data)
+                setShipDetails(process.env.NODE_ENV === 'development' ? result.data.shippingDetails : JSON.parse(result.data.shippingDetails))
             }
             return null;
         }
@@ -77,13 +87,12 @@ export default function OrderManage() {
         document.title = 'Order Manage | PurEssence'
         setIsLoading(true)
         fetchOrder()
-    }, [isCancelable])
+    }, [])
     if (isLoading) return <FallBackLoader />
     return (
         <div className="manageMainCont">
             <div className="bCrumbsGlobal">
                 <h2><Link href={'/profile'}>Profile</Link> / <Link href={'/profile/my-orders'}>My Orders</Link> / Manage Order</h2>
-                {/* <h1>Manage Order</h1> */}
             </div>
             <div className="subCont">
                 {data ? (
@@ -112,16 +121,10 @@ export default function OrderManage() {
                                 <div className="date">
                                     <p><strong>OrderID: </strong>#{data.id}</p>
                                     <p><strong>Placed on: </strong> {new Date(data.orderDate).toDateString()}</p>
-                                    {/* <p><strong>Paid on: </strong> {new Date(data.orderDate).toLocaleString()}</p>
-                                    <p><strong>Delivered on: </strong> {data.orderStatus.compDate ? data.orderStatus.compDate : data.orderStatus}</p>
-                                    <p><strong>Completed on: </strong> {data.orderStatus.compDate ? data.orderStatus.compDate : data.orderStatus}</p>
-                                    <p><strong>Paid by: </strong> {data.paymentMethod}</p> */}
                                 </div>
                                 <div className="actionCont">
                                     <button onClick={handleCancel} disabled={isCancelable} style={isCancelable ? { backgroundColor: 'grey' } : null} type="button">{btnText ? btnText : 'Cancel Order'}</button>
                                     <p className="infomsg">lorem ipsum sit amit</p>
-                                    {/* <FontAwesomeIcon className="infoIcon" icon={faCircleInfo} />
-                                    <div className="infomsg">lorem ipsum</div> */}
                                 </div>
                             </div>
                             <div className="disclaimCont">

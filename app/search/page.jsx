@@ -1,14 +1,13 @@
 "use client"
 import { ProductCard } from "@/components/cards";
 import FallBackLoader from "@/components/loader";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import dynamic from "next/dynamic";
 import { loadCache, saveCache } from "@/options";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function SearchResult() {
+    const router = useRouter()
     const searchParams = useSearchParams()
     const query = searchParams.get('query')
     const [isLoading, setIsLoading] = useState(true);
@@ -16,15 +15,14 @@ export default function SearchResult() {
     const fetchProducts = async () => {
         const cachedData = await loadCache('product')
         if (cachedData) {
-            setApiData(cachedData)
             setIsLoading(false)
-            return;
+            return cachedData;
         }
         try {
             let res = await fetch('/api/product');
             let result = await res.json();
             await saveCache(result, 'product')
-            setApiData(result);
+            return result
         }
         catch (err) {
             console.log('Error From Product Api Call: ')
@@ -34,33 +32,40 @@ export default function SearchResult() {
             setIsLoading(false)
         }
     }
-    const findproduct = {
-        inWord: (query, pName) => {
-            const pnameWords = pName.split(' ');
-            const find = pnameWords.find(word => word.toLowerCase() == query.toLowerCase())
-            // console.log('found', find)
-            if (find) return true;
+    const searchHelper = {
+        tokenQuery: (query) => {
+            return query.toLowerCase().split(/\s+/)
+        },
+        searchString: (product) => {
+            return `${product.pName} ${product.sDesc} ${product.description}`.toLowerCase().replace(/[^\w\s]/g, '')
+        },
+        countRelevance: (queryToken, searchString) => {
+            let count = 0;
+            for (const token of queryToken) {
+                if (searchString.includes(token)) count++
+            }
+            return count;
         }
     }
+
     const findSearchProduct = async (query) => {
-        setIsLoading(false)
-        const cachedData = await loadCache('product')
-        const dataArr = []
-        // console.log(findproduct.inWord(query, 'Khalta Booster'))
-        for (let i = 0; i < cachedData.length; i++) {
-            const pName = cachedData[i].pName;
-            if (findproduct.inWord(query, cachedData[i].pName)) {
-                console.log('product found')
-                dataArr.push(cachedData[i])
-            }
+        const products = await fetchProducts()
+        const token = searchHelper.tokenQuery(query)
+        const arr = []
+        for (let i = 0; i < products.length; i++) {
+            const string = searchHelper.searchString(products[i])
+            const score = searchHelper.countRelevance(token, string)
+            arr.push({ product: products[i], score: score })
         }
-        setApiData(dataArr)
+        let result = arr.filter(product => product.score > 0)
+        setApiData(result.map(data => data.product))
     }
     useEffect(() => {
-        document.title = 'Search Results | PurEssence'
-        // fetchProducts();
         if (query) {
+            document.title = 'Search Results | PurEssence'
             findSearchProduct(query)
+        } else {
+            router.push('/products')
         }
     }, [query])
 
@@ -71,11 +76,9 @@ export default function SearchResult() {
             <div className="searchPageBanner">
                 <h1>{query ? `Search Result for: ${query}` : "Products"}</h1>
             </div>
+            <h2 style={{textAlign:'center',fontSize:'1.5em',marginTop:'15px'}}>{apiData.length>0?`${apiData.length} Results Found for '${query}'`:'0 Results Found'}</h2>
             <div className="productPage">
                 <div className="productsCont">
-                    {/* {
-                        data.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.imgUrl} title={data.title} qty={data.qty} data={data} shortDes={data.shortDes} slug={data.slug} />)
-                    } */}
                     {apiData.length > 0 ?
                         apiData.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.pImages[0]} title={data.pName} qty={data.qty} data={data} status={data.status} shortDes={data.sDesc} slug={data.slug} />) :
                         <><h1 style={{ fontSize: '2em', textAlign: 'center' }}>Not results found for &apos;{query}&apos; </h1></>

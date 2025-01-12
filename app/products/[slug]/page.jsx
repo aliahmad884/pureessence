@@ -7,6 +7,7 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { useState, useEffect } from "react"
+import DOMPurify from "dompurify";
 import toast, { Toaster } from "react-hot-toast"
 import { createPortal } from "react-dom"
 import { useRouter } from "next/navigation"
@@ -18,6 +19,7 @@ export default function Products({ params }) {
     const { slug } = params;
     const decodedSlug = decodeURIComponent(slug);
     // const product = ProductData.find(data => data.slug === decodedSlug);
+    const [sanitizedHtml, setSanitizedHtml] = useState(null)
     const { cartData, setCartData } = useDataContext();
     const [isLoading, setIsLoading] = useState(true);
     const [showImgFull, setShowImgFull] = useState(false);
@@ -36,6 +38,13 @@ export default function Products({ params }) {
             return null;
         }
     }
+    const sanitizeHtml = (html) => {
+        const clearHtml = DOMPurify.sanitize(html, {
+            ADD_TAGS: ["iframe"],
+            ADD_ATTR: ["allow", "allowfullscreen", "frameborder", "scrolling"]
+        })
+        return clearHtml;
+    }
     useEffect(() => {
         const fetchProduct = async () => {
             const cachedData = await loadCache('product')
@@ -43,11 +52,15 @@ export default function Products({ params }) {
                 let result = cachedData.find(p => p.slug === slug)
                 setProduct(result)
                 setIsLoading(false);
+                const clearHtml = sanitizeHtml(result.description)
+                setSanitizedHtml(clearHtml)
                 return;
             }
             try {
                 let res = await fetch(`/api/product?slug=${slug}`)
                 let result = await res.json()
+                const clearHtml = sanitizeHtml(result.blogHtml)
+                setSanitizedHtml(clearHtml)
                 setProduct(result)
             }
             catch (err) {
@@ -120,7 +133,8 @@ export default function Products({ params }) {
                     <div className="overViewCont">
                         <div className="output">
                             <h1>Product Overview</h1>
-                            <p>{product.description}</p>
+                            {/* <p>{product.description}</p> */}
+                            <div className="descCont" dangerouslySetInnerHTML={{ __html: sanitizedHtml }}></div>
                         </div>
                     </div>
                 </div>

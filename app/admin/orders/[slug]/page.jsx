@@ -12,12 +12,16 @@ export default function Orders({ params }) {
     const { slug } = params;
     const [isAuthe, setIsAuth] = useState(true)
     const [order, setOrder] = useState(null)
+    const [shipDetails, setShipDetails] = useState({})
+    const [products, setProducts] = useState([])
     const fetchOrder = async () => {
         try {
             const res = await fetch(`/api/order?orderNumber=${slug}`)
             if (res.ok) {
                 const result = await res.json();
                 setOrder(result.data)
+                setShipDetails(process.env.NODE_ENV === 'development' ? result.data.shippingDetails : JSON.parse(result.data.shippingDetails))
+                setProducts(process.env.NODE_ENV === 'development' ? result.data.product : JSON.parse(result.data.product))
             }
             else {
                 alert('There is a problem in fetching the order!')
@@ -66,8 +70,8 @@ export default function Orders({ params }) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {
-                                            order.product.map((data, i) => (
+                                        {products &&
+                                            products.map((data, i) => (
                                                 <tr key={i}>
                                                     <td>
                                                         <div className="row align-center">
@@ -109,20 +113,20 @@ export default function Orders({ params }) {
                                 <h2>Customer</h2>
                                 <div className="profile row align-center">
                                     <img src="/iconImgs/user.png" alt="temp img" width={40} />
-                                    <p>{order.shippingDetails.firstName} {order.shippingDetails.lastName}</p>
+                                    <p>{shipDetails && shipDetails.firstName} {shipDetails && shipDetails.lastName}</p>
                                 </div>
                             </div>
                             <div className="card box-shadow-1 p-4">
                                 <h2>Contact</h2>
-                                <p>Name: {order.shippingDetails.firstName} {order.shippingDetails.lastName}</p>
-                                <p>Email: {order.shippingDetails.email}</p>
-                                <p>Phone: {order.shippingDetails.phone}</p>
+                                <p>Name: {shipDetails && shipDetails.firstName} {shipDetails && shipDetails.lastName}</p>
+                                <p>Email: {shipDetails && shipDetails.email}</p>
+                                <p>Phone: {shipDetails && shipDetails.phone}</p>
                             </div>
                             <div className="card box-shadow-1 p-4">
                                 <h2>Shipping Adress</h2>
-                                <p>Country: {order.shippingDetails.city}</p>
-                                <p>City: {order.shippingDetails.country}</p>
-                                <p>Address: {order.shippingDetails.address}</p>
+                                <p>Country: {shipDetails && shipDetails.city}</p>
+                                <p>City: {shipDetails && shipDetails.country}</p>
+                                <p>Address: {shipDetails && shipDetails.address}</p>
                             </div>
                         </div>
                     </div>

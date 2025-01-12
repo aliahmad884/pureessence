@@ -442,6 +442,7 @@ td {
     flex-flow: row nowrap;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
 .adminToolCont .user img {
@@ -672,9 +673,15 @@ i {
     align-items: center;
     justify-content: center;
 }
-.settings .img-select img{
+
+.settings .img-select img {
     border-radius: 50%;
 }
+
+/* .settings .editPrfileCont {
+    display: flex;
+    flex-flow: row-reverse;
+} */
 
 /* .settings .row{
     flex-wrap: wrap;

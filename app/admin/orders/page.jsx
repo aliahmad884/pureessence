@@ -136,9 +136,9 @@ export default function Orders() {
                                                         &nbsp;
                                                         &nbsp;
                                                         <i style={{ cursor: 'pointer' }} onClick={() => setIsEditable(data.id)} title="Edit Order" className="fi fi-sr-pencil"></i>
+                                                        {/* &nbsp;
                                                         &nbsp;
-                                                        &nbsp;
-                                                        <i style={{ cursor: 'pointer', color: 'red' }} className="fi fi-rr-trash-empty" title="Delete Order" onClick={() => handleDelete(data.id)}></i>
+                                                        <i style={{ cursor: 'pointer', color: 'red' }} className="fi fi-rr-trash-empty" title="Delete Order" onClick={() => handleDelete(data.id)}></i> */}
                                                     </>
                                                 )
                                             }

@@ -6,13 +6,13 @@ export async function POST(req) {
   const body = await req.json()
   // console.log(body)
 
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.ionos.co.uk',
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
     port: 465,
     secure: true,
     auth: {
-      user: 'data@puressenceltd.co.uk',
-      pass: 'Lqv39KGQ6NUQ!_#',
+      user: process.env.SMTP_AUTH_USER,
+      pass: process.env.SMTP_AUTH_PASS,
     },
   })
 
@@ -29,12 +29,15 @@ export async function POST(req) {
       subject: `Working on Order Cancellation - OrderId #${body.id}`,
       html: ordcancelConfirm(body)
     }
+    console.log('env process.env.SMTP_HOST: ',process.env.SMTP_HOST)
+    console.log('env process.env.SMTP_AUTH_USER: ',process.env.SMTP_AUTH_USER)
+    console.log('env process.env.SMTP_AUTH_PASS: ',process.env.SMTP_AUTH_PASS)
     await transporter.sendMail(adminOptions)
     await transporter.sendMail(clientOptions)
     return res({ res: 'Email Sent' }, 200)
   }
   catch (err) {
-    console.log('Error in transporter',err)
+    console.log('Error in transporter', err)
     return res({ res: 'Internal Server Error!' }, 500)
   }
 }

@@ -67,7 +67,7 @@ export default function ManageProducts() {
                     <table>
                         <thead>
                             <tr>
-                                <th style={{ width: '20px', whiteSpace: 'nowrap' }}> <input type="checkbox" checked={isChecked} onChange={handleInputState} name="" id="" />&nbsp; Ind.</th>
+                                <th style={{ width: '20px', whiteSpace: 'nowrap' }}> <input type="checkbox" onChange={handleInputState} name="" id="" />&nbsp; Ind.</th>
                                 <th>Product</th>
                                 <th>Status</th>
                                 <th>Price</th>
@@ -79,7 +79,7 @@ export default function ManageProducts() {
                             {
                                 products.map((p, i) => (
                                     <tr key={p.id}>
-                                        <td><input type="checkbox" checked={isChecked} name="" id="" /> &nbsp;&nbsp; {i + 1}</td>
+                                        <td><input type="checkbox"  name="" id="" /> &nbsp;&nbsp; {i + 1}</td>
                                         <td >
                                             <div className="tableFlex">
                                                 <img src={`/api/uploadImg?path=${encodeURIComponent(p.pImages[0])}`} alt={p.pName} width={50} />

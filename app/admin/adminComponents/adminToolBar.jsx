@@ -1,12 +1,11 @@
 "use client"
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useAdminContext } from "../adminContext";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function AdminToolbar() {
     const pathName = usePathname()
+    const router=useRouter()
     const { isToggled, setIsToggled, loggedUser } = useAdminContext()
     const handleNav = () => {
         setIsToggled(true)
@@ -34,7 +33,7 @@ export default function AdminToolbar() {
                 <div className="toggleIcon">
                     <img onClick={handleNav} src="/iconImgs/menus.webp" alt="Icons" />
                 </div>
-                <div className="user">
+                <div className="user" onClick={()=>router.push('/admin/settings')}>
                     <img src={loggedUser ? loggedUser.proImg : "/iconImgs/user.png"} alt="User" style={{ borderRadius: '50%' }} />
                     <p>{loggedUser ? loggedUser.username : 'Guest'}</p>
                 </div>
