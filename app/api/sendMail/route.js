@@ -18,13 +18,13 @@ export async function POST(req) {
 
   try {
     const adminOptions = {
-      from: 'Cancel Order <data@puressenceltd.co.uk>',
+      from: `Cancel Order <${process.env.SMTP_AUTH_USER}>`,
       to: process.env.ADMIN_MAIL,
       subject: `Order Cancellation Request - OrderId #${body.id}`,
       html: cancelOrd(body)
     }
     const clientOptions = {
-      from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
+      from: `Admin@PurEssence <${process.env.SMTP_AUTH_USER}>`,
       to: body.shippingDetails.email,
       subject: `Working on Order Cancellation - OrderId #${body.id}`,
       html: ordcancelConfirm(body)
