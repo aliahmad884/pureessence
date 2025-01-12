@@ -1,5 +1,6 @@
 export const cancelOrd = (body) => {
-    const html = `
+  const shipDetails = process.env.NODE_ENV === 'development' ? body.shippingDetails : JSON.parse(body.shippingDetails)
+  const html = `
 <table style="width: 100%; background-color: #f9f9f9; padding: 20px;">
 <tr>
 <td>
@@ -33,15 +34,15 @@ export const cancelOrd = (body) => {
   <table style="width: 100%; border-collapse: collapse;">
     <tr>
       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Customer Name:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">${body.shippingDetails.firstName} ${body.shippingDetails.lastName}</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">${shipDetails.firstName} ${shipDetails.lastName}</td>
     </tr>
     <tr>
       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Email Address:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">${body.shippingDetails.email}</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">${shipDetails.email}</td>
     </tr>
     <tr>
       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Contact Number:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">${body.shippingDetails.phone}</td>
+      <td style="padding: 8px; border: 1px solid #ddd;">${shipDetails.phone}</td>
     </tr>
   </table>
 
@@ -63,11 +64,11 @@ export const cancelOrd = (body) => {
 </td >
 </tr >
 </table >`;
-    return html
+  return html
 }
 
 export const ordConfirm = (billInfo, invoice) => {
-    const html = `
+  const html = `
                         <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                             <a href="https://puressenceltd.co.uk"> <img src="https://puressenceltd.co.uk/logos/PE-Main-Logo.png"
                             alt="Logo"></a>
@@ -87,12 +88,12 @@ export const ordConfirm = (billInfo, invoice) => {
                             <h4>Warm regards,</h4>
                             <p> PurEssence LTD.</p>
                     </div>`;
-    return html;
+  return html;
 
 }
 
 export const ordPlacedNotify = (billInfo, invoice) => {
-    const html = `
+  const html = `
                 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                     <h1>Order placed by <strong>${billInfo.firstName} ${billInfo.lastName}</strong></h1>
                     <h2>Client Email: ${billInfo.email}</h2>
@@ -103,17 +104,18 @@ export const ordPlacedNotify = (billInfo, invoice) => {
                     <p>To see invoice, <a href="https://puressenceltd.co.uk/invoice?invId=${invoice.id}&ul=${invoice.uniquUrl}">Click</a></p>
             </div>`
 
-    return html;
+  return html;
 }
 
 export const ordcancelConfirm = (body) => {
-    const html = `
+  const shipDetails = process.env.NODE_ENV === 'development' ? body.shippingDetails : JSON.parse(body.shippingDetails)
+  const html = `
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
         <a href="https://puressenceltd.co.uk">
             <img src="https://puressenceltd.co.uk/logos/PE-Main-Logo.png" alt="Logo" style="max-width: 200px; height: auto; display: block; margin-bottom: 20px;">
         </a>
         <h1>Cancellation Request Received</h1>
-        <h3>Dear ${body.shippingDetails.firstName} ${body.shippingDetails.lastName},</h3>
+        <h3>Dear ${shipDetails.firstName} ${shipDetails.lastName},</h3>
         <p>
             We have received your request to cancel the order with Invoice ID: <strong>PE-INV-000${body.invId}</strong>. 
             Our team is currently reviewing your request and will contact you shortly to guide you through the next steps.
@@ -130,5 +132,5 @@ export const ordcancelConfirm = (body) => {
     </div>`;
 
 
-    return html
+  return html
 }
