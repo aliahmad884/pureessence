@@ -88,16 +88,22 @@ export async function POST(req) {
                     }
                 });
                 if (found) {
-                    const passHash = found.dataValues.Password;
-                    const validate = await sanitizer.decryptPass(body.Password, passHash);
-                    if (validate) {
-                        const authToken = jwt.sign({ email: found.dataValues.Email }, 'secretKey', { expiresIn: '3d' })
-                        const response = res({ Name: `${found.dataValues.FirstName} ${found.dataValues.LastName}`, Email: found.dataValues.Email }, 200);
-                        response.cookies.set('token', authToken, cookieOptions)
-                        await RegisterUser.update({ LastLogin: Date.now() }, { where: { Email: found.dataValues.Email } })
-                        return response;
+                    if (found.dataValues.AuthMethod === 'google') {
+                        return res({ err: 'UAWG' }, 200)
                     }
-                    else return res({ res: 'Incorrect Password! Please recheck and try again' }, 401);
+                    else {
+                        console.log('Else condition called')
+                        const passHash = found.dataValues.Password;
+                        const validate = await sanitizer.decryptPass(body.Password, passHash);
+                        if (validate) {
+                            const authToken = jwt.sign({ email: found.dataValues.Email }, 'secretKey', { expiresIn: '3d' })
+                            const response = res({ Name: `${found.dataValues.FirstName} ${found.dataValues.LastName}`, Email: found.dataValues.Email }, 200);
+                            response.cookies.set('token', authToken, cookieOptions)
+                            await RegisterUser.update({ LastLogin: Date.now() }, { where: { Email: found.dataValues.Email } })
+                            return response;
+                        }
+                        else return res({ res: 'Incorrect Password! Please recheck and try again' }, 401);
+                    }
                 };
                 return res({ res: 'Incorrect Username and password!' }, 401);
             }

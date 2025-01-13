@@ -26,7 +26,8 @@ const handler = NextAuth({
                 if (!checkuser) {
                     return `/signup?FirstName=${given_name}&LastName=${family_name}&Email=${email}&authMethod=google`
                 }
-                return `/login?Name=${name}&Email=${email}&authMethod=google`
+                else if (checkuser?.dataValues.AuthMethod === 'google') return `/login?Name=${name}&Email=${email}&authMethod=google`
+                else return '/login?err=EBNG'
             }
             catch (err) {
                 appendFileSync(logFile, '"Google OAuth Error:"')

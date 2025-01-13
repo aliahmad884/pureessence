@@ -13,6 +13,7 @@ export const metadata = {
   description: "Discover the purest health products like honey, olive oil, and immunity boosters. Shop natural products to support your health and wellness at PurEssence Ltd."
 }
 
+
 export default function Home() {
   return (
     <>

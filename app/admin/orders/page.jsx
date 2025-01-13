@@ -13,6 +13,7 @@ export default function Orders() {
     const [isEditable, setIsEditable] = useState(null)
     const [updateStatus, setUpdateStatus] = useState('')
     const [isAuthe, setIsAuth] = useState(true)
+    const [shipDetails, setShipDetails] = useState({})
     const handleSave = async (id) => {
         setOrderData(prev =>
             prev.map(order => order.id === id ? { ...order, orderStatus: updateStatus || order.orderStatus } : order)
@@ -58,6 +59,7 @@ export default function Orders() {
             const res = await fetch('/api/order');
             const result = await res.json()
             setOrderData(result)
+            setShipDetails(process.env.NODE_ENV === 'development' ? result.data.shippingDetails : JSON.parse(result.data.shippingDetails))
         }
         catch (err) {
             console.log(err)
@@ -107,7 +109,7 @@ export default function Orders() {
                                             {index + 1}
                                         </td>
                                         <td style={{ textAlign: 'center' }}>#{data.id}</td>
-                                        <td>{data.shippingDetails.firstName} {data.shippingDetails.lastName}</td>
+                                        <td>{shipDetails.firstName} {shipDetails.lastName}</td>
                                         <td style={{ textAlign: 'center' }}>{new Date(data.orderDate).toDateString()}</td>
                                         <td style={{ textAlign: 'center' }}>{new Date(data.orderDate).toLocaleTimeString()}</td>
                                         <td style={{ textAlign: 'center' }}>

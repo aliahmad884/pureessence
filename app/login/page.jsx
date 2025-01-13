@@ -3,15 +3,17 @@
 import GoogleBtn from "@/components/googleBtn"
 import FallBackLoader from "@/components/loader"
 import { useDataContext } from "@/context"
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
+import { faEye, faEyeSlash, faL } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { signIn } from "next-auth/react"
+import Swal from "sweetalert2"
 
 export default function Login() {
     const searchParams = useSearchParams()
+    const err = searchParams.get('err')
     const path = searchParams.get('retTo')
     const isGoogleAuth = searchParams.get('authMethod')
     const router = useRouter()
@@ -21,6 +23,8 @@ export default function Login() {
     const [isLoading, setIsLoading] = useState(false)
     const [errMsg, setErrMsg] = useState(null)
     const [passState, setPassState] = useState(false)
+    const [alertFired, setAlertFired] = useState(true)
+    const [btnLoading, setBtnLoading] = useState(false)
     const handleLogin = (event) => {
         event.preventDefault();
         if (email === '' && pass === '') {
@@ -34,7 +38,8 @@ export default function Login() {
             setErrMsg('Password cannot be empty!')
             return null;
         }
-        setIsLoading(true)
+        // setIsLoading(true)
+        setBtnLoading(true)
         fetch('/api/user?action=login', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
@@ -43,7 +48,14 @@ export default function Login() {
                 Password: pass
             })
         }).then(res => res.json()).then(data => {
-            if (data.Name) {
+            if (data.err) {
+                Swal.fire({
+                    icon: 'info',
+                    text: "The email you entered is associated with a Google account. Please use the 'Sign in with Google' option to log in."
+                })
+                setBtnLoading(false)
+            }
+            else if (data.Name) {
                 localStorage.setItem('user', JSON.stringify(data))
                 setIsLogged(true)
                 setErrMsg('')
@@ -55,7 +67,8 @@ export default function Login() {
                 // }, 1000)
             } else {
                 setErrMsg(data.res)
-                setIsLoading(false)
+                // setIsLoading(false)
+                setBtnLoading(false)
             }
         }).catch(err => console.log(err))
     }
@@ -84,7 +97,7 @@ export default function Login() {
             setCartData([]);
             router.push('/')
         }
-        else{
+        else {
             setIsLoading(false)
             alert('Google login is not working! please try again.')
         }
@@ -96,6 +109,16 @@ export default function Login() {
             setIsLoading(true)
             console.log('Google Auth')
             googleSignup()
+        }
+        else if (err === 'EBNG' && alertFired) {
+            setAlertFired(false)
+            Swal.fire({
+                icon: 'error',
+                title: 'Email already exists!',
+                text: 'This email is already associated with an account. Please log in using this email, or use a different account to sign in.'
+            }).then(() => {
+                router.replace('/login')
+            })
         }
         else if (user) router.push('/')
 
@@ -134,7 +157,7 @@ export default function Login() {
                                 </div>
                                 <Link href="/auth">Forgot Password?</Link>
                             </div>
-                            <button type="submit">{isLoading ? (<span className="loader"></span>) : 'Sign in'}</button>
+                            <button type="submit">{btnLoading ? (<span className="loader"></span>) : 'Sign in'}</button>
                         </form>
                         <h3>Or login with</h3>
                         <hr />

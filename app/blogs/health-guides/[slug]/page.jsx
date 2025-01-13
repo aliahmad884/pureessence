@@ -54,6 +54,9 @@ export default function BlogSlug({ params }) {
         }
         fetchBlog()
     }, [])
+    useEffect(() => {
+        if (blog) document.title = blog.bTitle
+    }, [blog])
 
     if (isLoading) return <FallBackLoader />
     return (
