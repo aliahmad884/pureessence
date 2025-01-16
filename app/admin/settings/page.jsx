@@ -7,14 +7,16 @@ import Link from "next/link"
 import Swal from "sweetalert2"
 
 export default function Settings() {
-    const { isAuthUser, setIsAuthUser } = useAdminContext()
+    const { isAuthUser, setIsAuthUser, setLoggedUser } = useAdminContext()
     const router = useRouter()
     const pathname = usePathname()
     const [isAuthe, setIsAuth] = useState(true)
     const [showPass, setShowPass] = useState(false)
+    const [showPass2, setShowPass2] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
+    const [errorMsg2, setErrorMsg2] = useState('')
     const [changePass, setChangePass] = useState(true)
-    const [isEdited, setIsEdited] = useState(false)
+    const [isEditPro, setIsEditPro] = useState(true)
     const editOpt = {
         username: '',
         email: '',
@@ -103,10 +105,14 @@ export default function Settings() {
                 })
                 if (res.ok) {
                     const result = await res.json()
-                    setIsAuthUser(false)
-                    localStorage.removeItem('isLogged')
-                    localStorage.removeItem('loggedUser')
-                    console.log(result)
+                    // setIsAuthUser(false)
+                    localStorage.setItem('loggedUser', JSON.stringify(result.info))
+                    setLoggedUser(result.info)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Profile Update',
+                        text: "Your profile has been successfully updated!"
+                    })
                 }
                 else {
                     const result = await res.json()
@@ -139,6 +145,11 @@ export default function Settings() {
                     const result = await res.json()
                     setNewUser(newUserOpt)
                     console.log(result)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'New User',
+                        text: "New User has been added successfully!"
+                    })
                 }
                 else {
                     const result = await res.json()
@@ -146,7 +157,7 @@ export default function Settings() {
                 }
             }
             else {
-                setErrorMsg('password mismatch')
+                setErrorMsg2('password mismatch')
                 return null;
             }
         }
@@ -187,11 +198,12 @@ export default function Settings() {
                     <form onSubmit={handleEditUser}>
                         <div className="formSec">
                             <h3>Update Admin Credentials</h3>
+                            {/* <p style={{fontSize:'1em',color:'black',marginBottom:'10px'}}>To edit your profile, please check the &apos;Edit Profile&apos; checkbox. This will enable the editing fields for your profile information.</p> */}
                             <div className="row editPrfileCont">
                                 <div className="card p-1">
                                     <h4 className="mb-4 border-b-1 pb-2">Profile Picture</h4>
                                     <label htmlFor="profile">Select Picture</label>
-                                    <div className="img-select" onClick={handleProfileImg}>
+                                    <div className="img-select" style={isEditPro ? { backgroundColor: '#fafafa', cursor: 'default' } : null} onClick={isEditPro ? null : handleProfileImg}>
                                         {editUser.proImg && (
                                             <img src={editUser.proImg} alt="user" width={100} />
                                         )}
@@ -201,13 +213,13 @@ export default function Settings() {
                                 <div className="card p-1">
                                     <h4 className="mb-4 border-b-1 pb-2">Basic Information</h4>
                                     <label htmlFor="username">Username</label>
-                                    <input onChange={(e) => handleInp(e, setEditUser)} value={editUser.username} type="text" name="username" id="username" placeholder="John Doe" required />
+                                    <input onChange={(e) => handleInp(e, setEditUser)} disabled={isEditPro} value={editUser.username} type="text" name="username" id="username" placeholder="John Doe" required />
                                     <br />
                                     <label htmlFor="email">Email</label>
-                                    <input onChange={(e) => handleInp(e, setEditUser)} value={editUser.email} type="email" name="email" id="email" placeholder="example@gmail.com" required />
+                                    <input onChange={(e) => handleInp(e, setEditUser)} disabled={isEditPro} value={editUser.email} type="email" name="email" id="email" placeholder="example@gmail.com" required />
                                     <br />
                                     <label htmlFor="phone">Phone(optional)</label>
-                                    <input onChange={(e) => handleInp(e, setEditUser)} value={editUser.phone} type="tel" name="phone" id="phone" placeholder="+44 124784 787878" />
+                                    <input onChange={(e) => handleInp(e, setEditUser)} disabled={isEditPro} value={editUser.phone} type="tel" name="phone" id="phone" placeholder="+44 124784 787878" />
                                 </div>
                                 <div className="card p-1">
                                     <h4 className="mb-4 border-b-1 pb-2">Authentication</h4>
@@ -215,26 +227,31 @@ export default function Settings() {
                                     <input onChange={(e) => handleInp(e, setEditUser)} value={editUser.curPass} type={showPass ? 'text' : 'password'} name="curPass" id="curPass" placeholder="Current Password" required />
                                     <br /> */}
                                     <label htmlFor="newPass">New Password</label>
-                                    <input onChange={(e) => handleInp(e, setEditUser)} disabled={changePass} value={editUser.newPass} type={showPass ? 'text' : 'password'} name="newPass" id="newPass" placeholder="New Password" required />
+                                    <input onChange={(e) => handleInp(e, setEditUser)} disabled={changePass || isEditPro} value={editUser.newPass} type={showPass ? 'text' : 'password'} name="newPass" id="newPass" placeholder="New Password" required />
                                     <br />
                                     <label htmlFor="conPass">Confirm Password</label>
-                                    <input onChange={(e) => handleInp(e, setEditUser)} disabled={changePass} value={editUser.conPass} type={showPass ? 'text' : 'password'} name="conPass" id="conPass" placeholder="Confirm Password" required />
+                                    <input onChange={(e) => handleInp(e, setEditUser)} disabled={changePass || isEditPro} value={editUser.conPass} type={showPass ? 'text' : 'password'} name="conPass" id="conPass" placeholder="Confirm Password" required />
                                     <p style={{ color: 'red' }}>{errorMsg}</p>
                                     <br />
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '20px' }}>
-                                        <input onChange={(e) => setShowPass(!showPass)} checked={showPass} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="show" />
-                                        <label style={{ cursor: 'pointer', userSelect: 'none' }} htmlFor="show">Show Password</label>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <input onChange={(e) => setShowPass(!showPass)} checked={showPass} disabled={isEditPro} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="show" />
+                                        <label style={{ cursor: isEditPro ? null : 'pointer', userSelect: 'none' }} htmlFor="show">Show Password</label>
                                     </div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                        <input onChange={(e) => setChangePass(!changePass)} checked={!changePass} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="changePass" />
-                                        <label style={{ cursor: 'pointer', userSelect: 'none' }} htmlFor="changePass">Change Password</label>
+                                        <input onChange={(e) => setChangePass(!changePass)} checked={!changePass} disabled={isEditPro} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="changePass" />
+                                        <label style={{ cursor: isEditPro ? null : 'pointer', userSelect: 'none' }} htmlFor="changePass">Change Password</label>
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                        <input onChange={() => setIsEditPro(!isEditPro)} checked={!isEditPro} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="editPro" id="editPro" />
+                                        <label style={{ cursor: 'pointer', userSelect: 'none' }} htmlFor="editPro">Edit Profile</label>
                                     </div>
                                 </div>
                             </div>
+                            <p style={{ fontSize: '1em', color: 'black', margin: '5px 0' }}>To edit your profile, please check the &apos;Edit Profile&apos; checkbox. This will enable the editing fields for your profile information.</p>
                             <div className="row just-right p-1">
-                                <button className="btn-secondary" onClick={() => setEditUser(editOpt)} type="button">Discard</button>
+                                <button className="btn-secondary" disabled={isEditPro} onClick={() => setEditUser(editOpt)} type="button">Discard</button>
                                 &nbsp;&nbsp;
-                                <button className="btn-primary" type="submit">Save Changes</button>
+                                <button className="btn-primary" disabled={isEditPro} type="submit">Save Changes</button>
                             </div>
                         </div>
                     </form>
@@ -265,14 +282,14 @@ export default function Settings() {
                                     </select>
                                     <br />
                                     <label htmlFor="newUserPass">New Password</label>
-                                    <input onChange={(e) => handleInp(e, setNewUser)} value={newUser.newPass} type={showPass ? 'text' : 'password'} name="newPass" id="newUserPass" placeholder="New Password" required />
+                                    <input onChange={(e) => handleInp(e, setNewUser)} value={newUser.newPass} type={showPass2 ? 'text' : 'password'} name="newPass" id="newUserPass" placeholder="New Password" required />
                                     <br />
                                     <label htmlFor="conUserPass">Confirm Password</label>
-                                    <input onChange={(e) => handleInp(e, setNewUser)} value={newUser.conPass} type={showPass ? 'text' : 'password'} name="conPass" id="conUserPass" placeholder="Confirm Password" required />
-                                    <p style={{ color: 'red' }}>{errorMsg}</p>
+                                    <input onChange={(e) => handleInp(e, setNewUser)} value={newUser.conPass} type={showPass2 ? 'text' : 'password'} name="conPass" id="conUserPass" placeholder="Confirm Password" required />
+                                    <p style={{ color: 'red' }}>{errorMsg2}</p>
                                     <br />
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                        <input onChange={(e) => setShowPass(!showPass)} checked={showPass} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="showPass" />
+                                        <input onChange={(e) => setShowPass2(!showPass2)} checked={showPass2} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="showPass" />
                                         <label style={{ cursor: 'pointer', userSelect: 'none' }} htmlFor="showPass">Show Password</label>
                                     </div>
                                 </div>

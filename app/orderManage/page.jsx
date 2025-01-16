@@ -1,15 +1,16 @@
 "use client"
 import FallBackLoader from "@/components/loader"
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import Swal from "sweetalert2"
 
 export default function OrderManage() {
+    const router = useRouter()
     const searchParams = useSearchParams()
     const orderNumber = searchParams.get('orderNumber')
     const [data, setData] = useState(null)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [isCancelable, setIsCancelable] = useState(false)
     const [shipDetails, setShipDetails] = useState(null)
     const [btnText, setBtnText] = useState(null)
@@ -74,20 +75,18 @@ export default function OrderManage() {
                 }
                 setData(result.data)
                 setShipDetails(process.env.NODE_ENV === 'development' ? result.data.shippingDetails : JSON.parse(result.data.shippingDetails))
+                setIsLoading(false)
             }
-            return null;
+            else return router.push('/products');
         }
         catch (err) {
             console.log(err)
-        }
-        finally {
-            setIsLoading(false)
+            router.push('/products');
         }
     }
 
     useEffect(() => {
         document.title = 'Order Manage | PurEssence'
-        setIsLoading(true)
         fetchOrder()
     }, [])
     if (isLoading) return <FallBackLoader />
@@ -126,7 +125,7 @@ export default function OrderManage() {
                                 </div>
                                 <div className="actionCont">
                                     <button onClick={handleCancel} disabled={isCancelable} style={isCancelable ? { backgroundColor: 'grey' } : null} type="button">{btnText ? btnText : 'Cancel Order'}</button>
-                                    <p className="infomsg">lorem ipsum sit amit</p>
+                                    <p className="infomsg">Please read our terms</p>
                                 </div>
                             </div>
                             <div className="disclaimCont">

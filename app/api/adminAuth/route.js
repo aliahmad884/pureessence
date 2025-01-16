@@ -99,7 +99,9 @@ export async function PUT(req) {
                     },
                     { where: { username: user } }
                 )
-                return res({ res: 'user details has been updated!' }, 200)
+                // console.log(body)
+                const newDetails = await AdminUser.findOne({ where: { username: body.username } })
+                return res({ res: 'user details has been updated!', info: newDetails.dataValues }, 200)
             }
             return res({ res: 'Incorrect password!' }, 401)
         }

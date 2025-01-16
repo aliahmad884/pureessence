@@ -8,7 +8,7 @@ export default function Socials() {
         <>
             <div className="socialCont">
                 <h1>Get Social with Us</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, adipisci molestias perferendis odit </p>
+                <p>Stay connected and be part of our vibrant community. Share, engage, and discover endless opportunities to connect with like-minded individuals.</p>
                 <div style={{ marginTop: '80px' }} className="iconsCont">
                     <Link href={'#'}><Image src="/iconImgs/twitter.webp" alt="Twitter" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} /></Link>
                     <Link href={'#'}><Image src="/iconImgs/instagram.webp" alt="Instagram" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} /></Link>

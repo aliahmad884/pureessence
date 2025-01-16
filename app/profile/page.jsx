@@ -74,9 +74,9 @@ export default function Profile() {
                     }
                     Swal.fire({
                         icon: 'error',
-                        title: 'Icorrect Password',
+                        title: 'Incorrect Password',
                         text: "The password you entered is incorrect. If you've forgotten your password, please click the link below to reset it!",
-                        footer: '<a href={"/auth"}>Forget Password</a>'
+                        footer: '<a href="#">Forget Password</a>'
                     })
                 }
                 catch (err) {

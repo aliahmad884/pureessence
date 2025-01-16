@@ -17,9 +17,11 @@ export default function AdminHome() {
     if (isAuthe) return <BlindsFallBack />
     return (
         <>
-            <div className="adminRoute full">
-                <h1>Welcome to Admin Home...!</h1>
-                <p>lore ipsume sit doller ammit huush</p>
+            <div className="adminRoute dashboard">
+                <div className="welcomeCont">
+                    <h1>Welcome to the Admin Panel!</h1>
+                    <p>This is your central hub for managing everything efficiently. Explore the features and take control of your platform with ease.</p>
+                </div>
             </div>
         </>
     )
