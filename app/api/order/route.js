@@ -175,12 +175,12 @@ export async function DELETE(req) {
 
 export async function PUT(req) {
     const { searchParams } = new URL(req.url)
-    const body = await req.json()
     const action = searchParams.get('action')
     const orderId = searchParams.get('orderId')
     const status = searchParams.get('status')
     try {
         if (action === 'cancelOrder') {
+            const body = await req.json()
             const findOrd = await Order.findOne({ where: { id: orderId } })
             await findOrd.update({ isOrdCancel: 1 })
             const adminOptions = {

@@ -59,7 +59,6 @@ export default function Orders() {
             const res = await fetch('/api/order');
             const result = await res.json()
             setOrderData(result)
-            setShipDetails(process.env.NODE_ENV === 'development' ? result.data.shippingDetails : JSON.parse(result.data.shippingDetails))
         }
         catch (err) {
             console.log(err)
@@ -109,7 +108,7 @@ export default function Orders() {
                                             {index + 1}
                                         </td>
                                         <td style={{ textAlign: 'center' }}>#{data.id}</td>
-                                        <td>{shipDetails.firstName} {shipDetails.lastName}</td>
+                                        <td>{process.env.NODE_ENV === 'development' ? data.shippingDetails.firstName : JSON.parse(data.shippingDetails).firstName} {process.env.NODE_ENV === 'development' ? data.shippingDetails.lastName : JSON.parse(data.shippingDetails).lastName}</td>
                                         <td style={{ textAlign: 'center' }}>{new Date(data.orderDate).toDateString()}</td>
                                         <td style={{ textAlign: 'center' }}>{new Date(data.orderDate).toLocaleTimeString()}</td>
                                         <td style={{ textAlign: 'center' }}>

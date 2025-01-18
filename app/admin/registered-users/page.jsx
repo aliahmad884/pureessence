@@ -44,6 +44,7 @@ export default function RegisteredUsers() {
                                 {/* <th>Phone</th> */}
                                 <th>Reg.Date</th>
                                 <th>Last Login</th>
+                                <th>Registration</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,6 +57,7 @@ export default function RegisteredUsers() {
                                         {/* <td>+92 322 8090884</td> */}
                                         <td>{new Date(data.RegDate).toDateString()} at {new Date(data.RegDate).toLocaleTimeString()}</td>
                                         <td>{new Date(data.LastLogin).toDateString()} at {new Date(data.LastLogin).toLocaleTimeString()}</td>
+                                        <td>{data.AuthMethod}</td>
                                     </tr>
                                 ))
                             }

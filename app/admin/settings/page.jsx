@@ -7,7 +7,7 @@ import Link from "next/link"
 import Swal from "sweetalert2"
 
 export default function Settings() {
-    const { isAuthUser, setIsAuthUser, setLoggedUser } = useAdminContext()
+    const { isAuthUser, setIsAuthUser, setLoggedUser, loggedUser } = useAdminContext()
     const router = useRouter()
     const pathname = usePathname()
     const [isAuthe, setIsAuth] = useState(true)
@@ -233,11 +233,11 @@ export default function Settings() {
                                     <input onChange={(e) => handleInp(e, setEditUser)} disabled={changePass || isEditPro} value={editUser.conPass} type={showPass ? 'text' : 'password'} name="conPass" id="conPass" placeholder="Confirm Password" required />
                                     <p style={{ color: 'red' }}>{errorMsg}</p>
                                     {/* <br /> */}
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' ,marginTop:'17px'}}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '17px' }}>
                                         <input onChange={(e) => setShowPass(!showPass)} checked={showPass} disabled={isEditPro} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="show" />
                                         <label style={{ cursor: isEditPro ? null : 'pointer', userSelect: 'none' }} htmlFor="show">Show Password</label>
                                     </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' ,margin:'5px 0'}}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px', margin: '5px 0' }}>
                                         <input onChange={(e) => setChangePass(!changePass)} checked={!changePass} disabled={isEditPro} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="changePass" />
                                         <label style={{ cursor: isEditPro ? null : 'pointer', userSelect: 'none' }} htmlFor="changePass">Change Password</label>
                                     </div>
@@ -257,7 +257,7 @@ export default function Settings() {
                     </form>
                 </div>
 
-                <div className="formCont">
+                <div style={loggedUser.userRole === 'User' ? { display: 'none' } : null} className="formCont">
                     <form onSubmit={handleNewUser}>
                         <div className="formSec">
                             <h3>Add new Admin/User</h3>

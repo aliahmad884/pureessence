@@ -52,7 +52,7 @@ export default function Orders({ params }) {
 
                     <div className="orderStatusBar">
                         <p style={{ border: 'none' }}>{new Date(order.orderDate).toDateString()} at {new Date(order.orderDate).toLocaleTimeString()} </p>
-                        <p>{order.product.length} Items</p>
+                        <p>{products?.length} Items</p>
                         <p>Total: £{order.totalAmount}</p>
                         <p><span className={(order.orderStatus === "Processing") ? 'badge-caution' : (order.orderStatus === 'Completed') ? 'badge-complete' : 'badge-cancel'}>{order.orderStatus}</span></p>
                     </div>
