@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/CircleLogo.webp" sizes="any" type="image/x-icon" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       </head>
-      <Script defer src="https://cloud.umami.is/script.js" data-website-id="978fbca9-0f1e-48e8-8f93-3711dd4c09ac" />
+      <Script defer src="https://cloud.umami.is/script.js" data-website-id="9360f8ab-b5a8-45b5-a45f-09ad58abb2b6" />
       {/* <GoogleAnalytics /> */}
       <body>
         <ContextProvider>
