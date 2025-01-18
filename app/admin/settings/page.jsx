@@ -232,12 +232,12 @@ export default function Settings() {
                                     <label htmlFor="conPass">Confirm Password</label>
                                     <input onChange={(e) => handleInp(e, setEditUser)} disabled={changePass || isEditPro} value={editUser.conPass} type={showPass ? 'text' : 'password'} name="conPass" id="conPass" placeholder="Confirm Password" required />
                                     <p style={{ color: 'red' }}>{errorMsg}</p>
-                                    <br />
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                    {/* <br /> */}
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' ,marginTop:'17px'}}>
                                         <input onChange={(e) => setShowPass(!showPass)} checked={showPass} disabled={isEditPro} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="show" />
                                         <label style={{ cursor: isEditPro ? null : 'pointer', userSelect: 'none' }} htmlFor="show">Show Password</label>
                                     </div>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '5px' ,margin:'5px 0'}}>
                                         <input onChange={(e) => setChangePass(!changePass)} checked={!changePass} disabled={isEditPro} style={{ width: 'fit-content', height: 'fit-content', cursor: 'pointer', marginBottom: '0px', outline: 'none' }} type="checkbox" name="showPass" id="changePass" />
                                         <label style={{ cursor: isEditPro ? null : 'pointer', userSelect: 'none' }} htmlFor="changePass">Change Password</label>
                                     </div>

@@ -13,7 +13,8 @@ export default function OrderManage() {
     const [isLoading, setIsLoading] = useState(true)
     const [isCancelable, setIsCancelable] = useState(false)
     const [shipDetails, setShipDetails] = useState(null)
-    const [btnText, setBtnText] = useState(null)
+    const [btnText, setBtnText] = useState('Cancel Order')
+    const [sending, setSending] = useState(false)
 
     const handleCancel = async () => {
         try {
@@ -24,23 +25,21 @@ export default function OrderManage() {
                 inputPlaceholder: 'Enter the reason of cancellation'
             })
             if (reason) {
-                setBtnText('sending....')
-                const res = await fetch(`/api/sendMail?action=cancelOrder`, {
-                    method: 'post',
+                setSending(true)
+                const res = await fetch(`/api/order?action=cancelOrder&&orderId=${data.id}`, {
+                    method: 'put',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ ...data, reason: reason })
                 })
                 if (res.ok) {
-                    const cancelReq = JSON.parse(localStorage.getItem('cancelReq'))
-                    await res.json()
-                    localStorage.setItem('cancelReq', JSON.stringify([...cancelReq, { orderId: data.id, sent: true }]))
-                    setBtnText('Cancelation in progress')
+                    const result = await res.json()
+                    setSending(false)
+                    setBtnText('Cancellation in progress')
                     setIsCancelable(true)
                 }
                 else {
                     const result = await res.json()
                     console.log(result)
-                    setBtnText(null)
                 }
             }
         }
@@ -50,7 +49,6 @@ export default function OrderManage() {
     }
 
     const fetchOrder = async () => {
-        const cancelReq = JSON.parse(localStorage.getItem('cancelReq'))
         const user = localStorage.getItem('user');
         const userInfo = JSON.parse(user)
         try {
@@ -62,16 +60,9 @@ export default function OrderManage() {
                 const time = mili / (1000 * 60 * 60)
                 if (time >= 24) {
                     setIsCancelable(true)
-                    setBtnText(null)
-                    const find = cancelReq.some(prev => prev.orderId === result.data.id)
-                    if (find) {
-                        const remaining = cancelReq.filter(data => data.orderId !== result.data.id)
-                        localStorage.setItem('cancelReq', JSON.stringify([...remaining]))
-                    }
-                }
-                else if (cancelReq && cancelReq.some(prev => prev.orderId === result.data.id)) {
+                } else if (result.data.isOrdCancel) {
+                    setBtnText('Cancellation in progress')
                     setIsCancelable(true)
-                    setBtnText('Cancelation in progress')
                 }
                 setData(result.data)
                 setShipDetails(process.env.NODE_ENV === 'development' ? result.data.shippingDetails : JSON.parse(result.data.shippingDetails))
@@ -124,7 +115,7 @@ export default function OrderManage() {
                                     <p><strong>Placed on: </strong> {new Date(data.orderDate).toDateString()}</p>
                                 </div>
                                 <div className="actionCont">
-                                    <button onClick={handleCancel} disabled={isCancelable} style={isCancelable ? { backgroundColor: 'grey' } : null} type="button">{btnText ? btnText : 'Cancel Order'}</button>
+                                    <button onClick={handleCancel} disabled={isCancelable} style={isCancelable ? { backgroundColor: '#fafafa' } : null} type="button">{sending ? (<span className="loader"></span>) : btnText}</button>
                                     <p className="infomsg">Please read our terms</p>
                                 </div>
                             </div>

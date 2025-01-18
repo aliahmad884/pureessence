@@ -2,8 +2,18 @@ const { res, randomeStrGen } = require('../syntaxShorter.js')
 import nodemailer from "nodemailer";
 import Stripe from "stripe";
 import { Order, Invoice } from "../schemas.js";
-import { ordConfirm, ordPlacedNotify } from "../mailTemplates.js";
+import { cancelOrd, ordcancelConfirm, ordConfirm, ordPlacedNotify } from "../mailTemplates.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.SMTP_AUTH_USER,
+        pass: process.env.SMTP_AUTH_PASS,
+    },
+})
 
 export async function GET(req) {
     // const accessToken = req.cookies.get('token')?.value;
@@ -64,17 +74,6 @@ export async function POST(req) {
     const body = await req.json()
     const reqtyp = searchParams.get('reqTyp')
     const paramId = searchParams.get('paymentIntentId')
-
-    const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: 465,
-        secure: true,
-        auth: {
-            user: process.env.SMTP_AUTH_USER,
-            pass: process.env.SMTP_AUTH_PASS,
-        },
-    })
-
     try {
         if (reqtyp === 'invoice') {
             const { cartData, subTotal, discount, shipFee, userId, ...billInfo } = body;
@@ -176,12 +175,32 @@ export async function DELETE(req) {
 
 export async function PUT(req) {
     const { searchParams } = new URL(req.url)
+    const body = await req.json()
+    const action = searchParams.get('action')
     const orderId = searchParams.get('orderId')
     const status = searchParams.get('status')
     try {
+        if (action === 'cancelOrder') {
+            const findOrd = await Order.findOne({ where: { id: orderId } })
+            await findOrd.update({ isOrdCancel: 1 })
+            const adminOptions = {
+                from: `Cancel Order <${process.env.SMTP_AUTH_USER}>`,
+                to: process.env.ADMIN_MAIL,
+                subject: `Order Cancellation Request - OrderId #${body.id}`,
+                html: cancelOrd(body)
+            }
+            const clientOptions = {
+                from: `Admin@PurEssence <${process.env.SMTP_AUTH_USER}>`,
+                to: process.env.NODE_ENV === 'development' ? body.shippingDetails.email : JSON.parse(body.shippingDetails).email,
+                subject: `Working on Order Cancellation - OrderId #${body.id}`,
+                html: ordcancelConfirm(body)
+            }
+            await transporter.sendMail(adminOptions)
+            await transporter.sendMail(clientOptions)
+            return res({ res: 'Order cancellation in progress!' }, 201)
+        }
         const findOrd = await Order.findOne({ where: { id: orderId } })
         await findOrd.update({ orderStatus: status })
-        // await findOrd.update
         return res({ res: 'Status Updated' }, 201)
     }
     catch (err) {

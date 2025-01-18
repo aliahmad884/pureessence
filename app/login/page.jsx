@@ -155,7 +155,7 @@ export default function Login() {
                                     <input type="checkbox" name="remember" id="remember" />
                                     <label style={{ cursor: 'pointer', whiteSpace: 'nowrap' }} htmlFor="remember">Remember me</label>
                                 </div>
-                                <Link href="/auth">Forgot Password?</Link>
+                                <Link href="#">Forgot Password?</Link>
                             </div>
                             <button type="submit">{btnLoading ? (<span className="loader"></span>) : 'Sign in'}</button>
                         </form>

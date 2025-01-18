@@ -225,6 +225,10 @@ Order.init({
     },
     discount: {
         type: DataTypes.DECIMAL(10, 2)
+    },
+    isOrdCancel: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: 0
     }
 }, {
     sequelize,

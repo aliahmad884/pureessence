@@ -34,11 +34,13 @@ export default function Auth() {
             }
             else {
                 let result = await res.json();
+                alert(result.res)
                 setErrMsg(result.res);
             }
         }
         catch (err) {
             console.log(err)
+            alert(err)
         }
     }
     return (

@@ -1,7 +1,5 @@
 "use client"
 import { useDataContext } from "@/context"
-import { faGripVertical } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
