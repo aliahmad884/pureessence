@@ -30,20 +30,20 @@
 //   "/"
 // ]
 const mainExclude = [
-  "/admin",
-  "/admin/*",
-  "/auth",
-  "/cart",
-  "/checkout",
-  "/checkoutStripe",
-  "/invoice",
-  "/login",
-  "/orderManage",
-  "/profile/my-orders",
-  "/profile",
-  "/profilesd",
-  "/search",
-  "/shipping",
+    "/admin",
+    "/admin/*",
+    "/auth",
+    "/cart",
+    "/checkout",
+    "/checkoutStripe",
+    "/invoice",
+    "/login",
+    "/orderManage",
+    "/profile/my-orders",
+    "/profile",
+    "/profilesd",
+    "/search",
+    "/shipping",
 ]
 
 module.exports = {
