@@ -11,12 +11,12 @@ export const metadata = {
 
 export default function AdminLayout({ children }) {
     return (
-        <>
+        <div className='adminBody'>
             <AdminContextProvider>
                 <AdminNav />
                 <AdminToolbar />
                 {children}
             </AdminContextProvider>
-        </>
+        </div>
     )
 }

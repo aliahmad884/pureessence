@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #171717;
+  --foreground: #ffffff;
+  --heading-color: gray;
+  --text-color: white;
+  --bg-primary-dark: black;
+  --bg-primary-light: white;
+  --box-shadow-white: 0px 0px 23px -1px rgba(255, 253, 242, 0.4);
+  --border-color-dark: #414141;
 }
 
 
@@ -107,7 +113,7 @@ main {
   width: 100%;
   max-width: 2200px;
 
-  padding: 6px 40px;
+  padding: 8px 40px;
   /* background-color: #171717; */
   background-color: #000000;
   color: white;
@@ -154,7 +160,9 @@ main {
   top: 35px;
   z-index: 1;
   width: 100%;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
@@ -213,7 +221,7 @@ main {
 }
 
 .navMenu .navLinks a {
-  color: black;
+  color: var(--text-color);
   text-decoration: none;
   font-size: 1.1rem;
   position: relative;
@@ -400,6 +408,7 @@ main {
   padding: 0px 5px;
   width: 0;
   opacity: 0;
+    background:transparent;
   transition: all 1s, border-bottom 0.1s;
 }
 
@@ -505,7 +514,7 @@ main {
 /* -------------- Hero Section -------------- */
 .heroContainer {
   width: 100%;
-  background-color: #eeeee6;
+  /* background-color: #eeeee6; */
   display: flex;
   padding: 200px 20px;
   flex-flow: column nowrap;
@@ -523,7 +532,7 @@ main {
   font-weight: bolder;
   text-align: center;
   line-height: 1;
-  color: white;
+  color: var(--text-color);
   /* background: -webkit-linear-gradient(#dfb434, #c97d26);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
@@ -534,7 +543,7 @@ main {
 .heroContainer p {
   font-size: 1.3rem;
   font-weight: bold;
-  color: white;
+  color: var(--text-color);
   margin: 20px 0;
   text-align: center;
 }
@@ -617,14 +626,14 @@ main {
   text-align: center;
   font-size: 2.5rem;
   font-weight: bold;
-  color: #2e2e2e;
+  color: var(--heading-color);
   transition: all 0.5s;
 }
 
 .aboutText p {
   text-align: justify;
   font-size: 1.3rem;
-  color: black;
+  color: var(--text-color);
   transition: all 0.5s;
 }
 
@@ -640,7 +649,7 @@ main {
 .offerContainer {
   width: 100%;
   /* background-color: #e5efe0; */
-  background-color: #f3f3f3;
+  background-color: var(--bg-primary-dark);
   padding: 200px 50px 150px 50px;
 }
 
@@ -663,9 +672,10 @@ main {
   text-align: center;
   gap: 20px;
   padding: 40px 20px;
-  background-color: white;
+  background-color: var(--bg-primary-dark);
   border-radius: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
+  box-shadow: var(--box-shadow-white);
   transition: all 0.5s;
 }
 
@@ -683,13 +693,13 @@ main {
 .reviewCard h2 {
   font-size: 1.3rem;
   font-weight: bolder;
-  color: black;
+  color: var(--heading-color);
 }
 
 /* -------------Offers Section--------------- */
 /* ----------Popular Products -------------- */
 .productCont {
-  background-color: white;
+  /* background-color: var(--bg-primary-dark); */
   padding: 100px 20px;
   display: flex;
   flex-flow: column;
@@ -718,6 +728,7 @@ main {
   width: 50px;
   border-radius: 50%;
   color: black;
+  background-color: var(--bg-primary-light);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: all 0.5s;
   font-size: large;
@@ -740,7 +751,7 @@ main {
   gap: 5px;
   /* margin: 0 10px; */
   overflow-x: hidden;
-  border: 1px solid rgb(224, 224, 224);
+  border: 1px solid var(--border-color-dark);
   border-radius: 10px;
   transition: all 0.5s;
 }
@@ -759,7 +770,7 @@ main {
   /* background-color: white; */
   background-color: #dfb434;
   width: 100%;
-  color: white;
+  color: var(--text-color);
   /* border-top-left-radius: 20px;
   border-bottom-left-radius: 20px; */
   border-radius: 20px;
@@ -815,7 +826,7 @@ main {
 }
 
 .productCard h3 {
-  color: #555;
+  color: var(--heading-color);
   text-align: left;
   padding: 0 10px;
   width: 100%;
@@ -838,7 +849,7 @@ main {
 /* ----------- Reviews Section--------------- */
 .reviewCont {
   width: 100%;
-  background-color: #f3f3f3;
+  background-color: var(--bg-primary-dark);
   padding: 100px 50px;
 }
 
@@ -882,7 +893,7 @@ main {
 .blogsCont {
   width: 100%;
   /* background-color: #e5efe0; */
-  background-color: white;
+  /* background-color: white; */
   padding: 100px 50px;
 }
 
@@ -912,8 +923,8 @@ main {
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: #000000;
-  color: white;
+  /* background-color: #000000; */
+  color: var(--text-color);
   text-align: center;
   padding: 8px 10px;
   border-bottom-right-radius: 10px;
@@ -927,7 +938,7 @@ main {
 
 .blogsCont .card h2 {
   font-size: 1.2rem;
-  color: black;
+  /* color: black; */
   font-weight: bold;
   padding: 8px 0;
 }
@@ -950,7 +961,7 @@ main {
 /* ---------- Social Cont --------------- */
 .socialCont {
   padding: 100px 20px;
-  background-color: #f3f3f3;
+  background-color: var(--bg-primary-dark);
   width: 100%;
 }
 
@@ -973,8 +984,10 @@ main {
   background: none;
   transition: all 0.5s;
   cursor: pointer;
+  /* box-shadow: var(--box-shadow-white); */
 }
 
+.iconsCont i:hover,
 .iconsCont img:hover {
   transform: translateY(-7px);
 }
@@ -983,7 +996,7 @@ main {
 
 /*------------- News Letter---------------*/
 .letterCont {
-  background-color: white;
+  /* background-color: white; */
   padding: 100px 20px;
   display: flex;
   flex-flow: column nowrap;
@@ -1007,7 +1020,8 @@ main {
   padding: 8px;
   border-radius: 40px;
   width: 40%;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  box-shadow: var(--box-shadow-white);
 }
 
 .letterCont .inputCont input {
@@ -1024,10 +1038,12 @@ main {
   padding: 15px;
   /* border: 1px solid black; */
   background-color: #dfb434;
+  /* background-color: whitesmoke; */
+  color: black;
   margin-left: 10px;
   border-radius: 30px;
   min-width: fit-content;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  box-shadow: inset -4px -14px 37px -30px rgba(0, 0, 0, 0.87);
 }
 
 /* ------------News Letter End----------- */
@@ -1153,7 +1169,7 @@ main {
 }
 
 .cartPage table {
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color-dark);
   border-collapse: collapse;
   margin: 0;
   padding: 0;
@@ -1169,8 +1185,8 @@ main {
 }
 
 .cartPage table tr {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
+  /* background-color: #f8f8f8; */
+  border: 1px solid var(--border-color-dark);
   padding: .35em;
 }
 
@@ -1248,7 +1264,7 @@ main {
 .cartPage .checkoutCont button:hover {
   background-color: white;
   color: black;
-  border-radius: 30px;
+  /* border-radius: 30px; */
 }
 
 .cartPage .acceptPay {
@@ -1316,7 +1332,10 @@ main {
 
 .checkoutForm form {
   padding: 20px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: var(--box-shadow-white);
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
 }
 
 .checkoutForm form h1 {
@@ -1341,18 +1360,21 @@ main {
 .checkoutForm form .btnCont button {
   padding: 10px 70px;
   background-color: #dfb434;
-  border-radius: 30px;
+  border-radius: 5px;
 }
 
 
 .checkoutForm input,
 .checkoutForm select {
-  border: 1px solid #e6e6e6;
+  border: 1px solid var(--border-color-dark);
+  background-color: var(--background);
   /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
-  border-radius: 20px;
+  border-radius: 5px;
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  outline: none;
+  /* margin-bottom: 10px; */
+  /* background-color: transparent; */
 }
 
 .reviewDetail {
@@ -1367,7 +1389,7 @@ main {
   padding: 10px 0;
   /* border: none; */
   outline: none;
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 2px solid var(--border-color-dark);
 }
 
 .reviewDetail label,
@@ -1426,7 +1448,7 @@ main {
 }
 
 .checkoutPage .orderSummary .summaryCont {
-  background-color: #e6e6e6;
+  /* background-color: #e6e6e6; */
   width: fit-content;
   margin: auto;
   padding: 20px;
@@ -2068,19 +2090,19 @@ main {
 }
 
 .subCont .header {
-  background-color: white;
+  /* background-color: white; */
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid rgb(224, 224, 224);
+  border-bottom: 2px solid var(--border-color-dark);
   padding: 15px 25px;
 }
 
 .subCont .header .badge {
   padding: 9px 20px;
   background-color: rgb(240, 240, 240);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: var(--box-shadow-white);
   border-radius: 30px;
 }
 
@@ -2104,7 +2126,7 @@ main {
   justify-content: space-between;
   padding: 5px 0;
   text-align: center;
-  border-bottom: 2px solid rgb(224, 224, 224);
+  border-bottom: 2px solid var(--border-color-dark);
 }
 
 .subCont .orderDetail .product .title {
@@ -2211,17 +2233,17 @@ main {
 
 .orderSummary .ordersummaryCont .shipCont {
   width: 100%;
-  /* border: 2px solid rgb(224, 224, 224); */
+  border: 2px solid var(--border-color-dark);
   padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: var(--box-shadow-white); */
   border-radius: 3px;
 }
 
 .orderSummary .ordersummaryCont .orderTotal {
   width: 100%;
-  /* border: 2px solid rgb(224, 224, 224); */
+  border: 2px solid var(--border-color-dark);
   border-radius: 3px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   display: flex;
   flex-flow: column nowrap;
   gap: 5px;
@@ -2289,6 +2311,7 @@ main {
   align-items: center;
   transition: all 0.5s;
 }
+
 .productPageBanner {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/PE-Bath-Oils.webp');
   width: 100%;
@@ -2493,6 +2516,10 @@ main {
   justify-content: center;
 }
 
+.contactMainCont li{
+  list-style-position: inside;
+}
+
 .contactMainCont h1 {
   font-size: 2rem;
   font-weight: bold;
@@ -2505,7 +2532,8 @@ main {
   padding: 70px 20px;
   margin-top: 30px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  box-shadow: var(--box-shadow-white);
 }
 
 .contactMainCont .contactUs {
@@ -2531,23 +2559,29 @@ main {
 }
 
 .contactMainCont .contactUs input {
-  border-radius: 20px;
+  border-radius: 10px;
   width: 100%;
   padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background: transparent;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+  box-shadow: var(--box-shadow-white);
+  outline: none;
 }
 
 .contactMainCont .contactUs textarea {
   width: 100%;
   padding: 10px;
-  border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 10px;
+  outline: none;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+  background: transparent;
+  box-shadow: var(--box-shadow-white);
 }
 
 .contactMainCont .contactUs form button {
   background-color: #dfb434;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -2561,7 +2595,8 @@ main {
   gap: 10px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+  box-shadow: var(--box-shadow-white);
 }
 
 .contactUs .contactDetails h2 {
@@ -2960,11 +2995,14 @@ main {
 .mainBody .shareCont {
   width: 100%;
   max-width: 150px;
+  /* border: 1px solid red; */
 }
 
 .mainBody .shareCont p {
   color: #8b8a8a;
   text-transform: uppercase;
+  position: sticky;
+  top: 100px;
 }
 
 .mainBody .shareCont .sIcons {
@@ -2972,6 +3010,8 @@ main {
   flex-flow: row nowrap;
   justify-content: space-evenly;
   margin: 10px 0;
+  position: sticky;
+  top: 130px;
 }
 
 .mainBody .shareCont .sIcons img {

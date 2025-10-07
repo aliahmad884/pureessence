@@ -78,13 +78,13 @@ export default function BlogSlug({ params }) {
                             <Image
                                 src={`/api/uploadImg?path=${encodeURIComponent(blog.bTitleImg)}`}
                                 alt={blog.bTitle}
-                                sizes="100vw"
+                                // sizes="100vw"
                                 height={1000}
-                                width={1000}
-                                style={{
-                                    width: '100%',
-                                    height: 'auto'
-                                }}
+                                width={200}
+                                // style={{
+                                //     width: '100%',
+                                //     height: 'auto'
+                                // }}
                             />
                         </div>
                         <div className="mainBody">

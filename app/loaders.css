@@ -37,11 +37,12 @@
   display: flex;
   overflow: hidden;
   z-index: 0;
-  background: white;
-  background: rgba(255, 255, 255, 0.8);
+  /* background: white; */
+  /* background: rgba(255, 255, 255, 0.8); */
+  background-color: black;
   align-items: center;
   justify-content: center;
-  margin-top: -95px;
+  /* margin-top: -95px; */
 }
 
 .blindCont {
@@ -67,7 +68,7 @@
   position: absolute;
 }
 
-.mainLoaderCont::before {
+.mainLoader5Cont::before {
   content: '';
   position: absolute;
   top: 0;
@@ -75,7 +76,7 @@
   right: 0;
   bottom: 0;
   /* background: rgba(255, 255, 255, 0.8); */
-  background-color: whitesmoke;
+  background-color: black;
   /* Semi-transparent background */
   filter: blur(2px);
   /* Apply blur to the background */
@@ -93,7 +94,7 @@
 .mainLoader {
   width: 48px;
   height: 48px;
-  border: 3px dotted black;
+  border: 3px dotted white;
   border-style: solid solid dotted dotted;
   border-radius: 50%;
   display: inline-block;

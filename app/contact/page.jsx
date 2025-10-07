@@ -51,12 +51,12 @@ export default function ContactPage() {
                 <div className="contactSubCont">
                     <div className="contactUs">
                         <form onSubmit={handleForm}>
-                            <input value={mailBody.fullName} onChange={(e) => setMailBody({ ...mailBody, fullName: e.target.value })} type="text" autoComplete="name" placeholder="Full Name" />
+                            <input value={mailBody.fullName} onChange={(e) => setMailBody({ ...mailBody, fullName: e.target.value })} type="text" autoComplete="name" placeholder="Full Name" required />
                             <div className="subInputCont">
-                                <input value={mailBody.email} onChange={(e) => setMailBody({ ...mailBody, email: e.target.value })} type="email" autoComplete="email" placeholder="Email" />
+                                <input value={mailBody.email} onChange={(e) => setMailBody({ ...mailBody, email: e.target.value })} type="email" autoComplete="email" placeholder="Email" required />
                                 <input value={mailBody.tel} onChange={(e) => setMailBody({ ...mailBody, tel: e.target.value })} type="tel" autoComplete="phone" placeholder="Phone" />
                             </div>
-                            <textarea value={mailBody.msg} onChange={(e) => setMailBody({ ...mailBody, msg: e.target.value })} rows="7" placeholder="Message" />
+                            <textarea value={mailBody.msg} onChange={(e) => setMailBody({ ...mailBody, msg: e.target.value })} rows="7" placeholder="Message" required />
                             <button type="submit">{isSending ? 'Please Wait...' : 'Submit'}</button>
                         </form>
                         <div className="contactDetails">

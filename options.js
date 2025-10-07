@@ -30,7 +30,7 @@ export const loadCache = async (key) => {
     const currentVersion = await fetchVersion(key)
     const prevVersion = JSON.parse(localStorage.getItem(`${key}version`))
     const cache = JSON.parse(localStorage.getItem(key))
-    if (cache && prevVersion.key === key && currentVersion.version === prevVersion.version) {
+    if (cache && prevVersion?.key === key && currentVersion?.version === prevVersion?.version) {
         console.log('cached data available!')
         return cache.data;
     }

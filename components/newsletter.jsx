@@ -37,10 +37,12 @@ export default function NewsLetter() {
                     <h1>Join Our Value Newsletter</h1>
                     <p>Discounts, health guides and more! All without spam or annoying frequent emails. Unsubscribe anytime.</p>
                 </div>
-                <div className="inputCont">
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="newsEmail" placeholder="Enter Your Email..." autoComplete="email" />
-                    <button onClick={handleSubmit} type="button">{isSending ? 'Please Wait...' : 'Join Now'}</button>
-                </div>
+                <form onSubmit={handleSubmit} className="w-full flex justify-center">
+                    <div className="inputCont">
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="newsEmail" placeholder="Enter Your Email..." autoComplete="email" required />
+                        <button type="submit" className="inset-shadow-2xs inset-shadow-indigo-500">{isSending ? 'Please Wait...' : 'Join Now'}</button>
+                    </div>
+                </form>
             </div>
         </>
     )

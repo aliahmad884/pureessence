@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useDataContext } from "@/context";
 import FallBackLoader from "./loader";
+import ProgressLoader from "./progress";
 
 export default function Navbar() {
     const pathName = usePathname();
@@ -175,6 +176,7 @@ export default function Navbar() {
     }
     return (
         <>
+            <ProgressLoader />
             <div className="navMainCont">
                 {/* --------Nav Container-------- */}
                 <div className="navContainer">

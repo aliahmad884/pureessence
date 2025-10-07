@@ -22,6 +22,8 @@ import Whatsapp from "@/components/whatsapp";
 // import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Head from "next/head";
 import Script from 'next/script';
+import SmoothScroll from "@/components/smoothScrolling";
+import ProgressProvider from "@/progresscontext";
 
 
 const schemaData = {
@@ -61,23 +63,27 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/CircleLogo.webp" sizes="any" type="image/x-icon" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       </head>
-      <Script defer src="https://cloud.umami.is/script.js" data-website-id="9360f8ab-b5a8-45b5-a45f-09ad58abb2b6" />
+      {/* <Script defer src="https://cloud.umami.is/script.js" data-website-id="9360f8ab-b5a8-45b5-a45f-09ad58abb2b6" /> */}
       {/* <GoogleAnalytics /> */}
-      <body>
+      <body style={pathName.startsWith('/admin') ? { color: '#171717', background: '#ffffff' } : null}>
         <ContextProvider>
-          <Suspense fallback={<FallBackLoader />}>
-            <CustomProvider>
-              {showNavbarAndToolBar && (
-                <>
-                  <ToolBar />
-                  <Navbar />
-                </>
-              )}
-              {showWhatsapp && <Whatsapp />}
-              {children}
-              {showFooter && <Footer />}
-            </CustomProvider>
-          </Suspense>
+          <SmoothScroll>
+            <ProgressProvider>
+              <Suspense fallback={<FallBackLoader />}>
+                <CustomProvider>
+                  {showNavbarAndToolBar && (
+                    <>
+                      <ToolBar />
+                      <Navbar />
+                    </>
+                  )}
+                  {showWhatsapp && <Whatsapp />}
+                  {children}
+                  {showFooter && <Footer />}
+                </CustomProvider>
+              </Suspense>
+            </ProgressProvider>
+          </SmoothScroll>
         </ContextProvider>
         {/* )} */}
 

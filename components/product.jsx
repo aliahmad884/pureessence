@@ -46,6 +46,7 @@ export default function PopularProducts() {
         autoplay: true,
         autoplaySpeed: 5000,
         pauseOnHover: true,
+        arrows: false,
         responsive: [
             {
                 breakpoint: 1250,
