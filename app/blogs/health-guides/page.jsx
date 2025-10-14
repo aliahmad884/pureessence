@@ -21,6 +21,7 @@ export default function GuidesPage() {
             }
             try {
                 let res = await fetch('/api/blog')
+                if (!res.ok) return null;
                 let result = await res.json()
                 setBlogs(result)
                 await saveCache(result, CACHE_KEY)
@@ -42,7 +43,7 @@ export default function GuidesPage() {
                 <h1>Health Guides</h1>
                 <div className="blogsCont">
                     {
-                        blogs && blogs.map((blog, i) => <BlogCard key={blog.id + i + 1} type={blog.bCategory} slug={blog.bCategory === 'Blog' ? `/blogs/${blog.bSlug}` : `/blogs/health-guides/${blog.bSlug}`} imgSrc={blog.bTitleImg} title={blog.bTitle} sDesc={blog.bShortDesc}/>)
+                        blogs && blogs.map((blog, i) => <BlogCard key={blog.id + i + 1} type={blog.bCategory} slug={blog.bCategory === 'Blog' ? `/blogs/${blog.bSlug}` : `/blogs/health-guides/${blog.bSlug}`} imgSrc={blog.bTitleImg} title={blog.bTitle} sDesc={blog.bShortDesc} />)
                     }
                 </div>
             </div>

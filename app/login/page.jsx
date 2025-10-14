@@ -137,9 +137,9 @@ export default function Login() {
                     </div>
                 </div>
                 <div className="footBar"></div>
-                <div className="loginImgCont">
+                {/* <div className="loginImgCont">
                     <img loading="lazy" src="/login.webp" alt="" />
-                </div>
+                </div> */}
                 <div className="formCont">
                     <div className="loginForm">
                         <h1>Sign in to <strong style={{ color: '#dfb434' }}>PURE</strong> ESSENCE</h1>

@@ -20,6 +20,7 @@ export default function BlogsPage() {
             }
             try {
                 let res = await fetch('/api/blog')
+                if (!res.ok) return null;
                 let result = await res.json()
                 setBlogs(result)
                 await saveCache(result, CACHE_KEY)

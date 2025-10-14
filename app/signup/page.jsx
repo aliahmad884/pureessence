@@ -122,9 +122,9 @@ export default function Signup() {
                     </div>
                 </div>
                 <div className="footBar"></div>
-                <div className="signupImgCont">
+                {/* <div className="signupImgCont">
                     <img loading="lazy" src="/login.webp" alt="Login" />
-                </div>
+                </div> */}
                 <div className="formCont">
                     <div className="signupForm">
                         <h1>Sign Up to <strong style={{ color: '#dfb434' }}>PURE</strong> ESSENCE</h1>

@@ -16,13 +16,14 @@ export default function BlogsPage() {
             if (cachedData) {
                 let limit = cachedData.slice(cachedData.length - 3, cachedData.length).reverse()
                 // console.log(limit)
-                setBlogs(limit)
+                setBlogs(limit || [])
                 setIsLoading(false)
                 return;
             }
             try {
                 let res = await fetch('/api/blog')
                 let result = await res.json()
+                if (!res.ok) return null;
                 setBlogs(result)
                 await saveCache(result, CACHE_KEY)
             }
@@ -36,14 +37,14 @@ export default function BlogsPage() {
         }
         fetchBlogs()
     }, [])
-    if (isLoading) return <FallBackLoader />
+    // if (isLoading) return <FallBackLoader />
     return (
         <>
             <div className="blogPage">
                 <h1>Explore Our Blogs & Health Guides</h1>
                 <div className="blogsCont">
                     {
-                        blogs && blogs.map((blog, i) => <BlogCard key={i} type={blog.bCategory} slug={blog.bCategory === 'Blog' ? `/blogs/${blog.bSlug}` : `/blogs/health-guides/${blog.bSlug}`} imgSrc={blog.bTitleImg} title={blog.bTitle} sDesc={blog.bShortDesc} />)
+                        blogs && blogs?.map((blog, i) => <BlogCard key={i} type={blog.bCategory} slug={blog.bCategory === 'Blog' ? `/blogs/${blog.bSlug}` : `/blogs/health-guides/${blog.bSlug}`} imgSrc={blog.bTitleImg} title={blog.bTitle} sDesc={blog.bShortDesc} />)
                     }
                 </div>
 

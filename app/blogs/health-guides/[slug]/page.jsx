@@ -40,6 +40,7 @@ export default function BlogSlug({ params }) {
             }
             try {
                 let res = await fetch(`/api/blog?slug=${slug}`);
+                if (!res.ok) return null;
                 let result = await res.json()
                 const clearHtml = sanitizeHtml(result.blogHtml)
                 setSanitizedHtml(clearHtml)

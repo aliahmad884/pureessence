@@ -22,6 +22,7 @@ export default function ProductPage() {
         }
         try {
             let res = await fetch('/api/product');
+            if (!res.ok) return null;
             let result = await res.json();
             await saveCache(result, 'product')
             setApiData(result);
@@ -37,7 +38,7 @@ export default function ProductPage() {
     const findSearchProduct = async (query) => {
         console.log(query)
         const cachedData = await loadCache('product')
-        
+
         // console.log(cachedData)
     }
     useEffect(() => {
@@ -56,11 +57,8 @@ export default function ProductPage() {
             </div>
             <div className="productPage">
                 <div className="productsCont">
-                    {/* {
-                        data.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.imgUrl} title={data.title} qty={data.qty} data={data} shortDes={data.shortDes} slug={data.slug} />)
-                    } */}
                     {
-                        apiData.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.pImages[0]} title={data.pName} qty={data.qty} data={data} status={data.status} shortDes={data.sDesc} slug={data.slug} />)
+                        apiData?.map(data => <ProductCard key={data.id} id={data.id} price={data.price} imgUrl={data.pImages[0]} title={data.pName} qty={data.qty} data={data} status={data.status} shortDes={data.sDesc} slug={data.slug} />)
                     }
                 </div>
             </div>

@@ -40,6 +40,7 @@ export default function BlogSlug({ params }) {
             }
             try {
                 let res = await fetch(`/api/blog?slug=${slug}`);
+                if (!res.ok) return null;
                 let result = await res.json()
                 const clearHtml = sanitizeHtml(result.blogHtml)
                 setSanitizedHtml(clearHtml)
@@ -81,10 +82,10 @@ export default function BlogSlug({ params }) {
                                 // sizes="100vw"
                                 height={1000}
                                 width={200}
-                                // style={{
-                                //     width: '100%',
-                                //     height: 'auto'
-                                // }}
+                            // style={{
+                            //     width: '100%',
+                            //     height: 'auto'
+                            // }}
                             />
                         </div>
                         <div className="mainBody">

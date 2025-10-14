@@ -12,13 +12,15 @@ export default function Socials() {
                 <div style={{ marginTop: '80px' }} className="iconsCont">
                     <Link href={'https://www.instagram.com/pure_ssenceltd'}>
                         <Image src="/iconImgs/twitter.png" alt="Twitter" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} />
-                        {/* <i className="fi fi-brands-twitter-alt hover:translate-y-2"></i> */}
                     </Link>
                     <Link href={'https://www.instagram.com/pure_ssenceltd'}><Image src="/iconImgs/instagram.webp" alt="Instagram" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} /></Link>
-                    <Link href={'https://www.tiktok.com/@puressenceltd1'}><Image src="/iconImgs/tiktok.webp" alt="Tiktok" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} /></Link>
+                    <Link href={'https://www.tiktok.com/@puressenceltd1'}>
+                        <Image src="/iconImgs/tiktok_white.png" alt="Tiktok" sizes="100vw" style={{ width: '50px', height: '100%' }} height={0} width={0} />
+                    </Link>
                     <Link href={'https://www.instagram.com/pure_ssenceltd'}><Image src="/iconImgs/facebook.webp" alt="Facebook" sizes="100vw" style={{ width: '40px', height: '100%' }} height={0} width={0} /></Link>
                 </div>
             </div>
         </>
     )
 }
+

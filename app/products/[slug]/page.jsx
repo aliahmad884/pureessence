@@ -58,6 +58,7 @@ export default function Products({ params }) {
             }
             try {
                 let res = await fetch(`/api/product?slug=${slug}`)
+                if (!res.ok) return null;
                 let result = await res.json()
                 const clearHtml = sanitizeHtml(result.blogHtml)
                 setSanitizedHtml(clearHtml)
