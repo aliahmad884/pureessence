@@ -336,7 +336,7 @@ td {
     display: flex;
     flex-flow: column;
     overflow-y: auto;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(161, 140, 140, 0.24) 0px 3px 8px;
     z-index: 20;
     transition: all 0.5s;
 }
