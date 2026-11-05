@@ -1,10 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* Lets Tailwind / shadcn utilities (bg-primary, border-input, ...) read the variables below */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* =====================================================================
+   2. CLIENT SITE 
+   ===================================================================== */
 :root {
-  --background: #171717;
-  --foreground: #ffffff;
   --heading-color: gray;
   --text-color: white;
   --bg-primary-dark: black;
@@ -13,11 +42,11 @@
   --border-color-dark: #414141;
 }
 
-
+/* DARK THEME BASE: this is what the whole client site inherits from */
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* background-color: var(--bg-primary-dark); */
+  background-color: #171717;
+  color: var(--text-color);
   max-width: 2200px;
   /* width: 100%; */
   min-width: 320px;
@@ -64,7 +93,6 @@ main {
 
 /* -------------Blog Headings End------------ */
 
-
 .quikIconCont {
   position: fixed;
   z-index: 50;
@@ -87,7 +115,6 @@ main {
   color: white;
 }
 
-
 .quikIconCont .upCont {
   padding: 5px;
   cursor: pointer;
@@ -103,7 +130,6 @@ main {
   color: white;
   transition: all 0.5s;
 }
-
 
 /* -------------Tool Bar------------ */
 .toolBarCont {
@@ -246,7 +272,6 @@ main {
   color: #dfb434;
 }
 
-
 /* -----Small Navbar Menu Button-------- */
 
 .navMenu .menuBtn {
@@ -284,8 +309,6 @@ main {
 .navMenu .menuBtn.open span:last-child {
   transform: rotate(-45deg) translate(10px, -4px);
 }
-
-
 
 /* --------Small Navbar Routes Style------------ */
 
@@ -507,7 +530,6 @@ main {
   transition: 0.5s;
   cursor: pointer;
 }
-
 
 /* ------------- Navbar End ------------ */
 
@@ -842,8 +864,6 @@ main {
   /* font-weight: bold; */
 }
 
-
-
 /* ----------Popular Priducts End----------- */
 
 /* ----------- Reviews Section--------------- */
@@ -885,7 +905,6 @@ main {
   align-items: center;
   gap: 5px;
 }
-
 
 /* ------------ Reviews End----------------- */
 
@@ -1211,8 +1230,6 @@ main {
   color: #dfb434;
 }
 
-
-
 .cartPage .tableProduct {
   display: flex;
   align-items: center;
@@ -1363,7 +1380,6 @@ main {
   border-radius: 5px;
 }
 
-
 .checkoutForm input,
 .checkoutForm select {
   border: 1px solid var(--border-color-dark);
@@ -1432,7 +1448,6 @@ main {
   border: 1px solid #eeeee6;
 }
 
-
 .paymentForm {
   transition: all 0.5s;
 }
@@ -1471,7 +1486,6 @@ main {
 .checkoutPage .orderSummary table ::-webkit-scrollbar {
   height: 1px;
 }
-
 
 /* ----------- Cart Page End ------------- */
 
@@ -1748,7 +1762,6 @@ main {
 
 /* --------- Forget AUth End ------------- */
 
-
 /* ---------- Profile Page ------------- */
 .proMainCont {
   display: flex;
@@ -1816,8 +1829,8 @@ main {
   padding-left: 22px;
 }
 
-
 .proMainCont .rightPanel {
+  color: #171717;
   width: 100%;
   min-height: calc(100vh - 95px);
   height: 100%;
@@ -1871,7 +1884,6 @@ main {
   width: 100%;
   transition: all 0.5s;
 }
-
 
 .editCont .editSubCont .emailCont,
 .editCont .editSubCont .nameCont {
@@ -2001,6 +2013,7 @@ main {
 /* ----------Profile End--------------- */
 /* --------- Address Modal ------------ */
 .modalMainCont {
+  color: #171717;
   width: 100%;
   max-width: 600px;
   background-color: #ffffff;
@@ -2109,6 +2122,7 @@ main {
 }
 
 .subCont .header .badge {
+  color: #171717;
   padding: 9px 20px;
   background-color: rgb(240, 240, 240);
   box-shadow: var(--box-shadow-white);
@@ -2190,7 +2204,6 @@ main {
   width: 100%;
   max-width: 300px;
 }
-
 
 .orderPlaceDesc .orderStatus .actionCont {
   display: flex;
@@ -2683,7 +2696,6 @@ main {
 
 /* ------ Conatct Page End -------------- */
 
-
 /* --------------- FAQs Page ----------- */
 .faqsCont {
   padding: 50px 0px;
@@ -2824,8 +2836,6 @@ main {
   border-radius: 10px;
 }
 
-
-
 /* About Quote */
 .aboutPage .aboutQuote {
   font-weight: bolder;
@@ -2887,7 +2897,6 @@ main {
   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
   transition: all 0.5s;
 }
-
 
 .blogCardCont img {
   width: 100%;
@@ -3084,3 +3093,76 @@ main {
 }
 
 /* ---------- Blogs Page End--------------- */
+
+/* =====================================================================
+   3. TAILWIND v4 COMPATIBILITY (keeps v3-era defaults for your own CSS)
+   ===================================================================== */
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: currentColor;
+  }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* =====================================================================
+   4. ADMIN DASHBOARD (shadcn): light theme, only inside .admin-shell
+   Variables live on :root so shadcn popups (rendered outside the
+   wrapper) can still read them. Nothing here touches the client site.
+   ===================================================================== */
+@layer base {
+  :root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+  }
+
+  .admin-shell {
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  .admin-shell *,
+  [data-slot] {
+    border-color: var(--border);
+    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  }
+
+  /* dialogs/sheets render under <body>, so give them their own text color */
+  [data-slot="dialog-content"],
+  [data-slot="alert-dialog-content"],
+  [data-slot="sheet-content"] {
+    color: var(--foreground);
+  }
+}
