@@ -7,9 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DOMPurify from "dompurify";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 
-export default function BlogSlug({ params }) {
+export default function BlogSlug(props) {
+    const params = use(props.params);
     const CACHE_TIME_STAMP = 86400000;
     const CACHE_KEY = 'blog'
     const { slug } = params;

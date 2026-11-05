@@ -1,9 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: false,
-    experimental: {
-        serverComponentsExternalPackages: ['sequelize', 'sequelize-typescript']
-    }
+  serverExternalPackages: ['sequelize', 'mysql2', 'mariadb'],
+  images:{
+    localPatterns:[
+      {
+        pathname:"/**"
+      }
+    ]
+  }
 };
 
 export default nextConfig;

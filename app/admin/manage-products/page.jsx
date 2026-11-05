@@ -49,12 +49,6 @@ export default function ManageProducts() {
             setProducts(result)
         }).catch(err => console.error(err))
     }, [])
-
-    useEffect(() => {
-        if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
-        else setIsAuth(false);
-    }, [isAuthUser])
-    if (isAuthe) return <BlindsFallBack />
     return (
         <div className="adminRoute">
             <div className="subCont">

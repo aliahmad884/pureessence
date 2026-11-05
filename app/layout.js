@@ -14,10 +14,10 @@ import ToolBar from "@/components/toolbar";
 import ContextProvider from "@/context";
 import Footer from "@/components/footer";
 import { Suspense, useEffect, useState } from "react";
-import { CustomProvider } from 'rsuite';
+// import { CustomProvider } from 'rsuite';
 import { usePathname } from "next/navigation";
 import FallBackLoader from "@/components/loader";
-import 'rsuite/dist/rsuite-no-reset.min.css';
+// import 'rsuite/dist/rsuite-no-reset.min.css';
 import Whatsapp from "@/components/whatsapp";
 // import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Head from "next/head";
@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
           <SmoothScroll>
             <ProgressProvider>
               <Suspense fallback={<FallBackLoader />}>
-                <CustomProvider>
+                {/* <CustomProvider> */}
                   {showNavbarAndToolBar && (
                     <>
                       <ToolBar />
@@ -80,7 +80,7 @@ export default function RootLayout({ children }) {
                   {showWhatsapp && <Whatsapp />}
                   {children}
                   {showFooter && <Footer />}
-                </CustomProvider>
+                {/* </CustomProvider> */}
               </Suspense>
             </ProgressProvider>
           </SmoothScroll>

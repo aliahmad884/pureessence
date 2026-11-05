@@ -61,4 +61,5 @@ const sanitizer = {
     }
 }
 
-module.exports = { res, sanitizer, randomeStrGen, updateVersion }
+// module.exports = { res, sanitizer, randomeStrGen, updateVersion }
+export {res, sanitizer, randomeStrGen, updateVersion}

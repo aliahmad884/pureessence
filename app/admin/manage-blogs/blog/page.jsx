@@ -164,11 +164,6 @@ export default function NewBlog() {
             fetchProduct()
         }
     }, [])
-    useEffect(() => {
-        if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
-        else setIsAuth(false);
-    }, [isAuthUser])
-    if (isAuthe) return <BlindsFallBack />
 
     return (
         <div className="adminRoute">

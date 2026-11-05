@@ -1,16 +1,15 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { useAdminContext } from "../../adminContext";
 import { BlindsFallBack } from "@/components/loader";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function Orders({ params }) {
+export default function Orders(props) {
+    const params = use(props.params);
     const router = useRouter()
-    const { isAuthUser } = useAdminContext()
     const { slug } = params;
-    const [isAuthe, setIsAuth] = useState(true)
     const [order, setOrder] = useState(null)
     const [shipDetails, setShipDetails] = useState({})
     const [products, setProducts] = useState([])
@@ -36,11 +35,6 @@ export default function Orders({ params }) {
     useEffect(() => {
         fetchOrder()
     }, [])
-    useEffect(() => {
-        if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
-        else setIsAuth(false);
-    }, [isAuthUser])
-    if (isAuthe) return <BlindsFallBack />
     return (
         <div className="adminRoute">
             {order &&

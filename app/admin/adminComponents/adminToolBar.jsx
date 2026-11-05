@@ -12,10 +12,15 @@ export default function AdminToolbar() {
         let nav = document.querySelector('.adminNavCont')
         nav.classList.add('toggleNav')
     }
-    const handleLogout = () => {
+    const handleLogout =async () => {
+        const res=await fetch("/api/adminAuth?action=logout")
+        if(!res.ok){
+            alert("Logout Failed!")
+            return null;
+        }
+        // alert("logout successfully!")
         setIsAuthUser(false)
-        localStorage.removeItem('isLogged')
-        localStorage.removeItem('loggedUser')
+        router.replace("/admin/authenticate")
     }
     useEffect(() => {
         let nav = document.querySelector('.adminNavCont')
@@ -38,7 +43,7 @@ export default function AdminToolbar() {
                 <div className="toggleIcon">
                     <img onClick={handleNav} src="/iconImgs/menus.webp" alt="Icons" />
                 </div>
-                <div className="user" onClick={() => router.push('/admin/settings')}>
+                <div className="user">
                     <div onClick={handleLogout} className="logout" title="Logout">
                         <i className="fi fi-rr-arrow-left-from-arc"></i>
                         <p>Logout</p>

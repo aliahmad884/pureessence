@@ -356,7 +356,7 @@ AdminUser.init(
 //         // await RegisterUser.sync({ force: true });
 //         // await Cart.sync({ force: true });
 //         // await Invoice.sync({ force: true });
-//         await Order.sync({ force: true });
+//         await sequelize.sync({ force: true });
 //         console.log('Table synced successfully!');
 //     } catch (error) {
 //         console.error('Error syncing table:', error);

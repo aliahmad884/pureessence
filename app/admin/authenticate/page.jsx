@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { useAdminContext } from "../adminContext";
 import { useRouter, useSearchParams } from "next/navigation"
 
 export default function Auth() {
@@ -9,7 +8,6 @@ export default function Auth() {
     const path = param.get('path')
     const router = useRouter();
     const [formData, setFormData] = useState({});
-    const { isAuthUser, setIsAuthUser, setLoggedUser } = useAdminContext();
     const [errMsg, setErrMsg] = useState("");
 
     const handleInput = (event) => {
@@ -26,10 +24,6 @@ export default function Auth() {
             })
             if (res.ok) {
                 let result = await res.json();
-                setIsAuthUser(true)
-                setLoggedUser(result)
-                localStorage.setItem('isLogged', true)
-                localStorage.setItem('loggedUser', JSON.stringify(result))
                 router.push(path ? path : '/admin')
             }
             else {

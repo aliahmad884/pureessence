@@ -1,7 +1,8 @@
 "use client"
-import { useEffect } from "react"
+import { useEffect, use } from "react";
 
-export default function CategoryPage({ params }) {
+export default function CategoryPage(props) {
+    const params = use(props.params);
     const { slug } = params
     // useEffect(() => {
     //     console.log(params)

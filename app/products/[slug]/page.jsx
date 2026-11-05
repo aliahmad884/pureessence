@@ -6,7 +6,7 @@ import ProductData from "@/data"
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react";
 import DOMPurify from "dompurify";
 import toast, { Toaster } from "react-hot-toast"
 import { createPortal } from "react-dom"
@@ -14,7 +14,8 @@ import { useRouter } from "next/navigation"
 import CachedProducts from "@/cache"
 import { loadCache } from "@/options"
 
-export default function Products({ params }) {
+export default function Products(props) {
+    const params = use(props.params);
     const router = useRouter();
     const { slug } = params;
     const decodedSlug = decodeURIComponent(slug);

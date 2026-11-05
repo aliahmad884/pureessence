@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react"
 import { useAdminContext } from "../adminContext"
 import { usePathname, useRouter } from "next/navigation"
-import { BlindsFallBack } from "@/components/loader"
 import Link from "next/link"
 import Swal from "sweetalert2"
 
@@ -179,13 +178,6 @@ export default function Settings() {
             }))
         }
     }, [])
-
-    useEffect(() => {
-        // const isLogged = localStorage.getItem('isLogged')
-        if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
-        else setIsAuth(false);
-    }, [isAuthUser])
-    if (isAuthe) return <BlindsFallBack />
     return (
         <div className="adminRoute settings">
             <div className="subCont">

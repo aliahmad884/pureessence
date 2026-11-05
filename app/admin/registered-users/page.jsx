@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react"
 import { useAdminContext } from "../adminContext"
 import { usePathname, useRouter } from "next/navigation"
-import { BlindsFallBack } from "@/components/loader"
 import Link from "next/link"
 
 export default function RegisteredUsers() {
@@ -22,11 +21,6 @@ export default function RegisteredUsers() {
     useEffect(() => {
         fetchUsers()
     }, [])
-    useEffect(() => {
-        if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
-        else setIsAuth(false);
-    }, [isAuthUser]);
-    if (isAuthe) return <BlindsFallBack />
     return (
         <div className="adminRoute">
             <div className="subCont">

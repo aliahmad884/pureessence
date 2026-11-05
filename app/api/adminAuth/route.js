@@ -20,7 +20,17 @@ export async function GET(req) {
                     if (isPass) return res({ res: 'password checked!' }, 200);
                     else return res({ res: 'Incorrect Password!' }, 401)
                 }
-                return res({ res: 'User not found!' }, 404)
+                return res({ res: 'User not found!' }, 404);
+            case 'logout':
+                const response = NextResponse.json({ msg: "logout" }, { status: 201 });
+                response.cookies.set("adminAuth", "expire", {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === "production",
+                    maxAge: 0,
+                    path: '/admin',
+                    sameSite: "strict"
+                })
+                return response;
             default:
                 const allUsers = await AdminUser.findAll();
                 const data = allUsers.map(data => data.dataValues)
@@ -44,7 +54,18 @@ export async function POST(req) {
                 if (user) {
                     const pass = await sanitizer.decryptPass(body.password, user.dataValues.password)
                     if (pass) {
-                        const response = res(user.dataValues, 200)
+                        const { password, ...userInfo } = user.dataValues;
+                        const token = jwt.sign(userInfo, process.env.JWT_SEC_KEY, { expiresIn: '1h' });
+                        const response = NextResponse.json(userInfo, {
+                            status: 200
+                        })
+                        response.cookies.set("adminAuth", token, {
+                            httpOnly: true,
+                            secure: process.env.NODE_ENV === "production",
+                            maxAge: 1 * 60 * 60,
+                            path: "/admin",
+                            sameSite: "strict"
+                        })
                         return response;
                     };
                     return res({ res: 'Incorrect password!' }, 401)

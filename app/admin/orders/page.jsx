@@ -2,17 +2,12 @@
 import { useEffect, useState } from "react"
 import { useAdminContext } from "../adminContext"
 import { usePathname, useRouter } from "next/navigation"
-import { BlindsFallBack } from "@/components/loader"
 import Link from "next/link"
 
 export default function Orders() {
     const [orderData, setOrderData] = useState([])
-    const { isAuthUser } = useAdminContext()
-    const router = useRouter()
-    const pathname = usePathname()
     const [isEditable, setIsEditable] = useState(null)
     const [updateStatus, setUpdateStatus] = useState('')
-    const [isAuthe, setIsAuth] = useState(true)
     const [shipDetails, setShipDetails] = useState({})
     const handleSave = async (id) => {
         setOrderData(prev =>
@@ -67,11 +62,6 @@ export default function Orders() {
     useEffect(() => {
         fetchData();
     }, [])
-    useEffect(() => {
-        if (!isAuthUser) router.push(`/admin/authenticate?path=${pathname}`);
-        else setIsAuth(false);
-    }, [isAuthUser])
-    if (isAuthe) return <BlindsFallBack />
     return (
         <div className="adminRoute">
             <div className="subCont">

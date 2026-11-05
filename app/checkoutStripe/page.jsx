@@ -3,7 +3,7 @@ import { loadStripe } from "@stripe/stripe-js"
 import { Elements } from "@stripe/react-stripe-js"
 import { useEffect, useState } from "react"
 import { useDataContext } from "@/context"
-import CheckoutForm from "@/components/checkoutForm"
+// import CheckoutForm from "@/components/checkoutForm"
 import FallBackLoader from "@/components/loader"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
@@ -57,7 +57,7 @@ export default function Checkout() {
                 {
                     clientSecret && (
                         <Elements options={options} stripe={stripePromise}>
-                            <CheckoutForm dpmCheckerLink={dpmLink} />
+                            {/* <CheckoutForm dpmCheckerLink={dpmLink} /> */}
                         </Elements>
                     )
                 }
