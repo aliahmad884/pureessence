@@ -7,7 +7,10 @@ export async function POST(req) {
     let body = await req.json()
     try {
         if (body) {
-            await Product.create({ ...body, pImages: JSON.stringify(body.pImages) })
+            await Product.create({
+                ...body,
+                // pImages: JSON.stringify(body.pImages) 
+            })
             updateVersion('product', Versions)
             return res({ res: 'Product Added Successfully!' }, 201)
         }
@@ -28,35 +31,27 @@ export async function GET(req) {
         if (id) {
             const findById = await Product.findByPk(id)
             if (findById === null) return res({ res: `Data Not found against id: ${id}` }, 404);
-            let data = { ...findById.dataValues, pImages: JSON.parse(findById.dataValues.pImages) }
-            // for (let i = 0; i < ProductData.length; i++) {
-            //     await Product.create({
-            //         pName: ProductData[i].title,
-            //         slug: ProductData[i].slug,
-            //         sDesc: ProductData[i].shortDes,
-            //         description: ProductData[i].description,
-            //         price: ProductData[i].price,
-            //         pImages: JSON.stringify([ProductData[i].imgUrl]),
-            //         qty: ProductData[i].qty,
-            //         status: 'in stock',
-            //         pageTitle: ProductData[i].title,
-            //         metaDesc: ProductData[i].description,
-            //         reviews: null,
-            //         category: null
-            //     })
-            //     console.log(`Product ${ProductData[i].title} has been Inserted to DataBase`)
-            // }
+            let data = {
+                ...findById.dataValues,
+                // pImages: JSON.parse(findById.dataValues.pImages) 
+            }
             return res(data, 200)
         }
         else if (pSlug) {
             const findBySlug = await Product.findOne({ where: { slug: pSlug } })
             if (findBySlug === null) return res({ res: `Product Not found against Slug: ${pSlug}` }, 404);
-            let data = { ...findBySlug.dataValues, pImages: JSON.parse(findBySlug.dataValues.pImages) }
+            let data = {
+                ...findBySlug.dataValues,
+                //  pImages: JSON.parse(findBySlug.dataValues.pImages) 
+            }
             return res(data, 200)
         }
-        const products = await Product.findAll()
+        const products = await Product.findAll({ where: { publish: true } })
         if (products) {
-            const data = products.map(product => ({ ...product.dataValues, pImages: JSON.parse(product.dataValues.pImages) }))
+            const data = products.map(product => ({
+                ...product.dataValues,
+                //  pImages: JSON.parse(product.dataValues.pImages) 
+            }))
             return res(data, 200)
         }
         return res({ res: 'Products Data Not Found!' }, 404)
@@ -74,15 +69,23 @@ export async function PUT(req) {
         if (body) {
             const found = await Product.findByPk(body.id)
             if (found === null) return res({ res: `Product Not found against id: ${body.id}` }, 404)
-            else {
-                let record = await Product.update({ ...body, pImages: process.env.NODE_ENV === 'development' ? JSON.stringify(body.pImages) : body.pImages }, {
-                    where: {
-                        id: body.id
-                    }
-                })
+            else if (body.reason == "publish_status") {
+                await Product.update({ publish: body.isPublish }, { where: { id: body.id } });
+                // console.log(updateStatus[0])
                 updateVersion('product', Versions)
-                return res({ res: 'Product Updated Successfully!', updatedRecord: record[0] }, 201)
+                return res({ res: "Product Status Updated!" }, 201)
             }
+            let record = await Product.update({
+                ...body
+                // pImages: process.env.NODE_ENV === 'development' ? JSON.stringify(body.pImages) : body.pImages
+            }, {
+
+                where: {
+                    id: body.id
+                }
+            })
+            updateVersion('product', Versions)
+            return res({ res: 'Product Updated Successfully!', updatedRecord: record[0] }, 201)
         }
         return res({ res: "Product Body Not Recieved!" }, 404)
     }

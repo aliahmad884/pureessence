@@ -151,3 +151,25 @@ export async function PUT(req) {
         return res({ err: 'Internel Server Error!' }, 500);
     };
 }
+
+
+export async function DELETE(req) {
+    const { searchParams } = new URL(req.url)
+    let id = searchParams.get('userId')
+    console.log(id)
+    try {
+        if (id) {
+            const find = await RegisterUser.findByPk(id)
+            if (find === null) return res({ res: `User Not found against param id: ${id}` }, 404)
+            else {
+                await find.destroy()
+                return res({ res: 'User Deleted Successfully against id: ' + id }, 201)
+            }
+        }
+        return res({ res: 'User Data Not Found!' }, 404)
+    }
+    catch (err) {
+        console.log(err);
+        return res({ err: 'Internel Server Error!' }, 500)
+    }
+}

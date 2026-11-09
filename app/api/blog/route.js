@@ -35,25 +35,13 @@ export async function GET(req) {
             else return res(findVersion.dataValues, 200)
         }
         else if (slug) {
-            const findBySlug = await Blogs.findOne({ where: { bSlug: slug } })
+            const findBySlug = await Blogs.findOne({ where: { bSlug: slug, publish: true } })
             if (findBySlug === null) return res({ res: `Blog Not found against Slug: ${slug}` }, 404)
             else return res(findBySlug.dataValues, 200)
         }
-        const blogs = await Blogs.findAll()
+        const blogs = await Blogs.findAll({ where: { publish: true } })
         if (blogs) {
             const data = blogs.map(blog => blog.dataValues)
-            // for (let i = 0; i < BlogsData.length; i++) {
-            //     await Blogs.create({
-            //         bTitle: BlogsData[i].bTitle,
-            //         bSlug: BlogsData[i].bSlug,
-            //         bShortDesc: BlogsData[i].bShortDesc,
-            //         bTitleImg: BlogsData[i].bTitleImg,
-            //         bAuthor: BlogsData[i].bAuthor,
-            //         bCategory: BlogsData[i].bCategory,
-            //         blogHtml: BlogsData[i].blogHtml
-            //     })
-            //     console.log(`Blog ${BlogsData[i].bTitle} has been Inserted to DataBase`)
-            // }
             return res(data, 200)
         }
         return res({ res: 'Blog Not Found!' }, 404)
@@ -73,15 +61,18 @@ export async function PUT(req) {
             const found = await Blogs.findByPk(body.id)
             console.log(found)
             if (found === null) return res({ res: `Blog Not found against id: ${body.id}` }, 404)
+            else if (body.reason == "publish_status") {
+                await Blogs.update({ publish: body.isPublish }, { where: { id: body.id } });
+            }
             else {
                 await Blogs.update(body, {
                     where: {
                         Id: body.id
                     }
                 })
-                updateVersion('blog', Versions)
-                return res({ res: 'Blog Updated Successfully!' }, 201)
             }
+            updateVersion('blog', Versions)
+            return res({ res: 'Blog Updated Successfully!' }, 201)
         }
         return res({ res: "Blog Body Not Recieved!" }, 404)
     }

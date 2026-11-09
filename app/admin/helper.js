@@ -5,7 +5,10 @@ import jwt from "jsonwebtoken"
 export async function getUserInfo() {
     const cookieStore = await cookies()
     const token = cookieStore.get("adminAuth")?.value
-    const decryptToken = jwt.verify(token, process.env.JWT_SEC_KEY)
-    if (decryptToken) return decryptToken;
+    if (token) {
+        const decryptToken =jwt.verify(token, process.env.JWT_SEC_KEY)
+        const user=await AdminUser.findOne({ where: { id: decryptToken?.id } })
+        return user?.dataValues;
+    }
     return null;
 }

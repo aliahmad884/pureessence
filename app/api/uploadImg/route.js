@@ -1,14 +1,14 @@
 import path from 'path';
 import { writeFile, unlink } from 'fs/promises';
 import { readFileSync, existsSync } from 'fs';
-const { res } = require('../syntaxShorter.js')
+import { res } from '../syntaxShorter.js'
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url);
     const parampPath = decodeURIComponent(searchParams.get('path'));
     const splitPath = parampPath.split('/');
     const filename = splitPath[splitPath.length - 1]
-    const fileDir = splitPath[splitPath.length-2];
+    const fileDir = splitPath[splitPath.length - 2];
     const fileExt = path.extname(filename).toLowerCase().slice(1)
     const destPath = path.join(process.cwd(), 'public', fileDir, filename);
     if (existsSync(destPath)) {
@@ -45,7 +45,7 @@ export async function DELETE(req) {
     const { searchParams } = new URL(req.url)
     const filePath = searchParams.get('path')
     try {
-        await unlink(path.join(process.cwd(), `public/${filePath}`))
+        await unlink(path.join(process.cwd(), `public/${filePath.split("path=")[1].toString()}`))
         return res({ res: 'Img Deleted' }, 200)
     }
     catch (err) {

@@ -33,6 +33,10 @@ Product.init({
     status: {
         type: DataTypes.STRING
     },
+    publish: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
     pageTitle: {
         type: DataTypes.TEXT
     },
@@ -105,6 +109,10 @@ Blogs.init({
     },
     date: {
         type: DataTypes.DATE
+    },
+    publish: {
+        type: DataTypes.BOOLEAN,
+        defaultValue:false
     }
 }, {
     sequelize,
@@ -356,7 +364,7 @@ AdminUser.init(
 //         // await RegisterUser.sync({ force: true });
 //         // await Cart.sync({ force: true });
 //         // await Invoice.sync({ force: true });
-//         await sequelize.sync({ force: true });
+//         await sequelize.sync({ alter: true });
 //         console.log('Table synced successfully!');
 //     } catch (error) {
 //         console.error('Error syncing table:', error);

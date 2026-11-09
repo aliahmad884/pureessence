@@ -13,6 +13,17 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import {
+    AlertDialog,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
+import { toast } from "sonner";
 
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
@@ -21,39 +32,70 @@ export default function ManageBlogs() {
     const [blogs, setBlogs] = useState([])
     const { isAuthUser } = useAdminContext()
     const [isAuthe, setIsAuth] = useState(true)
+    const [deleteDialog, setDeleteDialog] = useState(false);
+    const [selectedBlog, setSelectedBlog] = useState(null);
+    const [isDeleting, setIsDeleting] = useState(false);
     const router = useRouter()
     const pathname = usePathname()
     const [isChecked, setIsChecked] = useState(false)
-    const handleDelete = async (id) => {
-        let found = blogs.filter(b => b.id !== id)
-        let result = await Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: 'white',
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
-            allowOutsideClick: false
-        })
-        if (result.isConfirmed) {
-            setBlogs(found)
-            let res = await fetch(`/api/blog?id=${id}`, { method: 'delete' })
-            let result = await res.json()
-            console.log(result)
-            Swal.fire({
-                title: "Deleted!",
-                text: "The blog has been deleted.",
-                icon: "success",
-                confirmButtonColor: 'white',
+
+    const handleDelete = (blog) => {
+        setSelectedBlog(blog);
+        setDeleteDialog(true);
+    };
+
+    const confirmDelete = async () => {
+        if (!selectedBlog) return;
+
+        setIsDeleting(true);
+
+        try {
+            const res = await fetch(`/api/blog?id=${selectedBlog.id}`, {
+                method: "DELETE",
             });
+
+            const result = await res.json();
+
+            if (!res.ok) {
+                throw new Error(result.message || "Failed to delete blog");
+            }
+
+            setBlogs((prev) =>
+                prev.filter((blog) => blog.id !== selectedBlog.id)
+            );
+
+            setDeleteDialog(false);
+            setSelectedBlog(null);
+
+            toast.success("Blog deleted successfully!");
+        } catch (error) {
+            console.error(error);
+            toast.error(error.message || "Something went wrong!");
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
+    const handlePublishToggle = async (id, checked) => {
+        try {
+            const res = await fetch("/api/blog", {
+                method: 'PUT',
+                "Content-Type": "application/json",
+                body: JSON.stringify({ id: id, isPublish: checked, reason: "publish_status" })
+            })
+            if (!res.ok) {
+                toast.error("Internal Server Error!")
+                return;
+            }
+            toast.success(`Blog ${checked ? "Published" : "UnPublished"} Successfully!`)
+            setBlogs(blog => blog.map(b => b.id === id ? { ...b, publish: checked } : { ...b }))
+        }
+        catch (err) {
+            console.log(err)
+            toast.error(err.message || "Something Went Wrong!")
         }
     }
-    const handleInputState = (event) => {
-        setIsChecked(event.target.checked)
-        // if (isChecked) alert('input checked')
-        // else alert('input not checked')
-    }
+
     useEffect(() => {
         fetch('/api/blog').then(res => res.json()).then(result => {
             setBlogs(result)
@@ -144,16 +186,16 @@ export default function ManageBlogs() {
                 </div>
 
                 {/* Table */}
-                <div className="rounded-lg border bg-background overflow-hidden">
+                <div className="rounded-lg bg-background overflow-hidden">
                     <div className="overflow-x-auto">
                         <Table>
                             <TableHeader>
                                 <TableRow className="bg-muted/50 hover:bg-muted/50">
-                                    <TableHead className="w-[60px]">Ind.</TableHead>
-                                    <TableHead className="min-w-[250px]">Title</TableHead>
-                                    <TableHead className="min-w-[180px]">View</TableHead>
+                                    <TableHead className="w-15">Ind.</TableHead>
+                                    <TableHead className="min-w-45">Title</TableHead>
+                                    <TableHead className="min-w-45">View</TableHead>
                                     <TableHead>Category</TableHead>
-                                    <TableHead className="min-w-[130px]">Published On</TableHead>
+                                    <TableHead className="min-w-32.5">Published On</TableHead>
                                     <TableHead>Author</TableHead>
                                     <TableHead className="text-center">Publish</TableHead>
                                     <TableHead className="text-center">Action</TableHead>
@@ -175,9 +217,9 @@ export default function ManageBlogs() {
                                                     <img
                                                         src={`/api/uploadImg?path=${encodeURIComponent(blog.bTitleImg)}`}
                                                         alt={blog.bTitle}
-                                                        className="h-11 w-11 rounded-md object-cover border"
+                                                        className="h-11 w-11 rounded-md object-cover"
                                                     />
-                                                    <span className="font-medium text-foreground line-clamp-2">
+                                                    <span className="font-medium text-foreground truncate max-w-50">
                                                         {blog.bTitle}
                                                     </span>
                                                 </div>
@@ -186,10 +228,10 @@ export default function ManageBlogs() {
                                             {/* View */}
                                             <TableCell>
                                                 <Link
-                                                    href={"Click Here!"
-                                                        // blog.bCategory === 'Blog'
-                                                        //     ? `/blogs/${blog.bSlug}`
-                                                        //     : `/blogs/health-guides/${blog.bSlug}`
+                                                    href={
+                                                        blog.bCategory === 'Blog'
+                                                            ? `/blogs/${blog.bSlug}`
+                                                            : `/blogs/health-guides/${blog.bSlug}`
                                                     }
                                                     target="_blank"
                                                     className="text-sm text-blue-600 hover:underline underline-offset-4"
@@ -220,11 +262,11 @@ export default function ManageBlogs() {
                                             <TableCell>
                                                 <div className="flex justify-center">
                                                     <Switch
-                                                        // checked={blog.bPublished}
-                                                        // onCheckedChange={(checked) =>
-                                                        //     handlePublishToggle(blog.id, checked)
-                                                        // }
-                                                        // aria-label={`Toggle publishing for ${blog.bTitle}`}
+                                                    checked={blog.publish}
+                                                    onCheckedChange={(checked) =>
+                                                        handlePublishToggle(blog.id, checked)
+                                                    }
+                                                    aria-label={`Toggle publishing for ${blog.bTitle}`}
                                                     />
                                                 </div>
                                             </TableCell>
@@ -242,7 +284,7 @@ export default function ManageBlogs() {
 
                                                     <button
                                                         type="button"
-                                                        onClick={() => handleDelete(blog.id)}
+                                                        onClick={() => handleDelete(blog)}
                                                         title="Delete Blog"
                                                         className="text-muted-foreground hover:text-destructive transition-colors"
                                                     >
@@ -269,6 +311,46 @@ export default function ManageBlogs() {
                 </div>
 
             </div>
+            <AlertDialog
+                open={deleteDialog}
+                onOpenChange={(open) => {
+                    if (!isDeleting) {
+                        setDeleteDialog(open);
+
+                        if (!open) {
+                            setSelectedBlog(null);
+                        }
+                    }
+                }}
+            >
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>
+                            Are you sure you want to delete this blog?
+                        </AlertDialogTitle>
+
+                        <AlertDialogDescription>
+                            This will permanently delete{" "}
+                            <strong>{selectedBlog?.bTitle}</strong>.
+                            This action cannot be undone.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+
+                    <AlertDialogFooter>
+                        <AlertDialogCancel disabled={isDeleting}>
+                            Cancel
+                        </AlertDialogCancel>
+
+                        <Button
+                            variant="destructive"
+                            onClick={confirmDelete}
+                            disabled={isDeleting}
+                        >
+                            {isDeleting ? "Deleting..." : "Delete Blog"}
+                        </Button>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </div>
     )
 }
