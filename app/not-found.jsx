@@ -3,11 +3,6 @@
 import Link from "next/link";
 import { useDataContext } from "@/context";
 
-export const metadata = {
-  title: "Page Not Found | PurEssence",
-  description: "The page you are looking for does not exist. Return to the PurEssence home page.",
-};
-
 export default function NotFound() {
   const { loggedUser } = useDataContext();
 
