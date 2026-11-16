@@ -8,7 +8,7 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "eslint .",
-    "db:sync": "tsx --env-file=.env.local app/api/syncModels.js"
+    "db:sync": "node --env-file=.env.local app/api/syncModels.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
