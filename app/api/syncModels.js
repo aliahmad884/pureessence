@@ -1,15 +1,16 @@
 import sequelize from "./dbConnection.js";
-import Product, { Blogs, Category } from "./schemas.js";
+import "./schemas.js"; // registers all models (Product, Order, Invoice, ...)
 
-async function syncModal() {
-    console.log("Function Called!")
+async function syncModels() {
+    console.log("Function called!");
     try {
-        await sequelize.sync({ alter:true }); // or { alter: true }
-        console.log('Models synchronized successfully.');
+        await sequelize.sync({ alter: true });
+        console.log("Tables synced successfully!");
+        process.exit(0);
     } catch (error) {
-        console.log('Error From Catch')
-        console.error('Error syncing models:', error);
+        console.error("Error syncing tables:", error);
+        process.exit(1);
     }
 }
 
-syncModal()
+syncModels();
