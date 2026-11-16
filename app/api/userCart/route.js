@@ -1,15 +1,14 @@
 import { Cart } from '../schemas.js';
-const { res } = require('../syntaxShorter.js')
+const { res, getUserToken } = require('../syntaxShorter.js')
 const jwt = require('jsonwebtoken')
 
 export async function GET(req) {
-    const accessToken = req.cookies.get('token')?.value;
-    if (!accessToken) return res({ res: "Unauthorized! no token provided" }, 401)
+    const userInfo=await getUserToken(req);
+    if (!userInfo) return res({ res: "Unauthorized! no token provided" }, 401)
     try {
-        const decode = jwt.verify(accessToken, 'secretKey')
         const cart = await Cart.findAll({
             where: {
-                userId: decode.email
+                userId: userInfo.email
             }
         })
         if (cart) {
@@ -27,14 +26,13 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
-    const accessToken = req.cookies.get('token')?.value;
-    if (!accessToken) return res({ res: "Unauthorized! no token provided" }, 401)
+    const userInfo=await getUserToken(req)
+    if (!userInfo) return res({ res: "Unauthorized! no token provided" }, 401)
     const body = await req.json()
     try {
-        const decode = jwt.verify(accessToken, 'secretKey')
         const addNew = await Cart.create({
             id: body.id,
-            userId: decode.email,
+            userId: userInfo.email,
             imgUrl: body.imgUrl,
             title: body.title,
             price: body.price,
@@ -52,24 +50,22 @@ export async function POST(req) {
 }
 
 export async function DELETE(req) {
-    const accessToken = req.cookies.get('token')?.value;
-    if (!accessToken) return res({ res: "Unauthorized! no token provided" }, 401)
+    const userInfo=await getUserToken(req)
+    if (!userInfo) return res({ res: "Unauthorized! no token provided" }, 401)
     const { searchParams } = new URL(req.url)
     const action = searchParams.get('action')
     const body = await req.json();
     try {
-        const decode = jwt.verify(accessToken, 'secretKey')
-
         if (action === 'delAll') {
             await Cart.destroy({ where: { userId: body.email } })
-            let update = await Cart.findAll({ where: { userId: decode.email } })
+            let update = await Cart.findAll({ where: { userId: userInfo.email } })
             let updateData = update.map(data => data.dataValues)
             return res({ res: 'Request Recieved', data: updateData }, 200)
         }
         const found = await Cart.destroy({
             where: {
                 id: body.id,
-                userId: decode.email
+                userId: userInfo.email
             }
         })
 

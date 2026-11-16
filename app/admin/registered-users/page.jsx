@@ -81,7 +81,6 @@ export default function RegisteredUsers() {
             }
 
             const result = await res.json();
-
             setUserData(result);
 
         } catch (err) {
@@ -302,7 +301,7 @@ export default function RegisteredUsers() {
 
                                     userData.map((data, i) => (
 
-                                        <TableRow key={data.Id}>
+                                        <TableRow key={data.id}>
 
                                             <TableCell className="text-center text-muted-foreground">
                                                 {i + 1}
@@ -311,26 +310,26 @@ export default function RegisteredUsers() {
 
                                             <TableCell className="font-medium whitespace-nowrap">
 
-                                                {data.FirstName} {data.LastName}
+                                                {data.first_name} {data.last_name}
 
                                             </TableCell>
 
 
                                             <TableCell>
-                                                {data.Email}
+                                                {data.email}
                                             </TableCell>
 
 
                                             <TableCell className="text-sm text-muted-foreground whitespace-nowrap">
 
-                                                {formatDate(data.RegDate)}
+                                                {formatDate(data.reg_date)}
 
                                             </TableCell>
 
 
                                             <TableCell className="text-sm text-muted-foreground whitespace-nowrap">
 
-                                                {formatDate(data.LastLogin)}
+                                                {formatDate(data.last_login)}
 
                                             </TableCell>
 

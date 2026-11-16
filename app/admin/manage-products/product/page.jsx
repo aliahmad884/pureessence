@@ -211,7 +211,7 @@ export default function NewProduct() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                let res = await fetch(`/api/product?pId=${pId}`);
+                let res = await fetch(`/api/product?id=${pId}`);
                 let result = await res.json()
                 setNewP({...result})
                 setSelectedImg(result.pImages)

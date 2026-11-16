@@ -4,38 +4,42 @@ import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const DataContext = createContext();
-export default function ContextProvider({ children }) {
+export default function ContextProvider({ user, children }) {
     const router = useRouter()
     const [innerWidth, setInnerWidth] = useState(2200);
     const [cartData, setCartData] = useState([]);
-    const [isLogged, setIsLogged] = useState(false)
-    const [loggedUser, setLoggedUser] = useState(null)
+    const [loggedUser, setLoggedUser] = useState(user)
     const [isResDelay, setResDelay] = useState(false)
-    const [isLogout, setIsLogout] = useState(false)
-    const [DOMLoaded, SetDOMLoaded] = useState(false)
-    useEffect(() => {
-        let user = localStorage.getItem('user')
-        if (user) {
-            setLoggedUser(JSON.parse(user))
-            fetch('/api/userCart').then(res => {
-                if (res.status === 401) {
-                    localStorage.removeItem('user')
+
+
+    const loadCart = async () => {
+        try {
+            if (loggedUser) {
+                const res = await fetch('/api/userCart')
+                const result = await res.json()
+                console.log(result)
+                if (!res.ok) {
                     setCartData([])
                     return null;
                 }
-                return res.json()
-            }).then(result => {
-                if (result) setCartData(result.cartData);
-                setIsLogged(false)
-            }).catch(err => console.log(err))
-        } else {
-            localStorage.removeItem('user')
-            const storedCart = localStorage.getItem('cart')
-            if (storedCart) {
-                setCartData(JSON.parse(storedCart))
+                setCartData(result.cartData);
             }
+            else {
+                const storedCart = localStorage.getItem('cart')
+                if (storedCart) {
+                    setCartData(JSON.parse(storedCart))
+                }
+            }
+
+        } catch (err) {
+            console.log(err)
         }
-    }, [isLogged, isLogout])
+    }
+
+    useEffect(() => {
+        loadCart()
+    }, [loggedUser])
+
     useEffect(() => {
         try {
             if (cartData.length > 0) {
@@ -81,12 +85,7 @@ export default function ContextProvider({ children }) {
                 removeItem,
                 loggedUser,
                 setLoggedUser,
-                setIsLogged,
                 isResDelay,
-                isLogged,
-                setIsLogout,
-                DOMLoaded,
-                SetDOMLoaded
             }
         }>
             {children}

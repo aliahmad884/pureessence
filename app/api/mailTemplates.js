@@ -1,69 +1,70 @@
 export const cancelOrd = (body) => {
-  const shipDetails = process.env.NODE_ENV === 'development' ? body.shippingDetails : JSON.parse(body.shippingDetails)
-  const html = `
-<table style="width: 100%; background-color: #f9f9f9; padding: 20px;">
-<tr>
-<td>
-<table style="width: 100%; max-width: 800px; background-color: #ffffff; border: 1px solid #ddd; border-radius: 8px; margin: 0 auto; padding: 20px;">
-<tr>
-<td>
-  <h2 style="margin: 0 0 10px; color: #555;">Cancel Order Request</h2>
-  <p style="margin: 0 0 15px;">This is to notify you that a user has requested to cancel their order. Below are the details of the request:</p>
+  // const shipDetails = process.env.NODE_ENV === 'development' ? body.shippingDetails : JSON.parse(body.shippingDetails)
+  const html =""
+//    `
+// <table style="width: 100%; background-color: #f9f9f9; padding: 20px;">
+// <tr>
+// <td>
+// <table style="width: 100%; max-width: 800px; background-color: #ffffff; border: 1px solid #ddd; border-radius: 8px; margin: 0 auto; padding: 20px;">
+// <tr>
+// <td>
+//   <h2 style="margin: 0 0 10px; color: #555;">Cancel Order Request</h2>
+//   <p style="margin: 0 0 15px;">This is to notify you that a user has requested to cancel their order. Below are the details of the request:</p>
 
-  <h3 style="margin: 20px 0 10px; color: #555;">Order Details</h3>
-  <table style="width: 100%; border-collapse: collapse;">
-    <tr>
-      <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Order ID:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">${body.id}</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Order Date:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">${new Date(body.orderDate).toDateString()} at ${new Date(body.orderDate).toLocaleTimeString()}</td >
-    </tr >
-    <tr>
-      <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Total Amount:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">£${parseFloat(body.totalAmount) - parseFloat(body.discount) + parseFloat(body.shipFee)}</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Payment Method:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">${body.paymentMethod ? body.paymentMethod : 'Not Defined'}</td>
-    </tr>
-  </table >
+//   <h3 style="margin: 20px 0 10px; color: #555;">Order Details</h3>
+//   <table style="width: 100%; border-collapse: collapse;">
+//     <tr>
+//       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Order ID:</td>
+//       <td style="padding: 8px; border: 1px solid #ddd;">${body.id}</td>
+//     </tr>
+//     <tr>
+//       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Order Date:</td>
+//       <td style="padding: 8px; border: 1px solid #ddd;">${new Date(body.orderDate).toDateString()} at ${new Date(body.orderDate).toLocaleTimeString()}</td >
+//     </tr >
+//     <tr>
+//       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Total Amount:</td>
+//       <td style="padding: 8px; border: 1px solid #ddd;">£${parseFloat(body.totalAmount) - parseFloat(body.discount) + parseFloat(body.shipFee)}</td>
+//     </tr>
+//     <tr>
+//       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Payment Method:</td>
+//       <td style="padding: 8px; border: 1px solid #ddd;">${body.paymentMethod ? body.paymentMethod : 'Not Defined'}</td>
+//     </tr>
+//   </table >
 
-  <h3 style="margin: 20px 0 10px; color: #555;">Customer Details</h3>
-  <table style="width: 100%; border-collapse: collapse;">
-    <tr>
-      <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Customer Name:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">${shipDetails.firstName} ${shipDetails.lastName}</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Email Address:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">${shipDetails.email}</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Contact Number:</td>
-      <td style="padding: 8px; border: 1px solid #ddd;">${shipDetails.phone}</td>
-    </tr>
-  </table>
+//   <h3 style="margin: 20px 0 10px; color: #555;">Customer Details</h3>
+//   <table style="width: 100%; border-collapse: collapse;">
+//     <tr>
+//       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Customer Name:</td>
+//       <td style="padding: 8px; border: 1px solid #ddd;">${shipDetails.firstName} ${shipDetails.lastName}</td>
+//     </tr>
+//     <tr>
+//       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Email Address:</td>
+//       <td style="padding: 8px; border: 1px solid #ddd;">${shipDetails.email}</td>
+//     </tr>
+//     <tr>
+//       <td style="padding: 8px; border: 1px solid #ddd; background-color: #f7f7f7; font-weight: bold;">Contact Number:</td>
+//       <td style="padding: 8px; border: 1px solid #ddd;">${shipDetails.phone}</td>
+//     </tr>
+//   </table>
 
-  <h3 style="margin: 20px 0 10px; color: #555;">Reason for Cancellation</h3>
-  <p style="padding: 10px; background-color: #f7f7f7; border: 1px solid #ddd; border-radius: 4px;">${body.reason}</p>
+//   <h3 style="margin: 20px 0 10px; color: #555;">Reason for Cancellation</h3>
+//   <p style="padding: 10px; background-color: #f7f7f7; border: 1px solid #ddd; border-radius: 4px;">${body.reason}</p>
 
-  <p style="margin: 20px 0 10px;">Please review the cancellation request and take the necessary steps (e.g., refund initiation, restocking, etc.).</p>
+//   <p style="margin: 20px 0 10px;">Please review the cancellation request and take the necessary steps (e.g., refund initiation, restocking, etc.).</p>
 
-  <h3 style="margin: 20px 0 10px; color: #555;">Related Links</h3>
-  <p style="margin: 10px 0;">
-    <strong>Order Page:</strong> <a href="${process.env.BASE_URL}/admin/orders/${body.id}" style="color: #007bff; text-decoration: none;">Click here to view the order details</a>
-  </p>
-  <p style="margin: 10px 0;">
-    <strong>Invoice:</strong> <a href="${process.env.BASE_URL}${body.invLink}" style="color: #007bff; text-decoration: none;">Click here to view the invoice</a>
-  </p>
-</td >
-</tr >
-</table >
-</td >
-</tr >
-</table >`;
+//   <h3 style="margin: 20px 0 10px; color: #555;">Related Links</h3>
+//   <p style="margin: 10px 0;">
+//     <strong>Order Page:</strong> <a href="${process.env.BASE_URL}/admin/orders/${body.id}" style="color: #007bff; text-decoration: none;">Click here to view the order details</a>
+//   </p>
+//   <p style="margin: 10px 0;">
+//     <strong>Invoice:</strong> <a href="${process.env.BASE_URL}${body.invLink}" style="color: #007bff; text-decoration: none;">Click here to view the invoice</a>
+//   </p>
+// </td >
+// </tr >
+// </table >
+// </td >
+// </tr >
+// </table >`;
   return html
 }
 

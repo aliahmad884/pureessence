@@ -10,7 +10,7 @@ import { CircleAlert, Eye, EyeOff, Loader2, Lock, Mail, User } from "lucide-reac
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { signIn } from "next-auth/react"
+import { toast } from "sonner"
 
 const inputClass =
     "h-12 rounded-xl border-white/10 bg-white/[0.04] pl-11 text-white placeholder:text-white/40 " +
@@ -19,9 +19,8 @@ const inputClass =
 
 export default function Signup() {
     const searchParams = useSearchParams()
-    const isGoogleAuth = searchParams.get('authMethod')
     const router = useRouter()
-    const { setCartData, setLoggedUser, setIsLogged, DOMLoaded, SetDOMLoaded } = useDataContext()
+    const { setCartData, setLoggedUser, DOMLoaded, } = useDataContext()
     const [email, setEmail] = useState('')
     const [pass, setPas] = useState('')
     const [firstName, setFirstName] = useState('')
@@ -30,7 +29,7 @@ export default function Signup() {
     const [errMsg, setErrMsg] = useState(null)
     const [passState, setPassState] = useState(false)
 
-    const handleSignup = (event) => {
+    const handleSignup = async (event) => {
         event.preventDefault();
         if (email === '' && pass === '' && firstName === '' && lastName === '') {
             setErrMsg('Please fill out the form first.')
@@ -51,72 +50,39 @@ export default function Signup() {
             return null;
         }
         setIsLoading(true)
-        fetch('/api/user?action=signup&authMethod=custome', {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password: pass
+        try {
+            const res = await fetch('/api/user?action=signup&authMethod=custome', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    password: pass
+                })
             })
-        }).then(res => {
-            return res.json()
-        }).then(data => {
-            if (data.Name) {
-                localStorage.setItem('user', JSON.stringify(data))
-                setIsLogged(true)
-                setErrMsg('')
-                setLoggedUser(data)
-                setCartData([])
-                setIsLoading(false)
-                SetDOMLoaded(true)
-                router.push('/')
-            } else {
-                setErrMsg(data.res)
-                setIsLoading(false)
+            const result = await res.json()
+            if (!res.ok) {
+                console.log(result)
+                toast.error(result.res)
+                setErrMsg(result.res)
+                return;
             }
-        }).catch(err => {
-            console.log(err)
-            setErrMsg('Something went wrong. Please try again.')
+            setLoggedUser(result)
+            setErrMsg(null)
+            const hasItems = JSON.parse(localStorage.getItem("cart"));
+            setCartData(hasItems || [])
+            router.push(path ? path : '/')
+        } catch (err) {
+            toast.error(err.message || "Internal Server Error!")
+            console.error(err)
+        }
+        finally {
             setIsLoading(false)
-        })
-    }
-
-    const handleGoogleSignup = async () => {
-        await signIn("google")
-    }
-
-    const googleSignup = async () => {
-        const fName = searchParams.get('FirstName');
-        const lName = searchParams.get('LastName');
-        const email = searchParams.get('Email')
-        const response = await fetch('/api/user?action=signup&authMethod=google', {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                firstName: fName,
-                lastName: lName,
-                email: email
-            })
-        })
-        if (response.ok) {
-            localStorage.setItem('user', JSON.stringify({ Name: `${fName} ${lName}`, Email: email }))
-            setIsLogged(true);
-            setLoggedUser({ Name: `${fName} ${lName}`, Email: email });
-            setCartData([]);
-            router.push('/')
         }
     }
 
-    useEffect(() => {
-        const user = localStorage.getItem('user')
-        document.title = 'Signup | PurEssence'
-        if (isGoogleAuth) {
-            googleSignup()
-        }
-        else if (user) router.push('/')
-    }, [])
+    const handleGoogleSignup = () => window.location.href = "/api/auth/google";
 
     useEffect(() => {
         setErrMsg('')

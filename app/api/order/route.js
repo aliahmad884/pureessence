@@ -1,9 +1,17 @@
-const { res, randomeStrGen } = require('../syntaxShorter.js')
+import { res, randomeStrGen, getUserToken, getAdminToken } from '../syntaxShorter.js';
 import nodemailer from "nodemailer";
-import Stripe from "stripe";
-import { Order, Invoice } from "../schemas.js";
+import { Order, Invoice, Product } from "../schemas.js";
 import { cancelOrd, ordcancelConfirm, ordConfirm, ordPlacedNotify } from "../mailTemplates.js";
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+import jwt from "jsonwebtoken"
+import { NextResponse } from "next/server"
+import { randomBytes } from "crypto";
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export function generateOrderId() {
+    return `ORD-${randomBytes(4).toString("hex").toUpperCase()}`;
+}
 
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -15,53 +23,31 @@ const transporter = nodemailer.createTransport({
     },
 })
 
+
 export async function GET(req) {
-    // const accessToken = req.cookies.get('token')?.value;
-    // if (!accessToken) return res({ res: "Unauthorized! no token provided" }, 401)
+    const userInfo = await getUserToken(req);
+    const adminInfo = await getAdminToken(req);
     const { searchParams } = new URL(req.url)
-    const orderNumber = searchParams.get('orderNumber')
-    const invId = searchParams.get('invId')
-    const invUrl = searchParams.get('ul')
-    const orderStatus = searchParams.get('orderStatus')
-    const userId = searchParams.get('user')
+    const scope = searchParams.get("scope")
+    const order_id = searchParams.get('order_id')
     try {
-        if (invId && invUrl) {
-            const found = await Invoice.findOne({ where: { id: invId, uniquUrl: invUrl } })
-            if (found) {
-                let data = found.dataValues
-                return res({ data }, 200)
-            }
-            return res({ res: 'Invoice not found!' }, 404)
+        if (userInfo && scope === "customer") {
+            const orders = await Order.findAll({ where: { userId: userInfo?.id } })
+            const orderData = orders.map(d => d.dataValues);
+            return NextResponse.json({ data: orderData }, { status: 200 })
         }
-        else if (orderNumber) {
-            if (userId) {
-                const foundwithId = await Order.findOne({ where: { id: orderNumber, userId: userId } })
-                if (foundwithId) {
-                    let data = foundwithId.dataValues
-                    return res({ data }, 200)
-                }
-                return res({ res: 'Order details not found!' }, 404)
-            }
-            else {
-                const found = await Order.findOne({ where: { id: orderNumber } })
-                if (found) {
-                    let data = found.dataValues
-                    return res({ data }, 200)
-                }
-                return res({ res: 'Order details not found!' }, 404)
-            }
+        else if (order_id) {
+            const order = await Order.findOne({ where: { order_id: order_id } })
+            if (!order) return NextResponse.json({ res: "No Order found!" }, { status: 404 });
+            return NextResponse.json({ data: order.dataValues }, { status: 200 });
         }
-        else if (orderStatus) {
-            const orders = await Order.findAll({ where: { userId: userId } });
-            const data = orders.map(data => data.dataValues)
-            return res({ data }, 200)
-        }
-        else {
-            console.log('api called')
+        else if (adminInfo) {
+            console.log("Admin Token Found")
             const allOrders = await Order.findAll()
             const data = allOrders.map(data => data.dataValues)
             return res(data, 200)
         }
+        return NextResponse.json({ res: "Unauthorized..." }, { status: 401 });
     }
     catch (err) {
         console.log(err)
@@ -70,90 +56,78 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
-    const { searchParams } = new URL(req.url)
-    const body = await req.json()
-    const reqtyp = searchParams.get('reqTyp')
-    const paramId = searchParams.get('paymentIntentId')
+    const userInfo = await getUserToken(req);
+    const { searchParams } = new URL(req.url);
+    const body = await req.json();
+
     try {
-        if (reqtyp === 'invoice') {
-            const { cartData, subTotal, discount, shipFee, userId, ...billInfo } = body;
-            let randomStr = randomeStrGen(11)
-            // console.log(randomStr)
-            const transaction = await Invoice.sequelize.transaction()
-            const newInvoice = await Invoice.create({
-                orderId: null,
-                uniquUrl: randomStr,
-                billing: billInfo,
-                items: cartData,
-                date: new Date(),
-                total: (subTotal - discount) + shipFee,
-                shipFee: shipFee,
-                discount: discount
-            },
-                { transaction }
-            )
-            const invoice = newInvoice.dataValues;
-            const newOrder = await Order.create({
-                userId: userId,
-                product: cartData,
-                totalAmount: (subTotal - discount) + shipFee,
-                orderDate: new Date(),
-                paymentMethod: null,
-                shippingDetails: billInfo,
-                orderType: null,
-                orderStatus: 'Processing',
-                invLink: `/invoice?invId=${invoice.id}&ul=${invoice.uniquUrl}`,
-                invId: invoice.id,
-                shipFee: shipFee,
-                discount: discount
-            },
-                { transaction }
-            )
-            await Invoice.update({ orderId: newOrder.dataValues.id }, { where: { id: invoice.id }, transaction })
-            await transaction.commit()
+        const { cartData, ...billInfo } = body;
 
-            // ------------ Email Section ---------------
+        const ids = cartData.map((i) => i.id);
+        const products = await Product.findAll({
+            where: { id: ids },
+            attributes: ['id', "pName", "qty", "slug", "price", "sDesc", "pImages"]
+        });
+        const byId = new Map(products.map((p) => [p.id, p]));
 
-            const clientOptions = {
-                from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
-                to: billInfo.email,
-                subject: 'Order Confirmation',
-                html: ordConfirm(billInfo, invoice)
-            }
-            let clientInfo = await transporter.sendMail(clientOptions)
-            console.log(clientInfo.messageId)
+        const lines = cartData.map((i) => {
+            const p = byId.get(i.id);
+            if (!p) throw new Error('Invalid product');
+            return {
+                product: p,
+                qty: Math.max(1, parseInt(i.qty, 10)),
+                unitPence: Math.round(Number(p.price) * 100),
+            };
+        });
 
-            const adminOptions = {
-                from: 'Admin@PurEssence <data@puressenceltd.co.uk>',
-                to: process.env.ADMIN_MAIL,
-                subject: 'New Order Placed',
-                html: ordPlacedNotify(billInfo, invoice)
-            }
-            let adminInfo = await transporter.sendMail(adminOptions)
-            console.log(adminInfo.messageId)
+        const totalPence = lines.reduce((sum, l) => sum + l.unitPence * l.qty, 0);
+        const toPounds = (pence) => (pence / 100).toFixed(2);
 
-            // ------------ Response Return ---------------
 
-            return res({ res: "Order Completed successfully", invId: invoice.id, invUrl: invoice.uniquUrl }, 200)
-        }
-        let paymentId = (await stripe.paymentIntents.retrieve(paramId ? paramId : 'pi_3Q403YRqfkkgc0Q105cLWt8C')).payment_method
-        let payment_method = await stripe.paymentMethods.retrieve(paymentId)
-        const { total, ...data } = body.info
-        await Order.create({
-            userId: data.email,
-            product: body.products,
-            totalAmount: total / 100,
-            orderDate: new Date().toLocaleString(),
-            paymentMethod: payment_method.type,
-            shippingDetails: data,
-            orderType: 'Successfull',
-            orderStatus: 'Proccessing'
-        })
-        return res({ res: 'Order Created Successfully!' }, 200)
-    }
-    catch (err) {
-        console.log(err)
-        return res({ res: 'Internal Server Error!', serverError: err }, 500)
+
+        const order_id = generateOrderId();
+        const order = await Order.create({
+            userId: userInfo?.id ?? null,
+            order_id,
+            product: products,
+            totalAmount: toPounds(totalPence),
+            shipFee: 0,
+            discount: 0,
+            orderDate: new Date(),
+            paymentMethod: 'stripe',
+            orderType: 'online',
+            orderStatus: 'Pending',
+            payment: 'Pending',
+            shippingDetails: billInfo,
+            invId: null,
+            invLink: null,
+            stripeSessionId: null,
+            stripePaymentIntentId: null,
+            paidAt: null,
+        });
+
+        const session = await stripe.checkout.sessions.create({
+            mode: 'payment',
+            line_items: lines.map((l) => ({
+                price_data: {
+                    currency: 'gbp',
+                    unit_amount: l.unitPence,
+                    product_data: { name: l.product.pName },
+                },
+                quantity: l.qty,
+            })),
+            client_reference_id: order_id,
+            customer_email: billInfo.email,
+            metadata: { order_id },
+            success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/order/${order_id}/confirmation?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout`,
+        }, { idempotencyKey: `order-${order_id}` });
+
+        await order.update({ stripeSessionId: session.id });
+        return res({ url: session.url }, 200);
+    } catch (err) {
+        console.error(err);
+        return res({ error: 'Could not create order' }, 500);
     }
 }
 

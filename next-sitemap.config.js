@@ -53,13 +53,13 @@ module.exports = {
   changefreq: 'daily',
   priority: 0.7,
   sitemapSize: 5000,
-  exclude: mainExclude,
+  exclude: testExclude,
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: mainExclude
+        disallow: testExclude
       },
     ]
   }

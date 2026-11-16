@@ -1,5 +1,5 @@
 import { Blogs, Versions } from "../schemas.js";
-import { res, updateVersion } from "../syntaxShorter.js";
+import { getAdminToken, res, updateVersion } from "../syntaxShorter.js";
 
 export async function POST(req) {
     let body = await req.json()
@@ -18,39 +18,93 @@ export async function POST(req) {
 }
 
 
+
 export async function GET(req) {
-    const { searchParams } = new URL(req.url)
-    let slug = searchParams.get('slug')
-    let id = searchParams.get('bId')
-    let getVersion = searchParams.get('getVersion')
+    const { searchParams } = new URL(req.url);
+    const adminInfo = await getAdminToken(req);
+    const id = searchParams.get('id');
+    const slug = searchParams.get('slug');
+    const getVersion = searchParams.get('getVersion');
+    const scope = searchParams.get('scope');
+
+    const conditions = [];
+
+    if (id) conditions.push({ id });
+    if (slug) conditions.push({ bSlug: slug });
+
     try {
-        if (id) {
-            const findById = await Blogs.findByPk(id)
-            if (findById === null) return res({ res: `Data Not found against id: ${id}` }, 404)
-            return res(findById.dataValues, 200)
+        if (getVersion) {
+            const findVersion = await Versions.findOne({
+                where: { key: getVersion }
+            });
+
+            if (!findVersion) {
+                return res(
+                    { res: `Version Not found against ${getVersion}` },
+                    404
+                );
+            }
+
+            return res(findVersion.dataValues, 200);
         }
-        else if (getVersion) {
-            const findVersion = await Versions.findOne({ where: { key: getVersion } })
-            if (findVersion === null) return res({ res: `Version Not found against ${getVersion}` }, 404)
-            else return res(findVersion.dataValues, 200)
+
+        else if (scope === "customer") {
+            if (conditions.length) {
+                const findOne = await Blogs.findOne({
+                    where: {
+                        publish: true,
+                        [Op.or]: conditions
+                    }
+                });
+
+                if (!findOne) {
+                    return res({ res: 'Blog Not found!' }, 404);
+                }
+
+                return res(findOne.dataValues, 200);
+            }
+
+            const blogs = await Blogs.findAll({
+                where: { publish: true }
+            });
+
+            return res(
+                blogs.map(blog => blog.dataValues),
+                200
+            );
         }
-        else if (slug) {
-            const findBySlug = await Blogs.findOne({ where: { bSlug: slug, publish: true } })
-            if (findBySlug === null) return res({ res: `Blog Not found against Slug: ${slug}` }, 404)
-            else return res(findBySlug.dataValues, 200)
+
+        else if (adminInfo && !scope) {
+            if (conditions.length) {
+                const findOne = await Blogs.findOne({
+                    where: {
+                        [Op.or]: conditions
+                    }
+                });
+
+                if (!findOne) {
+                    return res({ res: 'Blog Not found!' }, 404);
+                }
+
+                return res(findOne.dataValues, 200);
+            }
+
+            const blogs = await Blogs.findAll();
+
+            return res(
+                blogs.map(blog => blog.dataValues),
+                200
+            );
         }
-        const blogs = await Blogs.findAll({ where: { publish: true } })
-        if (blogs) {
-            const data = blogs.map(blog => blog.dataValues)
-            return res(data, 200)
-        }
-        return res({ res: 'Blog Not Found!' }, 404)
-    }
-    catch (err) {
+
+        return res({ res: 'Unauthorized!' }, 401);
+
+    } catch (err) {
         console.log(err);
-        return res({ err: 'Internel Server Error!' }, 500)
+        return res({ err: 'Internal Server Error!' }, 500);
     }
 }
+
 
 
 export async function PUT(req) {

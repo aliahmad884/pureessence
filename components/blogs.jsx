@@ -10,21 +10,24 @@ export default function BlogsPage() {
     const CACHE_KEY = 'blog'
     const [blogs, setBlogs] = useState([])
     const [isLoading, setIsLoading] = useState(true);
+
+    const getLimited = (limit, data = []) => data.slice(data.length - limit, data.length).reverse();
     useEffect(() => {
         const fetchBlogs = async () => {
             const cachedData = await loadCache(CACHE_KEY)
             if (cachedData) {
-                let limit = cachedData.slice(cachedData.length - 3, cachedData.length).reverse()
+                let limit = getLimited(3, cachedData)
                 // console.log(limit)
                 setBlogs(limit || [])
                 setIsLoading(false)
                 return;
             }
             try {
-                let res = await fetch('/api/blog')
+                let res = await fetch('/api/blog?scope=customer')
                 let result = await res.json()
                 if (!res.ok) return null;
-                setBlogs(result)
+                let limit = getLimited(3, result)
+                setBlogs(limit)
                 await saveCache(result, CACHE_KEY)
             }
             catch (err) {

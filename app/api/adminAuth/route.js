@@ -27,7 +27,7 @@ export async function GET(req) {
                     httpOnly: true,
                     secure: process.env.NODE_ENV === "production",
                     maxAge: 0,
-                    path: '/admin',
+                    path: '/',
                     sameSite: "strict"
                 })
                 return response;
@@ -63,7 +63,7 @@ export async function POST(req) {
                             httpOnly: true,
                             secure: process.env.NODE_ENV === "production",
                             maxAge: 1 * 60 * 60,
-                            path: "/admin",
+                            path: "/",
                             sameSite: "strict"
                         })
                         return response;

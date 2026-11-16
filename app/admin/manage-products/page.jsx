@@ -98,14 +98,23 @@ export default function ManageProducts() {
         }
     }
 
+    const fetchProducts=async ()=>{
+        try{
+            const res=await fetch('/api/product');
+            const result=await res.json();
+            if(!res.ok){
+                console.log(error)
+                toast.error("Something went wrong!")
+            }
+            setProducts(result);
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
     useEffect(() => {
-        fetch('/api/product')
-            .then(res => {
-                if (!res.ok) throw new Error("Failed to fetch products");
-                return res.json();
-            })
-            .then(result => setProducts(result))
-            .catch(err => console.error(err));
+        fetchProducts()
     }, []);
 
     return (

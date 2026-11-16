@@ -1,8 +1,20 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
+/* @import "shadcn/tailwind.css"; */
 
 @custom-variant dark (&:is(.dark *));
+
+:root {}
+
+body {}
+
+/* Form controls ignore the page font by default, which is a common source of mismatch */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
 
 /* Lets Tailwind / shadcn utilities (bg-primary, border-input, ...) read the variables below */
 @theme inline {
@@ -34,6 +46,7 @@
    2. CLIENT SITE 
    ===================================================================== */
 :root {
+  --font-body: var(--font-inter), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --heading-color: gray;
   --text-color: white;
   --bg-primary-dark: black;
@@ -44,6 +57,9 @@
 
 /* DARK THEME BASE: this is what the whole client site inherits from */
 body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   /* background-color: var(--bg-primary-dark); */
   background-color: #171717;
   color: var(--text-color);
@@ -320,7 +336,7 @@ main {
 }
 
 .navMainCont .routerDropDown.drop {
-  height: 240px;
+  height: 280px;
 }
 
 .navMainCont .routerDropDown.drop.extend {
@@ -820,20 +836,53 @@ main {
 
 .productCard .img {
   width: 100%;
-  /* background-image: url('/products/Apple Vinegar.webp'); */
-  /* background-image: url(); */
   height: 200px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   transition: all 0.5s;
-  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
-  /* border-radius: 5px; */
 }
 
-/* .productCard img{
-  width: 100%;
-} */
+.productCont .slick-track {
+  display: flex;
+}
+
+.productCont .slick-track::before,
+.productCont .slick-track::after {
+  display: none;
+}
+
+.productCont .slick-list {
+  margin: 0 -8px;
+}
+
+.productCont .slick-slide {
+  float: none;
+  height: auto;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.productCont .slick-slide>div,
+.productCont .slick-slide>div>div {
+  height: 100%;
+}
+
+.productCont .productCard {
+  max-width: none;
+  height: 100%;
+}
+
+@media (max-width: 650px) {
+  .productCont .productCard {
+    max-width: 420px;
+    margin-inline: auto;
+  }
+}
+
+.productCont .slider {
+  min-width: 0;
+}
 
 .productCard h2 {
   font-size: 1.2rem;
@@ -3098,10 +3147,17 @@ main {
    3. TAILWIND v4 COMPATIBILITY (keeps v3-era defaults for your own CSS)
    ===================================================================== */
 @layer base {
-  *, ::after, ::before, ::backdrop, ::file-selector-button {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
     border-color: currentColor;
   }
-  button:not(:disabled), [role="button"]:not(:disabled) {
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
     cursor: pointer;
   }
 }

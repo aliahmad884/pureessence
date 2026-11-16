@@ -1,6 +1,6 @@
-import ProductData from "@/data.js";
+import { Op } from "sequelize";
 import { Product, Versions } from "../schemas.js";
-const { res, updateVersion } = require("../syntaxShorter.js");
+const { res, updateVersion, getAdminToken } = require("../syntaxShorter.js");
 
 
 export async function POST(req) {
@@ -25,36 +25,49 @@ export async function POST(req) {
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url)
-    let id = searchParams.get('pId')
-    let pSlug = searchParams.get('slug')
+    const adminInfo = await getAdminToken(req);
+    const id = searchParams.get('id')
+    const slug = searchParams.get('slug')
+    const scope = searchParams.get("scope")
+    const conditions = [];
+    if (id) conditions.push({ id });
+    if (slug) conditions.push({ slug });
+    console.log(id)
     try {
-        if (id) {
-            const findById = await Product.findByPk(id)
-            if (findById === null) return res({ res: `Data Not found against id: ${id}` }, 404);
-            let data = {
-                ...findById.dataValues,
-                // pImages: JSON.parse(findById.dataValues.pImages) 
+        if (scope === "customer") {
+            if (id || slug) {
+                const findOne = await Product.findOne({
+                    where: {
+                        publish: true,
+                        [Op.or]: conditions
+                    },
+                    attributes: ['id', "pName", "qty", "slug", "price", "sDesc", "descripion", "status", "pImages"]
+                })
+                if (!findOne) return res({ res: `Product Not found against..` }, 404);
+                return res(findOne.dataValues, 200)
             }
+            const findAll = await Product.findAll({
+                where: { publish: true },
+                attributes: ['id', "pName", "qty", "slug", "price", "sDesc", "descripion", "status", "pImages"]
+            });
+            const data = findAll.map(p => p.dataValues)
             return res(data, 200)
         }
-        else if (pSlug) {
-            const findBySlug = await Product.findOne({ where: { slug: pSlug } })
-            if (findBySlug === null) return res({ res: `Product Not found against Slug: ${pSlug}` }, 404);
-            let data = {
-                ...findBySlug.dataValues,
-                //  pImages: JSON.parse(findBySlug.dataValues.pImages) 
+        else if (adminInfo && !scope) {
+            if (id || slug) {
+                const findOne = await Product.findOne({
+                    where: {
+                        [Op.or]: conditions
+                    }
+                })
+                if (!findOne) return res({ res: `Product Not found against..` }, 404);
+                return res(findOne.dataValues, 200)
             }
+            const allProducts = await Product.findAll();
+            const data = allProducts.map(p => p.dataValues);
             return res(data, 200)
         }
-        const products = await Product.findAll({ where: { publish: true } })
-        if (products) {
-            const data = products.map(product => ({
-                ...product.dataValues,
-                //  pImages: JSON.parse(product.dataValues.pImages) 
-            }))
-            return res(data, 200)
-        }
-        return res({ res: 'Products Data Not Found!' }, 404)
+        return res({ res: 'Unauthorized!' }, 401)
     }
     catch (err) {
         console.log(err);

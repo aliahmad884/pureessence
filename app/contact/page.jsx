@@ -5,9 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-/* ------------------------------------------------------------------
-   Content
-------------------------------------------------------------------- */
 const company = {
   name: "PurEssence LTD",
   address: "Kings Court 33 King Street, Blackburn, UK, BB2 2DH",
@@ -81,9 +78,6 @@ const whyContact = [
   "For any other general questions or feedback",
 ];
 
-/* ------------------------------------------------------------------
-   Shared class strings (site theme: #171717 / gold #dfb434 / #414141)
-------------------------------------------------------------------- */
 const container = "mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12";
 const h2 = "text-3xl font-bold tracking-tight text-white sm:text-4xl";
 const card =
@@ -97,9 +91,6 @@ const fieldClass =
   "hover:border-neutral-500 focus:border-[#dfb434] focus:ring-4 focus:ring-[#dfb434]/15 " +
   "autofill:shadow-[inset_0_0_0_1000px_#121212] autofill:[-webkit-text-fill-color:white]";
 
-/* ------------------------------------------------------------------
-   Icons (inline SVG, no extra dependency)
-------------------------------------------------------------------- */
 const iconPaths = {
   phone: (
     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -196,9 +187,6 @@ function Spinner() {
   );
 }
 
-/* ------------------------------------------------------------------
-   Small building blocks
-------------------------------------------------------------------- */
 function Rule({ center = false }) {
   return (
     <span
@@ -295,9 +283,6 @@ function Field({ id, label, icon, optional = false, multiline = false, children 
   );
 }
 
-/* ------------------------------------------------------------------
-   Page
-------------------------------------------------------------------- */
 const emptyForm = { fullName: "", email: "", tel: "", msg: "" };
 
 export default function ContactPage() {

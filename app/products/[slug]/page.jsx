@@ -2,7 +2,6 @@
 
 import FallBackLoader from "@/components/loader"
 import { useDataContext } from "@/context"
-import ProductData from "@/data"
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
@@ -58,8 +57,8 @@ export default function Products(props) {
                 return;
             }
             try {
-                let res = await fetch(`/api/product?slug=${slug}`)
-                if (!res.ok) return null;
+                let res = await fetch(`/api/product?slug=${slug}&scope=customer`)
+                if (!res.ok) return router.push('/products');
                 let result = await res.json()
                 const clearHtml = sanitizeHtml(result.blogHtml)
                 setSanitizedHtml(clearHtml)

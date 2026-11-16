@@ -1,13 +1,12 @@
 import { cookies } from "next/headers";
-import { AdminUser } from "../api/schemas.js";
 import jwt from "jsonwebtoken"
 
-export async function getUserInfo() {
+export async function getUserInfo(authToken,schema,key) {
     const cookieStore = await cookies()
-    const token = cookieStore.get("adminAuth")?.value
+    const token = cookieStore.get(authToken)?.value
     if (token) {
-        const decryptToken =jwt.verify(token, process.env.JWT_SEC_KEY)
-        const user=await AdminUser.findOne({ where: { id: decryptToken?.id } })
+        const decryptToken =jwt.verify(token, key)
+        const user=await schema.findOne({ where: { id: decryptToken?.id } })
         return user?.dataValues;
     }
     return null;

@@ -76,7 +76,7 @@ export default function NewBlog() {
             setIsLoading(true);
 
             try {
-                const res = await fetch(`/api/blog?bId=${bId}`);
+                const res = await fetch(`/api/blog?id=${bId}`);
 
                 if (!res.ok) {
                     throw new Error("Failed to load blog details.");

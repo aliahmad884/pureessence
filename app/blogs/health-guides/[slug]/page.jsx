@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DOMPurify from "dompurify";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState, use } from "react";
 
 export default function BlogSlug(props) {
+    const router = useRouter()
     const params = use(props.params);
     const CACHE_TIME_STAMP = 86400000;
     const CACHE_KEY = 'blog'
@@ -40,8 +42,8 @@ export default function BlogSlug(props) {
                 return;
             }
             try {
-                let res = await fetch(`/api/blog?slug=${slug}`);
-                if (!res.ok) return null;
+                let res = await fetch(`/api/blog?slug=${slug}&scope=customer`);
+                if (!res.ok) return router.push("/blogs/health-guides");
                 let result = await res.json()
                 const clearHtml = sanitizeHtml(result.blogHtml)
                 setSanitizedHtml(clearHtml)

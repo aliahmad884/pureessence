@@ -27,10 +27,8 @@ export default function ReviewCard() {
 export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slug, status }) {
     const router = useRouter()
 
-    const { cartData, setCartData } = useDataContext()
+    const { cartData, setCartData, loggedUser } = useDataContext()
     const handleCart = () => {
-
-        let user = localStorage.getItem('user')
         let find = cartData.find(item => item.id === id)
         if (!find) {
             setCartData(pre => [...pre, data])
@@ -42,8 +40,7 @@ export function ProductCard({ id, imgUrl, title, price, qty, data, shortDes, slu
             })
             return null;
         }
-        if (user) {
-            const loggedUser = JSON.parse(user)
+        if (loggedUser) {
             fetch('/api/userCart', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },

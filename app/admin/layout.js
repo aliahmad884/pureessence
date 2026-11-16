@@ -1,10 +1,8 @@
+import { AdminUser } from '../api/schemas';
 import AdminNav from './adminComponents/adminNav';
 import AdminToolbar from './adminComponents/adminToolBar';
 import AdminContextProvider from './adminContext';
 import { getUserInfo } from './helper';
-// import './adminMediaQueries.css';
-// import './adminStyles.css';
-import { Toaster } from "@/components/ui/sonner";
 
 
 export const metadata = {
@@ -12,10 +10,9 @@ export const metadata = {
 }
 
 export default async function AdminLayout({ children }) {
-    const userInfo =await getUserInfo()
+    const userInfo = await getUserInfo("authAdmin", AdminUser, process.env.JWT_SEC_KEY)
     return (
         <div className='adminBody'>
-            <Toaster position="top-center" richColors />
             <AdminContextProvider user={userInfo}>
                 <AdminNav />
                 <AdminToolbar />

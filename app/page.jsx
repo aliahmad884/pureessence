@@ -1,3 +1,5 @@
+"use client"
+
 import Blogs from "@/components/blogs";
 import Hero from "@/components/hero";
 import NewsLetter from "@/components/newsletter";
@@ -8,11 +10,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
 
-export const metadata = {
-  title: 'Home | PurEssence | The PurestProducts, For a Better You',
-  description: "Discover the purest health products like honey, olive oil, and immunity boosters. Shop natural products to support your health and wellness at PurEssence Ltd."
-}
-
+// The page metadata now lives in layout.js (it can only be exported from a server component).
 
 export default function Home() {
   return (

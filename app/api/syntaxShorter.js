@@ -1,5 +1,21 @@
 import { NextResponse } from "next/server"
 const bcrypt = require("bcrypt")
+import jwt from "jsonwebtoken";
+
+const getUserToken = async (req) => {
+    const userToken = await req.cookies.get('token')
+    if (!userToken) return null;
+    const token = userToken?.value;
+    const userInfo = await jwt.verify(token, process.env.JWT_USER_KEY);
+    return userInfo;
+}
+const getAdminToken = async (req) => {
+    const adminToken = await req.cookies.get('adminAuth')
+    if (!adminToken) return null;
+    const token = adminToken?.value;
+    const adminInfo = await jwt.verify(token, process.env.JWT_SEC_KEY);
+    return adminInfo;
+}
 
 const updateVersion = async (entryKey, table) => {
     let ver = await table.findOne({ where: { key: entryKey } })
@@ -62,4 +78,4 @@ const sanitizer = {
 }
 
 // module.exports = { res, sanitizer, randomeStrGen, updateVersion }
-export {res, sanitizer, randomeStrGen, updateVersion}
+export { res, sanitizer, randomeStrGen, updateVersion, getUserToken,getAdminToken }

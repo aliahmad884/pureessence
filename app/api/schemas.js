@@ -112,7 +112,7 @@ Blogs.init({
     },
     publish: {
         type: DataTypes.BOOLEAN,
-        defaultValue:false
+        defaultValue: false
     }
 }, {
     sequelize,
@@ -123,27 +123,30 @@ Blogs.init({
 
 export class RegisterUser extends Model { }
 RegisterUser.init({
-    Id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    FirstName: {
+    first_name: {
         type: DataTypes.STRING
     },
-    LastName: {
+    last_name: {
         type: DataTypes.STRING
     },
-    Email: {
+    email: {
         type: DataTypes.STRING
     },
-    Password: {
+    password: {
         type: DataTypes.STRING
     },
-    RegDate: {
+    profile_pic: {
+        type: DataTypes.TEXT
+    },
+    reg_date: {
         type: DataTypes.DATE
     },
-    LastLogin: {
+    last_login: {
         type: DataTypes.DATE
     },
     AuthMethod: {
@@ -199,6 +202,9 @@ Order.init({
         autoIncrement: true
     },
     userId: {
+        type: DataTypes?.INTEGER
+    },
+    order_id: {
         type: DataTypes.STRING
     },
     product: {
@@ -222,11 +228,27 @@ Order.init({
     orderStatus: {
         type: DataTypes.STRING
     },
+    payment: {
+        type: DataTypes.STRING
+    },
+    paidAt: {
+        type: DataTypes.DATE
+    },
+    stripeSessionId: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    stripePaymentIntentId: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     invLink: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
+        allowNull: true
     },
     invId: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: true
     },
     shipFee: {
         type: DataTypes.DECIMAL(10, 2)
@@ -237,7 +259,10 @@ Order.init({
     isOrdCancel: {
         type: DataTypes.BOOLEAN,
         defaultValue: 0
-    }
+    },
+    customerEmailSentAt: { type: DataTypes.DATE, allowNull: true },
+    adminEmailSentAt: { type: DataTypes.DATE, allowNull: true },
+    reviewNote: { type: DataTypes.TEXT, allowNull: true },
 }, {
     sequelize,
     modelName: 'Order',
@@ -252,8 +277,8 @@ Invoice.init({
         primaryKey: true,
         autoIncrement: true
     },
-    orderId: {
-        type: DataTypes.INTEGER
+    order_id: {
+        type: DataTypes.STRING
     },
     uniquUrl: {
         type: DataTypes.TEXT
@@ -356,6 +381,20 @@ AdminUser.init(
     }
 );
 
+export class WebhookEvent extends Model { }
+WebhookEvent.init(
+    {
+        id: { type: DataTypes.STRING, primaryKey: true },
+        type: { type: DataTypes.STRING },
+    },
+    {
+        sequelize,
+        modelName: 'WebhookEvent',
+        tableName: 'webhook_events',
+        timestamps: true
+    }
+);
+
 
 
 // (async () => {
@@ -364,7 +403,7 @@ AdminUser.init(
 //         // await RegisterUser.sync({ force: true });
 //         // await Cart.sync({ force: true });
 //         // await Invoice.sync({ force: true });
-//         await sequelize.sync({ alter: true });
+//         await Order.sync({ alter: true });
 //         console.log('Table synced successfully!');
 //     } catch (error) {
 //         console.error('Error syncing table:', error);

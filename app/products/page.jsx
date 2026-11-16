@@ -21,7 +21,7 @@ export default function ProductPage() {
             return;
         }
         try {
-            let res = await fetch('/api/product');
+            let res = await fetch('/api/product?scope=customer');
             if (!res.ok) return null;
             let result = await res.json();
             await saveCache(result, 'product')

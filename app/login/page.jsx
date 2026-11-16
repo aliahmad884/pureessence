@@ -11,8 +11,7 @@ import { CircleAlert, Eye, EyeOff, Loader2, Lock, Mail } from "lucide-react"
 import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { signIn } from "next-auth/react"
-import Swal from "sweetalert2"
+import { toast } from "sonner"
 
 const inputClass =
     "h-12 rounded-xl border-white/10 bg-white/[0.04] pl-11 text-white placeholder:text-white/40 " +
@@ -21,20 +20,17 @@ const inputClass =
 
 export default function Login() {
     const searchParams = useSearchParams()
-    const err = searchParams.get('err')
     const path = searchParams.get('retTo')
-    const isGoogleAuth = searchParams.get('authMethod')
     const router = useRouter()
-    const { setCartData, setLoggedUser, setIsLogged } = useDataContext()
+    const { setCartData, setLoggedUser } = useDataContext()
     const [email, setEmail] = useState('')
     const [pass, setPas] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [errMsg, setErrMsg] = useState(null)
     const [passState, setPassState] = useState(false)
-    const [alertFired, setAlertFired] = useState(true)
     const [btnLoading, setBtnLoading] = useState(false)
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
         if (email === '' && pass === '') {
             setErrMsg('Please fill out the form first.')
@@ -48,86 +44,39 @@ export default function Login() {
             return null;
         }
         setBtnLoading(true)
-        fetch('/api/user?action=login', {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                Email: email,
-                Password: pass
-            })
-        }).then(res => res.json()).then(data => {
-            if (data.err) {
-                Swal.fire({
-                    icon: 'info',
-                    text: "The email you entered is associated with a Google account. Please use the 'Sign in with Google' option to log in."
+        try {
+            const res = await fetch('/api/user?action=login', {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    Email: email,
+                    Password: pass
                 })
-                setBtnLoading(false)
-            }
-            else if (data.Name) {
-                localStorage.setItem('user', JSON.stringify(data))
-                setIsLogged(true)
-                setErrMsg('')
-                setLoggedUser(data)
-                setCartData([])
-                setIsLoading(false)
-                router.push(path ? path : '/')
-            } else {
-                setErrMsg(data.res)
-                setBtnLoading(false)
-            }
-        }).catch(err => {
-            console.log(err)
-            setErrMsg('Something went wrong. Please try again.')
-            setBtnLoading(false)
-        })
-    }
-
-    const handleGoogleLogin = async () => {
-        await signIn("google")
-    }
-
-    const googleSignup = async () => {
-        const name = searchParams.get('Name');
-        const email = searchParams.get('Email')
-        const response = await fetch('/api/user?action=login&authMethod=google', {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                Email: email,
             })
-        })
-        if (response.ok) {
-            localStorage.setItem('user', JSON.stringify({ Name: name, Email: email }))
-            setIsLogged(true);
-            setLoggedUser({ Name: name, Email: email });
-            setCartData([]);
-            router.push('/')
+            const result = await res.json()
+            if (!res.ok) {
+                console.log(result)
+                toast.error(result.res)
+                setErrMsg(result.res)
+                return;
+            }
+            setLoggedUser(result)
+            setErrMsg(null)
+            const hasItems = JSON.parse(localStorage.getItem("cart"));
+            setCartData(hasItems || [])
+            router.push(path ? path : '/')
+        } catch (err) {
+            toast.error(err.message || "Internal Server Error!")
+            console.error(err)
         }
-        else {
+        finally {
             setIsLoading(false)
-            alert('Google login is not working! please try again.')
+            setBtnLoading(false)
         }
     }
 
-    useEffect(() => {
-        const user = localStorage.getItem('user')
-        document.title = 'Login | PurEssence'
-        if (isGoogleAuth) {
-            setIsLoading(true)
-            googleSignup()
-        }
-        else if (err === 'EBNG' && alertFired) {
-            setAlertFired(false)
-            Swal.fire({
-                icon: 'error',
-                title: 'Email already exists!',
-                text: 'This email is already associated with an account. Please log in using this email, or use a different account to sign in.'
-            }).then(() => {
-                router.replace('/login')
-            })
-        }
-        else if (user) router.push('/')
-    }, [])
+
+    const handleGoogleLogin = () => window.location.href = "/api/auth/google";
 
     useEffect(() => {
         setErrMsg('')
@@ -139,6 +88,7 @@ export default function Login() {
 
     return (
         <main className="mt-[-120px] flex min-h-screen flex-col bg-[#181818] text-white">
+            <title>Login | PurEssence</title>
             {/* Top bar with logo, dark, flush to the top */}
             <header className="sticky top-0 z-10 m-0 border-b border-white/10 bg-[#202020]">
                 <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2 sm:px-6">

@@ -19,7 +19,7 @@ export default function BlogsPage() {
                 return;
             }
             try {
-                let res = await fetch('/api/blog')
+                let res = await fetch('/api/blog?scope=customer')
                 if (!res.ok) return null;
                 let result = await res.json()
                 setBlogs(result)
