@@ -397,15 +397,15 @@ WebhookEvent.init(
 
 
 
-// (async () => {
-//     try {
-//         // await AdminUser.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
-//         // await RegisterUser.sync({ force: true });
-//         // await Cart.sync({ force: true });
-//         // await Invoice.sync({ force: true });
-//         await Order.sync({ alter: true });
-//         console.log('Table synced successfully!');
-//     } catch (error) {
-//         console.error('Error syncing table:', error);
-//     }
-// })();
+(async () => {
+    try {
+        // await AdminUser.sync({ force: true }); // Set to false to avoid dropping and re-creating tables
+        // await RegisterUser.sync({ force: true });
+        // await Cart.sync({ force: true });
+        // await Invoice.sync({ force: true });
+        await sequelize.sync({ alter: true });
+        console.log('Table synced successfully!');
+    } catch (error) {
+        console.error('Error syncing table:', error);
+    }
+})();
