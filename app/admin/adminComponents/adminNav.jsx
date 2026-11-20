@@ -129,7 +129,6 @@ export default function AdminNav() {
 
     if (isHidden) return null;
 
-useEffect(()=>{console.log(loggedUser)},[loggedUser])
     return (
         <aside
             className={cn(

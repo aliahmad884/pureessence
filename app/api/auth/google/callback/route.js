@@ -16,6 +16,7 @@ const cookieOptions = {
     maxAge: 60 * 60 * 24 * 3,
     path: '/',
 };
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.BASE_URL;
 
 export async function GET(request) {
 
@@ -32,7 +33,7 @@ export async function GET(request) {
 
         if (error) {
             return NextResponse.redirect(
-                new URL("/login?err=GOOGLE_CANCELLED", request.url)
+                new URL("/login?err=GOOGLE_CANCELLED", baseUrl)
             );
         }
 
@@ -89,7 +90,7 @@ export async function GET(request) {
         console.log("User already registered, logging in....")
         const { Password, ...userInfo } = user.dataValues
         const authToken = jwt.sign(userInfo, process.env.JWT_USER_KEY, { expiresIn: '3d' })
-        const response = NextResponse.redirect(new URL("/", request.url))
+        const response = NextResponse.redirect(new URL("/", baseUrl))
         response.cookies.set('token', authToken, cookieOptions)
         return response;
 
