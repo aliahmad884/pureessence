@@ -153,7 +153,7 @@ export default function Navbar() {
                         {/* -------Active User------- */}
                         <div className="userCont">
                             {loggedUser
-                                ? <Link href={'/profile'}><img loading="lazy" src={loggedUser ? loggedUser.profile_pic : "/avatar2.webp"} alt="Temp" width={40} className="rounded-full cursor-pointer" /></Link>
+                                ? <Link href={'/profile'}><img loading="lazy" src={loggedUser.profile_pic ? loggedUser.profile_pic : "/avatar2.webp"} alt="Temp" width={40} className="rounded-full cursor-pointer" /></Link>
                                 : <p style={{ cursor: 'pointer' }}><Link href={'/login'}>Login</Link></p>
                             }
                         </div>
@@ -188,7 +188,7 @@ export default function Navbar() {
                         {/* --------DropDown User-------- */}
                         <div className="dropUser" ref={dropUserRef}>
                             {loggedUser ? (<>
-                                <img onClick={() => router.push("/profile")} loading="lazy" src={loggedUser ? loggedUser.profile_pic : "/avatar2.webp"} alt="Temp" width={40} />
+                                <img onClick={() => router.push("/profile")} loading="lazy" src={loggedUser.profile_pic ? loggedUser.profile_pic : "/avatar2.webp"} alt="Temp" width={40} />
                             </>) :
                                 <p style={{ cursor: 'pointer', margin: '10px 0' }}><Link href={'/login'}>Login</Link></p>
                             }

@@ -41,14 +41,14 @@ export async function GET(req) {
                         publish: true,
                         [Op.or]: conditions
                     },
-                    attributes: ['id', "pName", "qty", "slug", "price", "sDesc", "descripion", "status", "pImages"]
+                    attributes: ['id', "pName", "qty", "slug", "price", "sDesc", "description", "status", "pImages"]
                 })
                 if (!findOne) return res({ res: `Product Not found against..` }, 404);
                 return res(findOne.dataValues, 200)
             }
             const findAll = await Product.findAll({
                 where: { publish: true },
-                attributes: ['id', "pName", "qty", "slug", "price", "sDesc", "descripion", "status", "pImages"]
+                attributes: ['id', "pName", "qty", "slug", "price", "sDesc", "description", "status", "pImages"]
             });
             const data = findAll.map(p => p.dataValues)
             return res(data, 200)
