@@ -58,6 +58,8 @@ export async function GET(req) {
 export async function POST(req) {
     const userInfo = await getUserToken(req);
     const body = await req.json();
+    const base = process.env.NEXT_PUBLIC_BASE_URL;
+
 
     try {
         const { cartData, ...billInfo } = body;
@@ -114,7 +116,7 @@ export async function POST(req) {
                     product_data: {
                         name: l.product.pName,
                         description: l.product.sDesc,
-                        images: l.product.pImages?.map(img => (`/api/uploadImg?path=${encodeURIComponent(img)}`))
+                        images: l.product.pImages?.map(img => `${base}/api/uploadImg?path=${encodeURIComponent(img)}`)
                     },
                 },
                 quantity: l.qty,
