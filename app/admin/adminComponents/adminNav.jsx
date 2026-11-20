@@ -17,6 +17,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { useEffect } from "react";
 
 const generalLinks = [
     {
@@ -128,7 +129,7 @@ export default function AdminNav() {
 
     if (isHidden) return null;
 
-
+useEffect(()=>{console.log(loggedUser)},[loggedUser])
     return (
         <aside
             className={cn(
