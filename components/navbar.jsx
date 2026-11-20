@@ -17,7 +17,7 @@ const navLinks = [
     { link: 'Contact', path: '/contact' },
     { link: 'Blogs', path: '/blogs' },
     { link: 'FAQs', path: '/frequently-asked-questions' },
-    { link: 'Orders', path: '/order' }
+    // { link: 'Orders', path: '/order' }
 ]
 
 // Same inline styles the old active-tab effect applied

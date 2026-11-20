@@ -8,10 +8,10 @@ export default function Footer() {
         { link: 'Home', path: '/' },
         { link: 'Products', path: '/products' },
         { link: 'About', path: '/about' },
-        { link: 'Guides', path: '/blogs/health-guides' },
         { link: 'Contact', path: '/contact' },
         { link: 'Blogs', path: '/blogs' },
-        { link: 'FAQs', path: '/frequently-asked-questions' }
+        { link: 'FAQs', path: '/frequently-asked-questions' },
+        { link: 'Track Order', path: '/order' }
     ];
     return (
         <>

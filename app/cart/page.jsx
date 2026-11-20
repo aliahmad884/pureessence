@@ -16,11 +16,9 @@ const money = (value) =>
 export default function CartPage() {
     const router = useRouter()
     const { cartData, removeItem, setCartData, isResDelay } = useDataContext()
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         document.title = 'Cart'
-        setLoading(false)
     }, [])
 
     const subTotal = useMemo(
@@ -39,8 +37,6 @@ export default function CartPage() {
             )
         )
     }
-
-    if (loading) return <FallBackLoader />
 
     if (cartData.length <= 0) {
         return (

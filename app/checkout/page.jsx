@@ -141,10 +141,6 @@ export default function Checkout() {
         setIsLoading(false)
     }, [])
 
-    if (isLoading) {
-        return <FallBackLoader />
-    }
-
     const shipLines = addressLines(billingInfo)
     const billingSeparate = billingInfo.sameAsShipping === false && billingInfo.billing
     const billLines = billingSeparate ? addressLines(billingInfo.billing) : []

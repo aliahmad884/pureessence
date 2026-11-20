@@ -57,7 +57,6 @@ export async function GET(req) {
 
 export async function POST(req) {
     const userInfo = await getUserToken(req);
-    const { searchParams } = new URL(req.url);
     const body = await req.json();
 
     try {
@@ -112,12 +111,15 @@ export async function POST(req) {
                 price_data: {
                     currency: 'gbp',
                     unit_amount: l.unitPence,
-                    product_data: { name: l.product.pName },
+                    product_data: {
+                        name: l.product.pName,
+                        description: l.product.sDesc,
+                        images: l.product.pImages?.map(img => `/api/uploadImg?path=${encodeURIComponent(img)}`)
+                    },
                 },
                 quantity: l.qty,
             })),
             client_reference_id: order_id,
-            customer_email: billInfo.email,
             metadata: { order_id },
             success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/order/${order_id}/confirmation?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout`,
