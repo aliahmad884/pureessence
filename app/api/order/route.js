@@ -114,7 +114,7 @@ export async function POST(req) {
                     product_data: {
                         name: l.product.pName,
                         description: l.product.sDesc,
-                        images: l.product.pImages?.map(img => `/api/uploadImg?path=${encodeURIComponent(img)}`)
+                        images: l.product.pImages?.map(img => (`/api/uploadImg?path=${encodeURIComponent(img)}`))
                     },
                 },
                 quantity: l.qty,
