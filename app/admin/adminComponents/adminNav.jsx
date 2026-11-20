@@ -67,7 +67,7 @@ export default function AdminNav() {
 
     const isHidden = pathname.startsWith("/admin/authenticate");
 
-    const isAdmin = loggedUser?.userRole === "admin";
+    const isAdmin = loggedUser?.userRole === "Admin";
 
     const handleNavigation = () => {
         const nav = document.querySelector(".adminNavCont");
