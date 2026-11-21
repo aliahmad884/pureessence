@@ -9,9 +9,6 @@ export const runtime = 'nodejs';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
-    // 1. Verify the signature using the RAW body (do not call req.json())
-    console.log("---------------------------------------")
-    console.log("--------------Web Hook Called------------")
     const signature = req.headers.get('stripe-signature');
     const rawBody = await req.text();
 

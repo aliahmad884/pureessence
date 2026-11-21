@@ -81,7 +81,7 @@ const detailRows = (rows) => `
 function itemsTable(c) {
   const rows = c.items.map((i) => `
   <tr>
-    <td style="padding:14px 0;border-bottom:1px solid ${BRAND.line};font-family:${SANS};font-size:14px;color:${BRAND.ink};">${esc(i.title)}</td>
+    <td style="padding:14px 0;border-bottom:1px solid ${BRAND.line};font-family:${SANS};font-size:14px;color:${BRAND.ink};">${esc(i.pName)}</td>
     <td align="center" style="padding:14px 8px;border-bottom:1px solid ${BRAND.line};font-family:${SANS};font-size:14px;color:${BRAND.muted};">× ${esc(i.qty)}</td>
     <td align="right" style="padding:14px 0;border-bottom:1px solid ${BRAND.line};font-family:${SANS};font-size:14px;color:${BRAND.ink};">${gbp(Number(i.price) * Number(i.qty))}</td>
   </tr>`).join('');
