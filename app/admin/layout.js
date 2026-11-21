@@ -10,7 +10,7 @@ export const metadata = {
 }
 
 export default async function AdminLayout({ children }) {
-    const userInfo = await getUserInfo("authAdmin", AdminUser, process.env.JWT_SEC_KEY)
+    const userInfo = await getUserInfo("adminAuth", AdminUser, process.env.JWT_SEC_KEY)
     return (
         <div className='adminBody'>
             <AdminContextProvider user={userInfo}>
