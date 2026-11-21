@@ -10,6 +10,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
     // 1. Verify the signature using the RAW body (do not call req.json())
+    console.log("---------------------------------------")
+    console.log("--------------Web Hook Called------------")
     const signature = req.headers.get('stripe-signature');
     const rawBody = await req.text();
 
@@ -105,7 +107,7 @@ async function markOrderPaid(session, t) {
             orderStatus: notes.length ? 'Needs Review' : 'Processing',
             paymentMethod: 'stripe',
             stripePaymentIntentId: session.payment_intent,
-            payment:"Paid",
+            payment: "Paid",
             paidAt: new Date(),
             reviewNote: notes.length ? notes.join(' | ') : null,
         },
@@ -131,10 +133,10 @@ async function cancelPendingOrder(session, t) {
 
 
 async function runPostPaymentTasks(orderId) {
-  try {
-    const order = await Order.findOne({ where: { order_id: orderId } });
-    if (order) await sendOrderEmails(order);
-  } catch (err) {
-    console.error(`Post-payment tasks failed for ${orderId}:`, err);
-  }
+    try {
+        const order = await Order.findOne({ where: { order_id: orderId } });
+        if (order) await sendOrderEmails(order);
+    } catch (err) {
+        console.error(`Post-payment tasks failed for ${orderId}:`, err);
+    }
 }
